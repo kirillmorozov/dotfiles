@@ -54,3 +54,6 @@ Sessionx.vim
 tags
 ## Persistent undo
 [._]*.un~
+## Plugins
+vim/autoload/plug.vim
+vim/plugged/*
