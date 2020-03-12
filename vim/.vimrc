@@ -10,13 +10,24 @@ Plug 'vim-airline/vim-airline'
 " Tagbar replacement
 Plug 'liuchengxu/vista.vim'
 
+" Syntax checking
+Plug 'vim-syntastic/syntastic'
+
 " Syntax highlight
 Plug 'sheerun/vim-polyglot'
+
+" Premiere plugin for Git
+Plug 'tpope/vim-fugitive'
 
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
 
+" Markdown support
+Plug 'plasticboy/vim-markdown'
+
 " Python plugins
+" Python autocomplion with Jedi
+Plug 'davidhalter/jedi-vim'
 " Text objects and motions for Python
 Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
 
