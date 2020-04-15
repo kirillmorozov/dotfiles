@@ -4,6 +4,9 @@ call plug#begin('~/.vim/plugged')
 " Sensible start
 Plug 'tpope/vim-sensible'
 
+" Vim HardTime
+Plug 'takac/vim-hardtime'
+
 " Airline
 Plug 'vim-airline/vim-airline'
 
@@ -43,6 +46,7 @@ Plug 'KnoP-01/krl-for-vim'
 
 call plug#end()
 
+set number
 syntax on
 filetype plugin indent on
 
@@ -55,3 +59,6 @@ map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+" Switch on hardtime mode to break bad habbits
+let g:hardtime_default_on = 1
