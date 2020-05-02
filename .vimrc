@@ -10,6 +10,9 @@ Plug 'takac/vim-hardtime'
 " Airline
 Plug 'vim-airline/vim-airline'
 
+" Hybrid numbers
+Plug 'jeffkreeftmeijer/vim-numbertoggle'
+
 " Tagbar replacement
 Plug 'liuchengxu/vista.vim'
 
@@ -46,19 +49,9 @@ Plug 'KnoP-01/krl-for-vim'
 
 call plug#end()
 
-set number
+set number relativenumber
 syntax on
 filetype plugin indent on
-
-" To break bad habits
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
 
 " Switch on hardtime mode to break bad habbits
 let g:hardtime_default_on = 1
