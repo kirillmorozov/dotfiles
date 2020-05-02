@@ -4,6 +4,7 @@ set smartcase
 set incsearch
 set hlsearch
 set nospell
+set colorcolumn=80,120
 
 setlocal tabstop=4
 setlocal shiftwidth=4
