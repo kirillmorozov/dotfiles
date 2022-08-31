@@ -3,3 +3,6 @@ theme = "solarized_light"
 [editor]
 line-number = "relative"
 rulers = [80]
+
+[editor.file-picker]
+hidden = false
