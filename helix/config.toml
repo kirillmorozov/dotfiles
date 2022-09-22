@@ -1,4 +1,5 @@
 theme = "solarized_light"
+# theme = "solarized_dark"
 
 [editor]
 line-number = "relative"
