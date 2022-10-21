@@ -1,3 +1,8 @@
 [[language]]
 name = "git-commit"
 rulers = [55, 72]
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "black", args = ["-", "-q"] }
