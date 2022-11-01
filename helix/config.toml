@@ -5,6 +5,7 @@ theme = "solarized_light"
 line-number = "relative"
 rulers = [80]
 idle-timeout = 200
+color-modes = true
 
 [editor.file-picker]
 hidden = false
