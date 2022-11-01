@@ -8,3 +8,6 @@ idle-timeout = 200
 
 [editor.file-picker]
 hidden = false
+
+[editor.indent-guides]
+render = true
