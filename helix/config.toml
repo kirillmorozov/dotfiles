@@ -6,6 +6,7 @@ line-number = "relative"
 rulers = [80]
 idle-timeout = 33
 color-modes = true
+auto-save = true
 
 [editor.file-picker]
 hidden = false
