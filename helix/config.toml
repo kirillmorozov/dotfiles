@@ -14,5 +14,8 @@ hidden = false
 [editor.indent-guides]
 render = true
 
+[editor.soft-wrap]
+enable = true
+
 [editor.lsp]
 display-messages = true
