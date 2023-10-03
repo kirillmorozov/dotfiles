@@ -146,8 +146,13 @@ require('lazy').setup({
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
+  },
+
+  -- Soho vibes for Neovim
+  {
+    'rose-pine/neovim', name = 'rose-pine',
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
 
