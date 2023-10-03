@@ -1,5 +1,4 @@
-theme = "solarized_light"
-# theme = "solarized_dark"
+theme = "rose_pine"
 
 [editor]
 line-number = "relative"
