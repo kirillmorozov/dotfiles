@@ -262,6 +262,8 @@ vim.wo.signcolumn = 'yes'
 -- A visual guide
 vim.opt.colorcolumn = '80'
 
+vim.opt.tabstop = 4
+
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
