@@ -28,3 +28,9 @@ pageup = "no_op"
 pagedown = "no_op"
 home = "no_op"
 end = "no_op"
+
+[keys.normal]
+C-u = ["half_page_up", "align_view_center"]
+C-d = ["half_page_down", "align_view_center"]
+pagedown = ["page_down", "align_view_center"]
+pageup = ["page_up", "align_view_center"]
