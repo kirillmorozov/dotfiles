@@ -145,12 +145,6 @@ require('lazy').setup({
   },
 
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-  },
-
-  {
     -- Soho vibes for Neovim
     'rose-pine/neovim', name = 'rose-pine',
     config = function()
@@ -237,7 +231,7 @@ require('lazy').setup({
 -- NOTE: You can change these options as you wish!
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Make line numbers default
 vim.wo.number = true
@@ -339,7 +333,28 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = {
+    'bash',
+    'c',
+    'comment',
+    'cpp',
+    'dockerfile',
+    'elixir',
+    'git_rebase',
+    'gitcommit',
+    'go',
+    'groovy',
+    'json',
+    'lua',
+    'luadoc',
+    'markdown',
+    'python',
+    'terraform',
+    'toml',
+    'vim',
+    'vimdoc',
+    'yaml',
+  },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you
   -- can change for yourself!)
