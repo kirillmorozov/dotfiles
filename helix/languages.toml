@@ -5,9 +5,9 @@ rulers = [55, 72]
 [[language]]
 name = "python"
 auto-format = true
-formatter = { command = "black", args = ["-", "-q"] }
+formatter = { command = "ruff", args = ["format", "-"] }
 
 [[language]]
 name = "go"
 auto-format = true
-config = { "formatting.gofumpt" = true }
+formatter = { command = "gofumpt" }
