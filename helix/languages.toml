@@ -7,6 +7,15 @@ formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
 name = "git-commit"
 rulers = [55, 72]
 
+[[grammar]]
+name = "groovy"
+source = { git = "https://github.com/Decodetalkers/tree-sitter-groovy.git", rev="7342780c0aa1faadeb36033bff27e1c1c8c2d95c" }
+
+[[language]]
+name = "groovy"
+grammar = "groovy"
+comment-token = "//"
+
 [[language]]
 name = "python"
 auto-format = true
