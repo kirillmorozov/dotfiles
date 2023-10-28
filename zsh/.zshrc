@@ -70,6 +70,7 @@ zstyle ':omz:update' frequency 7
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aws
+  brew
   command-not-found
   common-aliases
   docker
