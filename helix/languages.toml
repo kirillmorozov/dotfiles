@@ -1,4 +1,9 @@
 [[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
+
+[[language]]
 name = "git-commit"
 rulers = [55, 72]
 
