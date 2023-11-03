@@ -70,7 +70,7 @@ set pumheight=10
 set laststatus=2
 
 " Draw the signcolumn only when there is a sign to display
-set signcolumn="auto"
+set signcolumn=auto
 
 " Do smart autoindenting when starting a new line
 set smartindent
