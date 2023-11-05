@@ -88,6 +88,9 @@ set splitright
 " If in Insert, Replace or Visual mode put a message on the last line
 set showmode
 
+" Delete comment character when joining commented lines.
+set formatoptions+=j
+
 " Minimal number of screen lines to keep above and below the cursor
 set scrolloff=8
 " Minimal number of screen columns to keep to the left and to the right of the
