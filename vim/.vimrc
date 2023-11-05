@@ -36,7 +36,7 @@ set title
 " Switch on syntax highlighting
 syntax enable
 
-filetype plugin on
+filetype plugin indent on
 
 " Turn on line numbers
 set number
