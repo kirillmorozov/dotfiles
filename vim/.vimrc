@@ -42,6 +42,8 @@ filetype plugin indent on
 set number
 " Turn on relative line numbers
 set relativenumber
+" Show the line and column number of the cursor position
+set ruler
 
 " Screen columns that are highlighted
 set colorcolumn=80
