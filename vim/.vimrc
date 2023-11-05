@@ -27,6 +27,9 @@ let g:netrw_liststyle=3
 " Make Vim behave in a more useful way
 set nocompatible
 
+" Automatically read file again if it was changed outside vim
+set autoread
+
 " Set title of the window
 set title
 
