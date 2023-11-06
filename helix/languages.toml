@@ -4,6 +4,11 @@ auto-format = true
 formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
 
 [[language]]
+name = "elixir"
+auto-format = true
+formatter = { command = "mix", args = ["format", "-"] }
+
+[[language]]
 name = "git-commit"
 rulers = [55, 72]
 
