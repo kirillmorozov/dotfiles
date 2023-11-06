@@ -99,3 +99,6 @@ set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
 set wildmenu
+
+" Highlight Jenkinfile syntax
+au BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
