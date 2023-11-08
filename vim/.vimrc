@@ -102,3 +102,6 @@ set wildmenu
 
 " Highlight Jenkinfile syntax
 au BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
+
+" YAML indentation
+autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
