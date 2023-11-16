@@ -38,6 +38,8 @@ syntax enable
 
 filetype plugin indent on
 
+colorscheme default
+
 " Turn on line numbers
 set number
 " Turn on relative line numbers
