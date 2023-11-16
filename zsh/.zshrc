@@ -102,6 +102,7 @@ else
   export EDITOR='vim'
 fi
 
+export BAT_THEME="base16-256"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
