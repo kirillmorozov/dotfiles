@@ -30,11 +30,12 @@ local function scheme_for_appearance(appearance)
   end
 end
 
-config.font_size = 14.0
-
 config.color_scheme = scheme_for_appearance(get_appearance())
 
-config.font = wezterm.font 'Fira Code'
+config.font = wezterm.font_with_fallback {
+  { family = 'Cascadia Code', weight = 'DemiLight' },
+  { family = 'Fira Code', weight = 'Regular' },
+}
 config.font_size = 14.0
 
 return config
