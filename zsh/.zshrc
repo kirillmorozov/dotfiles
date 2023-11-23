@@ -79,6 +79,7 @@ plugins=(
   git
   git-auto-fetch
   golang
+  kubectl
   poetry
   python
   terraform
