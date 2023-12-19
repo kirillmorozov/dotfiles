@@ -21,3 +21,8 @@ formatter = { command = "ruff", args = ["format", "-"] }
 name = "go"
 auto-format = true
 formatter = { command = "gofumpt" }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-formatter", "include_document_start=true", "-in"] }
