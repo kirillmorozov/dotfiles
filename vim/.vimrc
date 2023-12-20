@@ -27,6 +27,9 @@ let g:netrw_liststyle=3
 " Make Vim behave in a more useful way
 set nocompatible
 
+" Use a swapfile for the buffer
+set noswapfile
+
 " Automatically read file again if it was changed outside vim
 set autoread
 
