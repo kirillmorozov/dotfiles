@@ -33,6 +33,9 @@ set noswapfile
 " Automatically read file again if it was changed outside vim
 set autoread
 
+" Automatically save before :next, :make etc
+set autowrite
+
 " Set title of the window
 set title
 
