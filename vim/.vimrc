@@ -65,6 +65,10 @@ set nohlsearch
 " Enable incremental searching
 set incsearch 
 
+" Center search results
+nnoremap n nzz
+nnoremap N Nzz
+
 " Enable text wrapping
 set wrap
 " Tabs=4spaces
@@ -109,7 +113,7 @@ set sidescrolloff=8
 set wildmenu
 
 " Highlight Jenkinfile syntax
-au BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
+autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 
 " YAML indentation
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
