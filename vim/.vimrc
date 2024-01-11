@@ -46,6 +46,11 @@ filetype plugin indent on
 
 colorscheme default
 
+" Show tabs, multiple consecutive spaces, trailing spaces and breaks
+set list
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,lead:\ ,multispace:·
+let &showbreak = '↪ '
+
 " Turn on line numbers
 set number
 " Turn on relative line numbers
