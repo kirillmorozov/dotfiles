@@ -132,7 +132,20 @@ map <leader>p "+p
 map <leader>P "+P
 
 " Commands
-autocmd FileType go command Fmt :%!gofumpt
-autocmd FileType python command Fmt :%!ruff format -s -
-autocmd FileType sh command Fmt :%!shfmt -i 2 -bn -ci -sr
-autocmd FileType yaml command Fmt :%!yamlfmt -formatter include_document_start=true -formatter retain_line_breaks=true -in
+if executable("gofumpt")
+	autocmd FileType go command Fmt :%!gofumpt
+elseif executable("gofmt")
+	autocmd FileType go command Fmt :%!gofmt
+endif
+
+if executable("ruff")
+	autocmd FileType python command Fmt :%!ruff format -s -
+endif
+
+if executable("shfmt")
+	autocmd FileType sh command Fmt :%!shfmt -i 2 -bn -ci -sr
+endif
+
+if executable("yamlfmt")
+	autocmd FileType yaml command Fmt :%!yamlfmt -formatter include_document_start=true -formatter retain_line_breaks=true -in
+endif
