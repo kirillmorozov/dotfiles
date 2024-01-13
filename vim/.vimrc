@@ -130,3 +130,9 @@ nmap <leader>w <c-w>
 vnoremap <leader>y "+y
 map <leader>p "+p
 map <leader>P "+P
+
+" Commands
+autocmd FileType go command Fmt :%!gofumpt
+autocmd FileType python command Fmt :%!ruff format -s -
+autocmd FileType sh command Fmt :%!shfmt -i 2 -bn -ci -sr
+autocmd FileType yaml command Fmt :%!yamlfmt -formatter include_document_start=true -formatter retain_line_breaks=true -in
