@@ -25,4 +25,4 @@ formatter = { command = "gofumpt" }
 [[language]]
 name = "yaml"
 auto-format = true
-formatter = { command = "yamlfmt", args = ["-formatter", "include_document_start=true", "-in"] }
+formatter = { command = "yamlfmt", args = ["-formatter", "include_document_start=true", "-formatter", "retain_line_breaks=true", "-in"] }
