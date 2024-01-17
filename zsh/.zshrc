@@ -79,7 +79,9 @@ plugins=(
   git
   git-auto-fetch
   golang
+  helm
   kubectl
+  minikube
   poetry
   python
   terraform
