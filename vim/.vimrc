@@ -127,3 +127,6 @@ autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 nnoremap <leader>f :find<Space>
 nnoremap <leader>b :buffer<Space>
 nmap <leader>w <c-w>
+vnoremap <leader>y "+y
+map <leader>p "+p
+map <leader>P "+P
