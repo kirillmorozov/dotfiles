@@ -133,19 +133,19 @@ map <leader>P "+P
 
 " Commands
 if executable("gofumpt")
-	autocmd FileType go command Fmt :%!gofumpt
+	autocmd FileType go setlocal formatprg=gofumpt
 elseif executable("gofmt")
-	autocmd FileType go command Fmt :%!gofmt
+	autocmd FileType go setlocal formatprg=gofmt
 endif
 
 if executable("ruff")
-	autocmd FileType python command Fmt :%!ruff format -s -
+	autocmd FileType python setlocal formatprg=ruff\ format\ -s\ -
 endif
 
 if executable("shfmt")
-	autocmd FileType sh command Fmt :%!shfmt -i 2 -bn -ci -sr
+	autocmd FileType sh setlocal formatprg=shfmt\ -i\ 2\ -bn\ -ci\ -sr
 endif
 
 if executable("yamlfmt")
-	autocmd FileType yaml command Fmt :%!yamlfmt -formatter include_document_start=true -formatter retain_line_breaks=true -in
+	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ include_document_start=true\ -formatter\ retain_line_breaks=true\ -in
 endif
