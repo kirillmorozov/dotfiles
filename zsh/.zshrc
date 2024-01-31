@@ -1,4 +1,5 @@
-export PATH="/home/kirill/.local/bin:$PATH"
+# Add XDG user-specific executables to PATH
+export PATH="$HOME/.local/bin:$PATH"
 # Add go to path
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
 # Path to your oh-my-zsh installation.
