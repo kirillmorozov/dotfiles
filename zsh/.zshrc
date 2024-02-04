@@ -82,11 +82,8 @@ plugins=(
   golang
   helm
   kubectl
-  minikube
-  poetry
   python
   terraform
-  ubuntu
   vscode
 )
 
