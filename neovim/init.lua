@@ -1,5 +1,6 @@
 -- See `:help mapleader`
--- NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+-- NOTE: Must happen before plugins are required (otherwise wrong leader will
+-- be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -24,14 +25,11 @@ vim.opt.rtp:prepend(lazypath)
 --  available in your neovim runtime.
 require('lazy').setup({
   -- NOTE: First, some plugins that don't require any configuration
-
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
-
   -- NOTE: This is where your plugins related to LSP can be installed.
   -- The configuration is done below. Search for lspconfig to find it below.
   {
@@ -128,11 +126,26 @@ require('lazy').setup({
         end, { desc = 'git diff against last commit' })
 
         -- Toggles
-        map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
-        map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
+        map(
+          'n',
+          '<leader>tb',
+          gs.toggle_current_line_blame,
+          { desc = 'toggle git blame line' }
+        )
+        map(
+          'n',
+          '<leader>td',
+          gs.toggle_deleted,
+          { desc = 'toggle git show deleted' }
+        )
 
         -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
+        map(
+          { 'o', 'x' },
+          'ih',
+          ':<C-U>Gitsigns select_hunk<CR>',
+          { desc = 'select git hunk' }
+        )
       end,
     },
   },
@@ -208,7 +221,8 @@ require('lazy').setup({
   -- Uncomment the following line and add your plugins to
   -- `lua/custom/plugins/*.lua` to get going.
   --
-  -- For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+  -- For additional information see:
+  -- https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 }, {})
 
@@ -283,18 +297,50 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<leader>w', '<C-w>')
 
 -- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+vim.keymap.set(
+  'n',
+  'k',
+  "v:count == 0 ? 'gk' : 'k'",
+  { expr = true, silent = true }
+)
+vim.keymap.set(
+  'n',
+  'j',
+  "v:count == 0 ? 'gj' : 'j'",
+  { expr = true, silent = true }
+)
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Goto previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Goto next diagnostic message' })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic picker' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic list' })
+vim.keymap.set(
+  'n',
+  '[d',
+  vim.diagnostic.goto_prev,
+  { desc = 'Goto previous diagnostic message' }
+)
+vim.keymap.set(
+  'n',
+  ']d',
+  vim.diagnostic.goto_next,
+  { desc = 'Goto next diagnostic message' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>d',
+  vim.diagnostic.open_float,
+  { desc = 'Open diagnostic picker' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>q',
+  vim.diagnostic.setloclist,
+  { desc = 'Open diagnostic list' }
+)
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+local highlight_group = vim.api.nvim_create_augroup(
+  'YankHighlight', { clear = true }
+)
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
@@ -335,7 +381,9 @@ local function find_git_root()
   end
 
   -- Find the Git root directory from the current file's path
-  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
+  local git_root = vim.fn.systemlist(
+    'git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel'
+  )[1]
   if vim.v.shell_error ~= 0 then
     print 'Not a git repository. Searching on current working directory'
     return cwd
@@ -356,15 +404,27 @@ end
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 
 -- See `:help telescope.builtin`
-vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
-vim.keymap.set('n', '<leader>b', require('telescope.builtin').buffers, { desc = 'Buffers' })
+vim.keymap.set(
+  'n',
+  '<leader>?',
+  require('telescope.builtin').oldfiles,
+  { desc = '[?] Find recently opened files' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>b',
+  require('telescope.builtin').buffers,
+  { desc = 'Buffers' }
+)
 vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme,
   -- layout, etc.
-  require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-    winblend = 10,
-    previewer = false,
-  })
+  require('telescope.builtin').current_buffer_fuzzy_find(
+    require('telescope.themes').get_dropdown( {
+      winblend = 10,
+      previewer = false,
+    })
+  )
 end, { desc = '[/] Fuzzily search in current buffer' })
 
 local function telescope_live_grep_open_files()
@@ -374,16 +434,66 @@ local function telescope_live_grep_open_files()
   }
 end
 
-vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
-vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>f', function() require('telescope.builtin').find_files({ hidden = true }) end, { desc = 'Find Files' })
-vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
-vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
-vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
+vim.keymap.set(
+  'n',
+  '<leader>s/',
+  telescope_live_grep_open_files,
+  { desc = '[S]earch [/] in Open Files' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>ss',
+  require('telescope.builtin').builtin,
+  { desc = '[S]earch [S]elect Telescope' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>gf',
+  require('telescope.builtin').git_files,
+  { desc = 'Search [G]it [F]iles' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>f',
+  function() require('telescope.builtin').find_files({ hidden = true }) end,
+  { desc = 'Find Files' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sh',
+  require('telescope.builtin').help_tags,
+  { desc = '[S]earch [H]elp' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sw',
+  require('telescope.builtin').grep_string,
+  { desc = '[S]earch current [W]ord' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sg',
+  require('telescope.builtin').live_grep,
+  { desc = '[S]earch by [G]rep' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sG',
+  ':LiveGrepGitRoot<cr>',
+  { desc = '[S]earch by [G]rep on Git Root' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sd',
+  require('telescope.builtin').diagnostics,
+  { desc = '[S]earch [D]iagnostics' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>sr',
+  require('telescope.builtin').resume,
+  { desc = '[S]earch [R]esume' }
+)
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -435,7 +545,8 @@ vim.defer_fn(function()
     textobjects = {
       select = {
         enable = true,
-        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        -- Automatically jump forward to textobj, similar to targets.vim
+        lookahead = true, 
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
           ['aa'] = '@parameter.outer',
@@ -500,10 +611,26 @@ local on_attach = function(_, bufnr)
   nmap('<leader>a', vim.lsp.buf.code_action, 'Perform code action')
   nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto definition')
   nmap('gr', require('telescope.builtin').lsp_references, 'Goto references')
-  nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto implementation')
-  nmap('gy', require('telescope.builtin').lsp_type_definitions, 'Goto type definition')
-  nmap('<leader>s', require('telescope.builtin').lsp_document_symbols, 'Open symbol picker')
-  nmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open workspace symbol picker')
+  nmap(
+    'gi',
+    require('telescope.builtin').lsp_implementations,
+    'Goto implementation'
+  )
+  nmap(
+    'gy',
+    require('telescope.builtin').lsp_type_definitions,
+    'Goto type definition'
+  )
+  nmap(
+    '<leader>s',
+    require('telescope.builtin').lsp_document_symbols,
+    'Open symbol picker'
+  )
+  nmap(
+    '<leader>S',
+    require('telescope.builtin').lsp_dynamic_workspace_symbols,
+    'Open workspace symbol picker'
+  )
   -- See `:help K` for why this keymap
   nmap('<leader>K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
