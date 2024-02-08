@@ -498,26 +498,17 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>r', vim.lsp.buf.rename, 'Rename symbol')
   nmap('<leader>a', vim.lsp.buf.code_action, 'Perform code action')
-
   nmap('gd', require('telescope.builtin').lsp_definitions, 'Goto definition')
   nmap('gr', require('telescope.builtin').lsp_references, 'Goto references')
   nmap('gi', require('telescope.builtin').lsp_implementations, 'Goto implementation')
   nmap('gy', require('telescope.builtin').lsp_type_definitions, 'Goto type definition')
   nmap('<leader>s', require('telescope.builtin').lsp_document_symbols, 'Open symbol picker')
   nmap('<leader>S', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open workspace symbol picker')
-
   -- See `:help K` for why this keymap
   nmap('<leader>K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
+  nmap('gD', vim.lsp.buf.declaration, 'Goto declaration')
   -- Create a command `:Format` local to the LSP buffer
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
