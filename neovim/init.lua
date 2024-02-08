@@ -401,6 +401,7 @@ vim.defer_fn(function()
       'go',
       'json',
       'lua',
+      'markdown',
       'python',
       'terraform',
       'toml',
