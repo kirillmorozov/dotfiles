@@ -395,6 +395,7 @@ vim.defer_fn(function()
     ensure_installed = {
       'bash',
       'comment',
+      'diff',
       'dockerfile',
       'gitcommit',
       'go',
@@ -522,7 +523,7 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
-require('lspconfig').ruff_lsp.setup({ on_attach = on_attach })
+require('lspconfig').pylsp.setup({ on_attach = on_attach })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
