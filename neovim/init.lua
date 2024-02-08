@@ -524,6 +524,7 @@ local on_attach = function(_, bufnr)
 end
 
 require('lspconfig').pylsp.setup({ on_attach = on_attach })
+require('lspconfig').terraformls.setup({ on_attach = on_attach })
 
 -- Setup neovim lua configuration
 require('neodev').setup()
