@@ -601,8 +601,13 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
+<<<<<<< Updated upstream
 require('lspconfig').pylsp.setup({ on_attach = on_attach })
 require('lspconfig').terraformls.setup({ on_attach = on_attach })
+=======
+require('lspconfig').gopls.setup({ on_attach = on_attach })
+require('lspconfig').ruff_lsp.setup({ on_attach = on_attach })
+>>>>>>> Stashed changes
 
 -- Setup neovim lua configuration
 require('neodev').setup()
