@@ -135,7 +135,7 @@ require('lazy').setup({
       end,
     },
   },
-  { 'rose-pine/neovim', name = 'rose-pine' },
+  { 'rose-pine/neovim',     name = 'rose-pine' },
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
@@ -379,7 +379,7 @@ vim.keymap.set('n', '<leader>/', function()
   -- You can pass additional configuration to telescope to change theme,
   -- layout, etc.
   require('telescope.builtin').current_buffer_fuzzy_find(
-    require('telescope.themes').get_dropdown( {
+    require('telescope.themes').get_dropdown({
       winblend = 10,
       previewer = false,
     })
@@ -471,6 +471,7 @@ vim.defer_fn(function()
       'json',
       'lua',
       'markdown',
+      'ocaml',
       'python',
       'terraform',
       'toml',
@@ -505,7 +506,7 @@ vim.defer_fn(function()
       select = {
         enable = true,
         -- Automatically jump forward to textobj, similar to targets.vim
-        lookahead = true, 
+        lookahead = true,
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
           ['aa'] = '@parameter.outer',
@@ -601,13 +602,10 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
-<<<<<<< Updated upstream
+require('lspconfig').gopls.setup({ on_attach = on_attach })
+require('lspconfig').lua_ls.setup({ on_attach = on_attach })
 require('lspconfig').pylsp.setup({ on_attach = on_attach })
 require('lspconfig').terraformls.setup({ on_attach = on_attach })
-=======
-require('lspconfig').gopls.setup({ on_attach = on_attach })
-require('lspconfig').ruff_lsp.setup({ on_attach = on_attach })
->>>>>>> Stashed changes
 
 -- Setup neovim lua configuration
 require('neodev').setup()
