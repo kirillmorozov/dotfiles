@@ -471,7 +471,6 @@ vim.defer_fn(function()
       'json',
       'lua',
       'markdown',
-      'ocaml',
       'python',
       'terraform',
       'toml',
