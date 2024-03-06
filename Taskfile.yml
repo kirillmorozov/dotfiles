@@ -1,0 +1,89 @@
+version: '3'
+
+tasks:
+  link-file:
+    internal: true
+    desc: Create a symbolic link to a file
+    preconditions:
+      - sh: '[ ! -f {{.TARGET_FILE}} ]'
+        msg: "{{.TARGET_FILE}} already exists"
+    cmds:
+      - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
+
+  link-dir:
+    internal: true
+    desc: Create symbolic links to files in a directory
+    preconditions:
+      - sh: '[ ! -d {{.TARGET_DIR}} ]'
+        msg: "{{.TARGET_DIR}} already exists"
+      - mkdir -p {{.TARGET_DIR}}
+    cmds:
+      - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
+
+  link-zsh:
+    desc: Create symbolic link to .zshrc
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/zsh/.zshrc"
+          TARGET_FILE: ~/.zshrc
+
+  link-alacritty:
+    desc: Create symbolic links to Alacritty configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/alacritty"
+          TARGET_DIR: ~/.config/alacritty
+
+  link-wezterm:
+    desc: Create a symbolic link to wezterm.lua
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/wezterm/.wezterm.lua"
+          TARGET_FILE: ~/.wezterm.lua
+
+  link-helix:
+    desc: Create symbolic links to Helix configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/helix"
+          TARGET_DIR: ~/.config/helix
+
+  link-vim:
+    desc: Create a symbolic link to .vimrc
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/vim/.vimrc"
+          TARGET_FILE: ~/.vimrc
+
+  link-neovim:
+    desc: Create symbolic links to Neovim configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
+          TARGET_DIR: ~/.config/nvim
+
+  bootstrap:
+    desc: Bootstrap dotfiles
+    deps:
+      - link-alacritty
+      - link-helix
+      - link-neovim
+      - link-vim
+      - link-wezterm
+      - link-zsh
+
+  clean:
+    desc: Clean up dotfiles
+    cmds:
+      - rm -rf ~/.config/helix
+      - rm -rf ~/.config/alacritty
+      - rm -rf ~/.config/nvim
+      - rm -f ~/.vimrc
+      - rm -f ~/.zshrc
+      - rm -f ~/.wezterm.lua
