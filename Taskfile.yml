@@ -17,6 +17,13 @@ tasks:
     cmds:
       - brew install starship
 
+  install-omz:
+    desc: Install Oh My Zsh
+    status:
+      - '[ -d ~/.oh-my-zsh ]'
+    cmds:
+      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
   link-file:
     internal: true
     desc: Create a symbolic link to a file
