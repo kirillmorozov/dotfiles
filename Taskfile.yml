@@ -1,6 +1,22 @@
 version: '3'
 
 tasks:
+  install-starship:
+    desc: Install starship
+    platforms: [linux]
+    status:
+      - starship --version
+    cmds:
+      - curl -sS https://starship.rs/install.sh | sh
+
+  install-starship:
+    desc: Install starship
+    platforms: [darwin]
+    status:
+      - starship --version
+    cmds:
+      - brew install starship
+
   link-file:
     internal: true
     desc: Create a symbolic link to a file
