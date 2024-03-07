@@ -1,0 +1,135 @@
+---
+version: '3'
+
+vars:
+  ALACRITTY_CONFIG_DIR: ~/.config/alacritty
+  HELIX_CONFIG_DIR: ~/.config/helix
+  NEOVIM_CONFIG_DIR: ~/.config/nvim
+  VIMRC_PATH: ~/.vimrc
+  WEZTERM_PATH: ~/.wezterm.lua
+  ZSHRC_PATH: ~/.zshrc
+
+tasks:
+  install-starship:
+    desc: Install starship
+    platforms: [linux]
+    status:
+      - starship --version
+    cmds:
+      - curl -sS https://starship.rs/install.sh | sh
+
+  install-starship:
+    desc: Install starship
+    platforms: [darwin]
+    status:
+      - starship --version
+    cmds:
+      - brew install starship
+
+  install-omz:
+    desc: Install Oh My Zsh
+    status:
+      - '[ -d ~/.oh-my-zsh ]'
+    cmds:
+      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  link-file:
+    internal: true
+    desc: Create a symbolic link to a file
+    requires:
+      vars: [SOURCE_FILE, TARGET_FILE]
+    status:
+      - "[ -f {{.TARGET_FILE}} ]"
+    cmds:
+      - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
+
+  link-dir:
+    internal: true
+    desc: Create symbolic links to files in a directory
+    requires:
+      vars: [SOURCE_DIR, TARGET_DIR]
+    status:
+      - "[ -d {{.TARGET_DIR}} ]"
+    cmds:
+      - mkdir -pv {{.TARGET_DIR}}
+      - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
+
+  link-zsh:
+    desc: Create symbolic link to .zshrc
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/zsh/.zshrc"
+          TARGET_FILE: "{{.ZSHRC_PATH}}"
+
+  link-alacritty:
+    desc: Create symbolic links to Alacritty configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/alacritty"
+          TARGET_DIR: "{{.ALACRITTY_CONFIG_DIR}}"
+
+  link-wezterm:
+    desc: Create a symbolic link to wezterm.lua
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/wezterm/.wezterm.lua"
+          TARGET_FILE: "{{.WEZTERM_PATH}}"
+
+  link-helix:
+    desc: Create symbolic links to Helix configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/helix"
+          TARGET_DIR: "{{.HELIX_CONFIG_DIR}}"
+
+  link-vim:
+    desc: Create a symbolic link to .vimrc
+    cmds:
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/vim/.vimrc"
+          TARGET_FILE: "{{.VIMRC_PATH}}"
+
+  link-neovim:
+    desc: Create symbolic links to Neovim configuration
+    cmds:
+      - task: link-dir
+        vars:
+          SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
+          TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
+
+  bootstrap:
+    desc: Bootstrap dotfiles
+    deps:
+      - install-starship
+      - install-omz
+      - link-alacritty
+      - link-helix
+      - link-neovim
+      - link-vim
+      - link-wezterm
+      - link-zsh
+
+  clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
+  clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
+  clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
+  clean-vim: rm -f {{.VIMRC_PATH}}
+  clean-wezterm: rm -f {{.WEZTERM_PATH}}
+  clean-zsh: rm -f {{.ZSHRC_PATH}}
+
+  clean:
+    desc: Clean up dotfiles
+    summary: >
+      Remove Helix, Alacritty and Neovim configuration directories as well as
+      .vimrc, .zshrc and wezterm.lua files.
+    cmds:
+      - task: clean-vim
+      - task: clean-wezterm
+      - task: clean-zsh
+      - task: clean-alacritty
+      - task: clean-helix
+      - task: clean-neovim
