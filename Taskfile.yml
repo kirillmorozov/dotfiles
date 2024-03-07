@@ -94,6 +94,8 @@ tasks:
   bootstrap:
     desc: Bootstrap dotfiles
     deps:
+      - install-starship
+      - install-omz
       - link-alacritty
       - link-helix
       - link-neovim
