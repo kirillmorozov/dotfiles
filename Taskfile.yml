@@ -39,7 +39,7 @@ tasks:
     requires:
       vars: [SOURCE_FILE, TARGET_FILE]
     status:
-      - '[ -f {{.TARGET_FILE}} ]'
+      - "[ -f {{.TARGET_FILE}} ]"
     cmds:
       - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
 
@@ -49,10 +49,9 @@ tasks:
     requires:
       vars: [SOURCE_DIR, TARGET_DIR]
     status:
-      - '[ ! -d {{.TARGET_DIR}} ]'
-    preconditions:
-      - mkdir -pv {{.TARGET_DIR}}
+      - "[ -d {{.TARGET_DIR}} ]"
     cmds:
+      - mkdir -pv {{.TARGET_DIR}}
       - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
 
   link-zsh:
