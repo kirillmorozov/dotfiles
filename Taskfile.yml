@@ -114,15 +114,22 @@ tasks:
       - link-wezterm
       - link-zsh
 
+  clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
+  clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
+  clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
+  clean-vim: rm -f {{.VIMRC_PATH}}
+  clean-wezterm: rm -f {{.WEZTERM_PATH}}
+  clean-zsh: rm -f {{.ZSHRC_PATH}}
+
   clean:
     desc: Clean up dotfiles
     summary: >
       Remove Helix, Alacritty and Neovim configuration directories as well as
       .vimrc, .zshrc and wezterm.lua files.
     cmds:
-      - rm -f {{.VIMRC_PATH}}
-      - rm -f {{.WEZTERM_PATH}}
-      - rm -f {{.ZSHRC_PATH}}
-      - rm -rf {{.ALACRITTY_CONFIG_DIR}}
-      - rm -rf {{.HELIX_CONFIG_DIR}}
-      - rm -rf {{.NEOVIM_CONFIG_DIR}}
+      - task: clean-vim
+      - task: clean-wezterm
+      - task: clean-zsh
+      - task: clean-alacritty
+      - task: clean-helix
+      - task: clean-neovim
