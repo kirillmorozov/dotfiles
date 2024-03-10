@@ -1,0 +1,18 @@
+---
+Alacritty:
+  - alacritty/**/*
+
+Helix:
+  - helix/**/*
+
+Neovim:
+  - neovim/**/*
+
+Vim:
+  - vim/**/*
+
+Wezterm:
+  - wezterm/**/*
+
+zsh:
+  - zsh/**/*
