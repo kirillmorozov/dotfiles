@@ -1,0 +1,24 @@
+---
+ci:
+  - .github/workflows/*
+
+docs:
+  - "**/*.md"
+
+Alacritty:
+  - alacritty/**/*
+
+Helix:
+  - helix/**/*
+
+Neovim:
+  - neovim/**/*
+
+Vim:
+  - vim/**/*
+
+Wezterm:
+  - wezterm/**/*
+
+zsh:
+  - zsh/**/*

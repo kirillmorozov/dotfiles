@@ -1,0 +1,36 @@
+---
+name: PR
+on:
+  - pull_request
+
+jobs:
+  labels:
+    name: Labels
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+    steps:
+      - name: Add labels based on changes
+        uses: actions/labeler@v4.3.0
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
+  title:
+    name: Title
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: read
+    steps:
+      - name: Check title
+        uses: amannn/action-semantic-pull-request@v5.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          scopes: |
+            alacritty
+            helix
+            neovim
+            vim
+            wezterm
+            zsh
