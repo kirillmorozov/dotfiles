@@ -1,4 +1,10 @@
 ---
+ci:
+  - .github/workflows/*
+
+docs:
+  - "**/*.md"
+
 Alacritty:
   - alacritty/**/*
 
