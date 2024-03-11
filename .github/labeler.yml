@@ -1,11 +1,11 @@
 ---
 Feature:
   - head-branch:
-      - '^feat'
+      - ^feat
 
 Fix:
   - head-branch:
-      - '^fix'
+      - ^fix
 
 CI:
   - changed-files:
@@ -14,14 +14,14 @@ CI:
           - .github/labeler.yml
           - .github/dependabot.yml
   - head-branch:
-      - '^ci'
+      - ^ci
 
 Documentation:
   - changed-files:
       - any-glob-to-any-file:
           - "**/*.md"
   - head-branch:
-      - '^docs'
+      - ^docs
 
 Alacritty:
   - changed-files:
