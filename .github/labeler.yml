@@ -1,24 +1,54 @@
 ---
-ci:
-  - .github/workflows/*
+Feature:
+  - head-branch:
+      - ^feat
 
-docs:
-  - "**/*.md"
+Fix:
+  - head-branch:
+      - ^fix
+
+CI:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/*
+          - .github/labeler.yml
+          - .github/dependabot.yml
+  - head-branch:
+      - ^ci
+
+Documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+  - head-branch:
+      - ^docs
 
 Alacritty:
-  - alacritty/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - alacritty/**/*
 
 Helix:
-  - helix/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - helix/**/*
 
 Neovim:
-  - neovim/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - neovim/**/*
 
 Vim:
-  - vim/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - vim/**/*
 
 Wezterm:
-  - wezterm/**/*
+  - changed-files:
+      - any-glob-to-any-file:
+          - wezterm/**/*
 
-zsh:
-  - zsh/**/*
+Zsh:
+  - changed-files:
+      - any-glob-to-any-file:
+          - zsh/**/*
