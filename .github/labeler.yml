@@ -1,24 +1,41 @@
 ---
 ci:
-  - .github/workflows/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - .github/workflows/*
+      - .github/labeler.yml
 
 docs:
-  - "**/*.md"
+  - changed-files:
+    - any-glob-to-any-file: 
+      - "**/*.md"
 
 Alacritty:
-  - alacritty/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - alacritty/**/*
 
 Helix:
-  - helix/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - helix/**/*
 
 Neovim:
-  - neovim/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - neovim/**/*
 
 Vim:
-  - vim/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - vim/**/*
 
 Wezterm:
-  - wezterm/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - wezterm/**/*
 
 zsh:
-  - zsh/**/*
+  - changed-files:
+    - any-glob-to-any-file: 
+      - zsh/**/*
