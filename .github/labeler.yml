@@ -1,41 +1,54 @@
 ---
-ci:
-  - changed-files:
-    - any-glob-to-any-file: 
-      - .github/workflows/*
-      - .github/labeler.yml
+Feature:
+  - head-branch:
+      - '^feat'
 
-docs:
+Fix:
+  - head-branch:
+      - '^fix'
+
+CI:
   - changed-files:
-    - any-glob-to-any-file: 
-      - "**/*.md"
+      - any-glob-to-any-file:
+          - .github/workflows/*
+          - .github/labeler.yml
+          - .github/dependabot.yml
+  - head-branch:
+      - '^ci'
+
+Documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/*.md"
+  - head-branch:
+      - '^docs'
 
 Alacritty:
   - changed-files:
-    - any-glob-to-any-file: 
-      - alacritty/**/*
+      - any-glob-to-any-file:
+          - alacritty/**/*
 
 Helix:
   - changed-files:
-    - any-glob-to-any-file: 
-      - helix/**/*
+      - any-glob-to-any-file:
+          - helix/**/*
 
 Neovim:
   - changed-files:
-    - any-glob-to-any-file: 
-      - neovim/**/*
+      - any-glob-to-any-file:
+          - neovim/**/*
 
 Vim:
   - changed-files:
-    - any-glob-to-any-file: 
-      - vim/**/*
+      - any-glob-to-any-file:
+          - vim/**/*
 
 Wezterm:
   - changed-files:
-    - any-glob-to-any-file: 
-      - wezterm/**/*
+      - any-glob-to-any-file:
+          - wezterm/**/*
 
-zsh:
+Zsh:
   - changed-files:
-    - any-glob-to-any-file: 
-      - zsh/**/*
+      - any-glob-to-any-file:
+          - zsh/**/*
