@@ -136,7 +136,6 @@ tasks:
       - task: clean-helix
       - task: clean-neovim
 
-
   lint-yaml:
     desc: Lint YAML files using yamllint
     aliases:
