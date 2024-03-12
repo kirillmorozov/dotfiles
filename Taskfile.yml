@@ -139,6 +139,8 @@ tasks:
 
   lint-yaml:
     desc: Lint YAML files using yamllint
+    aliases:
+      - lint
     preconditions:
       - sh: yamllint --version
         msg: yamllint is not installed
