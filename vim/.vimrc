@@ -129,6 +129,7 @@ nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
 nnoremap N Nzz
 nnoremap n nzz
+noremap <C-S> :update<CR>
 vnoremap <leader>y "+y
 
 " Use ripgrep for search if it's installed
