@@ -74,6 +74,7 @@ plugins=(
   brew
   command-not-found
   common-aliases
+  dnf
   docker
   docker-compose
   gh
