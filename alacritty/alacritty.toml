@@ -1,4 +1,4 @@
-import = ["/home/kmorozov/.config/alacritty/rose-pine-dawn.toml"]
+import = ["/home/kmorozov/.config/alacritty/rose-pine.toml"]
 
 [font]
 size = 12.0
