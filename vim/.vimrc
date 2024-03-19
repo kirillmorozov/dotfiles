@@ -130,6 +130,12 @@ nmap <leader>w <c-w>
 vnoremap <leader>y "+y
 map <leader>p "+p
 map <leader>P "+P
+nmap <leader>/ :grep<Space>
+
+" Use Ripgrep for search if it's installed
+if executable("rg")
+	set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+endif
 
 " Commands
 if executable("gofumpt")
