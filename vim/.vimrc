@@ -70,9 +70,6 @@ set nohlsearch
 " Enable incremental searching
 set incsearch 
 
-" Center search results
-nnoremap n nzz
-nnoremap N Nzz
 
 " Enable text wrapping
 set wrap
@@ -124,15 +121,17 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Key mappings
-nnoremap <leader>f :find<Space>
-nnoremap <leader>b :buffer<Space>
-nmap <leader>w <c-w>
-vnoremap <leader>y "+y
-map <leader>p "+p
 map <leader>P "+P
+map <leader>p "+p
 nmap <leader>/ :grep<Space>
+nmap <leader>w <c-w>
+nnoremap <leader>b :buffer<Space>
+nnoremap <leader>f :find<Space>
+nnoremap N Nzz
+nnoremap n nzz
+vnoremap <leader>y "+y
 
-" Use Ripgrep for search if it's installed
+" Use ripgrep for search if it's installed
 if executable("rg")
 	set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 endif
