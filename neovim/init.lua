@@ -253,6 +253,8 @@ vim.o.termguicolors = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+vim.keymap.set('n', '<C-s>', '<cmd>update<cr>', { desc = 'Save file' })
+
 vim.keymap.set('n', '<leader>w', '<C-w>')
 
 -- Remap for dealing with word wrap
