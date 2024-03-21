@@ -19,6 +19,9 @@ enable = true
 [editor.lsp]
 display-messages = true
 
+[keys.normal]
+C-s = ":update"
+
 [keys.insert]
 up = "no_op"
 down = "no_op"
