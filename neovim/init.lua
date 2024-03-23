@@ -239,7 +239,9 @@ require("lazy").setup({
 
 			-- `neodev` configures Lua LSP for your Neovim config, runtime and
 			-- plugins used for completion, annotations and signatures of Neovim apis
-			{ "folke/neodev.nvim", opts = {} },
+			{ "folke/neodev.nvim", opts = {
+				root_dir = vim.fn.getcwd(),
+			} },
 		},
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
