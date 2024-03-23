@@ -66,10 +66,30 @@ vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
 vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set(
+	"n",
+	"[d",
+	vim.diagnostic.goto_prev,
+	{ desc = "Go to previous [D]iagnostic message" }
+)
+vim.keymap.set(
+	"n",
+	"]d",
+	vim.diagnostic.goto_next,
+	{ desc = "Go to next [D]iagnostic message" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>e",
+	vim.diagnostic.open_float,
+	{ desc = "Show diagnostic [E]rror messages" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>q",
+	vim.diagnostic.setloclist,
+	{ desc = "Open diagnostic [Q]uickfix list" }
+)
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit
 -- easier for people to discover. Otherwise, you normally need to press
@@ -89,7 +109,12 @@ vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left wind
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<leader>w", "<C-w>", { desc = "Start window commands with <leader>w" })
+vim.keymap.set(
+	"n",
+	"<leader>w",
+	"<C-w>",
+	{ desc = "Start window commands with <leader>w" }
+)
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
@@ -105,7 +130,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"--branch=stable",
+		lazyrepo,
+		lazypath,
+	})
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -144,15 +176,17 @@ require("lazy").setup({
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
+			{ -- If encountering errors, see telescope-fzf-native README for
+				-- installation instructions
 				"nvim-telescope/telescope-fzf-native.nvim",
 
-				-- `build` is used to run some command when the plugin is installed/updated.
-				-- This is only run then, not every time Neovim starts up.
+				-- `build` is used to run some command when the plugin is
+				-- installed/updated. This is only run then, not every time Neovim
+				-- starts up.
 				build = "make",
 
-				-- `cond` is a condition used to determine whether this plugin should be
-				-- installed and loaded.
+				-- `cond` is a condition used to determine whether this plugin should
+				-- be installed and loaded.
 				cond = function()
 					return vim.fn.executable("make") == 1
 				end,
@@ -199,16 +233,51 @@ require("lazy").setup({
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>'", builtin.resume, { desc = "Opens the previous picker" })
-			vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Search for a string and get results live" })
-			vim.keymap.set("n", "<leader>?", builtin.commands, { desc = "List available commands" })
-			vim.keymap.set("n", "<leader>b", builtin.buffers, { desc = "List open buffers" })
-			vim.keymap.set("n", "<leader>d", builtin.diagnostics, { desc = "List diagnostics" })
+			vim.keymap.set(
+				"n",
+				"<leader>'",
+				builtin.resume,
+				{ desc = "Opens the previous picker" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>/",
+				builtin.live_grep,
+				{ desc = "Search for a string and get results live" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>?",
+				builtin.commands,
+				{ desc = "List available commands" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>b",
+				builtin.buffers,
+				{ desc = "List open buffers" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>d",
+				builtin.diagnostics,
+				{ desc = "List diagnostics" }
+			)
 			vim.keymap.set("n", "<leader>f", function()
 				builtin.find_files({ hidden = true })
 			end, { desc = "Search for files" })
-			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "List available help tags" })
-			vim.keymap.set("n", "<leader>j", builtin.jumplist, { desc = "List items from Vim's jumplist" })
+			vim.keymap.set(
+				"n",
+				"<leader>h",
+				builtin.help_tags,
+				{ desc = "List available help tags" }
+			)
+			vim.keymap.set(
+				"n",
+				"<leader>j",
+				builtin.jumplist,
+				{ desc = "List items from Vim's jumplist" }
+			)
 			vim.keymap.set("n", "<leader>sn", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
 			end, { desc = "[S]earch [N]eovim files" })
@@ -223,9 +292,12 @@ require("lazy").setup({
 
 			-- `neodev` configures Lua LSP for your Neovim config, runtime and
 			-- plugins used for completion, annotations and signatures of Neovim apis
-			{ "folke/neodev.nvim", opts = {
-				root_dir = vim.fn.getcwd(),
-			} },
+			{
+				"folke/neodev.nvim",
+				opts = {
+					root_dir = vim.fn.getcwd(),
+				},
+			},
 		},
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
@@ -234,28 +306,52 @@ require("lazy").setup({
 			-- `rust_analyzer`) this function will be executed to configure the
 			-- current buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
+				group = vim.api.nvim_create_augroup(
+					"kickstart-lsp-attach",
+					{ clear = true }
+				),
 				callback = function(event)
 					local map = function(keys, func, desc)
-						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+						vim.keymap.set(
+							"n",
+							keys,
+							func,
+							{ buffer = event.buf, desc = "LSP: " .. desc }
+						)
 					end
 
 					-- Jump to the definition of the word under your cursor. This is
 					-- where a variable was first declared, or where a function is
 					-- defined, etc. To jump back, press <C-t>.
-					map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+					map(
+						"gd",
+						require("telescope.builtin").lsp_definitions,
+						"[G]oto [D]efinition"
+					)
 
 					-- Find references for the word under your cursor.
-					map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+					map(
+						"gr",
+						require("telescope.builtin").lsp_references,
+						"[G]oto [R]eferences"
+					)
 
 					-- Jump to the implementation of the word under your cursor. Useful
 					-- when your language has ways of declaring types without an actual
 					-- implementation.
-					map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+					map(
+						"gI",
+						require("telescope.builtin").lsp_implementations,
+						"[G]oto [I]mplementation"
+					)
 
 					-- Fuzzy find all the symbols in your current document. Symbols are
 					-- things like variables, functions, types, etc.
-					map("<leader>s", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+					map(
+						"<leader>s",
+						require("telescope.builtin").lsp_document_symbols,
+						"[D]ocument [S]ymbols"
+					)
 
 					-- Fuzzy find all the symbols in your current workspace. Similar to
 					-- document symbols, except searches over your entire project.
@@ -285,7 +381,10 @@ require("lazy").setup({
 					-- this is executed When you move your cursor, the highlights will be
 					-- cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.documentHighlightProvider then
+					if
+						client
+						and client.server_capabilities.documentHighlightProvider
+					then
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 							buffer = event.buf,
 							callback = vim.lsp.buf.document_highlight,
@@ -304,7 +403,11 @@ require("lazy").setup({
 			-- Neovim now has *more* capabilities. So, we create new capabilities
 			-- with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+			capabilities = vim.tbl_deep_extend(
+				"force",
+				capabilities,
+				require("cmp_nvim_lsp").default_capabilities()
+			)
 
 			local servers = {
 				bashls = {},
@@ -339,14 +442,34 @@ require("lazy").setup({
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 				}
 			end,
+
+			formatters = {
+				shfmt = {
+					prepend_args = { "-i", "2", "-bn", "-ci", "-sr" },
+				},
+				stylua = {
+					prepend_args = {
+						"--column-width",
+						88,
+						"--quote-style",
+						"AutoPreferDouble",
+					},
+				},
+				yamlfmt = {
+					prepend_args = {
+						"-formatter",
+						"include_document_start=true",
+						"-formatter",
+						"retain_line_breaks=true",
+					},
+				},
+			},
 			formatters_by_ft = {
 				go = { "gofumpt", "gofmt" },
-				-- TODO(kirillmorozov): Change Lua formatting options. Set column width
-				-- to 80 and enable sort requires
 				lua = { "stylua" },
 				python = { "ruff_format" },
-				-- TODO(kirillmorozov): Configure shfmt as shell formatter and yamlfmt
-				-- for YAML
+				sh = { "shfmt" },
+				terraform = { "terraform_fmt" },
 				["_"] = { "trim_whitespace" },
 			},
 		},
