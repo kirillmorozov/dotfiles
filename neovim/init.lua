@@ -148,8 +148,9 @@ require("lazy").setup({
 	-- "gc" to comment visual regions/lines
 	{ "numToStr/Comment.nvim", opts = { opleader = { line = "<C-c>" } } },
 
-	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+	-- Adds git related signs to the gutter, as well as utilities for managing
+	-- changes. See `:help gitsigns` to understand what the configuration keys do
+	{
 		"lewis6991/gitsigns.nvim",
 		opts = {
 			signs = {
@@ -162,7 +163,8 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Useful plugin to show you pending keybinds.
+	-- Useful plugin to show you pending keybinds.
+	{
 		"folke/which-key.nvim",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
 		config = function() -- This is the function that runs, AFTER loading
@@ -170,16 +172,17 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Fuzzy Finder (files, lsp, etc)
+	-- Fuzzy Finder (files, lsp, etc)
+	{
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			{ -- If encountering errors, see telescope-fzf-native README for
-				-- installation instructions
+			-- If encountering errors, see telescope-fzf-native README for
+			-- installation instructions
+			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-
 				-- `build` is used to run some command when the plugin is
 				-- installed/updated. This is only run then, not every time Neovim
 				-- starts up.
@@ -281,16 +284,18 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- LSP Configuration & Plugins
+	-- LSP Configuration & Plugins
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ -- Useful status updates for LSP.
+			-- Useful status updates for LSP.
+			{
 				"j-hui/fidget.nvim",
 				opts = {},
 			},
-			{ -- `neodev` configures Lua LSP for your Neovim config, runtime and
-				-- plugins used for completion, annotations and signatures of Neovim
-				-- apis
+			-- `neodev` configures Lua LSP for your Neovim config, runtime and
+			-- plugins used for completion, annotations and signatures of Neovim apis
+			{
 				"folke/neodev.nvim",
 				opts = {
 					root_dir = vim.fn.getcwd(),
@@ -418,7 +423,8 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Autoformat
+	-- Autoformat
+	{
 		"stevearc/conform.nvim",
 		opts = {
 			notify_on_error = true,
@@ -465,7 +471,8 @@ require("lazy").setup({
 		},
 	},
 
-	{ -- Autocompletion
+	-- Autocompletion
+	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
@@ -577,7 +584,8 @@ require("lazy").setup({
 		opts = { signs = false },
 	},
 
-	{ -- Collection of various small independent plugins/modules
+	-- Collection of various small independent plugins/modules
+	{
 		"echasnovski/mini.nvim",
 		config = function()
 			-- Better Around/Inside textobjects
@@ -607,7 +615,8 @@ require("lazy").setup({
 		end,
 	},
 
-	{ -- Highlight, edit, and navigate code
+	-- Highlight, edit, and navigate code
+	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
