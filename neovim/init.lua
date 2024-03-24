@@ -70,25 +70,25 @@ vim.keymap.set(
 	"n",
 	"[d",
 	vim.diagnostic.goto_prev,
-	{ desc = "Go to previous [D]iagnostic message" }
+	{ desc = "Go to previous Diagnostic message" }
 )
 vim.keymap.set(
 	"n",
 	"]d",
 	vim.diagnostic.goto_next,
-	{ desc = "Go to next [D]iagnostic message" }
+	{ desc = "Go to next diagnostic message" }
 )
 vim.keymap.set(
 	"n",
 	"<leader>e",
 	vim.diagnostic.open_float,
-	{ desc = "Show diagnostic [E]rror messages" }
+	{ desc = "Show diagnostic error messages" }
 )
 vim.keymap.set(
 	"n",
 	"<leader>q",
 	vim.diagnostic.setloclist,
-	{ desc = "Open diagnostic [Q]uickfix list" }
+	{ desc = "Open diagnostic quickfix list" }
 )
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit
@@ -186,7 +186,6 @@ require("lazy").setup({
 				-- installed/updated. This is only run then, not every time Neovim
 				-- starts up.
 				build = "make",
-
 				-- `cond` is a condition used to determine whether this plugin should
 				-- be installed and loaded.
 				cond = function()
@@ -194,7 +193,6 @@ require("lazy").setup({
 				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
-
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 		},
@@ -324,22 +322,22 @@ require("lazy").setup({
 					map(
 						"gd",
 						require("telescope.builtin").lsp_definitions,
-						"[G]oto [D]efinition"
+						"Goto definition"
 					)
 					map(
 						"gr",
 						require("telescope.builtin").lsp_references,
-						"[G]oto [R]eferences"
+						"Goto references"
 					)
 					map(
 						"gI",
 						require("telescope.builtin").lsp_implementations,
-						"[G]oto [I]mplementation"
+						"Goto implementation"
 					)
 					map(
 						"<leader>s",
 						require("telescope.builtin").lsp_document_symbols,
-						"[D]ocument [S]ymbols"
+						"Document symbols"
 					)
 					map(
 						"<leader>S",
@@ -348,8 +346,8 @@ require("lazy").setup({
 					)
 					map("<leader>r", vim.lsp.buf.rename, "Rename all references")
 					map("<leader>a", vim.lsp.buf.code_action, "Select a code action")
-					map("<leader>k", vim.lsp.buf.hover, "Hover Documentation")
-					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+					map("<leader>k", vim.lsp.buf.hover, "Hover documentation")
+					map("gD", vim.lsp.buf.declaration, "Goto declaration")
 
 					-- The following two autocommands are used to highlight references of
 					-- the word under your cursor when your cursor rests there for a
@@ -384,7 +382,6 @@ require("lazy").setup({
 				capabilities,
 				require("cmp_nvim_lsp").default_capabilities()
 			)
-
 			local servers = {
 				bashls = {},
 				clangd = {},
@@ -437,7 +434,6 @@ require("lazy").setup({
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 				}
 			end,
-
 			formatters = {
 				shfmt = {
 					prepend_args = { "-i", "2", "-bn", "-ci", "-sr" },
@@ -460,7 +456,9 @@ require("lazy").setup({
 				},
 			},
 			formatters_by_ft = {
-				go = { { "gofumpt", "gofmt" } },
+				go = {
+					{ "gofumpt", "gofmt" },
+				},
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				sh = { "shfmt" },
@@ -604,8 +602,6 @@ require("lazy").setup({
 			statusline.section_location = function()
 				return "%2l:%-2v"
 			end
-			-- ... and there is more!
-			-- Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
 
