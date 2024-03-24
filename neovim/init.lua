@@ -278,21 +278,19 @@ require("lazy").setup({
 				builtin.jumplist,
 				{ desc = "List items from Vim's jumplist" }
 			)
-			vim.keymap.set("n", "<leader>sn", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
 
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim", opts = {} },
-
-			-- `neodev` configures Lua LSP for your Neovim config, runtime and
-			-- plugins used for completion, annotations and signatures of Neovim apis
-			{
+			{ -- Useful status updates for LSP.
+				"j-hui/fidget.nvim",
+				opts = {},
+			},
+			{ -- `neodev` configures Lua LSP for your Neovim config, runtime and
+				-- plugins used for completion, annotations and signatures of Neovim
+				-- apis
 				"folke/neodev.nvim",
 				opts = {
 					root_dir = vim.fn.getcwd(),
@@ -319,60 +317,34 @@ require("lazy").setup({
 							{ buffer = event.buf, desc = "LSP: " .. desc }
 						)
 					end
-
-					-- Jump to the definition of the word under your cursor. This is
-					-- where a variable was first declared, or where a function is
-					-- defined, etc. To jump back, press <C-t>.
 					map(
 						"gd",
 						require("telescope.builtin").lsp_definitions,
 						"[G]oto [D]efinition"
 					)
-
-					-- Find references for the word under your cursor.
 					map(
 						"gr",
 						require("telescope.builtin").lsp_references,
 						"[G]oto [R]eferences"
 					)
-
-					-- Jump to the implementation of the word under your cursor. Useful
-					-- when your language has ways of declaring types without an actual
-					-- implementation.
 					map(
 						"gI",
 						require("telescope.builtin").lsp_implementations,
 						"[G]oto [I]mplementation"
 					)
-
-					-- Fuzzy find all the symbols in your current document. Symbols are
-					-- things like variables, functions, types, etc.
 					map(
 						"<leader>s",
 						require("telescope.builtin").lsp_document_symbols,
 						"[D]ocument [S]ymbols"
 					)
-
-					-- Fuzzy find all the symbols in your current workspace. Similar to
-					-- document symbols, except searches over your entire project.
 					map(
 						"<leader>S",
 						require("telescope.builtin").lsp_dynamic_workspace_symbols,
 						"Open workspace symbols"
 					)
-
-					-- Rename the variable under your cursor. Most Language Servers
-					-- support renaming across files, etc.
 					map("<leader>r", vim.lsp.buf.rename, "Rename all references")
-
-					-- Execute a code action, usually your cursor needs to be on top of
-					-- an error or a suggestion from your LSP for this to activate.
 					map("<leader>a", vim.lsp.buf.code_action, "Select a code action")
-
-					-- Opens a popup that displays documentation about the word under
-					-- your cursor See `:help K` for why this keymap.
 					map("<leader>k", vim.lsp.buf.hover, "Hover Documentation")
-
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 					-- The following two autocommands are used to highlight references of
@@ -425,6 +397,9 @@ require("lazy").setup({
 				pylsp = {},
 				terraformls = {},
 			}
+			for server, opts in pairs(servers) do
+				require("lspconfig")[server].setup(opts)
+			end
 		end,
 	},
 
