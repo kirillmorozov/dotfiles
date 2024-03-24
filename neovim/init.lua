@@ -97,11 +97,10 @@ vim.keymap.set(
 -- experience.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Disable arrow keys in normal mode
-vim.keymap.set({ "n", "i", "v" }, "<left>", "<Nop>", { desc = "Disable arrow keys" })
-vim.keymap.set({ "n", "i", "v" }, "<right>", "<Nop>", { desc = "Disable arrow keys" })
-vim.keymap.set({ "n", "i", "v" }, "<up>", "<Nop>", { desc = "Disable arrow keys" })
-vim.keymap.set({ "n", "i", "v" }, "<down>", "<Nop>", { desc = "Disable arrow keys" })
+-- Disable arrow keys in normal, insert and visual modes
+for _, key in pairs({ "<up>", "<down>", "<left>", "<right>" }) do
+	vim.keymap.set({ "n", "i", "v" }, key, "<Nop>", { desc = "Disable arrow keys" })
+end
 
 -- Keybinds to make split navigation easier. Use CTRL+<hjkl> to switch between
 -- windows
