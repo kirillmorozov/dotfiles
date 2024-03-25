@@ -608,6 +608,9 @@ require("lazy").setup({
 	-- Highlight, edit, and navigate code
 	{
 		"nvim-treesitter/nvim-treesitter",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
@@ -627,6 +630,74 @@ require("lazy").setup({
 				"vimdoc",
 				"yaml",
 			},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["aa"] = {
+							query = "@parameter.outer",
+							desc = "Select around argument/parameter",
+						},
+						["ac"] = {
+							query = "@comment.outer",
+							desc = "Select around comment",
+						},
+						["af"] = {
+							query = "@function.outer",
+							desc = "Select around function",
+						},
+						["at"] = {
+							query = "@class.outer",
+							desc = "Select around type/class",
+						},
+						["ia"] = {
+							query = "@parameter.inner",
+							desc = "Select inside argument/parameter",
+						},
+						["ic"] = {
+							query = "@comment.inner",
+							desc = "Select inside comment",
+						},
+						["if"] = {
+							query = "@function.inner",
+							desc = "Select inside function",
+						},
+						["it"] = {
+							query = "@class.inner",
+							desc = "Select inside type/class",
+						},
+					},
+				},
+				move = {
+					enable = true,
+					set_jumps = true, -- whether to set jumps in the jumplist
+					goto_next_start = {
+						["]a"] = {
+							query = "@parameter.outer",
+							desc = "Next argument/parameter",
+						},
+						["]c"] = { query = "@comment.outer", desc = "Next comment" },
+						["]f"] = { query = "@function.outer", desc = "Next function" },
+						["]t"] = { query = "@class.outer", desc = "Next type/class" },
+					},
+					goto_previous_start = {
+						["[a"] = {
+							query = "@parameter.outer",
+							desc = "Previous argument/parameter",
+						},
+						["[c"] = { query = "@comment.outer", desc = "Previous comment" },
+						["[f"] = {
+							query = "@function.outer",
+							desc = "Previous function",
+						},
+						["[t"] = {
+							query = "@class.outer",
+							desc = "Previous type/class",
+						},
+					},
+				},
+			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
 			highlight = {
@@ -640,18 +711,8 @@ require("lazy").setup({
 			indent = { enable = true, disable = { "ruby" } },
 		},
 		config = function(_, opts)
-			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup(opts)
-
-			-- There are additional nvim-treesitter modules that you can use to
-			-- interact with nvim-treesitter. You should go explore a few and see
-			-- what interests you:
-
-			-- - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-			-- - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-			-- - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 		end,
 	},
 }, {})
