@@ -131,6 +131,10 @@ nnoremap N Nzz
 nnoremap n nzz
 noremap <C-S> :update<CR>
 vnoremap <leader>y "+y
+nmap <leader>co :copen<CR>  " Open quickfix list
+nmap <leader>cc :cclose<CR>  " Close quickfix list
+nmap ]q :cnext<CR>  " Next item in the quickfix list
+nmap [q :cprevious<CR>  " Previous item in the quickfix list
 
 " Use ripgrep for search if it's installed
 if executable("rg")
