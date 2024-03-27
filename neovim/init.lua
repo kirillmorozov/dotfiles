@@ -147,15 +147,20 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	{ "tpope/vim-sleuth", tag = "v2.0" }, -- Detect tabstop and shiftwidth automatically
 
 	-- "gc" to comment visual regions/lines
-	{ "numToStr/Comment.nvim", opts = { opleader = { line = "<C-c>" } } },
+	{
+		"numToStr/Comment.nvim",
+		tag = "v0.8.0",
+		opts = { opleader = { line = "<C-c>" } },
+	},
 
 	-- Adds git related signs to the gutter, as well as utilities for managing
 	-- changes. See `:help gitsigns` to understand what the configuration keys do
 	{
 		"lewis6991/gitsigns.nvim",
+		tag = "v0.7",
 		opts = {
 			signs = {
 				add = { text = "+" },
@@ -170,6 +175,7 @@ require("lazy").setup({
 	-- Useful plugin to show you pending keybinds.
 	{
 		"folke/which-key.nvim",
+		tag = "v1.6.0",
 		event = "VimEnter", -- Sets the loading event to 'VimEnter'
 		config = function() -- This is the function that runs, AFTER loading
 			require("which-key").setup()
@@ -180,7 +186,7 @@ require("lazy").setup({
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
-		branch = "0.1.x",
+		tag = "0.1.6",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			-- If encountering errors, see telescope-fzf-native README for
@@ -289,6 +295,7 @@ require("lazy").setup({
 	-- LSP Configuration & Plugins
 	{
 		"neovim/nvim-lspconfig",
+		tag = "v0.1.7",
 		dependencies = {
 			-- Useful status updates for LSP.
 			{
@@ -427,6 +434,7 @@ require("lazy").setup({
 	-- Autoformat
 	{
 		"stevearc/conform.nvim",
+		tag = "v5.5.0",
 		opts = {
 			notify_on_error = true,
 			format_on_save = function(bufnr)
@@ -488,6 +496,7 @@ require("lazy").setup({
 			-- Snippet Engine & its associated nvim-cmp source
 			{
 				"L3MON4D3/LuaSnip",
+				tag = "v2.2.0",
 				build = (function()
 					-- Build Step is needed for regex support in snippets. This step is
 					-- not supported in many windows environments. Remove the below
@@ -507,9 +516,6 @@ require("lazy").setup({
 				},
 			},
 			"saadparwaiz1/cmp_luasnip",
-			-- Adds other completion capabilities. nvim-cmp does not ship with all
-			-- sources by default. They are split into multiple repos for maintenance
-			-- purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 		},
@@ -588,6 +594,7 @@ require("lazy").setup({
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",
+		tag = "v1.2.0",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = { signs = false },
@@ -596,6 +603,7 @@ require("lazy").setup({
 	-- Collection of various small independent plugins/modules
 	{
 		"echasnovski/mini.nvim",
+		tag = "v0.12.0",
 		config = function()
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -620,6 +628,7 @@ require("lazy").setup({
 	-- Highlight, edit, and navigate code
 	{
 		"nvim-treesitter/nvim-treesitter",
+		tag = "v0.9.2",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
