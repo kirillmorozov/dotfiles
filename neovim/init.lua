@@ -58,12 +58,17 @@ vim.opt.scrolloff = 10
 -- [[ Basic Keymaps ]]
 -- Set highlight on search
 vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear highlight" })
+vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch, { desc = "Clear highlight" })
 
 vim.keymap.set("n", "<C-s>", vim.cmd.update, { desc = "Save changes to a file" })
 
 vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
 vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
+
+vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
+vim.keymap.set("n", "<leader>cc", vim.cmd.cclose, { desc = "Close quickfix list" })
+vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next item in a quickfix" })
+vim.keymap.set("n", "[q", vim.cmd.cprevious, { desc = "Previous item in a quickfix" })
 
 -- Diagnostic keymaps
 vim.keymap.set(
@@ -469,7 +474,7 @@ require("lazy").setup({
 				python = { "ruff_format" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
-        yaml = { "yamlfmt" },
+				yaml = { "yamlfmt" },
 				["_"] = { "trim_whitespace" },
 			},
 		},
