@@ -53,7 +53,7 @@ vim.opt.cursorline = true
 vim.o.colorcolumn = "80"
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 8
 
 -- [[ Basic Keymaps ]]
 -- Set highlight on search
@@ -738,5 +738,15 @@ require("lazy").setup({
 	},
 }, {})
 
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	desc = "Set tab rendering for Go files",
+	pattern = "go",
+	callback = function()
+		vim.bo.tabstop = 4
+		vim.bo.softtabstop = 4
+		vim.bo.shiftwidth = 4
+	end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2
