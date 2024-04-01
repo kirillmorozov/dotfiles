@@ -3,11 +3,11 @@ version: '3'
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
-  ALACRITTY_LIGHT_THEME: rose-pine-dawn
   ALACRITTY_DARK_THEME: rose-pine
+  ALACRITTY_LIGHT_THEME: rose-pine-dawn
   HELIX_CONFIG_DIR: ~/.config/helix
-  HELIX_LIGHT_THEME: "rose_pine_dawn"
   HELIX_DARK_THEME: "rose_pine"
+  HELIX_LIGHT_THEME: "rose_pine_dawn"
   NEOVIM_CONFIG_DIR: ~/.config/nvim
   VIMRC_PATH: ~/.vimrc
   WEZTERM_PATH: ~/.wezterm.lua
@@ -130,8 +130,8 @@ tasks:
   clean:
     desc: Clean up dotfiles
     summary: >
-      Remove Helix, Alacritty and Neovim configuration directories as well as .vimrc,
-      .zshrc and wezterm.lua files.
+      Remove Helix, Alacritty and Neovim configuration directories as well as
+      .vimrc, .zshrc and wezterm.lua files.
     cmds:
       - task: clean-vim
       - task: clean-wezterm
@@ -150,20 +150,41 @@ tasks:
     cmds:
       - yamllint .
 
+  change-theme:
+    desc: Switch from one theme to another
+    internal: true
+    requires:
+      vars:
+        - NEW
+        - OLD
+        - WHERE
+    cmds:
+      - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
+
   light:
     desc: Switch to light theme
-    silent: true
-    cmds:
-      - sed --follow-symlinks -i 's/{{.ALACRITTY_DARK_THEME}}\.toml/{{.ALACRITTY_LIGHT_THEME}}\.toml/'
-        {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
-      - sed --follow-symlinks -i 's/"{{.HELIX_DARK_THEME}}"/"{{.HELIX_LIGHT_THEME}}"/'
-        {{.HELIX_CONFIG_DIR}}/config.toml
+    deps:
+      - task: change-theme
+        vars:
+          NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
+          OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
+      - task: change-theme
+        vars:
+          NEW: "{{.HELIX_LIGHT_THEME}}"
+          OLD: "{{.HELIX_DARK_THEME}}"
+          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
 
   dark:
     desc: Switch to dark theme
-    silent: true
-    cmds:
-      - sed --follow-symlinks -i 's/{{.ALACRITTY_LIGHT_THEME}}\.toml/{{.ALACRITTY_DARK_THEME}}\.toml/'
-        {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
-      - sed --follow-symlinks -i 's/"{{.HELIX_LIGHT_THEME}}"/"{{.HELIX_DARK_THEME}}"/'
-        {{.HELIX_CONFIG_DIR}}/config.toml
+    deps:
+      - task: change-theme
+        vars:
+          NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
+          OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
+      - task: change-theme
+        vars:
+          NEW: "{{.HELIX_DARK_THEME}}"
+          OLD: "{{.HELIX_LIGHT_THEME}}"
+          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
