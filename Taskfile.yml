@@ -111,6 +111,13 @@ tasks:
           SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
           TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
 
+  link-themes:
+    decs: Create a hardlink to a global task file
+    status:
+      - "[ -f ~/Taskfile.yml ]"
+    cmds:
+      - ln -v {{.USER_WORKING_DIR}}/ThemeTasks.yml ~/Taskfile.yml
+
   bootstrap:
     desc: Bootstrap dotfiles
     deps:
@@ -119,6 +126,7 @@ tasks:
       - link-alacritty
       - link-helix
       - link-neovim
+      - link-themes
       - link-vim
       - link-wezterm
       - link-zsh
@@ -126,6 +134,7 @@ tasks:
   clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
   clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
   clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
+  clean-themes: rm -rf ~/Taskfile.yml
   clean-vim: rm -f {{.VIMRC_PATH}}
   clean-wezterm: rm -f {{.WEZTERM_PATH}}
   clean-zsh: rm -f {{.ZSHRC_PATH}}
@@ -136,12 +145,13 @@ tasks:
       Remove Helix, Alacritty and Neovim configuration directories as well as
       .vimrc, .zshrc and wezterm.lua files.
     cmds:
-      - task: clean-vim
-      - task: clean-wezterm
-      - task: clean-zsh
       - task: clean-alacritty
       - task: clean-helix
       - task: clean-neovim
+      - task: clean-themes
+      - task: clean-vim
+      - task: clean-wezterm
+      - task: clean-zsh
 
   lint-yaml:
     desc: Lint YAML files using yamllint
