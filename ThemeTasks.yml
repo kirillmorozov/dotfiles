@@ -6,12 +6,12 @@ vars:
   ALACRITTY_DARK_THEME: rose-pine
   ALACRITTY_LIGHT_THEME: rose-pine-dawn
   HELIX_CONFIG_DIR: ~/.config/helix
-  HELIX_DARK_THEME: "rose_pine"
-  HELIX_LIGHT_THEME: "rose_pine_dawn"
+  HELIX_DARK_THEME: rose_pine
+  HELIX_LIGHT_THEME: rose_pine_dawn
 
 tasks:
   change-theme:
-    desc: Switch from one theme to another
+    desc: Switch from one theme to another.
     internal: true
     silent: true
     requires:
@@ -23,7 +23,7 @@ tasks:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
   light:
-    desc: Switch to light theme
+    desc: Switch to light theme.
     deps:
       - task: change-theme
         vars:
@@ -42,7 +42,7 @@ tasks:
           WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
 
   dark:
-    desc: Switch to dark theme
+    desc: Switch to dark theme.
     deps:
       - task: change-theme
         vars:
