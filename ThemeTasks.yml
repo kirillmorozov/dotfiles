@@ -13,6 +13,7 @@ tasks:
   change-theme:
     desc: Switch from one theme to another
     internal: true
+    silent: true
     requires:
       vars:
         - NEW
