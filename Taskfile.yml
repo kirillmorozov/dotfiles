@@ -152,4 +152,3 @@ tasks:
         msg: yamllint is not installed
     cmds:
       - yamllint .
-
