@@ -1,13 +1,12 @@
 ---
 version: '3'
 
+includes:
+  theme: ThemeTasks.yml
+
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
-  ALACRITTY_DARK_THEME: rose-pine
-  ALACRITTY_LIGHT_THEME: rose-pine-dawn
   HELIX_CONFIG_DIR: ~/.config/helix
-  HELIX_DARK_THEME: "rose_pine"
-  HELIX_LIGHT_THEME: "rose_pine_dawn"
   NEOVIM_CONFIG_DIR: ~/.config/nvim
   VIMRC_PATH: ~/.vimrc
   WEZTERM_PATH: ~/.wezterm.lua
@@ -43,7 +42,9 @@ tasks:
     internal: true
     desc: Create a symbolic link to a file
     requires:
-      vars: [SOURCE_FILE, TARGET_FILE]
+      vars:
+        - SOURCE_FILE
+        - TARGET_FILE
     status:
       - "[ -f {{.TARGET_FILE}} ]"
     cmds:
@@ -53,7 +54,9 @@ tasks:
     internal: true
     desc: Create symbolic links to files in a directory
     requires:
-      vars: [SOURCE_DIR, TARGET_DIR]
+      vars:
+        - SOURCE_DIR
+        - TARGET_DIR
     status:
       - "[ -d {{.TARGET_DIR}} ]"
     cmds:
@@ -111,8 +114,8 @@ tasks:
   bootstrap:
     desc: Bootstrap dotfiles
     deps:
-      - install-starship
       - install-omz
+      - install-starship
       - link-alacritty
       - link-helix
       - link-neovim
@@ -150,41 +153,3 @@ tasks:
     cmds:
       - yamllint .
 
-  change-theme:
-    desc: Switch from one theme to another
-    internal: true
-    requires:
-      vars:
-        - NEW
-        - OLD
-        - WHERE
-    cmds:
-      - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
-
-  light:
-    desc: Switch to light theme
-    deps:
-      - task: change-theme
-        vars:
-          NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme
-        vars:
-          NEW: "{{.HELIX_LIGHT_THEME}}"
-          OLD: "{{.HELIX_DARK_THEME}}"
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
-
-  dark:
-    desc: Switch to dark theme
-    deps:
-      - task: change-theme
-        vars:
-          NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
-          OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme
-        vars:
-          NEW: "{{.HELIX_DARK_THEME}}"
-          OLD: "{{.HELIX_LIGHT_THEME}}"
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"

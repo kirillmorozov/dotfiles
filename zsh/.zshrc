@@ -116,4 +116,7 @@ export BAT_THEME="base16"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias li="task -g light"
+alias da="task -g dark"
+
 eval "$(starship init zsh)"
