@@ -3,7 +3,11 @@ version: '3'
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
+  ALACRITTY_LIGHT_THEME: rose-pine-dawn
+  ALACRITTY_DARK_THEME: rose-pine
   HELIX_CONFIG_DIR: ~/.config/helix
+  HELIX_LIGHT_THEME: "rose_pine_dawn"
+  HELIX_DARK_THEME: "rose_pine"
   NEOVIM_CONFIG_DIR: ~/.config/nvim
   VIMRC_PATH: ~/.vimrc
   WEZTERM_PATH: ~/.wezterm.lua
@@ -126,8 +130,8 @@ tasks:
   clean:
     desc: Clean up dotfiles
     summary: >
-      Remove Helix, Alacritty and Neovim configuration directories as well as
-      .vimrc, .zshrc and wezterm.lua files.
+      Remove Helix, Alacritty and Neovim configuration directories as well as .vimrc,
+      .zshrc and wezterm.lua files.
     cmds:
       - task: clean-vim
       - task: clean-wezterm
@@ -145,3 +149,16 @@ tasks:
         msg: yamllint is not installed
     cmds:
       - yamllint .
+
+  light:
+    desc: Switch to light theme
+    silent: true
+    cmds:
+      - sed -i 's/{{.ALACRITTY_DARK_THEME}}\.toml/{{.ALACRITTY_LIGHT_THEME}}\.toml/'
+        {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
+  dark:
+    desc: Switch to dark theme
+    silent: true
+    cmds:
+      - sed -i 's/{{.ALACRITTY_LIGHT_THEME}}\.toml/{{.ALACRITTY_DARK_THEME}}\.toml/'
+        {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
