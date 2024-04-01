@@ -37,8 +37,8 @@ tasks:
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
       - task: change-theme
         vars:
-          NEW: "{{.HELIX_LIGHT_THEME}}"
-          OLD: "{{.HELIX_DARK_THEME}}"
+          NEW: "\"{{.HELIX_LIGHT_THEME}}\""
+          OLD: "\"{{.HELIX_DARK_THEME}}\""
           WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
 
   dark:
@@ -56,6 +56,6 @@ tasks:
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
       - task: change-theme
         vars:
-          NEW: "{{.HELIX_DARK_THEME}}"
-          OLD: "{{.HELIX_LIGHT_THEME}}"
+          NEW: "\"{{.HELIX_DARK_THEME}}\""
+          OLD: "\"{{.HELIX_LIGHT_THEME}}\""
           WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
