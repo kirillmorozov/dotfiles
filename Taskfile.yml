@@ -1,6 +1,9 @@
 ---
 version: '3'
 
+includes:
+  theme: ThemeTasks.yml
+
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
   HELIX_CONFIG_DIR: ~/.config/helix
@@ -39,7 +42,9 @@ tasks:
     internal: true
     desc: Create a symbolic link to a file
     requires:
-      vars: [SOURCE_FILE, TARGET_FILE]
+      vars:
+        - SOURCE_FILE
+        - TARGET_FILE
     status:
       - "[ -f {{.TARGET_FILE}} ]"
     cmds:
@@ -49,7 +54,9 @@ tasks:
     internal: true
     desc: Create symbolic links to files in a directory
     requires:
-      vars: [SOURCE_DIR, TARGET_DIR]
+      vars:
+        - SOURCE_DIR
+        - TARGET_DIR
     status:
       - "[ -d {{.TARGET_DIR}} ]"
     cmds:
@@ -57,7 +64,6 @@ tasks:
       - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
 
   link-zsh:
-    desc: Create symbolic link to .zshrc
     cmds:
       - task: link-file
         vars:
@@ -65,7 +71,6 @@ tasks:
           TARGET_FILE: "{{.ZSHRC_PATH}}"
 
   link-alacritty:
-    desc: Create symbolic links to Alacritty configuration
     cmds:
       - task: link-dir
         vars:
@@ -73,7 +78,6 @@ tasks:
           TARGET_DIR: "{{.ALACRITTY_CONFIG_DIR}}"
 
   link-wezterm:
-    desc: Create a symbolic link to wezterm.lua
     cmds:
       - task: link-file
         vars:
@@ -81,7 +85,6 @@ tasks:
           TARGET_FILE: "{{.WEZTERM_PATH}}"
 
   link-helix:
-    desc: Create symbolic links to Helix configuration
     cmds:
       - task: link-dir
         vars:
@@ -89,7 +92,6 @@ tasks:
           TARGET_DIR: "{{.HELIX_CONFIG_DIR}}"
 
   link-vim:
-    desc: Create a symbolic link to .vimrc
     cmds:
       - task: link-file
         vars:
@@ -97,21 +99,31 @@ tasks:
           TARGET_FILE: "{{.VIMRC_PATH}}"
 
   link-neovim:
-    desc: Create symbolic links to Neovim configuration
     cmds:
       - task: link-dir
         vars:
           SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
           TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
 
+  link-themes:
+    summary: >
+      Hardlink theme tasks as a global taskfile to be able to execute them from
+      anywhere. Hardlink is required because Task does not treat symlinks as
+      taskfiles.
+    status:
+      - "[ -f ~/Taskfile.yml ]"
+    cmds:
+      - ln -v {{.USER_WORKING_DIR}}/ThemeTasks.yml ~/Taskfile.yml
+
   bootstrap:
     desc: Bootstrap dotfiles
     deps:
-      - install-starship
       - install-omz
+      - install-starship
       - link-alacritty
       - link-helix
       - link-neovim
+      - link-themes
       - link-vim
       - link-wezterm
       - link-zsh
@@ -119,6 +131,7 @@ tasks:
   clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
   clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
   clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
+  clean-themes: rm -rf ~/Taskfile.yml
   clean-vim: rm -f {{.VIMRC_PATH}}
   clean-wezterm: rm -f {{.WEZTERM_PATH}}
   clean-zsh: rm -f {{.ZSHRC_PATH}}
@@ -129,12 +142,13 @@ tasks:
       Remove Helix, Alacritty and Neovim configuration directories as well as
       .vimrc, .zshrc and wezterm.lua files.
     cmds:
-      - task: clean-vim
-      - task: clean-wezterm
-      - task: clean-zsh
       - task: clean-alacritty
       - task: clean-helix
       - task: clean-neovim
+      - task: clean-themes
+      - task: clean-vim
+      - task: clean-wezterm
+      - task: clean-zsh
 
   lint-yaml:
     desc: Lint YAML files using yamllint
