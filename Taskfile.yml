@@ -154,11 +154,16 @@ tasks:
     desc: Switch to light theme
     silent: true
     cmds:
-      - sed -i 's/{{.ALACRITTY_DARK_THEME}}\.toml/{{.ALACRITTY_LIGHT_THEME}}\.toml/'
+      - sed --follow-symlinks -i 's/{{.ALACRITTY_DARK_THEME}}\.toml/{{.ALACRITTY_LIGHT_THEME}}\.toml/'
         {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
+      - sed --follow-symlinks -i 's/"{{.HELIX_DARK_THEME}}"/"{{.HELIX_LIGHT_THEME}}"/'
+        {{.HELIX_CONFIG_DIR}}/config.toml
+
   dark:
     desc: Switch to dark theme
     silent: true
     cmds:
-      - sed -i 's/{{.ALACRITTY_LIGHT_THEME}}\.toml/{{.ALACRITTY_DARK_THEME}}\.toml/'
+      - sed --follow-symlinks -i 's/{{.ALACRITTY_LIGHT_THEME}}\.toml/{{.ALACRITTY_DARK_THEME}}\.toml/'
         {{.ALACRITTY_CONFIG_DIR}}/alacritty.toml
+      - sed --follow-symlinks -i 's/"{{.HELIX_LIGHT_THEME}}"/"{{.HELIX_DARK_THEME}}"/'
+        {{.HELIX_CONFIG_DIR}}/config.toml
