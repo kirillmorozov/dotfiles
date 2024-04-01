@@ -2,8 +2,13 @@
 
 ## Bootstrap
 
-0. Clone this repository
-1. Install [Task][task]
-2. Run `task bootstrap`
+0. Install [Task][task]
+1. Run:
+
+    ```shell
+    git clone git@github.com:kirillmorozov/dotfiles.git
+    cd dotfiles
+    task bootstrap
+    ```
 
 [task]: https://taskfile.dev/installation/
