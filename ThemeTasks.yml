@@ -27,6 +27,11 @@ tasks:
     deps:
       - task: change-theme
         vars:
+          NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
+          OLD: "{{.ALACRITTY_DARK_THEME}}.yml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
+      - task: change-theme
+        vars:
           NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
           OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
@@ -39,6 +44,11 @@ tasks:
   dark:
     desc: Switch to dark theme
     deps:
+      - task: change-theme
+        vars:
+          NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
+          OLD: "{{.ALACRITTY_LIGHT_THEME}}.yml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
       - task: change-theme
         vars:
           NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
