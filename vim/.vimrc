@@ -68,8 +68,7 @@ set smartcase
 " Disable all highlighted search results
 set nohlsearch
 " Enable incremental searching
-set incsearch 
-
+set incsearch
 
 " Enable text wrapping
 set wrap
@@ -141,7 +140,7 @@ if executable("rg")
 	set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 endif
 
-" Commands
+" Format programs
 if executable("gofumpt")
 	autocmd FileType go setlocal formatprg=gofumpt
 elseif executable("gofmt")
@@ -158,4 +157,8 @@ endif
 
 if executable("yamlfmt")
 	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ include_document_start=true\ -formatter\ retain_line_breaks=true\ -in
+endif
+
+if isdirectory(".git")
+	set path+=**
 endif
