@@ -5,6 +5,8 @@ vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
   ALACRITTY_DARK_THEME: rose-pine
   ALACRITTY_LIGHT_THEME: rose-pine-dawn
+  GTK_DARK_THEME: Mint-Y-Dark-Red
+  GTK_LIGHT_THEME: Mint-Y-Red
   HELIX_CONFIG_DIR: ~/.config/helix
   HELIX_DARK_THEME: rose_pine
   HELIX_LIGHT_THEME: rose_pine_dawn
@@ -28,12 +30,12 @@ tasks:
     silent: true
     requires:
       vars:
-        - NEW_THEME
+        - GTK_THEME
         - COLOR_SCHEME
     cmds:
-      - gsettings set org.cinnamon.desktop.interface gtk-theme {{.NEW_THEME}}
-      - gsettings set org.cinnamon.theme name {{.NEW_THEME}}
-      - gsettings set org.gnome.desktop.interface gtk-theme {{.NEW_THEME}}
+      - gsettings set org.cinnamon.desktop.interface gtk-theme {{.GTK_THEME}}
+      - gsettings set org.cinnamon.theme name {{.GTK_THEME}}
+      - gsettings set org.gnome.desktop.interface gtk-theme {{.GTK_THEME}}
       - gsettings set org.x.apps.portal color-scheme {{.COLOR_SCHEME}}
 
   light:
@@ -41,7 +43,7 @@ tasks:
     deps:
       - task: change-cinnamon-theme
         vars:
-          NEW_THEME: 'Mint-Y-Red'
+          GTK_THEME: "{{.GTK_LIGHT_THEME}}"
           COLOR_SCHEME: prefer-light
       - task: change-theme
         vars:
@@ -64,7 +66,7 @@ tasks:
     deps:
       - task: change-cinnamon-theme
         vars:
-          NEW_THEME: 'Mint-Y-Dark-Red'
+          GTK_THEME: "{{.GTK_DARK_THEME}}"
           COLOR_SCHEME: prefer-dark
       - task: change-theme
         vars:
