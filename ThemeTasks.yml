@@ -22,9 +22,23 @@ tasks:
     cmds:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
+  change-cinnamon-theme:
+    internal: true
+    silent: true
+    platforms: [linux]
+    requires:
+      vars:
+        - NEW_THEME
+    cmds:
+      - gsettings set org.cinnamon.theme name {{.NEW_THEME}}
+      - gsettings set org.cinnamon.desktop.interface gtk-theme {{.NEW_THEME}}
+
   light:
     desc: Switch to light theme.
     deps:
+      - task: change-cinnamon-theme
+        vars:
+          NEW_THEME: 'Mint-Y-Red'
       - task: change-theme
         vars:
           NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
@@ -44,6 +58,9 @@ tasks:
   dark:
     desc: Switch to dark theme.
     deps:
+      - task: change-cinnamon-theme
+        vars:
+          NEW_THEME: 'Mint-Y-Dark-Red'
       - task: change-theme
         vars:
           NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
