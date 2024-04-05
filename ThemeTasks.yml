@@ -16,6 +16,7 @@ tasks:
     desc: Switch from one theme to another.
     internal: true
     silent: true
+    platforms: [linux]
     requires:
       vars:
         - NEW
