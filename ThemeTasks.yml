@@ -21,6 +21,8 @@ tasks:
         - NEW
         - OLD
         - WHERE
+    status:
+      - '[ ! -f {{.WHERE}} ]'
     cmds:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
