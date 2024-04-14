@@ -21,6 +21,7 @@ display-messages = true
 
 [keys.normal]
 C-s = ":update"
+C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 
 [keys.insert]
 up = "no_op"
