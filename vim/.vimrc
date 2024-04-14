@@ -174,3 +174,22 @@ if executable("fzf")
 	set rtp+=~/.fzf
 	nnoremap <leader>f :FZF<CR>
 endif
+
+" Set up Git TUI client
+if executable("lazygit")
+	let g:gitprg = "lazygit"
+elseif executable("gitui")
+	let g:gitprg = "gitui"
+endif
+
+function Git()
+	if !exists("g:gitprg")
+		echoerr "Git program not set"
+		return
+	endif
+	execute "silent !" . g:gitprg
+	redraw!
+endfunction
+
+command G :call Git()
+command Git :call Git()
