@@ -130,6 +130,7 @@ nmap <C-L> <c-w>l
 nmap <leader>w <c-w>
 nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
+nnoremap <leader>h :help<Space>
 nnoremap N Nzz
 nnoremap n nzz
 noremap <C-S> :update<CR>
