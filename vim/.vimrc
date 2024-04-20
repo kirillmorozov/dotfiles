@@ -168,6 +168,7 @@ if isdirectory(".git")
 	set path+=**
 endif
 
+" If fzf is available use its built-in Vim plugin for file navigation
 if executable("fzf")
 	set rtp+=/opt/homebrew/opt/fzf
 	set rtp+=~/.fzf
