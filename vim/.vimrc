@@ -167,3 +167,9 @@ endif
 if isdirectory(".git")
 	set path+=**
 endif
+
+if executable("fzf")
+	set rtp+=/opt/homebrew/opt/fzf
+	set rtp+=~/.fzf
+	nnoremap <leader>f :FZF<CR>
+endif
