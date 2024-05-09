@@ -161,7 +161,7 @@ if executable("shfmt")
 endif
 
 if executable("yamlfmt")
-	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ include_document_start=true\ -formatter\ retain_line_breaks=true\ -in
+	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ retain_line_breaks=true\ -in
 endif
 
 if isdirectory(".git")
