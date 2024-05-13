@@ -116,6 +116,9 @@ export BAT_THEME="base16"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if command -v go-task &> /dev/null; then
+	alias task="go-task"
+fi
 alias li="task -g light"
 alias da="task -g dark"
 
