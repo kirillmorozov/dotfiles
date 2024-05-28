@@ -77,6 +77,8 @@ plugins=(
   dnf
   docker
   docker-compose
+  fd
+  fzf
   gh
   git
   git-auto-fetch
@@ -84,15 +86,16 @@ plugins=(
   helm
   kubectl
   python
+  ripgrep
   terraform
+  ubuntu
   vscode
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
+export BAT_THEME="base16"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -104,7 +107,6 @@ else
   export EDITOR='nvim'
 fi
 
-export BAT_THEME="base16"
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -121,5 +123,8 @@ if command -v go-task &> /dev/null; then
 fi
 alias li="task -g light"
 alias da="task -g dark"
+alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
+alias ea='e -a'
+alias et='e -T'
 
 eval "$(starship init zsh)"
