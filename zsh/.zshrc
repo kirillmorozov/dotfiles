@@ -88,6 +88,7 @@ plugins=(
   python
   ripgrep
   terraform
+  ubuntu
   vscode
 )
 
