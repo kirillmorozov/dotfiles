@@ -123,7 +123,7 @@ if command -v go-task &> /dev/null; then
 fi
 alias li="task -g light"
 alias da="task -g dark"
-alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons=auto'
+alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
 alias ea='e -a'
 alias et='e -T'
 
