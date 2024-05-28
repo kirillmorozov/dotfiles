@@ -178,8 +178,6 @@ endif
 " Set up Git TUI client
 if executable("lazygit")
 	let g:gitprg = "lazygit"
-elseif executable("gitui")
-	let g:gitprg = "gitui"
 endif
 
 function Git()
