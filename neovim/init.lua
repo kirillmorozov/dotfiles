@@ -597,7 +597,15 @@ require("lazy").setup({
 		tag = "v1.2.0",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
+		opts = { 
+			signs = false,
+			highlight = {
+				pattern = [[(KEYWORDS)\s*(\([^\)]*\))?:]],
+			},
+			search = {
+				pattern = [[\b(KEYWORDS)(?:\(\w+\))?:]],
+			}
+		},
 	},
 
 	-- Collection of various small independent plugins/modules
