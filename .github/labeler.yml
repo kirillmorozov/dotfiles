@@ -10,9 +10,9 @@ Fix:
 CI:
   - changed-files:
       - any-glob-to-any-file:
-          - .github/workflows/*
-          - .github/labeler.yml
           - .github/dependabot.yml
+          - .github/labeler.yml
+          - .github/workflows/*
   - head-branch:
       - ^ci
 
@@ -42,6 +42,12 @@ Vim:
   - changed-files:
       - any-glob-to-any-file:
           - vim/**/*
+
+Taskfile:
+  - changed-files:
+      - any-glob-to-any-file:
+          - Taskfile.yml
+          - ThemeTasks.yml
 
 Wezterm:
   - changed-files:
