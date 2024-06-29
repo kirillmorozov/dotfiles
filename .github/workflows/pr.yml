@@ -5,23 +5,12 @@ on:
   - pull_request
 
 jobs:
-  labels:
-    name: Labels
+  automation:
+    name: Automation
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
       contents: read
-    steps:
-      - name: Add labels based on changes
-        uses: actions/labeler@v5.0.0
-        with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
-
-  title:
-    name: Title
-    runs-on: ubuntu-latest
-    permissions:
-      pull-requests: read
     steps:
       - name: Check title
         uses: amannn/action-semantic-pull-request@v5.5.2
@@ -35,3 +24,8 @@ jobs:
             vim
             wezterm
             zsh
+
+      - name: Add labels based on changes
+        uses: actions/labeler@v5.0.0
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
