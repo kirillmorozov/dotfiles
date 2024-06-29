@@ -174,3 +174,14 @@ if executable("fzf")
 	set rtp+=~/.fzf
 	nnoremap <leader>f :FZF<CR>
 endif
+
+" Set up Git TUI client
+if executable("lazygit")
+	function Git()
+		execute "silent !lazygit"
+		redraw!
+	endfunction
+	command G :call Git()
+	command Git :call Git()
+	nmap <C-G> :Git<CR>
+endif
