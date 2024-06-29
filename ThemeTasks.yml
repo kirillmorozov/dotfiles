@@ -27,6 +27,24 @@ tasks:
     cmds:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
+  change-theme:
+    desc: Switch from one theme to another.
+    internal: true
+    silent: true
+    platforms: [darwin]
+    requires:
+      vars:
+        - NEW
+        - OLD
+        - WHERE
+    vars:
+      FILE_PATH:
+        sh: "[ -h {{.WHERE}} ] && readlink {{.WHERE}} || echo {{.WHERE}}"
+    status:
+      - '[ ! -f {{.WHERE}} ]'
+    cmds:
+      - sed -i '' -e 's/{{.OLD}}/{{.NEW}}/' "{{.FILE_PATH}}"
+
   change-cinnamon-theme:
     internal: true
     platforms: [linux]
