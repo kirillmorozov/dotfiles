@@ -1,10 +1,12 @@
 ---
+name: PR
 # yamllint disable-line rule:truthy
 on:
   - pull_request
 
 jobs:
   automation:
+    name: Automation
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
