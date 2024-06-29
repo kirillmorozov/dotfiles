@@ -177,17 +177,10 @@ endif
 
 " Set up Git TUI client
 if executable("lazygit")
-	let g:gitprg = "lazygit"
+	function Git()
+		execute "silent !lazygit"
+		redraw!
+	endfunction
+	command G :call Git()
+	command Git :call Git()
 endif
-
-function Git()
-	if !exists("g:gitprg")
-		echoerr "Git program not set"
-		return
-	endif
-	execute "silent !" . g:gitprg
-	redraw!
-endfunction
-
-command G :call Git()
-command Git :call Git()
