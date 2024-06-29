@@ -183,4 +183,5 @@ if executable("lazygit")
 	endfunction
 	command G :call Git()
 	command Git :call Git()
+	nmap <C-G> :Git<CR>
 endif
