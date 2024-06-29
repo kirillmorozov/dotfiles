@@ -27,6 +27,7 @@ tasks:
     cmds:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
+  # yamllint disable-line rule:key-duplicates
   change-theme:
     desc: Switch from one theme to another.
     internal: true
