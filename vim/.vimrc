@@ -174,7 +174,7 @@ if executable("fzf")
 	set rtp+=/usr/share/doc/fzf/examples  " for Debian and fzf installed via apt
 	" NOTE(kirillmorozov): fzf.vim might not exist in the runtimepath so I
 	" explicitly read Ex commands from the plugin and check FZF command
-	" existance before adding a key map.
+	" existence before adding a key map.
 	runtime plugin/fzf.vim
 	if exists(':FZF') == 2
 		nnoremap <leader>f :FZF<CR>
