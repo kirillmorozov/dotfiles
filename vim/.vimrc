@@ -171,6 +171,7 @@ endif
 " If fzf is available use its built-in Vim plugin for file navigation
 if executable("fzf")
 	set rtp+=/opt/homebrew/opt/fzf  " for macOS and fzf installed via brew
+	set rtp+=/usr/share/doc/fzf/examples  " for Debian and fzf installed via apt
 	" NOTE(kirillmorozov): fzf.vim might not exist in the runtimepath so I
 	" explicitly read Ex commands from the plugin and check FZF command
 	" existance before adding a key map.
