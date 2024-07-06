@@ -45,6 +45,10 @@ syntax enable
 filetype plugin indent on
 
 colorscheme default
+if has("termguicolors")
+	set termguicolors
+	colorscheme zaibatsu
+endif
 
 " Show tabs, multiple consecutive spaces, trailing spaces and breaks
 set list
