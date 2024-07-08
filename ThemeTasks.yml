@@ -15,8 +15,8 @@ tasks:
   change-theme:
     desc: Switch from one theme to another.
     internal: true
-    silent: true
     platforms: [linux]
+    silent: true
     requires:
       vars:
         - NEW
@@ -31,8 +31,8 @@ tasks:
   change-theme:
     desc: Switch from one theme to another.
     internal: true
-    silent: true
     platforms: [darwin]
+    silent: true
     requires:
       vars:
         - NEW
@@ -52,8 +52,8 @@ tasks:
     silent: true
     requires:
       vars:
-        - GTK_THEME
         - COLOR_SCHEME
+        - GTK_THEME
     cmds:
       - gsettings set org.cinnamon.desktop.interface gtk-theme {{.GTK_THEME}}
       - gsettings set org.cinnamon.theme name {{.GTK_THEME}}
@@ -65,8 +65,8 @@ tasks:
     deps:
       - task: change-cinnamon-theme
         vars:
-          GTK_THEME: "{{.GTK_LIGHT_THEME}}"
           COLOR_SCHEME: prefer-light
+          GTK_THEME: "{{.GTK_LIGHT_THEME}}"
       - task: change-theme
         vars:
           NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"

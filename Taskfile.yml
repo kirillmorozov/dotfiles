@@ -6,6 +6,7 @@ includes:
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
+  GLOBAL_TASK_FILE: ~/Taskfile.yml
   HELIX_CONFIG_DIR: ~/.config/helix
   NEOVIM_CONFIG_DIR: ~/.config/nvim
   VIMRC_PATH: ~/.vimrc
@@ -106,14 +107,11 @@ tasks:
           TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
 
   link-themes:
-    summary: >
-      Hardlink theme tasks as a global taskfile to be able to execute them from
-      anywhere. Hardlink is required because Task does not treat symlinks as
-      taskfiles.
-    status:
-      - "[ -f ~/Taskfile.yml ]"
     cmds:
-      - ln -v {{.USER_WORKING_DIR}}/ThemeTasks.yml ~/Taskfile.yml
+      - task: link-file
+        vars:
+          SOURCE_FILE: "{{.USER_WORKING_DIR}}/ThemeTasks.yml"
+          TARGET_FILE: "{{.GLOBAL_TASK_FILE}}"
 
   bootstrap:
     desc: Bootstrap dotfiles
