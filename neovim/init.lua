@@ -498,14 +498,12 @@ require("lazy").setup({
 				},
 			},
 			formatters_by_ft = {
-				go = {
-					{ "gofumpt", "gofmt" },
-				},
+				go = { { "gofumpt", "gofmt" } },
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
-				yaml = { "yamlfmt" },
+				yaml = { { "yamlfmt", "yq" } },
 				json = { "jq" },
 				["_"] = { "trim_whitespace" },
 			},
