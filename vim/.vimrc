@@ -166,6 +166,8 @@ endif
 
 if executable("yamlfmt")
 	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ retain_line_breaks=true\ -in
+elseif executable("yq")
+	autocmd FileType yaml setlocal formatprg=yq\ '.'
 endif
 
 if executable("jq")
