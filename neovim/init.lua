@@ -252,7 +252,7 @@ require("lazy").setup({
 				defaults = {
 					file_ignore_patterns = {
 						"^.git/",
-					}
+					},
 				},
 				extensions = {
 					["ui-select"] = {
