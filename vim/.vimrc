@@ -168,6 +168,10 @@ if executable("yamlfmt")
 	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ retain_line_breaks=true\ -in
 endif
 
+if executable("jq")
+	autocmd FileType json setlocal formatprg=jq\ '.'
+endif
+
 if isdirectory(".git")
 	set path+=**
 endif

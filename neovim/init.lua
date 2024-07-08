@@ -252,7 +252,7 @@ require("lazy").setup({
 				defaults = {
 					file_ignore_patterns = {
 						"^.git/",
-					}
+					},
 				},
 				extensions = {
 					["ui-select"] = {
@@ -506,6 +506,7 @@ require("lazy").setup({
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { "yamlfmt" },
+				json = { "jq" },
 				["_"] = { "trim_whitespace" },
 			},
 		},

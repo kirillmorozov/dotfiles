@@ -23,6 +23,10 @@ auto-format = true
 formatter = { command = "gofumpt" }
 
 [[language]]
+name = "json"
+formatter = { command = "jq", args = ["."] }
+
+[[language]]
 name = "yaml"
 auto-format = true
 formatter = { command = "yamlfmt", args = ["-formatter", "include_document_start=true", "-formatter", "retain_line_breaks=true", "-in"] }
