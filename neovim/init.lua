@@ -452,6 +452,15 @@ require("lazy").setup({
 				},
 				pylsp = {},
 				terraformls = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							schemas = {
+								["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+							},
+						},
+					},
+				},
 			}
 			for server, opts in pairs(servers) do
 				require("lspconfig")[server].setup(opts)
