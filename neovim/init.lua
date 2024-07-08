@@ -506,6 +506,7 @@ require("lazy").setup({
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { "yamlfmt" },
+				json = { "jq" },
 				["_"] = { "trim_whitespace" },
 			},
 		},
