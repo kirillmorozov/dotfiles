@@ -199,7 +199,12 @@ require("lazy").setup({
 			require("which-key").setup()
 		end,
 	},
-
+	-- Learn the optimal keybinding
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 	-- Fuzzy Finder (files, lsp, etc)
 	{
 		"nvim-telescope/telescope.nvim",
