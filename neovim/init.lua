@@ -199,7 +199,12 @@ require("lazy").setup({
 			require("which-key").setup()
 		end,
 	},
-
+	-- Establish good command workflow and quit bad habit.
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 	-- Fuzzy Finder (files, lsp, etc)
 	{
 		"nvim-telescope/telescope.nvim",
