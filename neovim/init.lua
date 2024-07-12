@@ -199,7 +199,7 @@ require("lazy").setup({
 			require("which-key").setup()
 		end,
 	},
-	-- Learn the optimal keybinding
+	-- Establish good command workflow and quit bad habit.
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
