@@ -452,6 +452,19 @@ require("lazy").setup({
 				},
 				pylsp = {},
 				terraformls = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							schemas = {
+								["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.{yml,yaml}",
+								["https://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+								["https://json.schemastore.org/github-action"] = ".github/actions/*/action.{yml,yaml}",
+								["https://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+								["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
+							},
+						},
+					},
+				},
 			}
 			for server, opts in pairs(servers) do
 				require("lspconfig")[server].setup(opts)
