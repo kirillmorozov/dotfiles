@@ -456,8 +456,11 @@ require("lazy").setup({
 					settings = {
 						yaml = {
 							schemas = {
-								["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.yml",
-								["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+								["https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json"] = "/.gitlab-ci.{yml,yaml}",
+								["https://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
+								["https://json.schemastore.org/github-action"] = ".github/actions/*/action.{yml,yaml}",
+								["https://json.schemastore.org/github-workflow"] = ".github/workflows/*.{yml,yaml}",
+								["https://json.schemastore.org/kustomization.json"] = "kustomization.{yml,yaml}",
 							},
 						},
 					},
