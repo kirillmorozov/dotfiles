@@ -153,7 +153,7 @@ nmap [q :cprevious<CR>  " Previous item in the quickfix list
 
 " Use ripgrep for search if it's installed
 if executable("rg")
-	set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+	set grepprg=rg\ --vimgrep\ --smart-case\ --follow\ --hidden\ --glob\ '!.git/**'
 endif
 
 " Format programs
