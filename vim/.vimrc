@@ -48,7 +48,7 @@ if has("termguicolors")
 	set termguicolors
 	try
 		colorscheme zaibatsu
-	catch
+	catch /E185:/
 		" NOTE(kirillmorozov): zaibatsu may not be available on older vim
 		" versions, fall back to habamax instead.
 		colorscheme habamax
