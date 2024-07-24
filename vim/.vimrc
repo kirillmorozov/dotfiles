@@ -44,10 +44,17 @@ syntax enable
 
 filetype plugin indent on
 
-colorscheme default
 if has("termguicolors")
 	set termguicolors
-	colorscheme zaibatsu
+	try
+		colorscheme zaibatsu
+	catch /E185:/
+		" NOTE(kirillmorozov): zaibatsu may not be available on older vim
+		" versions, fall back to habamax instead.
+		colorscheme habamax
+	endtry
+else
+	colorscheme default
 endif
 
 " Show tabs, multiple consecutive spaces, trailing spaces and breaks
