@@ -9,14 +9,6 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
-config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
-config.enable_scroll_bar = false
-
 --- Returns the appearance of the window environment.
 -- If gui is not available returns 'Dark'.
 local function get_appearance()
@@ -37,6 +29,16 @@ local function scheme_for_appearance(appearance)
     return 'Rosé Pine Dawn (Gogh)'
   end
 end
+
+config.window_padding = {
+	left = 0,
+	right = 0,
+	top = 0,
+	bottom = 0,
+}
+config.enable_scroll_bar = false
+config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = true
 
 config.color_scheme = scheme_for_appearance(get_appearance())
 
