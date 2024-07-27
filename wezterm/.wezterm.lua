@@ -1,14 +1,5 @@
 local wezterm = require 'wezterm'
 
---- This table will hold the configuration.
-local config = {}
-
--- NOTE(kirillmorozov): In newer versions of wezterm, use the config_builder
--- which will help provide clearer error messages
-if wezterm.config_builder then
-  config = wezterm.config_builder()
-end
-
 --- Returns the appearance of the window environment.
 -- If gui is not available returns 'Dark'.
 local function get_appearance()
@@ -28,6 +19,13 @@ local function scheme_for_appearance(appearance)
   else
     return 'Rosé Pine Dawn (Gogh)'
   end
+end
+
+local config = {}
+-- NOTE(kirillmorozov): In newer versions of wezterm, use the config_builder
+-- which will help provide clearer error messages
+if wezterm.config_builder then
+  config = wezterm.config_builder()
 end
 
 config.window_padding = {
