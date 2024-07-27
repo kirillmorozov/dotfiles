@@ -77,7 +77,6 @@ plugins=(
   dnf
   docker
   docker-compose
-  fd
   fzf
   gh
   git
@@ -86,7 +85,6 @@ plugins=(
   helm
   kubectl
   python
-  ripgrep
   terraform
   ubuntu
   vscode
@@ -126,5 +124,8 @@ alias da="task -g dark"
 alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
 alias ea='e -a'
 alias et='e -T'
+
+# TODO(kirillmorozov): add homebrew installed completions from
+# /opt/homebrew/share/zsh/site-functions
 
 eval "$(starship init zsh)"
