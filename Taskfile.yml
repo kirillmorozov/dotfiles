@@ -9,9 +9,6 @@ vars:
   GLOBAL_TASK_FILE: ~/Taskfile.yml
   HELIX_CONFIG_DIR: ~/.config/helix
   NEOVIM_CONFIG_DIR: ~/.config/nvim
-  VIMRC_PATH: ~/.vimrc
-  WEZTERM_PATH: ~/.wezterm.lua
-  ZSHRC_PATH: ~/.zshrc
 
 tasks:
   install:starship:
@@ -41,18 +38,20 @@ tasks:
 
   stow:package:
     internal: true
+    label: stow:{{.PACKAGE}}
     requires:
       vars:
         - PACKAGE
         - TARGET
     cmds:
       - mkdir -pv {{.TARGET}}
-      - stow {{.PACKAGE}} --target {{.TARGET}}
+      - stow {{.OPTION}} {{.PACKAGE}} --target {{.TARGET}}
 
   stow:alacritty:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: alacritty
           TARGET: "{{.ALACRITTY_CONFIG_DIR}}"
 
@@ -60,6 +59,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: helix
           TARGET: "{{.HELIX_CONFIG_DIR}}"
 
@@ -67,6 +67,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: neovim
           TARGET: "{{.NEOVIM_CONFIG_DIR}}"
 
@@ -74,6 +75,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: task
           TARGET: "~"
 
@@ -81,6 +83,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: vim
           TARGET: "~"
 
@@ -88,6 +91,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: wezterm
           TARGET: "~"
 
@@ -95,6 +99,7 @@ tasks:
     cmds:
       - task: stow:package
         vars:
+          OPTION: "{{.OPTION}}"
           PACKAGE: zsh
           TARGET: "~"
 
@@ -111,27 +116,14 @@ tasks:
       - stow:wezterm
       - stow:zsh
 
-  clean:alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
-  clean:helix: rm -rf {{.HELIX_CONFIG_DIR}}
-  clean:neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
-  clean:task: rm -rf {{.GLOBAL_TASK_FILE}}
-  clean:vim: rm -f {{.VIMRC_PATH}}
-  clean:wezterm: rm -f {{.WEZTERM_PATH}}
-  clean:zsh: rm -f {{.ZSHRC_PATH}}
-
   clean:
     desc: Clean up dotfiles.
-    summary: >
-      Remove Helix, Alacritty and Neovim configuration directories as well as
-      .vimrc, .zshrc and wezterm.lua files.
-    cmds:
-      - task: clean:alacritty
-      - task: clean:helix
-      - task: clean:neovim
-      - task: clean:themes
-      - task: clean:vim
-      - task: clean:wezterm
-      - task: clean:zsh
+    summary: Remove symlinks to all config files.
+    deps:
+      - for: [alacritty, helix, neovim, task, vim, wezterm, zsh]
+        task: stow:{{.ITEM}}
+        vars:
+          OPTION: --delete
 
   lint:yaml:
     desc: Lint YAML files using yamllint.
