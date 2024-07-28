@@ -102,12 +102,9 @@ tasks:
           OPTION: "{{.OPTION}}"
           PACKAGE: zsh
           TARGET: "~"
-
-  bootstrap:
-    desc: Bootstrap dotfiles.
+  stow:
+    desc: Create symlinks to all configuration files using GNU Stow.
     deps:
-      - install:omz
-      - install:starship
       - stow:alacritty
       - stow:helix
       - stow:neovim
@@ -115,6 +112,14 @@ tasks:
       - stow:vim
       - stow:wezterm
       - stow:zsh
+
+
+  bootstrap:
+    desc: Bootstrap dotfiles.
+    deps:
+      - install:omz
+      - install:starship
+      - stow
 
   clean:
     desc: Clean up dotfiles.
