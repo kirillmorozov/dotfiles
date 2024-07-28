@@ -51,61 +51,6 @@ tasks:
     cmds:
       - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
 
-  link-dir:
-    internal: true
-    desc: Create symbolic links to files in a directory
-    requires:
-      vars:
-        - SOURCE_DIR
-        - TARGET_DIR
-    status:
-      - "[ -d {{.TARGET_DIR}} ]"
-    cmds:
-      - mkdir -pv {{.TARGET_DIR}}
-      - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
-
-  link-zsh:
-    cmds:
-      - task: link-file
-        vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/zsh/.zshrc"
-          TARGET_FILE: "{{.ZSHRC_PATH}}"
-
-  link-alacritty:
-    cmds:
-      - task: link-dir
-        vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/alacritty"
-          TARGET_DIR: "{{.ALACRITTY_CONFIG_DIR}}"
-
-  link-wezterm:
-    cmds:
-      - task: link-file
-        vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/wezterm/.wezterm.lua"
-          TARGET_FILE: "{{.WEZTERM_PATH}}"
-
-  link-helix:
-    cmds:
-      - task: link-dir
-        vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/helix"
-          TARGET_DIR: "{{.HELIX_CONFIG_DIR}}"
-
-  link-vim:
-    cmds:
-      - task: link-file
-        vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/vim/.vimrc"
-          TARGET_FILE: "{{.VIMRC_PATH}}"
-
-  link-neovim:
-    cmds:
-      - task: link-dir
-        vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
-          TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
-
   link-themes:
     cmds:
       - task: link-file
@@ -118,13 +63,13 @@ tasks:
     deps:
       - install-omz
       - install-starship
-      - link-alacritty
-      - link-helix
-      - link-neovim
       - link-themes
-      - link-vim
-      - link-wezterm
-      - link-zsh
+      - stow:alacritty
+      - stow:helix
+      - stow:neovim
+      - stow:vim
+      - stow:wezterm
+      - stow:zsh
 
   clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
   clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
@@ -157,3 +102,58 @@ tasks:
         msg: yamllint is not installed
     cmds:
       - yamllint .
+
+  stow:package:
+    internal: true
+    preconditions:
+      - sh: stow --version
+        msg: GNU Stow is not installed
+    requires:
+      vars:
+        - PACKAGE
+        - TARGET
+    cmds:
+      - mkdir -pv {{.TARGET}}
+      - stow {{.PACKAGE}} --verbose 3 --target {{.TARGET}}
+
+  stow:alacritty:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: alacritty
+          TARGET: "{{.ALACRITTY_CONFIG_DIR}}"
+
+  stow:helix:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: helix
+          TARGET: "{{.HELIX_CONFIG_DIR}}"
+
+  stow:neovim:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: neovim
+          TARGET: "{{.NEOVIM_CONFIG_DIR}}"
+
+  stow:vim:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: vim
+          TARGET: "~"
+
+  stow:wezterm:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: wezterm
+          TARGET: "~"
+
+  stow:zsh:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: zsh
+          TARGET: "~"
