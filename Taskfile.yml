@@ -14,8 +14,8 @@ vars:
   ZSHRC_PATH: ~/.zshrc
 
 tasks:
-  install-starship:
-    desc: Install starship
+  install:starship:
+    desc: Install starship.
     platforms: [linux]
     status:
       - starship --version
@@ -23,72 +23,24 @@ tasks:
       - curl -sS https://starship.rs/install.sh | sh
 
   # yamllint disable-line rule:key-duplicates
-  install-starship:
-    desc: Install starship
+  install:starship:
+    desc: Install starship.
     platforms: [darwin]
     status:
       - starship --version
     cmds:
       - brew install starship
 
-  install-omz:
-    desc: Install Oh My Zsh
+  install:omz:
+    desc: Install Oh My Zsh.
     status:
       - '[ -d ~/.oh-my-zsh ]'
     cmds:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  bootstrap:
-    desc: Bootstrap dotfiles
-    deps:
-      - install-omz
-      - install-starship
-      - stow:alacritty
-      - stow:helix
-      - stow:neovim
-      - stow:task
-      - stow:vim
-      - stow:wezterm
-      - stow:zsh
-
-  clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
-  clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
-  clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
-  clean-task: rm -rf ~/Taskfile.yml
-  clean-vim: rm -f {{.VIMRC_PATH}}
-  clean-wezterm: rm -f {{.WEZTERM_PATH}}
-  clean-zsh: rm -f {{.ZSHRC_PATH}}
-
-  clean:
-    desc: Clean up dotfiles
-    summary: >
-      Remove Helix, Alacritty and Neovim configuration directories as well as
-      .vimrc, .zshrc and wezterm.lua files.
-    cmds:
-      - task: clean-alacritty
-      - task: clean-helix
-      - task: clean-neovim
-      - task: clean-themes
-      - task: clean-vim
-      - task: clean-wezterm
-      - task: clean-zsh
-
-  lint-yaml:
-    desc: Lint YAML files using yamllint
-    aliases:
-      - lint
-    preconditions:
-      - sh: yamllint --version
-        msg: yamllint is not installed
-    cmds:
-      - yamllint .
-
   stow:package:
     internal: true
-    preconditions:
-      - sh: stow --version
-        msg: GNU Stow is not installed
     requires:
       vars:
         - PACKAGE
@@ -145,3 +97,48 @@ tasks:
         vars:
           PACKAGE: zsh
           TARGET: "~"
+
+  bootstrap:
+    desc: Bootstrap dotfiles.
+    deps:
+      - install:omz
+      - install:starship
+      - stow:alacritty
+      - stow:helix
+      - stow:neovim
+      - stow:task
+      - stow:vim
+      - stow:wezterm
+      - stow:zsh
+
+  clean:alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
+  clean:helix: rm -rf {{.HELIX_CONFIG_DIR}}
+  clean:neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
+  clean:task: rm -rf {{.GLOBAL_TASK_FILE}}
+  clean:vim: rm -f {{.VIMRC_PATH}}
+  clean:wezterm: rm -f {{.WEZTERM_PATH}}
+  clean:zsh: rm -f {{.ZSHRC_PATH}}
+
+  clean:
+    desc: Clean up dotfiles.
+    summary: >
+      Remove Helix, Alacritty and Neovim configuration directories as well as
+      .vimrc, .zshrc and wezterm.lua files.
+    cmds:
+      - task: clean:alacritty
+      - task: clean:helix
+      - task: clean:neovim
+      - task: clean:themes
+      - task: clean:vim
+      - task: clean:wezterm
+      - task: clean:zsh
+
+  lint:yaml:
+    desc: Lint YAML files using yamllint.
+    aliases:
+      - lint
+    preconditions:
+      - sh: yamllint --version
+        msg: yamllint is not installed
+    cmds:
+      - yamllint .
