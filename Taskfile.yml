@@ -2,7 +2,7 @@
 version: '3'
 
 includes:
-  theme: ThemeTasks.yml
+  theme: task/Taskfile.yml
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
@@ -39,34 +39,15 @@ tasks:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  link-file:
-    internal: true
-    desc: Create a symbolic link to a file
-    requires:
-      vars:
-        - SOURCE_FILE
-        - TARGET_FILE
-    status:
-      - "[ -f {{.TARGET_FILE}} ]"
-    cmds:
-      - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
-
-  link-themes:
-    cmds:
-      - task: link-file
-        vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/ThemeTasks.yml"
-          TARGET_FILE: "{{.GLOBAL_TASK_FILE}}"
-
   bootstrap:
     desc: Bootstrap dotfiles
     deps:
       - install-omz
       - install-starship
-      - link-themes
       - stow:alacritty
       - stow:helix
       - stow:neovim
+      - stow:task
       - stow:vim
       - stow:wezterm
       - stow:zsh
@@ -74,7 +55,7 @@ tasks:
   clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
   clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
   clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
-  clean-themes: rm -rf ~/Taskfile.yml
+  clean-task: rm -rf ~/Taskfile.yml
   clean-vim: rm -f {{.VIMRC_PATH}}
   clean-wezterm: rm -f {{.WEZTERM_PATH}}
   clean-zsh: rm -f {{.ZSHRC_PATH}}
@@ -114,7 +95,7 @@ tasks:
         - TARGET
     cmds:
       - mkdir -pv {{.TARGET}}
-      - stow {{.PACKAGE}} --verbose 3 --target {{.TARGET}}
+      - stow {{.PACKAGE}} --target {{.TARGET}}
 
   stow:alacritty:
     cmds:
@@ -136,6 +117,13 @@ tasks:
         vars:
           PACKAGE: neovim
           TARGET: "{{.NEOVIM_CONFIG_DIR}}"
+
+  stow:task:
+    cmds:
+      - task: stow:package
+        vars:
+          PACKAGE: task
+          TARGET: "~"
 
   stow:vim:
     cmds:
