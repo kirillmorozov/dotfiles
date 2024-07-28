@@ -45,7 +45,7 @@ tasks:
         - TARGET
     cmds:
       - mkdir -pv {{.TARGET}}
-      - stow {{.OPTION}} {{.PACKAGE}} --target {{.TARGET}}
+      - stow {{.OPTION}} {{.PACKAGE}} --target {{.TARGET}} --verbose
 
   stow:alacritty:
     cmds:
