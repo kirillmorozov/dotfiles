@@ -30,6 +30,7 @@ tasks:
   # yamllint disable-line rule:key-duplicates
   change-theme:
     desc: Switch from one theme to another.
+    label: change theme in {{.WHERE}}
     internal: true
     platforms: [darwin]
     silent: true
@@ -40,7 +41,7 @@ tasks:
         - WHERE
     vars:
       FILE_PATH:
-        sh: "[ -h {{.WHERE}} ] && readlink {{.WHERE}} || echo {{.WHERE}}"
+        sh: "[ -h {{.WHERE}} ] && readlink -fn {{.WHERE}} || echo {{.WHERE}}"
     status:
       - '[ ! -f {{.WHERE}} ]'
     cmds:

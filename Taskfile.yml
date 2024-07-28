@@ -2,20 +2,17 @@
 version: '3'
 
 includes:
-  theme: ThemeTasks.yml
+  theme: task/Taskfile.yml
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
   GLOBAL_TASK_FILE: ~/Taskfile.yml
   HELIX_CONFIG_DIR: ~/.config/helix
   NEOVIM_CONFIG_DIR: ~/.config/nvim
-  VIMRC_PATH: ~/.vimrc
-  WEZTERM_PATH: ~/.wezterm.lua
-  ZSHRC_PATH: ~/.zshrc
 
 tasks:
-  install-starship:
-    desc: Install starship
+  install:starship:
+    desc: Install starship.
     platforms: [linux]
     status:
       - starship --version
@@ -23,133 +20,118 @@ tasks:
       - curl -sS https://starship.rs/install.sh | sh
 
   # yamllint disable-line rule:key-duplicates
-  install-starship:
-    desc: Install starship
+  install:starship:
+    desc: Install starship.
     platforms: [darwin]
     status:
       - starship --version
     cmds:
       - brew install starship
 
-  install-omz:
-    desc: Install Oh My Zsh
+  install:omz:
+    desc: Install Oh My Zsh.
     status:
       - '[ -d ~/.oh-my-zsh ]'
     cmds:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  link-file:
+  stow:package:
     internal: true
-    desc: Create a symbolic link to a file
+    label: stow:{{.PACKAGE}}
     requires:
       vars:
-        - SOURCE_FILE
-        - TARGET_FILE
-    status:
-      - "[ -f {{.TARGET_FILE}} ]"
+        - PACKAGE
+        - TARGET
     cmds:
-      - ln -sv {{.SOURCE_FILE}} {{.TARGET_FILE}}
+      - mkdir -pv {{.TARGET}}
+      - stow {{.OPTION}} {{.PACKAGE}} --target {{.TARGET}} --verbose
 
-  link-dir:
-    internal: true
-    desc: Create symbolic links to files in a directory
-    requires:
-      vars:
-        - SOURCE_DIR
-        - TARGET_DIR
-    status:
-      - "[ -d {{.TARGET_DIR}} ]"
+  stow:alacritty:
     cmds:
-      - mkdir -pv {{.TARGET_DIR}}
-      - ln -sv {{.SOURCE_DIR}}/* {{.TARGET_DIR}}
-
-  link-zsh:
-    cmds:
-      - task: link-file
+      - task: stow:package
         vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/zsh/.zshrc"
-          TARGET_FILE: "{{.ZSHRC_PATH}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: alacritty
+          TARGET: "{{.ALACRITTY_CONFIG_DIR}}"
 
-  link-alacritty:
+  stow:helix:
     cmds:
-      - task: link-dir
+      - task: stow:package
         vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/alacritty"
-          TARGET_DIR: "{{.ALACRITTY_CONFIG_DIR}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: helix
+          TARGET: "{{.HELIX_CONFIG_DIR}}"
 
-  link-wezterm:
+  stow:neovim:
     cmds:
-      - task: link-file
+      - task: stow:package
         vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/wezterm/.wezterm.lua"
-          TARGET_FILE: "{{.WEZTERM_PATH}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: neovim
+          TARGET: "{{.NEOVIM_CONFIG_DIR}}"
 
-  link-helix:
+  stow:task:
     cmds:
-      - task: link-dir
+      - task: stow:package
         vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/helix"
-          TARGET_DIR: "{{.HELIX_CONFIG_DIR}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: task
+          TARGET: "~"
 
-  link-vim:
+  stow:vim:
     cmds:
-      - task: link-file
+      - task: stow:package
         vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/vim/.vimrc"
-          TARGET_FILE: "{{.VIMRC_PATH}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: vim
+          TARGET: "~"
 
-  link-neovim:
+  stow:wezterm:
     cmds:
-      - task: link-dir
+      - task: stow:package
         vars:
-          SOURCE_DIR: "{{.USER_WORKING_DIR}}/neovim"
-          TARGET_DIR: "{{.NEOVIM_CONFIG_DIR}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: wezterm
+          TARGET: "~"
 
-  link-themes:
+  stow:zsh:
     cmds:
-      - task: link-file
+      - task: stow:package
         vars:
-          SOURCE_FILE: "{{.USER_WORKING_DIR}}/ThemeTasks.yml"
-          TARGET_FILE: "{{.GLOBAL_TASK_FILE}}"
+          OPTION: "{{.OPTION}}"
+          PACKAGE: zsh
+          TARGET: "~"
+  stow:
+    desc: Create symlinks to all configuration files using GNU Stow.
+    deps:
+      - stow:alacritty
+      - stow:helix
+      - stow:neovim
+      - stow:task
+      - stow:vim
+      - stow:wezterm
+      - stow:zsh
+
 
   bootstrap:
-    desc: Bootstrap dotfiles
+    desc: Bootstrap dotfiles.
     deps:
-      - install-omz
-      - install-starship
-      - link-alacritty
-      - link-helix
-      - link-neovim
-      - link-themes
-      - link-vim
-      - link-wezterm
-      - link-zsh
-
-  clean-alacritty: rm -rf {{.ALACRITTY_CONFIG_DIR}}
-  clean-helix: rm -rf {{.HELIX_CONFIG_DIR}}
-  clean-neovim: rm -rf {{.NEOVIM_CONFIG_DIR}}
-  clean-themes: rm -rf ~/Taskfile.yml
-  clean-vim: rm -f {{.VIMRC_PATH}}
-  clean-wezterm: rm -f {{.WEZTERM_PATH}}
-  clean-zsh: rm -f {{.ZSHRC_PATH}}
+      - install:omz
+      - install:starship
+      - stow
 
   clean:
-    desc: Clean up dotfiles
-    summary: >
-      Remove Helix, Alacritty and Neovim configuration directories as well as
-      .vimrc, .zshrc and wezterm.lua files.
-    cmds:
-      - task: clean-alacritty
-      - task: clean-helix
-      - task: clean-neovim
-      - task: clean-themes
-      - task: clean-vim
-      - task: clean-wezterm
-      - task: clean-zsh
+    desc: Clean up dotfiles.
+    summary: Remove symlinks to all config files.
+    deps:
+      - for: [alacritty, helix, neovim, task, vim, wezterm, zsh]
+        task: stow:{{.ITEM}}
+        vars:
+          OPTION: --delete
 
-  lint-yaml:
-    desc: Lint YAML files using yamllint
+  lint:yaml:
+    desc: Lint YAML files using yamllint.
     aliases:
       - lint
     preconditions:
