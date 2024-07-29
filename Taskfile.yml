@@ -27,6 +27,14 @@ tasks:
     cmds:
       - brew install starship
 
+  install:completions:
+    desc: Generate completions for most used tools.
+    vars:
+      COMPLETION_PATH: ~/.oh-my-zsh/custom/completions
+    cmds:
+        - rg --generate=complete-zsh > {{.COMPLETION_PATH}}/_rg
+        - task --completion zsh 2> {{.COMPLETION_PATH}}/_task
+
   install:omz:
     desc: Install Oh My Zsh.
     status:
