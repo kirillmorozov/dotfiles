@@ -32,6 +32,7 @@ tasks:
     vars:
       COMPLETION_PATH: ~/.oh-my-zsh/custom/completions
     cmds:
+      - brew completions link
       - rg --generate=complete-zsh > {{.COMPLETION_PATH}}/_rg
       - task --completion zsh 2> {{.COMPLETION_PATH}}/_task
 
