@@ -77,7 +77,6 @@ plugins=(
   dnf
   docker
   docker-compose
-  fd
   fzf
   gh
   git
