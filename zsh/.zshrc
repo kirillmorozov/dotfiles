@@ -86,7 +86,6 @@ plugins=(
   helm
   kubectl
   python
-  ripgrep
   terraform
   ubuntu
   vscode
