@@ -21,6 +21,7 @@ jobs:
             alacritty
             helix
             neovim
+            task
             vim
             wezterm
             zsh
