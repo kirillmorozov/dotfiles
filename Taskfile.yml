@@ -11,7 +11,7 @@ vars:
   NEOVIM_CONFIG_DIR: ~/.config/nvim
 
 tasks:
-  install:starship:
+  install:starship-linux:
     desc: Install starship.
     platforms: [linux]
     status:
@@ -19,8 +19,7 @@ tasks:
     cmds:
       - curl -sS https://starship.rs/install.sh | sh
 
-  # yamllint disable-line rule:key-duplicates
-  install:starship:
+  install:starship-darwin:
     desc: Install starship.
     platforms: [darwin]
     status:
@@ -102,6 +101,7 @@ tasks:
           OPTION: "{{.OPTION}}"
           PACKAGE: zsh
           TARGET: "~"
+
   stow:
     desc: Create symlinks to all configuration files using GNU Stow.
     deps:
@@ -113,13 +113,13 @@ tasks:
       - stow:wezterm
       - stow:zsh
 
-
   bootstrap:
     desc: Bootstrap dotfiles.
-    deps:
+    cmds:
       - install:omz
-      - install:starship
       - stow
+      - install:starship-linux
+      - install:starship-darwin
 
   clean:
     desc: Clean up dotfiles.
