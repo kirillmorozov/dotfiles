@@ -6,6 +6,7 @@ includes:
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
+  COMPLETIONS_PATH: ~/.oh-my-zsh/custom/completions
   GLOBAL_TASK_FILE: ~/Taskfile.yml
   HELIX_CONFIG_DIR: ~/.config/helix
   NEOVIM_CONFIG_DIR: ~/.config/nvim
@@ -35,17 +36,37 @@ tasks:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+  install:completions:brew:
+    desc: Install brew completions.
+    platforms:
+      - darwin
+    cmds:
+      - brew completions link
+
+  install:completions:fd:
+    desc: Install fd completions.
+    cmds:
+      - fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+
+  install:completions:ripgrep:
+    desc: Install ripgrep completions.
+    cmds:
+      - rg --generate=complete-zsh > {{.COMPLETIONS_PATH}}/_rg
+
+  install:completions:task:
+    desc: Install task completions.
+    cmds:
+      - task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
+
   install:completions:
-    desc: Generate completions for most used tools.
-    vars:
-      COMPLETION_PATH: ~/.oh-my-zsh/custom/completions
+    desc: Install completions for most used tools.
     deps:
       - install:omz
     cmds:
-      - brew completions link
-      - fd --gen-completions=zsh > {{.COMPLETION_PATH}}/_fd
-      - rg --generate=complete-zsh > {{.COMPLETION_PATH}}/_rg
-      - task --completion zsh 2> {{.COMPLETION_PATH}}/_task
+      - task: install:completions:brew
+      - task: install:completions:fd
+      - task: install:completions:ripgrep
+      - task: install:completions:task
 
   stow:package:
     internal: true
