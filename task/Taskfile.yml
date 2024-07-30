@@ -12,9 +12,10 @@ vars:
   HELIX_LIGHT_THEME: rose_pine_dawn
 
 tasks:
-  change-theme:
+  change-theme-linux:
     desc: Switch from one theme to another.
     internal: true
+    label: change theme in {{.WHERE}}
     platforms: [linux]
     silent: true
     requires:
@@ -27,11 +28,10 @@ tasks:
     cmds:
       - sed --follow-symlinks -i 's/{{.OLD}}/{{.NEW}}/' {{.WHERE}}
 
-  # yamllint disable-line rule:key-duplicates
-  change-theme:
+  change-theme-darwin:
     desc: Switch from one theme to another.
-    label: change theme in {{.WHERE}}
     internal: true
+    label: change theme in {{.WHERE}}
     platforms: [darwin]
     silent: true
     requires:
@@ -61,48 +61,102 @@ tasks:
       - gsettings set org.gnome.desktop.interface gtk-theme {{.GTK_THEME}}
       - gsettings set org.x.apps.portal color-scheme {{.COLOR_SCHEME}}
 
-  light:
-    desc: Switch to light theme.
-    deps:
-      - task: change-cinnamon-theme
-        vars:
-          COLOR_SCHEME: prefer-light
-          GTK_THEME: "{{.GTK_LIGHT_THEME}}"
-      - task: change-theme
+  light:alacritty:
+    cmds:
+      - task: change-theme-linux
         vars:
           NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
           OLD: "{{.ALACRITTY_DARK_THEME}}.yml"
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme
+      - task: change-theme-linux
         vars:
           NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
           OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme
+      - task: change-theme-darwin
+        vars:
+          NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
+          OLD: "{{.ALACRITTY_DARK_THEME}}.yml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
+      - task: change-theme-darwin
+        vars:
+          NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
+          OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
+
+  light:cinnamon:
+    cmds:
+      - task: change-cinnamon-theme
+        vars:
+          COLOR_SCHEME: prefer-light
+          GTK_THEME: "{{.GTK_LIGHT_THEME}}"
+
+  light:helix:
+    cmds:
+      - task: change-theme-linux
+        vars:
+          NEW: "\"{{.HELIX_LIGHT_THEME}}\""
+          OLD: "\"{{.HELIX_DARK_THEME}}\""
+          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
+      - task: change-theme-darwin
         vars:
           NEW: "\"{{.HELIX_LIGHT_THEME}}\""
           OLD: "\"{{.HELIX_DARK_THEME}}\""
           WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
 
-  dark:
-    desc: Switch to dark theme.
+  light:
+    desc: Switch to light theme.
     deps:
-      - task: change-cinnamon-theme
-        vars:
-          GTK_THEME: "{{.GTK_DARK_THEME}}"
-          COLOR_SCHEME: prefer-dark
-      - task: change-theme
+      - task: light:cinnamon
+      - task: light:alacritty
+      - task: light:helix
+
+  dark:alacritty:
+    cmds:
+      - task: change-theme-linux
         vars:
           NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
           OLD: "{{.ALACRITTY_LIGHT_THEME}}.yml"
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme
+      - task: change-theme-linux
         vars:
           NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
           OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
           WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme
+      - task: change-theme-darwin
+        vars:
+          NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
+          OLD: "{{.ALACRITTY_LIGHT_THEME}}.yml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
+      - task: change-theme-darwin
+        vars:
+          NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
+          OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
+          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
+
+  dark:cinnamon:
+    cmds:
+      - task: change-cinnamon-theme
+        vars:
+          GTK_THEME: "{{.GTK_DARK_THEME}}"
+          COLOR_SCHEME: prefer-dark
+
+  dark:helix:
+    cmds:
+      - task: change-theme-linux
         vars:
           NEW: "\"{{.HELIX_DARK_THEME}}\""
           OLD: "\"{{.HELIX_LIGHT_THEME}}\""
           WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
+      - task: change-theme-darwin
+        vars:
+          NEW: "\"{{.HELIX_DARK_THEME}}\""
+          OLD: "\"{{.HELIX_LIGHT_THEME}}\""
+          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
+
+  dark:
+    desc: Switch to dark theme.
+    deps:
+      - task: dark:cinnamon
+      - task: dark:alacritty
+      - task: dark:helix
