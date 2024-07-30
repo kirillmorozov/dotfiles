@@ -36,37 +36,37 @@ tasks:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  install:completions:brew:
+  completions:brew:
     desc: Install brew completions.
     platforms:
       - darwin
     cmds:
       - brew completions link
 
-  install:completions:fd:
+  completions:fd:
     desc: Install fd completions.
     cmds:
       - fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
 
-  install:completions:ripgrep:
+  completions:ripgrep:
     desc: Install ripgrep completions.
     cmds:
       - rg --generate=complete-zsh > {{.COMPLETIONS_PATH}}/_rg
 
-  install:completions:task:
+  completions:task:
     desc: Install task completions.
     cmds:
       - task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
 
-  install:completions:
+  completions:
     desc: Install completions for most used tools.
     deps:
       - install:omz
     cmds:
-      - task: install:completions:brew
-      - task: install:completions:fd
-      - task: install:completions:ripgrep
-      - task: install:completions:task
+      - task: completions:brew
+      - task: completions:fd
+      - task: completions:ripgrep
+      - task: completions:task
 
   stow:package:
     internal: true
