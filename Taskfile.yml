@@ -158,10 +158,10 @@ tasks:
   bootstrap:
     desc: Bootstrap dotfiles.
     cmds:
-      - install:omz
-      - stow
-      - install:starship-linux
-      - install:starship-darwin
+      - task: install:omz
+      - task: stow
+      - task: install:starship-linux
+      - task: install:starship-darwin
 
   clean:
     desc: Clean up dotfiles.
