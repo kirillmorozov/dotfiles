@@ -3,10 +3,10 @@
   connection: local
   hosts: localhost
   tasks:
-    - name: Install homebrew packages
+    - name: Install packages via homebrew
       when: ansible_facts['distribution'] == "MacOSX"
       community.general.homebrew:
-        name:
+        package:
           - fd
           - fzf
           - go-task
