@@ -71,6 +71,7 @@ tasks:
     deps:
       - install:omz
     cmds:
+      - mkdir -p {{.COMPLETIONS_PATH}}
       - task: completions:brew
       - task: completions:fd
       - task: completions:ripgrep
