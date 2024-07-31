@@ -46,7 +46,10 @@ tasks:
   completions:fd:
     desc: Install fd completions.
     cmds:
-      - fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+      - cmd: fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+        ignore_error: true
+      - cmd: fdfind --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+        ignore_error: true
 
   completions:ripgrep:
     desc: Install ripgrep completions.
@@ -56,7 +59,8 @@ tasks:
   completions:task:
     desc: Install task completions.
     cmds:
-      - task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
+      - cmd: task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
+        ignore_error: true
 
   completions:
     desc: Install completions for most used tools.
