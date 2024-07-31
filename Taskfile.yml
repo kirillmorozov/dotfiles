@@ -6,6 +6,7 @@ includes:
 
 vars:
   ALACRITTY_CONFIG_DIR: ~/.config/alacritty
+  COMPLETIONS_PATH: ~/.oh-my-zsh/custom/completions
   GLOBAL_TASK_FILE: ~/Taskfile.yml
   HELIX_CONFIG_DIR: ~/.config/helix
   NEOVIM_CONFIG_DIR: ~/.config/nvim
@@ -34,6 +35,47 @@ tasks:
     cmds:
       # yamllint disable-line rule:line-length
       - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  completions:brew:
+    desc: Install brew completions.
+    platforms:
+      - darwin
+    cmds:
+      - brew completions link
+
+  completions:fd:
+    desc: Install fd completions.
+    cmds:
+      # NOTE(kirillmorozov): fd might be installed under different names on
+      # different OSes so try them all and ignore errors in the process.
+      - cmd: fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+        ignore_error: true
+      - cmd: fdfind --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
+        ignore_error: true
+
+  completions:ripgrep:
+    desc: Install ripgrep completions.
+    cmds:
+      - rg --generate=complete-zsh > {{.COMPLETIONS_PATH}}/_rg
+
+  completions:task:
+    desc: Install task completions.
+    cmds:
+      - cmd: task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
+        # NOTE(kirillmorozov): Task version that comes with Ubuntu 24.04 does
+        # not have --completions flag.
+        ignore_error: true
+
+  completions:
+    desc: Install completions for most used tools.
+    deps:
+      - install:omz
+    cmds:
+      - mkdir -p {{.COMPLETIONS_PATH}}
+      - task: completions:brew
+      - task: completions:fd
+      - task: completions:ripgrep
+      - task: completions:task
 
   stow:package:
     internal: true

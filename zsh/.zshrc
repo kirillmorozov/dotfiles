@@ -77,7 +77,6 @@ plugins=(
   dnf
   docker
   docker-compose
-  fd
   fzf
   gh
   git
@@ -86,7 +85,6 @@ plugins=(
   helm
   kubectl
   python
-  ripgrep
   terraform
   ubuntu
   vscode
