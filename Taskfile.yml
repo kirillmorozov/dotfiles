@@ -46,6 +46,8 @@ tasks:
   completions:fd:
     desc: Install fd completions.
     cmds:
+      # NOTE(kirillmorozov): fd might be installed under different names on
+      # different OSes so try them all and ignore errors in the process.
       - cmd: fd --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
         ignore_error: true
       - cmd: fdfind --gen-completions=zsh > {{.COMPLETIONS_PATH}}/_fd
@@ -60,6 +62,8 @@ tasks:
     desc: Install task completions.
     cmds:
       - cmd: task --completion zsh 2> {{.COMPLETIONS_PATH}}/_task
+        # NOTE(kirillmorozov): Task version that comes with Ubuntu 24.04 does
+        # not have --completions flag.
         ignore_error: true
 
   completions:
