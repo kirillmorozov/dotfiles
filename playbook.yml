@@ -28,3 +28,15 @@
           - stow
           - task
           - vim
+    - name: Install packages on Fedora
+      when: ansible_facts['distribution'] == "Fedora"
+      dnf:
+        pkg:
+          - fd-find
+          - fzf
+          - git
+          - go-task
+          - neovim
+          - ripgrep
+          - stow
+          - vim
