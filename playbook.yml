@@ -3,7 +3,7 @@
   connection: local
   hosts: localhost
   tasks:
-    - name: Install packages via homebrew
+    - name: Install packages on macOS
       when: ansible_facts['distribution'] == "MacOSX"
       community.general.homebrew:
         package:
@@ -16,3 +16,15 @@
           - ripgrep
           - starship
           - stow
+    - name: Install packages on Linux Mint
+      when: ansible_facts['distribution'] == "Linux Mint"
+      apt:
+        package:
+          - fd-find
+          - fzf
+          - git
+          - neovim
+          - ripgrep
+          - stow
+          - task
+          - vim
