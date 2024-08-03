@@ -124,6 +124,9 @@ set sidescrolloff=8
 " Command-line completion operates in an enhanced mode
 set wildmenu
 
+" Use system clipboard
+set clipboard^=unnamed,unnamedplus
+
 " Highlight Jenkinfile syntax
 autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 
