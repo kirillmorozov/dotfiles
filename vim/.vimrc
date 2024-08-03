@@ -150,7 +150,6 @@ nnoremap <leader>f :find<Space>
 nnoremap <leader>h :help<Space>
 nnoremap N Nzz
 nnoremap n nzz
-vnoremap <leader>y "*y
 
 " Use ripgrep for search if it's installed
 if executable("rg")
