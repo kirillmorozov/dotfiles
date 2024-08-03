@@ -134,25 +134,23 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Key mappings
-nmap <C-H> <c-w>h  " Faster splits navigation
-nmap <C-J> <c-w>j  " Faster splits navigation
-nmap <C-K> <c-w>k  " Faster splits navigation
-nmap <C-L> <c-w>l  " Faster splits navigation
-nmap <leader>/ :grep<Space>  " Grep all files
-nmap <leader>cc :cclose<CR>  " Close quickfix list
-nmap <leader>co :copen<CR>  " Open quickfix list
+nmap <C-H> <c-w>h
+nmap <C-J> <c-w>j
+nmap <C-K> <c-w>k
+nmap <C-L> <c-w>l
+nmap <leader>/ :grep<Space>
+nmap <leader>cc :cclose<CR>
+nmap <leader>co :copen<CR>
 nmap <leader>w <c-w>
-nmap [q :cprevious<CR>  " Previous item in the quickfix list
-nmap ]q :cnext<CR>  " Next item in the quickfix list
-nnoremap <C-S> :update<CR>  " Save file
-nnoremap <leader>P "*P  " Paste from the system clipboard
+nmap [q :cprevious<CR>
+nmap ]q :cnext<CR>
+nnoremap <C-S> :update<CR>
 nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :help<Space>
-nnoremap <leader>p "*p  " Paste from the system clipboard
-nnoremap N Nzz  " Center search result
-nnoremap n nzz  " Center search result
-vnoremap <leader>y "*y  " yank to the system clipboard
+nnoremap N Nzz
+nnoremap n nzz
+vnoremap <leader>y "*y
 
 " Use ripgrep for search if it's installed
 if executable("rg")
