@@ -3,7 +3,7 @@
   connection: local
   hosts: localhost
   tasks:
-    - name: Install packages on macOS
+    - name: macOS packages installed
       when: ansible_facts['distribution'] == "MacOSX"
       community.general.homebrew:
         package:
@@ -16,7 +16,7 @@
           - ripgrep
           - starship
           - stow
-    - name: Install packages on Linux Mint
+    - name: Linux Mint packages installed
       when: ansible_facts['distribution'] == "Linux Mint"
       apt:
         package:
@@ -28,7 +28,7 @@
           - stow
           - task
           - vim
-    - name: Install packages on Fedora
+    - name: Fedora packages installed
       when: ansible_facts['distribution'] == "Fedora"
       dnf:
         pkg:
@@ -40,3 +40,60 @@
           - ripgrep
           - stow
           - vim
+
+- name: Create symlinks
+  connection: local
+  hosts: localhost
+  vars:
+    xdg_config_dir: ~/.config
+  tasks:
+    - name: Symlink Vim config
+      file:
+        path: ~/.vimrc
+        src: "{{playbook_dir}}/vim/.vimrc"
+        state: link
+    - name: Symlink Zsh config
+      file:
+        path: ~/.zshrc
+        src: "{{playbook_dir}}/zsh/.zshrc"
+        state: link
+    - name: Symlink global Taskfile
+      file:
+        path: ~/Taskfile.yml
+        src: "{{playbook_dir}}/task/Taskfile.yml"
+        state: link
+    - name: Symlink Wezterm config
+      file:
+        path: ~/.wezterm.lua
+        src: "{{playbook_dir}}/wezterm/.wezterm.lua"
+        state: link
+    - name: Find Neovim configs
+      find:
+        paths: "{{playbook_dir}}/neovim"
+      register: neovim_config
+    - name: Symlink Neovim config
+      with_items: "{{neovim_config.files}}"
+      file:
+        path: "{{xdg_config_dir}}/nvim/{{item.path | basename}}"
+        src: "{{item.path}}"
+        state: link
+    - name: Find Alacritty configs
+      find:
+        paths: "{{playbook_dir}}/alacritty"
+      register: alacritty_config
+    - name: Symlink Alacritty config
+      with_items: "{{alacritty_config.files}}"
+      file:
+        path: "{{xdg_config_dir}}/alacritty/{{item.path | basename}}"
+        src: "{{item.path}}"
+        state: link
+    - name: Find Helix configs
+      find:
+        paths: "{{playbook_dir}}/helix"
+      register: helix_config
+    - name: Symlink Helix config
+      with_items: "{{helix_config.files}}"
+      file:
+        path: "{{xdg_config_dir}}/helix/{{item.path | basename}}"
+        src: "{{item.path}}"
+        state: link

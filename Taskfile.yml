@@ -5,11 +5,7 @@ includes:
   theme: task/Taskfile.yml
 
 vars:
-  ALACRITTY_CONFIG_DIR: ~/.config/alacritty
   COMPLETIONS_PATH: ~/.oh-my-zsh/custom/completions
-  GLOBAL_TASK_FILE: ~/Taskfile.yml
-  HELIX_CONFIG_DIR: ~/.config/helix
-  NEOVIM_CONFIG_DIR: ~/.config/nvim
 
 tasks:
   install:starship-linux:
@@ -77,100 +73,12 @@ tasks:
       - task: completions:ripgrep
       - task: completions:task
 
-  stow:package:
-    internal: true
-    label: stow:{{.PACKAGE}}
-    requires:
-      vars:
-        - PACKAGE
-        - TARGET
-    cmds:
-      - mkdir -pv {{.TARGET}}
-      - stow {{.OPTION}} {{.PACKAGE}} --target {{.TARGET}} --verbose
-
-  stow:alacritty:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: alacritty
-          TARGET: "{{.ALACRITTY_CONFIG_DIR}}"
-
-  stow:helix:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: helix
-          TARGET: "{{.HELIX_CONFIG_DIR}}"
-
-  stow:neovim:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: neovim
-          TARGET: "{{.NEOVIM_CONFIG_DIR}}"
-
-  stow:task:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: task
-          TARGET: "~"
-
-  stow:vim:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: vim
-          TARGET: "~"
-
-  stow:wezterm:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: wezterm
-          TARGET: "~"
-
-  stow:zsh:
-    cmds:
-      - task: stow:package
-        vars:
-          OPTION: "{{.OPTION}}"
-          PACKAGE: zsh
-          TARGET: "~"
-
-  stow:
-    desc: Create symlinks to all configuration files using GNU Stow.
-    deps:
-      - stow:alacritty
-      - stow:helix
-      - stow:neovim
-      - stow:task
-      - stow:vim
-      - stow:wezterm
-      - stow:zsh
-
   bootstrap:
     desc: Bootstrap dotfiles.
     cmds:
       - task: install:omz
-      - task: stow
       - task: install:starship-linux
       - task: install:starship-darwin
-
-  clean:
-    desc: Clean up dotfiles.
-    summary: Remove symlinks to all config files.
-    deps:
-      - for: [alacritty, helix, neovim, task, vim, wezterm, zsh]
-        task: stow:{{.ITEM}}
-        vars:
-          OPTION: --delete
 
   lint:yaml:
     desc: Lint YAML files using yamllint.
