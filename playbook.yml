@@ -47,46 +47,32 @@
   hosts: localhost
   vars:
     xdg_config_dir: ~/.config
-  tasks:
-    - name: Symlink Vim config
-      import_role:
-        name: stow
+  roles:
+    - role: stow
       vars:
         target_path: "~"
         src_dir: "{{playbook_dir}}/vim"
-    - name: Symlink Zsh config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "~"
         src_dir: "{{playbook_dir}}/zsh"
-    - name: Symlink Task config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "~"
         src_dir: "{{playbook_dir}}/task"
-    - name: Symlink Wezterm config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "~"
         src_dir: "{{playbook_dir}}/wezterm"
-    - name: Symlink Neovim config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "{{ xdg_config_dir }}/nvim"
         src_dir: "{{playbook_dir}}/neovim"
-    - name: Symlink Alacritty config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "{{ xdg_config_dir }}/alacritty"
         src_dir: "{{playbook_dir}}/alacritty"
-    - name: Symlink Helix config
-      import_role:
-        name: stow
+    - role: stow
       vars:
         target_path: "{{ xdg_config_dir }}/helix"
         src_dir: "{{playbook_dir}}/helix"
