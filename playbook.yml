@@ -15,7 +15,6 @@
           - neovim
           - ripgrep
           - starship
-          - stow
     - name: Linux Mint packages installed
       when: ansible_facts['distribution'] == "Linux Mint"
       apt:
@@ -25,7 +24,6 @@
           - git
           - neovim
           - ripgrep
-          - stow
           - task
           - vim
     - name: Fedora packages installed
@@ -38,7 +36,6 @@
           - go-task
           - neovim
           - ripgrep
-          - stow
           - vim
 
 - name: Create symlinks
