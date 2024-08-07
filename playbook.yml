@@ -11,10 +11,12 @@
           - fzf
           - go-task
           - helix
+          - jq
           - lazygit
           - neovim
           - ripgrep
           - starship
+          - yq
     - name: Linux Mint packages installed
       when: ansible_facts['distribution'] == "Linux Mint"
       apt:
