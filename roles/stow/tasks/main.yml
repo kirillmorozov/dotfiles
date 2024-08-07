@@ -1,0 +1,11 @@
+---
+- name: Find sources
+  register: sources
+  find:
+    paths: "{{ src_dir }}"
+- name: Create symlink to targets
+  with_items: "{{ sources.files }}"
+  file:
+    path: "{{ target_path }}/{{ item.path | basename }}"
+    src: "{{ item.path }}"
+    state: link
