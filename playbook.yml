@@ -22,10 +22,12 @@
           - fd-find
           - fzf
           - git
+          - jq
           - neovim
           - ripgrep
           - task
           - vim
+          - yq
     - name: Fedora packages installed
       when: ansible_facts['distribution'] == "Fedora"
       dnf:
