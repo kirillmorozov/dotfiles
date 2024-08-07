@@ -47,52 +47,44 @@
     xdg_config_dir: ~/.config
   tasks:
     - name: Symlink Vim config
-      file:
-        path: ~/.vimrc
-        src: "{{playbook_dir}}/vim/.vimrc"
-        state: link
+      import_role:
+        name: stow
+      vars:
+        target_path: "~"
+        src_dir: "{{playbook_dir}}/vim"
     - name: Symlink Zsh config
-      file:
-        path: ~/.zshrc
-        src: "{{playbook_dir}}/zsh/.zshrc"
-        state: link
-    - name: Symlink global Taskfile
-      file:
-        path: ~/Taskfile.yml
-        src: "{{playbook_dir}}/task/Taskfile.yml"
-        state: link
+      import_role:
+        name: stow
+      vars:
+        target_path: "~"
+        src_dir: "{{playbook_dir}}/zsh"
+    - name: Symlink Task config
+      import_role:
+        name: stow
+      vars:
+        target_path: "~"
+        src_dir: "{{playbook_dir}}/task"
     - name: Symlink Wezterm config
-      file:
-        path: ~/.wezterm.lua
-        src: "{{playbook_dir}}/wezterm/.wezterm.lua"
-        state: link
-    - name: Find Neovim configs
-      register: neovim_config
-      find:
-        paths: "{{playbook_dir}}/neovim"
+      import_role:
+        name: stow
+      vars:
+        target_path: "~"
+        src_dir: "{{playbook_dir}}/wezterm"
     - name: Symlink Neovim config
-      with_items: "{{neovim_config.files}}"
-      file:
-        path: "{{xdg_config_dir}}/nvim/{{item.path | basename}}"
-        src: "{{item.path}}"
-        state: link
-    - name: Find Alacritty configs
-      register: alacritty_config
-      find:
-        paths: "{{playbook_dir}}/alacritty"
+      import_role:
+        name: stow
+      vars:
+        target_path: "{{ xdg_config_dir }}/nvim"
+        src_dir: "{{playbook_dir}}/neovim"
     - name: Symlink Alacritty config
-      with_items: "{{alacritty_config.files}}"
-      file:
-        path: "{{xdg_config_dir}}/alacritty/{{item.path | basename}}"
-        src: "{{item.path}}"
-        state: link
-    - name: Find Helix configs
-      register: helix_config
-      find:
-        paths: "{{playbook_dir}}/helix"
+      import_role:
+        name: stow
+      vars:
+        target_path: "{{ xdg_config_dir }}/alacritty"
+        src_dir: "{{playbook_dir}}/alacritty"
     - name: Symlink Helix config
-      with_items: "{{helix_config.files}}"
-      file:
-        path: "{{xdg_config_dir}}/helix/{{item.path | basename}}"
-        src: "{{item.path}}"
-        state: link
+      import_role:
+        name: stow
+      vars:
+        target_path: "{{ xdg_config_dir }}/helix"
+        src_dir: "{{playbook_dir}}/helix"
