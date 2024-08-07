@@ -2,13 +2,13 @@
 
 ## Bootstrap
 
-0. Install [Task][task]
-1. Run:
+1. Install [Ansible][ansible-installation]
+2. Run:
 
     ```shell
     git clone git@github.com:kirillmorozov/dotfiles.git \
       && cd dotfiles \
-      && task bootstrap
+      && ansible-playbook playbook.yml
     ```
 
 ## Bootstrap Vim only
@@ -16,7 +16,8 @@
 Use this command to install vimrc on your machine:
 
 ```shell
-curl https://raw.githubusercontent.com/kirillmorozov/dotfiles/main/vim/.vimrc -o ~/.vimrc
+curl https://raw.githubusercontent.com/kirillmorozov/dotfiles/main/vim/.vimrc \
+  -o ~/.vimrc
 ```
 
-[task]: https://taskfile.dev/installation/
+[ansible-installation]: https://docs.ansible.com/ansible/latest/installation_guide/index.html
