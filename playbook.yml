@@ -40,9 +40,11 @@
           - fzf
           - git
           - go-task
+          - jq
           - neovim
           - ripgrep
           - vim
+          - yq
           - zsh
 
 - name: Create symlinks
