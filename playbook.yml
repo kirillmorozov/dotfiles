@@ -19,7 +19,7 @@
           - yq
     - name: Linux Mint packages installed
       when: ansible_facts['distribution'] == "Linux Mint"
-      apt:
+      ansible.builtin.apt:
         package:
           - fd-find
           - fzf
@@ -41,7 +41,7 @@
     - name: Fedora packages installed
       when: ansible_facts['distribution'] == "Fedora"
       become: true
-      dnf:
+      ansible.builtin.dnf:
         pkg:
           - fd-find
           - fzf
