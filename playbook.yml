@@ -33,6 +33,7 @@
           - zsh
     - name: Fedora packages installed
       when: ansible_facts['distribution'] == "Fedora"
+      become: true
       dnf:
         pkg:
           - fd-find
