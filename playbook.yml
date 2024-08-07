@@ -30,6 +30,7 @@
           - task
           - vim
           - yq
+          - zsh
     - name: Fedora packages installed
       when: ansible_facts['distribution'] == "Fedora"
       dnf:
@@ -41,6 +42,7 @@
           - neovim
           - ripgrep
           - vim
+          - zsh
 
 - name: Create symlinks
   connection: local
