@@ -31,7 +31,7 @@
           - vim
           - yq
           - zsh
-    - name: Add repository
+    - name: Add GitHub CLI repository
       become: true
       when: ansible_facts['distribution'] == "Fedora"
       ansible.builtin.yum_repository:
@@ -39,8 +39,8 @@
         description: GitHub CLI
         baseurl: https://cli.github.com/packages/rpm/gh-cli.repo
     - name: Fedora packages installed
-      when: ansible_facts['distribution'] == "Fedora"
       become: true
+      when: ansible_facts['distribution'] == "Fedora"
       ansible.builtin.dnf:
         pkg:
           - fd-find
