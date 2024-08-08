@@ -17,6 +17,7 @@
           - ripgrep
           - starship
           - yq
+    # TODO: Add GitHub CLI apt repository
     - name: Linux Mint packages installed
       when: ansible_facts['distribution'] == "Linux Mint"
       ansible.builtin.apt:
@@ -54,6 +55,7 @@
           - vim
           - yq
           - zsh
+    # TODO: set Zsh as the default shell for current user
 
 - name: Create symlinks
   connection: local
