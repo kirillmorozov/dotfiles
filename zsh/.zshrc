@@ -116,6 +116,9 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if command -v fdfind &> /dev/null; then
+	alias fd="fdfind"
+fi
 if command -v go-task &> /dev/null; then
 	alias task="go-task"
 fi
