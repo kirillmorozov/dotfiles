@@ -124,6 +124,9 @@ set sidescrolloff=8
 " Command-line completion operates in an enhanced mode
 set wildmenu
 
+" Use system clipboard
+set clipboard^=unnamed,unnamedplus
+
 " Highlight Jenkinfile syntax
 autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 
@@ -131,25 +134,22 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Key mappings
-map <leader>P "+P
-map <leader>p "+p
-nmap <leader>/ :grep<Space>
 nmap <C-H> <c-w>h
 nmap <C-J> <c-w>j
 nmap <C-K> <c-w>k
 nmap <C-L> <c-w>l
+nmap <leader>/ :grep<Space>
+nmap <leader>cc :cclose<CR>
+nmap <leader>co :copen<CR>
 nmap <leader>w <c-w>
+nmap [q :cprevious<CR>
+nmap ]q :cnext<CR>
+nnoremap <C-S> :update<CR>
 nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :help<Space>
 nnoremap N Nzz
 nnoremap n nzz
-noremap <C-S> :update<CR>
-vnoremap <leader>y "+y
-nmap <leader>co :copen<CR>  " Open quickfix list
-nmap <leader>cc :cclose<CR>  " Close quickfix list
-nmap ]q :cnext<CR>  " Next item in the quickfix list
-nmap [q :cprevious<CR>  " Previous item in the quickfix list
 
 " Use ripgrep for search if it's installed
 if executable("rg")
