@@ -70,6 +70,10 @@
           - vim
           - yq
           - zsh
+    - name: Install Oh My Zsh
+      command:
+        cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        creates: ~/.oh-my-zsh
 
 - name: Change shell
   connection: local
