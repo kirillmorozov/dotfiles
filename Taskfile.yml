@@ -24,14 +24,6 @@ tasks:
     cmds:
       - brew install starship
 
-  install:omz:
-    desc: Install Oh My Zsh.
-    status:
-      - '[ -d ~/.oh-my-zsh ]'
-    cmds:
-      # yamllint disable-line rule:line-length
-      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
   completions:brew:
     desc: Install brew completions.
     platforms:
@@ -42,7 +34,6 @@ tasks:
   bootstrap:
     desc: Bootstrap dotfiles.
     cmds:
-      - task: install:omz
       - task: install:starship-linux
       - task: install:starship-darwin
 
