@@ -27,7 +27,7 @@
             dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
         - name: Add repository
           ansible.builtin.apt_repository:
-            repo: >
+            repo: >-
               deb [arch={{ ansible_architecture }}
               signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg]
               https://cli.github.com/packages stable main
@@ -70,7 +70,16 @@
           - vim
           - yq
           - zsh
-    # TODO: set Zsh as the default shell for current user
+
+- name: Change shell
+  connection: local
+  hosts: localhost
+  tasks:
+    - name: Set Zsh as user shell
+      become: true
+      ansible.builtin.user:
+        name: "{{ ansible_user_id }}"
+        shell: /usr/bin/zsh
 
 - name: Create symlinks
   connection: local
