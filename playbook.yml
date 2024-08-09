@@ -17,20 +17,22 @@
           - ripgrep
           - starship
           - yq
+        state: latest
     - name: Add GitHub CLI repository
       become: true
       when: ansible_distribution == "Linux Mint"
       block:
         - name: Get keyring
           ansible.builtin.get_url:
-            url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
             dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+            url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
         - name: Add repository
           ansible.builtin.apt_repository:
             repo: >-
               deb [arch={{ ansible_architecture }}
               signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg]
               https://cli.github.com/packages stable main
+            state: present
     - name: Linux Mint packages installed
       become: true
       when: ansible_distribution == "Linux Mint"
@@ -47,13 +49,15 @@
           - vim
           - yq
           - zsh
+        state: latest
     - name: Add GitHub CLI repository
       become: true
       when: ansible_distribution == "Fedora"
       ansible.builtin.yum_repository:
-        name: gh-cli
-        description: GitHub CLI
         baseurl: https://cli.github.com/packages/rpm/gh-cli.repo
+        description: GitHub CLI
+        name: gh-cli
+        state: present
     - name: Fedora packages installed
       become: true
       when: ansible_distribution == "Fedora"
@@ -70,6 +74,7 @@
           - vim
           - yq
           - zsh
+        state: latest
     - name: Install Oh My Zsh
       command:
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
