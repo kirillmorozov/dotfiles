@@ -4,7 +4,7 @@
   hosts: localhost
   tasks:
     - name: macOS packages installed
-      when: ansible_facts['distribution'] == "MacOSX"
+      when: ansible_distribution == "MacOSX"
       community.general.homebrew:
         package:
           - fd
@@ -17,13 +17,28 @@
           - ripgrep
           - starship
           - yq
-    # TODO: Add GitHub CLI apt repository
+    - name: Add GitHub CLI repository
+      become: true
+      when: ansible_distribution == "Linux Mint"
+      block:
+        - name: Get keyring
+          ansible.builtin.get_url:
+            url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+            dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+        - name: Add repository
+          ansible.builtin.apt_repository:
+            repo: >
+              deb [arch={{ ansible_architecture }}
+              signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg]
+              https://cli.github.com/packages stable main
     - name: Linux Mint packages installed
-      when: ansible_facts['distribution'] == "Linux Mint"
+      become: true
+      when: ansible_distribution == "Linux Mint"
       ansible.builtin.apt:
         package:
           - fd-find
           - fzf
+          - gh
           - git
           - jq
           - neovim
@@ -34,14 +49,14 @@
           - zsh
     - name: Add GitHub CLI repository
       become: true
-      when: ansible_facts['distribution'] == "Fedora"
+      when: ansible_distribution == "Fedora"
       ansible.builtin.yum_repository:
         name: gh-cli
         description: GitHub CLI
         baseurl: https://cli.github.com/packages/rpm/gh-cli.repo
     - name: Fedora packages installed
       become: true
-      when: ansible_facts['distribution'] == "Fedora"
+      when: ansible_distribution == "Fedora"
       ansible.builtin.dnf:
         pkg:
           - fd-find
