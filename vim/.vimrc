@@ -124,6 +124,9 @@ set sidescrolloff=8
 " Command-line completion operates in an enhanced mode
 set wildmenu
 
+" Use system clipboard
+set clipboard^=unnamed,unnamedplus
+
 " Highlight Jenkinfile syntax
 autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 
@@ -137,16 +140,17 @@ nmap <C-K> <c-w>k
 nmap <C-L> <c-w>l
 nmap <Esc> :nohlsearch<CR>
 nmap <leader>/ :grep<Space>
-nmap <leader>/ :grep<Space>
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
-nmap <leader>w <C-W>
+nmap <leader>w <c-w>
+nmap [q :cprevious<CR>
+nmap ]q :cnext<CR>
+nnoremap <C-S> :update<CR>
 nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :help<Space>
 nnoremap N Nzz
 nnoremap n nzz
-noremap <C-S> :update<CR>
 
 " Use ripgrep for search if it's installed
 if executable("rg")
