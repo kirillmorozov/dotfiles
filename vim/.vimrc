@@ -76,8 +76,8 @@ set colorcolumn=80
 set ignorecase
 " All searches are case insensitive unless there's a capital letter
 set smartcase
-" Disable all highlighted search results
-set nohlsearch
+" Highlight search results
+set hlsearch
 " Enable incremental searching
 set incsearch
 
@@ -138,6 +138,7 @@ nmap <C-H> <c-w>h
 nmap <C-J> <c-w>j
 nmap <C-K> <c-w>k
 nmap <C-L> <c-w>l
+nmap <Esc> :nohlsearch<CR>
 nmap <leader>/ :grep<Space>
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
