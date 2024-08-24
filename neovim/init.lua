@@ -425,6 +425,7 @@ require("lazy").setup({
 			local servers = {
 				bashls = {},
 				clangd = {},
+				gleam = {},
 				gopls = {},
 				lua_ls = {
 					on_init = function(client)
@@ -516,14 +517,15 @@ require("lazy").setup({
 				},
 			},
 			formatters_by_ft = {
+				["_"] = { "trim_whitespace" },
+				gleam = { "gleam" },
 				go = { { "gofumpt", "gofmt" } },
+				json = { "jq" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { { "yamlfmt", "yq" } },
-				json = { "jq" },
-				["_"] = { "trim_whitespace" },
 			},
 		},
 	},
@@ -688,6 +690,7 @@ require("lazy").setup({
 				"diff",
 				"dockerfile",
 				"gitcommit",
+				"gleam",
 				"go",
 				"json",
 				"lua",
