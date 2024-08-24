@@ -62,6 +62,7 @@
       become: true
       when: ansible_distribution == "Fedora"
       ansible.builtin.dnf:
+        state: latest
         pkg:
           - fd-find
           - fzf
@@ -74,8 +75,24 @@
           - vim
           - yq
           - zsh
-        state: latest
-    # TODO: Install starship on Linux
+    - name: Install Starship
+      when: ansible_system == "Linux"
+      vars:
+        bin_dir: ~/.local/bin
+      block:
+        - name: Find Starship executable
+          ansible.builtin.stat:
+            path: "{{ bin_dir }}/starship"
+            register: starship_executable
+        - name: Download install script
+          when: not starship_executable.stat.exists
+          ansible.builtin.get_url:
+            dest: /tmp/install-starship.sh
+            url: https://starship.rs/install.sh
+        - name: Run Starship installation script
+          ansible.builtin.script:
+            cmd: /tmp/install-starship.sh --bin-dir {{ bin_dir }}
+            creates: "{{ bin_dir }}/starship"
     - name: Install Oh My Zsh
       command:
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
