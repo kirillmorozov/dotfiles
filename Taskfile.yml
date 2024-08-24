@@ -4,39 +4,7 @@ version: '3'
 includes:
   theme: task/Taskfile.yml
 
-vars:
-  COMPLETIONS_PATH: ~/.oh-my-zsh/custom/completions
-
 tasks:
-  install:starship-linux:
-    desc: Install starship.
-    platforms: [linux]
-    status:
-      - starship --version
-    cmds:
-      - curl -sS https://starship.rs/install.sh | sh
-
-  install:starship-darwin:
-    desc: Install starship.
-    platforms: [darwin]
-    status:
-      - starship --version
-    cmds:
-      - brew install starship
-
-  completions:brew:
-    desc: Install brew completions.
-    platforms:
-      - darwin
-    cmds:
-      - brew completions link
-
-  bootstrap:
-    desc: Bootstrap dotfiles.
-    cmds:
-      - task: install:starship-linux
-      - task: install:starship-darwin
-
   lint:yaml:
     desc: Lint YAML files using yamllint.
     aliases:
