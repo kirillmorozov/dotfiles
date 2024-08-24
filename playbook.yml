@@ -75,6 +75,7 @@
           - yq
           - zsh
         state: latest
+    # TODO: Install starship on Linux
     - name: Install Oh My Zsh
       command:
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
