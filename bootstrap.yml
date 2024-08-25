@@ -95,6 +95,7 @@
             creates: "{{ bin_dir }}/starship"
     - name: Install Oh My Zsh
       command:
+        # yamllint disable-line rule:line-length
         cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         creates: ~/.oh-my-zsh
 
