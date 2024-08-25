@@ -70,6 +70,7 @@ zstyle ':omz:update' frequency 7
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  ansible
   aws
   brew
   command-not-found
