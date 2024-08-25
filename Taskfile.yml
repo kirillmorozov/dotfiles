@@ -5,6 +5,11 @@ includes:
   theme: task/Taskfile.yml
 
 tasks:
+  bootstrap:
+    desc: Bootstrap dotfiles
+    cmds:
+      - ansible-playbook --ask-become-pass bootstrap.yml
+
   lint:yaml:
     desc: Lint YAML files using yamllint.
     aliases:
