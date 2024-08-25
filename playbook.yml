@@ -81,9 +81,9 @@
         bin_dir: ~/.local/bin
       block:
         - name: Find Starship executable
+          register: starship_executable
           ansible.builtin.stat:
             path: "{{ bin_dir }}/starship"
-            register: starship_executable
         - name: Download install script
           when: not starship_executable.stat.exists
           ansible.builtin.get_url:
@@ -91,7 +91,7 @@
             url: https://starship.rs/install.sh
         - name: Run Starship installation script
           ansible.builtin.script:
-            cmd: /tmp/install-starship.sh --bin-dir {{ bin_dir }}
+            cmd: /tmp/install-starship.sh --bin-dir {{ bin_dir }} --yes
             creates: "{{ bin_dir }}/starship"
     - name: Install Oh My Zsh
       command:
