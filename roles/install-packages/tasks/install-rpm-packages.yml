@@ -11,5 +11,5 @@
   become: true
   when: ansible_distribution == "Fedora"
   ansible.builtin.dnf:
-    state: latest
     pkg: "{{ rpm_packages }}"
+    state: latest

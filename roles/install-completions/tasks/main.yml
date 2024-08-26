@@ -1,7 +1,7 @@
 ---
 - name: Link brew completions
-  when: ansible_distribution == "MacOSX"
   ansible.builtin.command: brew completions link
+  when: ansible_distribution == "MacOSX"
 - name: Install fd completions
   ansible.builtin.command:
     cmd: fd --gen-completions=zsh > {{ completions_path }}/_fd
