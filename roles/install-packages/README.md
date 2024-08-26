@@ -13,8 +13,8 @@ Role Variables
 
 - `brew_packages`: A list of packages to be installed via Homebrew on macOS.
 - `deb_packages`: A list of packages to be install on Linux Mint.
-- `rpm_packages`: A list of packages to be installed on Fedora Linux.
 - `local_bin_dir`: A directory executables will be installed to.
+- `rpm_packages`: A list of packages to be installed on Fedora Linux.
 
 Dependencies
 ------------
