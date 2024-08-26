@@ -6,4 +6,4 @@
     loop_var: app_config
   vars:
     src_dir: "{{ app_config.source }}"
-    target_path: "{{ app_config.target }}"
+    target_dir: "{{ app_config.target }}"
