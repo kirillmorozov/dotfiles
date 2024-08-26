@@ -6,7 +6,7 @@ Install Zsh completions for the tools don't have Oh My Zsh plugin.
 Requirements
 ------------
 
-- [brew](https://brew.sh)
+- brew
 - fd
 - rg
 - task
