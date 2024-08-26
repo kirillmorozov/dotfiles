@@ -6,4 +6,4 @@
     - install-packages
     - change-shell
     - install-completions
-    - stow
+    - stow-configs
