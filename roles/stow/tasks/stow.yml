@@ -1,0 +1,13 @@
+---
+- name: Find sources
+  register: sources
+  ansible.builtin.find:
+    paths: "{{ src_dir }}"
+- name: Create symlink to targets
+  loop: "{{ sources.files }}"
+  loop_control:
+    loop_var: a_file
+  ansible.builtin.file:
+    path: "{{ target_path }}/{{ a_file.path | basename }}"
+    src: "{{ a_file.path }}"
+    state: link

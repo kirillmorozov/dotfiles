@@ -136,33 +136,5 @@
   connection: local
   hosts: localhost
   vars:
-    xdg_config_dir: ~/.config
   roles:
-    - role: stow
-      vars:
-        target_path: "~"
-        src_dir: "{{playbook_dir}}/vim"
-    - role: stow
-      vars:
-        target_path: "~"
-        src_dir: "{{playbook_dir}}/zsh"
-    - role: stow
-      vars:
-        target_path: "~"
-        src_dir: "{{playbook_dir}}/task"
-    - role: stow
-      vars:
-        target_path: "~"
-        src_dir: "{{playbook_dir}}/wezterm"
-    - role: stow
-      vars:
-        target_path: "{{ xdg_config_dir }}/nvim"
-        src_dir: "{{playbook_dir}}/neovim"
-    - role: stow
-      vars:
-        target_path: "{{ xdg_config_dir }}/alacritty"
-        src_dir: "{{playbook_dir}}/alacritty"
-    - role: stow
-      vars:
-        target_path: "{{ xdg_config_dir }}/helix"
-        src_dir: "{{playbook_dir}}/helix"
+    - stow

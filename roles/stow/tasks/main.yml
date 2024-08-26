@@ -1,11 +1,9 @@
 ---
-- name: Find sources
-  register: sources
-  ansible.builtin.find:
-    paths: "{{ src_dir }}"
-- name: Create symlink to targets
-  with_items: "{{ sources.files }}"
-  ansible.builtin.file:
-    path: "{{ target_path }}/{{ item.path | basename }}"
-    src: "{{ item.path }}"
-    state: link
+- name: Stow config files
+  loop: "{{ directory_mapping }}"
+  include_tasks: stow.yml
+  loop_control:
+    loop_var: app_config
+  vars:
+    src_dir: "{{ app_config.source }}"
+    target_path: "{{ app_config.target }}"
