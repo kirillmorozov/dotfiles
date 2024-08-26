@@ -19,6 +19,7 @@ jobs:
         with:
           scopes: |
             alacritty
+            ansible
             helix
             neovim
             task
