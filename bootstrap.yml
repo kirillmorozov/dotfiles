@@ -4,17 +4,7 @@
   hosts: localhost
   roles:
     - install-packages
-
-- name: Change shell
-  connection: local
-  hosts: localhost
-  tasks:
-    - name: Set Zsh as user shell
-      become: true
-      when: ansible_distribution != "MacOSX"
-      ansible.builtin.user:
-        name: "{{ ansible_user_id }}"
-        shell: /usr/bin/zsh
+    - change-shell
 
 - name: Install completions
   connection: local

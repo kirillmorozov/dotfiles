@@ -1,0 +1,7 @@
+---
+- name: Set Zsh as user shell
+  become: true
+  when: ansible_distribution != "MacOSX"
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
