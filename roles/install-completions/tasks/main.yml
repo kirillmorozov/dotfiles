@@ -1,16 +1,16 @@
 ---
 - name: Link brew completions
   when: ansible_distribution == "MacOSX"
-  command: brew completions link
+  ansible.builtin.command: brew completions link
 - name: Install fd completions
-  command:
+  ansible.builtin.command:
     cmd: fd --gen-completions=zsh > {{ completions_path }}/_fd
     creates: "{{ completions_path }}/_fd"
 - name: Install ripgrep completions
-  command:
+  ansible.builtin.command:
     cmd: rg --generate=complete-zsh > {{ completions_path }}/_rg
     creates: "{{ completions_path }}/_rg"
 - name: Install task completions
-  command:
+  ansible.builtin.command:
     cmd: task --completion zsh 2> {{ completions_path }}/_task
     creates: "{{ completions_path }}/_task"
