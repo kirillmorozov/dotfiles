@@ -1,0 +1,37 @@
+---
+local_bin_dir: ~/.local/bin
+brew_packages:
+  - fd
+  - fzf
+  - go-task
+  - helix
+  - jq
+  - lazygit
+  - neovim
+  - ripgrep
+  - starship
+  - yq
+deb_packages:
+  - fd-find
+  - fzf
+  - gh
+  - git
+  - jq
+  - neovim
+  - ripgrep
+  - task
+  - vim
+  - yq
+  - zsh
+rpm_packages:
+  - fd-find
+  - fzf
+  - gh
+  - git
+  - go-task
+  - jq
+  - neovim
+  - ripgrep
+  - vim
+  - yq
+  - zsh
