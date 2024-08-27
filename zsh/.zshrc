@@ -123,6 +123,7 @@ fi
 if command -v go-task &> /dev/null; then
 	alias task="go-task"
 fi
+alias lg="lazygit"
 alias li="task -g light"
 alias da="task -g dark"
 alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
