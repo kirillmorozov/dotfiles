@@ -9,6 +9,7 @@
     dest: /tmp/install-starship.sh
     url: https://starship.rs/install.sh
 - name: Run Starship installation script
+  when: not starship_executable.stat.exists
   ansible.builtin.script:
     cmd: /tmp/install-starship.sh --bin-dir {{ local_bin_dir }} --yes
     creates: "{{ local_bin_dir }}/starship"
