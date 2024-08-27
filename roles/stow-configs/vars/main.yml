@@ -1,0 +1,17 @@
+---
+xdg_config_dir: ~/.config
+directory_mapping:
+  - source: "{{playbook_dir}}/alacritty"
+    target: "{{ xdg_config_dir }}/alacritty"
+  - source: "{{playbook_dir}}/helix"
+    target: "{{ xdg_config_dir }}/helix"
+  - source: "{{playbook_dir}}/neovim"
+    target: "{{ xdg_config_dir }}/nvim"
+  - source: "{{playbook_dir}}/task"
+    target: "~"
+  - source: "{{playbook_dir}}/vim"
+    target: "~"
+  - source: "{{playbook_dir}}/wezterm"
+    target: "~"
+  - source: "{{playbook_dir}}/zsh"
+    target: "~"

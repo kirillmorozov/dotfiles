@@ -1,0 +1,19 @@
+---
+- name: Get keyring
+  become: true
+  ansible.builtin.get_url:
+    dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+- name: Add repository
+  become: true
+  ansible.builtin.apt_repository:
+    state: present
+    repo: >-
+      deb [arch={{ ansible_architecture }}
+      signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg]
+      https://cli.github.com/packages stable main
+- name: Linux Mint packages installed
+  become: true
+  ansible.builtin.apt:
+    package: "{{ deb_packages }}"
+    state: latest

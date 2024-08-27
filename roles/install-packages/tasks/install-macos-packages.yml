@@ -1,0 +1,5 @@
+---
+- name: macOS packages installed
+  community.general.homebrew:
+    package: "{{ brew_packages }}"
+    state: latest
