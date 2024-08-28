@@ -1,11 +1,12 @@
 ---
-- name: "Download {{ font.archive }}"
-  ansible.builtin.get_url:
-    dest: /tmp/{{ font.archive }}
-    # TODO(kirillmorozov): Download asset from the latest GitHub release.
-    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/{{ font.archive }}
+- name: "Check {{ font.name_prefix }}*.ttf existance"
+  register: font_files
+  ansible.builtin.find:
+    paths: "{{ dest_per_system[ansible_system] }}"
+    patterns: "{{ font.name_prefix }}*.ttf"
 - name: "Unarchive {{ font.archive }}"
+  when: not font_files.matched
   ansible.builtin.unarchive:
-    src: /tmp/{{ font.archive }}
     dest: "{{ dest_per_system[ansible_system] }}"
-    creates: "{{ font.name_prefix }}*.ttf"
+    remote_src: true
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/{{ font.archive }}
