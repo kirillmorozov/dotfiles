@@ -7,3 +7,4 @@ fonts:
     name_prefix: CaskaydiaCoveNerdFont
   - archive: FiraCode.zip
     name_prefix: FiraCodeNerdFont
+version: v3.2.1

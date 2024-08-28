@@ -9,4 +9,6 @@
   ansible.builtin.unarchive:
     dest: "{{ dest_per_system[ansible_system] }}"
     remote_src: true
-    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/{{ font.archive }}
+    src: >-
+      https://github.com/ryanoasis/nerd-fonts/releases/download/
+      {{ version }}/{{ font.archive }}
