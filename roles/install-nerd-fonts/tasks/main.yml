@@ -1,0 +1,6 @@
+---
+- name: Install Nerd Fonts
+  include_tasks: install-nerd-font.yml
+  loop: "{{ fonts }}"
+  loop_control:
+    loop_var: font

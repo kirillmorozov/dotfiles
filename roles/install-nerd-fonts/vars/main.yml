@@ -1,0 +1,6 @@
+---
+dest_per_system:
+  Darwin: ~/Library/Fonts/
+  Linux: ~/.local/share/fonts
+fonts:
+  - FiraCode

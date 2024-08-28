@@ -1,0 +1,11 @@
+---
+- name: "Download {{ font }}"
+  ansible.builtin.get_url:
+    dest: /tmp/{{ font }}.zip
+    # TODO(kirillmorozov): Download asset from the latest GitHub release.
+    url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/{{ font }}.zip
+- name: "Unarchive {{ font }}"
+  ansible.builtin.unarchive:
+    src: /tmp/{{ font }}.zip
+    dest: "{{ dest_per_system[ansible_system] }}"
+    creates: "{{ font }}NerdFont*.ttf"

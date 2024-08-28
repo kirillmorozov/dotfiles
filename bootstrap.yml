@@ -4,6 +4,7 @@
   hosts: localhost
   roles:
     - install-packages
-    - change-shell
     - install-completions
+    - install-nerd-fonts
+    - change-shell
     - stow-configs
