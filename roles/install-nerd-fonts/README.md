@@ -13,6 +13,7 @@ Role Variables
   install fonts to.
 - `fonts`: A list of Nerd Fonds to install. Names should match artefact names
   in a [GitHub release](https://github.com/ryanoasis/nerd-fonts/releases/latest).
+- `version`: Nerd Font release to use.
 
 Dependencies
 ------------
