@@ -6,5 +6,5 @@
     - install-packages
     - install-completions
     - install-nerd-fonts
-    - change-shell
     - stow-configs
+    - change-shell
