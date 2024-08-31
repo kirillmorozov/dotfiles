@@ -28,6 +28,12 @@ Alacritty:
       - any-glob-to-any-file:
           - alacritty/**/*
 
+Ansible:
+  - changed-files:
+      - any-glob-to-any-file:
+          - roles/**/*
+          - bootstrap.yml
+
 Helix:
   - changed-files:
       - any-glob-to-any-file:
