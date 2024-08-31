@@ -15,3 +15,5 @@ directory_mapping:
     target: "~"
   - source: "{{playbook_dir}}/zsh"
     target: "~"
+  - source: "{{playbook_dir}}/zed"
+    target: "{{ xdg_config_dir }}/zed"
