@@ -2,7 +2,12 @@
 - name: "Find sources in {{ src_dir }}"
   register: sources
   ansible.builtin.find:
+    file_type: any
     paths: "{{ src_dir }}"
+- name: Create target directory
+  ansible.builtin.file:
+    path: "{{ target_dir }}"
+    state: directory
 - name: Create symlinks
   loop: "{{ sources.files | map(attribute='path') | list }}"
   loop_control:
