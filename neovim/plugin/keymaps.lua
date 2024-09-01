@@ -1,11 +1,12 @@
-vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch, { desc = "Clear highlight" })
 vim.keymap.set("n", "<C-s>", vim.cmd.update, { desc = "Save changes to a file" })
-vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
-vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
-vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
+vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch, { desc = "Clear highlight" })
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose, { desc = "Close quickfix list" })
-vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next item in a quickfix" })
+vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
+vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
 vim.keymap.set("n", "[q", vim.cmd.cprevious, { desc = "Previous item in a quickfix" })
+vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next item in a quickfix" })
+vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
+
 -- Diagnostic keymaps
 vim.keymap.set(
 	"n",
@@ -31,15 +32,19 @@ vim.keymap.set(
 	vim.diagnostic.setloclist,
 	{ desc = "Open diagnostic quickfix list" }
 )
+
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit
 -- easier for people to discover. Otherwise, you normally need to press
 -- <C-\><C-n>, which is not what someone will guess without a bit more
 -- experience.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+
 -- Disable arrow keys in normal, insert and visual modes
-for _, key in pairs({ "<up>", "<down>", "<left>", "<right>" }) do
-	vim.keymap.set({ "n", "i", "v" }, key, "<Nop>", { desc = "Disable arrow keys" })
-end
+vim.keymap.set({ "n", "i", "v" }, "<up>", "<Nop>", { desc = "Disable arrow keys" })
+vim.keymap.set({ "n", "i", "v" }, "<down>", "<Nop>", { desc = "Disable arrow keys" })
+vim.keymap.set({ "n", "i", "v" }, "<left>", "<Nop>", { desc = "Disable arrow keys" })
+vim.keymap.set({ "n", "i", "v" }, "<right>", "<Nop>", { desc = "Disable arrow keys" })
+
 -- Keybinds to make split navigation easier. Use CTRL+<hjkl> to switch between
 -- windows
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
