@@ -4,7 +4,8 @@
   ansible.builtin.yum_repository:
     baseurl: https://cli.github.com/packages/rpm
     description: GitHub CLI
-    gpgkey: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
+    gpgkey: >-
+      https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
     name: gh-cli
     state: present
 - name: Fedora packages installed
