@@ -1,15 +1,15 @@
 ---
 - name: Add GitHub CLI repository
   become: true
-  when: ansible_distribution == "Fedora"
   ansible.builtin.yum_repository:
-    baseurl: https://cli.github.com/packages/rpm/gh-cli.repo
+    baseurl: https://cli.github.com/packages/rpm
     description: GitHub CLI
+    gpgkey: >-
+      https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
     name: gh-cli
     state: present
 - name: Fedora packages installed
   become: true
-  when: ansible_distribution == "Fedora"
   ansible.builtin.dnf:
     pkg: "{{ rpm_packages }}"
     state: latest
