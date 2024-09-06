@@ -1,4 +1,7 @@
 ---
+arch_map:
+  aarch64: arm64
+  x86_64: amd64
 local_bin_dir: ~/.local/bin
 brew_packages:
   - fd
