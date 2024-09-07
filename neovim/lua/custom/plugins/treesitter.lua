@@ -69,7 +69,7 @@ return {
 					set_jumps = true, -- whether to set jumps in the jumplist
 					goto_next_start = {
 						["]a"] = {
-							query = "@parameter.outer",
+							query = "@parameter.inner",
 							desc = "Next argument/parameter",
 						},
 						["]c"] = { query = "@comment.outer", desc = "Next comment" },
@@ -78,7 +78,7 @@ return {
 					},
 					goto_previous_start = {
 						["[a"] = {
-							query = "@parameter.outer",
+							query = "@parameter.inner",
 							desc = "Previous argument/parameter",
 						},
 						["[c"] = { query = "@comment.outer", desc = "Previous comment" },
