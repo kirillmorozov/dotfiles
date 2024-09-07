@@ -1,5 +1,5 @@
+-- Autoformat
 return {
-	-- Autoformat
 	{
 		"stevearc/conform.nvim",
 		opts = {

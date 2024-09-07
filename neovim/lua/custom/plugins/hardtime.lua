@@ -1,5 +1,5 @@
+-- Establish good command workflow and quit bad habit.
 return {
-	-- Establish good command workflow and quit bad habit.
 	{
 		"m4xshen/hardtime.nvim",
 		dependencies = {
