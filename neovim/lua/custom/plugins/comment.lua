@@ -1,13 +1,4 @@
 return {
-	{
-		-- "gc" to comment visual regions/lines
-		"numToStr/Comment.nvim",
-		opts = {
-			opleader = {
-				line = "<C-c>",
-			},
-		},
-	},
 	-- Highlight todo, notes, etc in comments
 	{
 		"folke/todo-comments.nvim",

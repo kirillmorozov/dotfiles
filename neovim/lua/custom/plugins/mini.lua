@@ -3,6 +3,12 @@ return {
 	{
 		"echasnovski/mini.nvim",
 		config = function()
+			require("mini.comment").setup({
+				mappings = {
+					comment_line = "<C-c>",
+					comment_visual = "<C-c>",
+				},
+			})
 			-- Add/delete/replace surroundings (brackets, quotes, etc.)
 			-- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
 			-- - sd'   - [S]urround [D]elete [']quotes
