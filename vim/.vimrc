@@ -143,8 +143,8 @@ nmap <leader>/ :grep<Space>
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
 nmap <leader>w <c-w>
-nmap [q :cprevious<CR>
-nmap ]q :cnext<CR>
+nmap [q :cprevious<CR>zz
+nmap ]q :cnext<CR>zz
 nnoremap <C-S> :update<CR>
 nnoremap <leader>b :buffer<Space>
 nnoremap <leader>f :find<Space>
