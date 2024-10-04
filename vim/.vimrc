@@ -133,6 +133,8 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 " YAML indentation
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
+autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+
 " Key mappings
 " Search
 nmap <Esc> :nohlsearch<CR>
