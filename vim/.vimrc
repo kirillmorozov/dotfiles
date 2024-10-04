@@ -134,17 +134,22 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Key mappings
+" Search
+nmap <Esc> :nohlsearch<CR>
+nmap <leader>/ :grep<Space>
+nnoremap N Nzz
+nnoremap n nzz
+" General navigation
+nnoremap <leader>b :buffer<Space>
+nnoremap <C-S> :update<CR>
+nnoremap <leader>f :find<Space>
+nnoremap <leader>h :help<Space>
 " Window navigation
 nmap <leader>w <c-w>
 nmap <C-H> <c-w>h
 nmap <C-J> <c-w>j
 nmap <C-K> <c-w>k
 nmap <C-L> <c-w>l
-" Search
-nmap <Esc> :nohlsearch<CR>
-nmap <leader>/ :grep<Space>
-nnoremap N Nzz
-nnoremap n nzz
 " Quickfix list navigation
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
@@ -180,10 +185,6 @@ nmap [B :brewind<CR>
 nmap [b :bprevious<CR>
 nmap ]B :blast<CR>
 nmap ]b :bnext<CR>
-nnoremap <leader>b :buffer<Space>
-nnoremap <C-S> :update<CR>
-nnoremap <leader>f :find<Space>
-nnoremap <leader>h :help<Space>
 
 " Use ripgrep for search if it's installed
 if executable("rg")
