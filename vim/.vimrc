@@ -134,23 +134,57 @@ autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
 autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 
 " Key mappings
+" Search
+nmap <Esc> :nohlsearch<CR>
+nmap <leader>/ :grep<Space>
+nnoremap N Nzz
+nnoremap n nzz
+" General navigation
+nnoremap <leader>b :buffer<Space>
+nnoremap <C-S> :update<CR>
+nnoremap <leader>f :find<Space>
+nnoremap <leader>h :help<Space>
+" Window navigation
+nmap <leader>w <c-w>
 nmap <C-H> <c-w>h
 nmap <C-J> <c-w>j
 nmap <C-K> <c-w>k
 nmap <C-L> <c-w>l
-nmap <Esc> :nohlsearch<CR>
-nmap <leader>/ :grep<Space>
+" Quickfix list navigation
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
-nmap <leader>w <c-w>
+nmap [<C-Q> :cpfile<CR>zz
+nmap [Q :crewind<CR>zz
 nmap [q :cprevious<CR>zz
+nmap ]<C-Q> :cnfile<CR>zz
+nmap ]Q :clast<CR>zz
 nmap ]q :cnext<CR>zz
-nnoremap <C-S> :update<CR>
-nnoremap <leader>b :buffer<Space>
-nnoremap <leader>f :find<Space>
-nnoremap <leader>h :help<Space>
-nnoremap N Nzz
-nnoremap n nzz
+" Location list navigation
+nmap <leader>lc :lclose<CR>
+nmap <leader>lo :lopen<CR>
+nmap [<C-L> :lpfile<CR>zz
+nmap [L :lrewind<CR>zz
+nmap [l :lprevious<CR>zz
+nmap ]<C-L> :lnfile<CR>zz
+nmap ]L :llast<CR>zz
+nmap ]l :lnext<CR>zz
+" Argument list navigation
+nmap [A :rewind<CR>
+nmap [a :previous<CR>
+nmap ]A :last<CR>
+nmap ]a :next<CR>
+" Tags navigation
+nmap [t :tprevious<CR>zz
+nmap ]t :tnext<CR>zz
+nmap [T :trewind<CR>zz
+nmap ]T :tlast<CR>zz
+nmap [<C-T> :ptprevious<CR>zz
+nmap ]<C-T> :ptnext<CR>zz
+" Buffers navigation
+nmap [B :brewind<CR>
+nmap [b :bprevious<CR>
+nmap ]B :blast<CR>
+nmap ]b :bnext<CR>
 
 " Use ripgrep for search if it's installed
 if executable("rg")
