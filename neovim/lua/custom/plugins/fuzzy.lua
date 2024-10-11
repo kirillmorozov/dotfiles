@@ -8,7 +8,7 @@ return {
 		config = function()
 			-- calling `setup` is optional for customization
 			local fzf = require("fzf-lua")
-			fzf.setup({})
+			fzf.setup({ "fzf-vim" })
 			vim.keymap.set("n", "<leader>f", fzf.files, { desc = "Search for files" })
 			vim.keymap.set(
 				"n",
