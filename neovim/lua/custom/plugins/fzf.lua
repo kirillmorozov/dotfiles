@@ -5,9 +5,9 @@ return {
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		event = "VeryLazy",
 		opts = { "fzf-vim" },
-		config = function(_, opts)
+		config = function(plugin, opts)
 			-- calling `setup` is optional for customization
-			local fzf = require("fzf-lua")
+			local fzf = require(plugin.name)
 			fzf.setup(opts)
 			vim.keymap.set("n", "<leader>f", fzf.files, { desc = "Search for files" })
 			vim.keymap.set(
