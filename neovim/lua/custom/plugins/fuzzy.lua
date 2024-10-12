@@ -2,7 +2,7 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		event = "VimEnter",
+		event = "VeryLazy",
 		-- optional for icon support
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		config = function()
