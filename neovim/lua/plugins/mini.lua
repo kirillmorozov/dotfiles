@@ -7,6 +7,7 @@ return {
 				require("mini." .. plugin).setup(options)
 			end
 		end,
+		event = "VeryLazy",
 		-- NOTE(kirillmorozov): opts is a table that holds config options for mini
 		-- modules.
 		opts = {
