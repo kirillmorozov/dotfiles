@@ -37,29 +37,14 @@ return {
 							{ buffer = event.buf, desc = "LSP: " .. desc }
 						)
 					end
-					map(
-						"gd",
-						require("telescope.builtin").lsp_definitions,
-						"Goto definition"
-					)
-					map(
-						"gr",
-						require("telescope.builtin").lsp_references,
-						"Goto references"
-					)
-					map(
-						"gI",
-						require("telescope.builtin").lsp_implementations,
-						"Goto implementation"
-					)
-					map(
-						"<leader>s",
-						require("telescope.builtin").lsp_document_symbols,
-						"Document symbols"
-					)
+					local fzf = require("fzf-lua")
+					map("gd", fzf.lsp_definitions, "Goto definition")
+					map("gr", fzf.lsp_references, "Goto references")
+					map("gI", fzf.lsp_implementations, "Goto implementation")
+					map("<leader>s", fzf.lsp_document_symbols, "Document symbols")
 					map(
 						"<leader>S",
-						require("telescope.builtin").lsp_dynamic_workspace_symbols,
+						fzf.lsp_workspace_symbols,
 						"Open workspace symbols"
 					)
 					map("<leader>r", vim.lsp.buf.rename, "Rename all references")
