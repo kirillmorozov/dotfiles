@@ -17,6 +17,7 @@ return {
 				},
 			},
 		},
+		event = "VeryLazy",
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
 			-- That is to say, every time a new file is opened that is associated

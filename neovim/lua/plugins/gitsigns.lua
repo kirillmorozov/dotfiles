@@ -3,6 +3,7 @@ return {
 	-- changes. See `:help gitsigns` to understand what the configuration keys do
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "VeryLazy",
 		opts = {
 			signs = {
 				add = { text = "+" },

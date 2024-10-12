@@ -6,6 +6,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
+		event = "VeryLazy",
 		opts = {
 			ensure_installed = {
 				"bash",
