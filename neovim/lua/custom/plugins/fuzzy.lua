@@ -2,13 +2,13 @@
 return {
 	{
 		"ibhagwan/fzf-lua",
-		event = "VeryLazy",
-		-- optional for icon support
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
-		config = function()
+		event = "VeryLazy",
+		opts = { "fzf-vim" },
+		config = function(_, opts)
 			-- calling `setup` is optional for customization
 			local fzf = require("fzf-lua")
-			fzf.setup({ "fzf-vim" })
+			fzf.setup(opts)
 			vim.keymap.set("n", "<leader>f", fzf.files, { desc = "Search for files" })
 			vim.keymap.set(
 				"n",
