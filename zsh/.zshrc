@@ -88,6 +88,7 @@ plugins=(
   python
   terraform
   ubuntu
+  uv
   vscode
 )
 
