@@ -3,55 +3,40 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
-		event = "VeryLazy",
 		opts = { "fzf-vim" },
-		config = function(plugin, opts)
-			-- calling `setup` is optional for customization
-			local fzf = require(plugin.name)
-			fzf.setup(opts)
-			vim.keymap.set("n", "<leader>f", fzf.files, { desc = "Search for files" })
-			vim.keymap.set(
-				"n",
+		keys = {
+			{ "<leader>f", "<cmd>FzfLua files<cr>", { desc = "Search for files" } },
+			{
 				"<leader>'",
-				fzf.resume,
-				{ desc = "Opens the previous picker" }
-			)
-			vim.keymap.set(
-				"n",
+				"<cmd>FzfLua resume<cr>",
+				{ desc = "Opens the previous picker" },
+			},
+			{
 				"<leader>/",
-				fzf.live_grep,
-				{ desc = "Search for a string and get results live" }
-			)
-			vim.keymap.set(
-				"n",
+				"<cmd>FzfLua live_grep<cr>",
+				{ desc = "Search for a string and get results live" },
+			},
+			{
 				"<leader>?",
-				fzf.commands,
-				{ desc = "List available commands" }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>b",
-				fzf.buffers,
-				{ desc = "List open buffers" }
-			)
-			vim.keymap.set(
-				"n",
+				"<cmd>FzfLua commands<cr>",
+				{ desc = "List available commands" },
+			},
+			{ "<leader>b", "<cmd>FzfLua buffers<cr>", { desc = "List open buffers" } },
+			{
 				"<leader>h",
-				fzf.helptags,
-				{ desc = "List available help tags" }
-			)
-			vim.keymap.set(
-				"n",
+				"<cmd>FzfLua helptags<cr>",
+				{ desc = "List available help tags" },
+			},
+			{
 				"<leader>d",
-				fzf.diagnostics_document,
-				{ desc = "List document diagnostics" }
-			)
-			vim.keymap.set(
-				"n",
+				"<cmd>FzfLua diagnostics_document<cr>",
+				{ desc = "List document diagnostics" },
+			},
+			{
 				"<leader>j",
-				fzf.jumps,
-				{ desc = "List items from Vim's jumplist" }
-			)
-		end,
+				"<cmd>FzfLua jumps<cr>",
+				{ desc = "List items from Vim's jumplist" },
+			},
+		},
 	},
 }
