@@ -4,19 +4,15 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Useful status updates for LSP.
-			{
-				"j-hui/fidget.nvim",
-				opts = {},
-			},
+			{ "j-hui/fidget.nvim" },
 			-- `neodev` configures Lua LSP for your Neovim config, runtime and
 			-- plugins used for completion, annotations and signatures of Neovim apis
 			{
 				"folke/neodev.nvim",
-				opts = {
-					root_dir = vim.fn.getcwd(),
-				},
+				opts = { root_dir = vim.fn.getcwd() },
 			},
 		},
+		event = "BufNew",
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
 			-- That is to say, every time a new file is opened that is associated
