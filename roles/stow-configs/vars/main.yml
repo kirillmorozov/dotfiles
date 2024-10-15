@@ -13,5 +13,7 @@ directory_mapping:
     target: "~"
   - source: "{{playbook_dir}}/wezterm"
     target: "~"
+  - source: "{{playbook_dir}}/zed"
+    target: "{{ xdg_config_dir }}/zed"
   - source: "{{playbook_dir}}/zsh"
     target: "~"
