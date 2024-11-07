@@ -16,5 +16,5 @@
     creates: "{{ completions_path }}/_rg"
 - name: Install task completions
   ansible.builtin.shell:
-    cmd: go-task --completion zsh > {{ completions_path }}/_task
+    cmd: task --completion zsh > {{ completions_path }}/_task
     creates: "{{ completions_path }}/_task"
