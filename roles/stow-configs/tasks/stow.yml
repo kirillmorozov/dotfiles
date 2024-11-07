@@ -3,6 +3,7 @@
   register: sources
   ansible.builtin.find:
     file_type: any
+    hidden: true
     paths: "{{ src_dir }}"
 - name: Create target directory
   ansible.builtin.file:
