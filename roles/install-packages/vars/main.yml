@@ -27,6 +27,7 @@ deb_packages:
   - yq
   - zsh
 rpm_packages:
+  - alacritty
   - fd-find
   - fzf
   - gh
