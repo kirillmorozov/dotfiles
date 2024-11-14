@@ -218,6 +218,10 @@ if executable("jq")
 	autocmd FileType json setlocal formatprg=jq\ '.'
 endif
 
+if executable("terraform")
+	autocmd FileType terraform setlocal formatprg=terraform\ fmt\ -
+endif
+
 if isdirectory(".git")
 	set path+=**
 endif
