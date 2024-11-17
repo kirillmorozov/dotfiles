@@ -42,4 +42,7 @@ config.color_scheme = scheme_for_appearance(get_appearance())
 config.font = wezterm.font_with_fallback { 'FiraCode Nerd Font', 'Fira Code' }
 config.font_size = 14.0
 
+config.animation_fps = 120
+config.max_fps = 120
+
 return config
