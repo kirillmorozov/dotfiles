@@ -16,7 +16,7 @@
 Use this command to install vimrc on your machine:
 
 ```shell
-curl https://raw.githubusercontent.com/kirillmorozov/dotfiles/main/vim/.vimrc \
+curl https://raw.githubusercontent.com/kirillmorozov/dotfiles/main/vim/vimrc \
   -o ~/.vimrc
 ```
 
