@@ -12,7 +12,7 @@ return {
 				opts = { root_dir = vim.fn.getcwd() },
 			},
 		},
-		event = "BufNew",
+		event = { "BufNew", "BufRead" },
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
 			-- That is to say, every time a new file is opened that is associated
