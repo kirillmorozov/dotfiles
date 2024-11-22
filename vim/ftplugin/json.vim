@@ -1,3 +1,1 @@
-if executable("jq")
-	setlocal formatprg=jq\ '.'
-endif
+setlocal formatprg=jq\ '.'
