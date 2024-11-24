@@ -45,16 +45,16 @@ syntax enable
 filetype plugin indent on
 
 if has("termguicolors")
-	set termguicolors
-	try
-		colorscheme zaibatsu
-	catch /E185:/
-		" NOTE(kirillmorozov): zaibatsu may not be available on older vim
-		" versions, fall back to habamax instead.
-		colorscheme habamax
-	endtry
+    set termguicolors
+    try
+        colorscheme zaibatsu
+    catch /E185:/
+        " NOTE(kirillmorozov): zaibatsu may not be available on older vim
+        " versions, fall back to habamax instead.
+        colorscheme habamax
+    endtry
 else
-	colorscheme default
+    colorscheme default
 endif
 
 " Show tabs, multiple consecutive spaces, trailing spaces and breaks
@@ -127,14 +127,6 @@ set wildmenu
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
 
-" Highlight Jenkinfile syntax
-autocmd BufNewFile,BufRead,BufReadPost Jenkinsfile setfiletype groovy
-
-" YAML indentation
-autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-autocmd FileType sh setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
 " Key mappings
 " Search
 nmap <Esc> :nohlsearch<CR>
@@ -188,64 +180,35 @@ nmap [b :bprevious<CR>
 nmap ]B :blast<CR>
 nmap ]b :bnext<CR>
 
-" Use ripgrep for search if it's installed
-if executable("rg")
-	set grepprg=rg\ --vimgrep\ --smart-case\ --follow\ --hidden\ --glob\ '!.git/**'
-endif
-
-" Format programs
-if executable("gofumpt")
-	autocmd FileType go setlocal formatprg=gofumpt
-elseif executable("gofmt")
-	autocmd FileType go setlocal formatprg=gofmt
-endif
-
-if executable("ruff")
-	autocmd FileType python setlocal formatprg=ruff\ format\ -s\ -
-endif
-
-if executable("shfmt")
-	autocmd FileType sh setlocal formatprg=shfmt\ -i\ 2\ -bn\ -ci\ -sr
-endif
-
-if executable("yamlfmt")
-	autocmd FileType yaml setlocal formatprg=yamlfmt\ -formatter\ retain_line_breaks=true\ -in
-elseif executable("yq")
-	autocmd FileType yaml setlocal formatprg=yq\ '.'
-endif
-
-if executable("jq")
-	autocmd FileType json setlocal formatprg=jq\ '.'
-endif
-
-if executable("terraform")
-	autocmd FileType terraform setlocal formatprg=terraform\ fmt\ -
-endif
-
 if isdirectory(".git")
 	set path+=**
 endif
 
+" Use ripgrep for search if it's installed
+if executable("rg")
+    set grepprg=rg\ --vimgrep\ --smart-case\ --follow\ --hidden\ --glob\ '!.git/**'
+endif
+
 " If fzf is available use its built-in Vim plugin for file navigation
 if executable("fzf")
-	set rtp+=/opt/homebrew/opt/fzf  " for macOS and fzf installed via brew
-	set rtp+=/usr/share/doc/fzf/examples  " for Debian and fzf installed via apt
-	" NOTE(kirillmorozov): fzf.vim might not exist in the runtimepath so I
-	" explicitly read Ex commands from the plugin and check FZF command
-	" existence before adding a key map.
-	runtime plugin/fzf.vim
-	if exists(':FZF') == 2
-		nnoremap <leader>f :FZF<CR>
-	endif
+    set rtp+=/opt/homebrew/opt/fzf  " for macOS and fzf installed via brew
+    set rtp+=/usr/share/doc/fzf/examples  " for Debian and fzf installed via apt
+    " NOTE(kirillmorozov): fzf.vim might not exist in the runtimepath so I
+    " explicitly read Ex commands from the plugin and check FZF command
+    " existence before adding a key map.
+    runtime plugin/fzf.vim
+    if exists(':FZF') == 2
+        nnoremap <leader>f :FZF<CR>
+    endif
 endif
 
 " Set up Git TUI client
 if executable("lazygit")
-	function Git()
-		execute "silent !lazygit"
-		redraw!
-	endfunction
-	command G :call Git()
-	command Git :call Git()
-	nmap <C-G> :Git<CR>
+    function Git()
+        execute "silent !lazygit"
+        redraw!
+    endfunction
+    command G :call Git()
+    command Git :call Git()
+    nmap <C-G> :Git<CR>
 endif

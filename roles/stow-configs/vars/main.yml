@@ -10,7 +10,7 @@ directory_mapping:
   - source: "{{playbook_dir}}/task"
     target: "~"
   - source: "{{playbook_dir}}/vim"
-    target: "~"
+    target: "~/.vim"
   - source: "{{playbook_dir}}/wezterm"
     target: "~"
   - source: "{{playbook_dir}}/zsh"
