@@ -3,8 +3,6 @@ setlocal autoindent
 setlocal colorcolumn=80
 setlocal expandtab
 setlocal fileformat=unix
-setlocal foldlevel=99
-setlocal foldmethod=indent
 setlocal formatprg=ruff\ format\ -s\ -
 setlocal shiftwidth=4
 setlocal softtabstop=4
