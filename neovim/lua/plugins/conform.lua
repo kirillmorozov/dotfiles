@@ -44,7 +44,7 @@ return {
 				},
 			},
 			formatters_by_ft = {
-				["_"] = { "trim_whitespace" },
+				["_"] = { "trim_whitespace", "trim_newlines" },
 				gleam = { "gleam" },
 				go = { "gofumpt", "gofmt", stop_after_first = true },
 				json = { "jq" },
