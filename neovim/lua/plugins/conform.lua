@@ -40,6 +40,8 @@ return {
 						"scan_folded_as_literal=true",
 						"-formatter",
 						"pad_line_comments=2",
+						"-formatter",
+						"trim_trailing_whitespace=true",
 					},
 				},
 			},
