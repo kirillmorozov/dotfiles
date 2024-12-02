@@ -3,6 +3,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		event = "BufWritePre",
+		cmd = "ConformInfo",
 		opts = {
 			notify_on_error = true,
 			format_on_save = function(bufnr)
@@ -45,13 +46,13 @@ return {
 			formatters_by_ft = {
 				["_"] = { "trim_whitespace" },
 				gleam = { "gleam" },
-				go = { formatters = { "gofumpt", "gofmt" }, stop_after_first = true },
+				go = { "gofumpt", "gofmt", stop_after_first = true },
 				json = { "jq" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
-				yaml = { formatters = { "yamlfmt", "yq" }, stop_after_first = true },
+				yaml = { "yamlfmt", "yq", stop_after_first = true },
 			},
 		},
 	},
