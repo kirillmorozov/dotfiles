@@ -124,9 +124,6 @@ set sidescrolloff=8
 " Command-line completion operates in an enhanced mode
 set wildmenu
 
-" Use system clipboard
-set clipboard^=unnamed,unnamedplus
-
 " Key mappings
 " Search
 nmap <Esc> :nohlsearch<CR>
@@ -179,6 +176,10 @@ nmap [B :brewind<CR>
 nmap [b :bprevious<CR>
 nmap ]B :blast<CR>
 nmap ]b :bnext<CR>
+" Clipboard
+map <leader>y "+y
+map <leader>p "+p
+map <leader><s-p> "+<s-p>
 
 if isdirectory(".git")
 	set path+=**
