@@ -177,7 +177,7 @@ nmap [b :bprevious<CR>
 nmap ]B :blast<CR>
 nmap ]b :bnext<CR>
 " Clipboard
-vmap <leader>y "+y
+map <leader>y "+y
 map <leader>p "+p
 map <leader><s-p> "+<s-p>
 
