@@ -124,9 +124,6 @@ set sidescrolloff=8
 " Command-line completion operates in an enhanced mode
 set wildmenu
 
-" Use system clipboard
-set clipboard^=unnamed,unnamedplus
-
 " Key mappings
 " Search
 nmap <Esc> :nohlsearch<CR>
