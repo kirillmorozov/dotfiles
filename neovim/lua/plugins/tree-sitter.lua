@@ -1,12 +1,13 @@
 -- Highlight, edit, and navigate code
 return {
+	{ "fei6409/log-highlight.nvim", event = "BufRead *.log", opts = {} },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
 		build = ":TSUpdate",
-		event = "BufNew",
+		event = { "BufNew", "BufRead" },
 		opts = {
 			ensure_installed = {
 				"bash",

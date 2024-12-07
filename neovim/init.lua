@@ -22,6 +22,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Set up lazy, and load `lua/plugins` folder
 require("lazy").setup({ import = "plugins" }, {
 	change_detection = { notify = false },
+	install = { colorscheme = { "zaibatsu", "habamax" } },
 	performance = {
 		rtp = {
 			disabled_plugins = {
