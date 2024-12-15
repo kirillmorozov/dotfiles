@@ -64,3 +64,8 @@ Zsh:
   - changed-files:
       - any-glob-to-any-file:
           - zsh/**/*
+
+Zed:
+  - changed-files:
+      - any-glob-to-any-file:
+          - zed/**/*
