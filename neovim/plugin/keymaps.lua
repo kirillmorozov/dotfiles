@@ -12,19 +12,19 @@ vim.keymap.set(
 	{ "n", "o", "s", "v" },
 	"<leader>y",
 	'"+y',
-	{ desc = "Yank text into the plus register" }
+	{ desc = "Yank text into the + register" }
 )
 vim.keymap.set(
 	{ "n", "o", "s", "v" },
 	"<leader>p",
 	'"+p',
-	{ desc = "Put the text from the plus register after the cursor" }
+	{ desc = "Put the text from the + register after the cursor" }
 )
 vim.keymap.set(
 	{ "n", "o", "s", "v" },
 	"<leader><s-p>",
 	'"+<s-p>',
-	{ desc = "Put the text from the plus register before the cursor" }
+	{ desc = "Put the text from the + register before the cursor" }
 )
 
 -- Diagnostic keymaps
