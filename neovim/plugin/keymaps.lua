@@ -7,6 +7,26 @@ vim.keymap.set("n", "[q", vim.cmd.cprevious, { desc = "Previous item in a quickf
 vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next item in a quickfix" })
 vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
 
+-- Plus register yank/paste
+vim.keymap.set(
+	{ "n", "o", "s", "v" },
+	"<leader>y",
+	'"+y',
+	{ desc = "Yank text into the + register" }
+)
+vim.keymap.set(
+	{ "n", "o", "s", "v" },
+	"<leader>p",
+	'"+p',
+	{ desc = "Put the text from the + register after the cursor" }
+)
+vim.keymap.set(
+	{ "n", "o", "s", "v" },
+	"<leader><s-p>",
+	'"+<s-p>',
+	{ desc = "Put the text from the + register before the cursor" }
+)
+
 -- Diagnostic keymaps
 vim.keymap.set(
 	"n",
