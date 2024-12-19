@@ -76,8 +76,6 @@ plugins=(
   command-not-found
   common-aliases
   dnf
-  docker
-  docker-compose
   fzf
   gh
   git
@@ -85,6 +83,7 @@ plugins=(
   golang
   helm
   kubectl
+  podman
   python
   terraform
   ubuntu
