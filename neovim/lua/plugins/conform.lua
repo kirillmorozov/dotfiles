@@ -55,6 +55,7 @@ return {
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { "yamlfmt", "yq", stop_after_first = true },
+				elm = { "elm_format" },
 			},
 		},
 	},
