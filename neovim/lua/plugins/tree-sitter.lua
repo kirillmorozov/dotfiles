@@ -14,6 +14,7 @@ return {
 				"comment",
 				"diff",
 				"dockerfile",
+				"elm",
 				"gitcommit",
 				"gleam",
 				"go",
