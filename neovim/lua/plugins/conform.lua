@@ -47,6 +47,7 @@ return {
 			},
 			formatters_by_ft = {
 				["_"] = { "trim_whitespace", "trim_newlines" },
+				elm = { "elm_format" },
 				gleam = { "gleam" },
 				go = { "gofumpt", "gofmt", stop_after_first = true },
 				json = { "jq" },
@@ -55,7 +56,6 @@ return {
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { "yamlfmt", "yq", stop_after_first = true },
-				elm = { "elm_format" },
 			},
 		},
 	},
