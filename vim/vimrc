@@ -215,7 +215,26 @@ if executable("lazygit")
         execute "silent !lazygit"
         redraw!
     endfunction
-    command G :call Git()
-    command Git :call Git()
-    nmap <C-G> :Git<CR>
+    nmap <c-g> :call Git()<cr>
 endif
+
+function! s:Format(...)
+    silent keepjumps normal! '[v']gq
+    if v:shell_error > 0
+        silent undo
+        echohl ErrorMsg
+        echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+        echohl None
+    endif
+endfunction
+
+function! s:FormatFile() abort
+    let w:view = winsaveview()
+    keepjumps normal! gg
+    set operatorfunc=<SID>Format
+    keepjumps normal! g@G
+    keepjumps call winrestview(w:view)
+    unlet w:view
+endfunction
+
+command Fmt :call <sid>FormatFile()<cr>
