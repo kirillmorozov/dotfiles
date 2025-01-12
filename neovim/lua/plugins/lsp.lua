@@ -52,15 +52,10 @@ return {
 					map("<leader>a", vim.lsp.buf.code_action, "Select a code action")
 					map("<leader>k", vim.lsp.buf.hover, "Hover documentation")
 					map("gD", vim.lsp.buf.declaration, "Goto declaration")
-					vim.keymap.set(
-						"i",
-						"<c-k>",
-						vim.lsp.buf.signature_help,
-						{
-							buffer = event.buf,
-							desc = "LSP: Display signature information",
-						}
-					)
+					vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, {
+						buffer = event.buf,
+						desc = "LSP: Display signature information",
+					})
 
 					-- The following two autocommands are used to highlight references of
 					-- the word under your cursor when your cursor rests there for a
@@ -88,12 +83,12 @@ return {
 			-- that is in the LSP specification. When you add nvim-cmp, luasnip, etc.
 			-- Neovim now has *more* capabilities. So, we create new capabilities
 			-- with nvim cmp, and then broadcast that to the servers.
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend(
-				"force",
-				capabilities,
-				require("cmp_nvim_lsp").default_capabilities()
-			)
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- capabilities = vim.tbl_deep_extend(
+			-- "force",
+			-- capabilities,
+			-- require("cmp_nvim_lsp").default_capabilities()
+			-- )
 			local servers = {
 				bashls = {},
 				clangd = {},
