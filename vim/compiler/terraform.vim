@@ -1,1 +1,1 @@
-setlocal makeprg=terraform\ -chdir=%:p:h\ validate
+setlocal makeprg=terraform\ -chdir=%:p:h\ validate\ -json
