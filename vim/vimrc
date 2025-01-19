@@ -237,4 +237,4 @@ function! s:FormatFile() abort
     unlet w:view
 endfunction
 
-command Fmt :call <sid>FormatFile()<cr>
+command Fmt :call <sid>FormatFile()
