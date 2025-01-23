@@ -229,6 +229,10 @@ function! s:Format(...)
 endfunction
 
 function! s:FormatFile() abort
+    if &l:formatprg==""
+        echomsg 'formatprg is not set for the this buffer'
+        return
+    endif
     let w:view = winsaveview()
     keepjumps normal! gg
     set operatorfunc=<SID>Format
@@ -238,3 +242,8 @@ function! s:FormatFile() abort
 endfunction
 
 command Fmt :call <sid>FormatFile()
+
+augroup Autoformat
+    autocmd!
+    autocmd BufWritePre * call <sid>FormatFile()
+augroup END
