@@ -5,7 +5,18 @@ setlocal softtabstop=2
 setlocal tabstop=2
 
 if executable("yamlfmt")
-    setlocal formatprg=yamlfmt\ -formatter\ retain_line_breaks=true\ -in
+    setlocal formatprg=yamlfmt
+                \\ -formatter
+                \\ max_line_length=80
+                \\ -formatter
+                \\ pad_line_comments=2
+                \\ -formatter
+                \\ retain_line_breaks=true
+                \\ -formatter
+                \\ retain_line_breaks_single=true
+                \\ -formatter
+                \\ scan_folded_as_literal=true
+                \\ -in
 elseif executable("yq")
     setlocal formatprg=yq\ '.'
 endif
