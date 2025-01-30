@@ -124,6 +124,7 @@ return {
 					},
 				},
 				pylsp = {},
+				ruff = {},
 				terraformls = {},
 				yamlls = {
 					settings = {
