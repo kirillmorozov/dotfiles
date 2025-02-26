@@ -10,10 +10,10 @@ return {
 			preset = "default",
 		},
 		cmdline = {
-			sources = {},
+			enabled = false,
 		},
 		sources = {
-			default = { "buffer", "lsp", "snippets", "path" },
+			default = { "buffer", "lsp", "path", "snippets" },
 		},
 	},
 }
