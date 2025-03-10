@@ -50,6 +50,7 @@ return {
 				elm = { "elm_format" },
 				gleam = { "gleam" },
 				go = { "gofumpt", "gofmt", stop_after_first = true },
+				javascript = { "deno_fmt" },
 				json = { "jq" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
