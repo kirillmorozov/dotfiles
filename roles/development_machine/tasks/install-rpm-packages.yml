@@ -11,6 +11,10 @@
   become: true
   community.general.copr:
     name: wezfurlong/wezterm-nightly
+- name: Enable Ghostty Copr
+  become: true
+  community.general.copr:
+    name: scottames/ghostty
 - name: Enable Jujutsu Copr
   become: true
   community.general.copr:
@@ -68,6 +72,7 @@
       - fish
       - fzf
       - gh
+      - ghostty
       - git
       - glab
       - go-task

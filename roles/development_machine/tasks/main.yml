@@ -11,6 +11,11 @@
   ansible.builtin.import_tasks: link-configs.yml
   tags:
     - configs
+- name: Configure Ghostty on macOS
+  when: ansible_facts["system"] == "Darwin"
+  ansible.builtin.import_tasks: configure-ghostty-macos.yml
+  tags:
+    - configs
 - name: Change shell
   ansible.builtin.import_tasks: change-shell.yml
   tags:
