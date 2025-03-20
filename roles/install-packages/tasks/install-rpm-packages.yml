@@ -8,6 +8,11 @@
       https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
     name: gh-cli
     state: present
+- name: Enable Ghostty copr
+  become: true
+  community.general.copr:
+    name: pgdev/ghostty
+    state: enabled
 - name: Fedora packages installed
   become: true
   ansible.builtin.dnf:

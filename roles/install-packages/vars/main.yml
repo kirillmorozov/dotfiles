@@ -31,6 +31,7 @@ rpm_packages:
   - fd-find
   - fzf
   - gh
+  - ghostty
   - git
   - go-task
   - jq
