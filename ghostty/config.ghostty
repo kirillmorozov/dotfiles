@@ -1,0 +1,8 @@
+command = fish
+config-file = ?config.local
+custom-shader-animation = false
+font-family = FiraCode Nerd Font
+font-size = 14
+link-url = true
+shell-integration = fish
+theme = light:Rose Pine Dawn,dark:Rose Pine
