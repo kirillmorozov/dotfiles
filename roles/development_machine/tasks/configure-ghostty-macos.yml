@@ -1,0 +1,14 @@
+---
+- name: Ensure Ghostty configuration directory exists
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/Library/Application Support/\
+      com.mitchellh.ghostty"
+    state: directory
+    mode: "0755"
+- name: Configure Ghostty to use Homebrew fish
+  ansible.builtin.copy:
+    content: |
+      command = /opt/homebrew/bin/fish
+    dest: "{{ ansible_facts['env']['HOME'] }}/Library/Application Support/\
+      com.mitchellh.ghostty/config.local"
+    mode: "0644"
