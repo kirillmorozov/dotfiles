@@ -1,0 +1,6 @@
+custom-shader-animation = false
+font-family = FiraCode Nerd Font
+font-size = 14
+gtk-titlebar = false
+quick-terminal-animation-duration = 0
+theme = dark:rose-pine,light:rose-pine-dawn
