@@ -1,6 +1,8 @@
 custom-shader-animation = false
 font-family = FiraCode Nerd Font
 font-size = 14
-gtk-titlebar = false
+gtk-titlebar-hide-when-maximized = true
 quick-terminal-animation-duration = 0
+shell-integration = zsh
+shell-integration-features = sudo,title
 theme = dark:rose-pine,light:rose-pine-dawn
