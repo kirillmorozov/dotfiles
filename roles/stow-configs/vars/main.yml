@@ -11,5 +11,7 @@ directory_mapping:
     target: "{{ xdg_config_home }}/wezterm"
   - source: "{{ playbook_dir }}/task"
     target: "~"
+  - source: "{{ playbook_dir }}/tmux"
+    target: "{{ xdg_config_home }}/tmux"
   - source: "{{ playbook_dir }}/zsh"
     target: "~"
