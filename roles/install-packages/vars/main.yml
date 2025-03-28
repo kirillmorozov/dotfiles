@@ -35,6 +35,7 @@ rpm_packages:
   - jq
   - neovim
   - ripgrep
+  - tmux
   - vim
   - yq
   - zsh
