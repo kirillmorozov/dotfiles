@@ -21,16 +21,12 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
-local config = {}
--- NOTE(kirillmorozov): In newer versions of wezterm, use the config_builder
--- which will help provide clearer error messages
-if wezterm.config_builder then
-	config = wezterm.config_builder()
-end
-
 local color_scheme_name = scheme_for_appearance(get_appearance())
 local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
 local font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
+
+local config = wezterm.config_builder()
+config:set_strict_mode(true)
 
 config.animation_fps = 120
 config.color_scheme = color_scheme_name
