@@ -8,6 +8,10 @@
       https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
     name: gh-cli
     state: present
+- name: Enable Wezterm Copr
+  become: true
+  community.general.copr:
+    name: wezfurlong/wezterm-nightly
 - name: Fedora packages installed
   become: true
   ansible.builtin.dnf:
