@@ -55,7 +55,7 @@ bar.apply_to_config(config, {
 		leader = { enabled = false },
 		pane = { enabled = false },
 		spotify = { enabled = false },
-		tabs = { active_tab_fg = 4, inactive_tab_fg = 8 },
+		tabs = { active_tab_fg = 5, inactive_tab_fg = 8 },
 		username = { enabled = false },
 		workspace = { enabled = false },
 	},
