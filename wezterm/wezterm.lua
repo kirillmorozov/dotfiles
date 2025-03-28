@@ -15,9 +15,9 @@ end
 --- Returns prefered theme for appearance.
 local function scheme_for_appearance(appearance)
 	if appearance:find("Dark") then
-		return "Rosé Pine (Gogh)"
+		return "rose-pine"
 	else
-		return "Rosé Pine Dawn (Gogh)"
+		return "rose-pine-dawn"
 	end
 end
 
@@ -28,21 +28,37 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.window_padding = {
-	left = 0,
-	right = 0,
-	top = 0,
-	bottom = 0,
-}
-config.enable_scroll_bar = false
-config.hide_tab_bar_if_only_one_tab = true
-
-config.color_scheme = scheme_for_appearance(get_appearance())
-
-config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
-config.font_size = 14.0
+local color_scheme_name = scheme_for_appearance(get_appearance())
+local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
+local font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
+local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 
 config.animation_fps = 120
+config.color_scheme = color_scheme_name
+config.enable_scroll_bar = false
+config.font = font
+config.font_size = 14.0
 config.max_fps = 120
+config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
+
+bar.apply_to_config(config, {
+	separator = {
+		field_icon = "",
+		left_icon = "❯",
+		right_icon = "",
+		space = 1,
+	},
+	modules = {
+		clock = { enabled = false },
+		cwd = { enabled = false },
+		hostname = { enabled = false },
+		leader = { enabled = false },
+		pane = { enabled = false },
+		spotify = { enabled = false },
+		tabs = { active_tab_fg = 4, inactive_tab_fg = 8 },
+		username = { enabled = false },
+		workspace = { enabled = false },
+	},
+})
 
 return config
