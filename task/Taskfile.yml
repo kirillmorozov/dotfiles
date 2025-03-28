@@ -7,9 +7,6 @@ vars:
   ALACRITTY_LIGHT_THEME: rose-pine-dawn
   GTK_DARK_THEME: Mint-Y-Dark-Red
   GTK_LIGHT_THEME: Mint-Y-Red
-  HELIX_CONFIG_DIR: ~/.config/helix
-  HELIX_DARK_THEME: rose_pine
-  HELIX_LIGHT_THEME: rose_pine_dawn
 
 tasks:
   change-theme-linux:
@@ -91,25 +88,11 @@ tasks:
           COLOR_SCHEME: prefer-light
           GTK_THEME: "{{.GTK_LIGHT_THEME}}"
 
-  light:helix:
-    cmds:
-      - task: change-theme-linux
-        vars:
-          NEW: "\"{{.HELIX_LIGHT_THEME}}\""
-          OLD: "\"{{.HELIX_DARK_THEME}}\""
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "\"{{.HELIX_LIGHT_THEME}}\""
-          OLD: "\"{{.HELIX_DARK_THEME}}\""
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
-
   light:
     desc: Switch to light theme.
     deps:
       - task: light:cinnamon
       - task: light:alacritty
-      - task: light:helix
 
   dark:alacritty:
     cmds:
@@ -141,22 +124,8 @@ tasks:
           GTK_THEME: "{{.GTK_DARK_THEME}}"
           COLOR_SCHEME: prefer-dark
 
-  dark:helix:
-    cmds:
-      - task: change-theme-linux
-        vars:
-          NEW: "\"{{.HELIX_DARK_THEME}}\""
-          OLD: "\"{{.HELIX_LIGHT_THEME}}\""
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "\"{{.HELIX_DARK_THEME}}\""
-          OLD: "\"{{.HELIX_LIGHT_THEME}}\""
-          WHERE: "{{.HELIX_CONFIG_DIR}}/config.toml"
-
   dark:
     desc: Switch to dark theme.
     deps:
       - task: dark:cinnamon
       - task: dark:alacritty
-      - task: dark:helix
