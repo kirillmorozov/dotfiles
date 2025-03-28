@@ -7,6 +7,8 @@ setlocal tabstop=2
 if executable("yamlfmt")
     setlocal formatprg=yamlfmt
                 \\ -formatter
+                \\ include_document_start=true
+                \\ -formatter
                 \\ max_line_length=80
                 \\ -formatter
                 \\ pad_line_comments=2
