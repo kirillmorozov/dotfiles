@@ -7,7 +7,6 @@ brew_packages:
   - fd
   - fzf
   - go-task
-  - helix
   - jq
   - lazygit
   - neovim
