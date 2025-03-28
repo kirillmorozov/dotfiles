@@ -36,5 +36,6 @@ rpm_packages:
   - neovim
   - ripgrep
   - vim
+  - wezterm
   - yq
   - zsh
