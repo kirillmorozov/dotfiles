@@ -41,7 +41,7 @@ wezterm.plugin
 	.apply_to_config(config, {
 		separator = {
 			field_icon = "",
-			left_icon = "❯",
+			left_icon = ">",
 			right_icon = "",
 			space = 1,
 		},
