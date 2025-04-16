@@ -47,9 +47,9 @@ filetype plugin indent on
 if has("termguicolors")
     set termguicolors
     try
-        colorscheme zaibatsu
+        colorscheme wildcharm
     catch /E185:/
-        " NOTE(kirillmorozov): zaibatsu may not be available on older vim
+        " NOTE(kirillmorozov): wildcharm may not be available on older vim
         " versions, fall back to habamax instead.
         colorscheme habamax
     endtry
