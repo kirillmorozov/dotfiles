@@ -126,7 +126,6 @@ set wildmenu
 
 " Key mappings
 " Search
-nmap <Esc> :nohlsearch<CR>
 nmap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
@@ -247,3 +246,10 @@ augroup Autoformat
     autocmd!
     autocmd BufWritePre * call <sid>FormatFile()
 augroup END
+
+" Built-in packages
+packadd comment
+packadd hlyank
+packadd nohlsearch
+
+let g:hlyank_duration = 150
