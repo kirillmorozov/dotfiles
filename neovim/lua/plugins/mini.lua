@@ -8,15 +8,8 @@ return {
 			end
 		end,
 		event = "UIEnter",
-		-- NOTE(kirillmorozov): opts is a table that holds config options for mini
-		-- modules.
 		opts = {
-			comment = {
-				mappings = {
-					comment_line = "<C-c>",
-					comment_visual = "<C-c>",
-				},
-			},
+			comment = {},
 			diff = {},
 			git = {},
 			statusline = { use_icons = true },
