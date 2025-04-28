@@ -180,7 +180,7 @@ map <leader>y "+y
 map <leader>p "+p
 map <leader><s-p> "+<s-p>
 " Make
-nmap <leader>m :make<space>
+nmap <leader>m :make<Space>
 
 if isdirectory(".git")
     set path+=**
