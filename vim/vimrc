@@ -179,6 +179,8 @@ nmap ]b :bnext<CR>
 map <leader>y "+y
 map <leader>p "+p
 map <leader><s-p> "+<s-p>
+" Make
+nmap <Leader>m :make<Space>
 
 if isdirectory(".git")
     set path+=**

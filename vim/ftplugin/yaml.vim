@@ -1,5 +1,7 @@
 compiler yamllint
+nmap <Leader>m :make<Space>%<CR>
 setlocal expandtab
+setlocal formatprg=yq\ '.'
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal tabstop=2
@@ -19,6 +21,4 @@ if executable("yamlfmt")
                 \\ -formatter
                 \\ scan_folded_as_literal=true
                 \\ -in
-elseif executable("yq")
-    setlocal formatprg=yq\ '.'
 endif
