@@ -9,7 +9,6 @@ return {
 		end,
 		event = "UIEnter",
 		opts = {
-			comment = {},
 			diff = {},
 			git = {},
 			statusline = { use_icons = true },
