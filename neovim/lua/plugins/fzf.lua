@@ -50,6 +50,11 @@ return {
 				"<cmd>FzfLua diagnostics_document<cr>",
 				desc = "List document diagnostics",
 			},
+			{
+				"<Leader>D",
+				"<Cmd>FzfLua diagnostics_workspace<CR>",
+				desc = "Workspace diagnostics",
+			},
 			{ "<leader>f", "<cmd>FzfLua files<cr>", desc = "Search for files" },
 			{
 				"<leader>h",
@@ -60,6 +65,11 @@ return {
 				"<leader>j",
 				"<cmd>FzfLua jumps<cr>",
 				desc = "List items from Vim's jumplist",
+			},
+			{
+				"<Leader>q",
+				"<Cmd>FzfLua quickfix<CR>",
+				desc = "Quickfix list",
 			},
 		},
 	},
