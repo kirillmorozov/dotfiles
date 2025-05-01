@@ -5,6 +5,23 @@ return {
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		opts = { "fzf-vim" },
 		keys = {
+			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Goto definition" },
+			{ "gr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
+			{
+				"gI",
+				"<cmd>FzfLua lsp_implementations<CR>",
+				desc = "Goto implementation",
+			},
+			{
+				"<Leader>s",
+				"<cmd>FzfLua lsp_document_symbols<CR>",
+				desc = "Document symbols",
+			},
+			{
+				"<leader>S",
+				"<cmd>FzfLua lsp_workspace_symbols<CR>",
+				"Open workspace symbols",
+			},
 			{
 				"<leader>'",
 				"<cmd>FzfLua resume<cr>",
