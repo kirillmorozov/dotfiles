@@ -47,3 +47,6 @@ vim.opt.scrolloff = 8
 
 -- Set highlight on search
 vim.opt.hlsearch = true
+
+-- Enable inlay hints
+vim.lsp.inlay_hint.enable()
