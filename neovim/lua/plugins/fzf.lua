@@ -25,8 +25,8 @@ return {
 				desc = "Document symbols",
 			},
 			{
-				"<leader>S",
-				"<cmd>FzfLua lsp_workspace_symbols<CR>",
+				"<Leader>S",
+				"<Cmd>FzfLua lsp_live_workspace_symbols<CR>",
 				"Open workspace symbols",
 			},
 			{
