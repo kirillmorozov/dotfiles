@@ -16,7 +16,7 @@ return {
 				"<Leader>s",
 				function()
 					local fzf = require("fzf-lua")
-					if vim.lsp.buf_is_attached() then
+					if vim.lsp.buf_is_attached(0) then
 						fzf.lsp_document_symbols()
 					else
 						fzf.treesitter()
