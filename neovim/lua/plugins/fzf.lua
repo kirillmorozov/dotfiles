@@ -14,7 +14,14 @@ return {
 			},
 			{
 				"<Leader>s",
-				"<cmd>FzfLua lsp_document_symbols<CR>",
+				function()
+					fzf = require("fzf-lua")
+					if vim.lsp.buf_is_attached() then
+						fzf.lsp_document_symbols()
+					else
+						fzf.treesitter()
+					end
+				end,
 				desc = "Document symbols",
 			},
 			{
