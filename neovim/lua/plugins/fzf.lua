@@ -15,7 +15,7 @@ return {
 			{
 				"<Leader>s",
 				function()
-					fzf = require("fzf-lua")
+					local fzf = require("fzf-lua")
 					if vim.lsp.buf_is_attached() then
 						fzf.lsp_document_symbols()
 					else
