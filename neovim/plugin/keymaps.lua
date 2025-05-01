@@ -3,8 +3,6 @@ vim.keymap.set("n", "<Esc>", vim.cmd.nohlsearch, { desc = "Clear highlight" })
 vim.keymap.set("n", "<leader>cc", vim.cmd.cclose, { desc = "Close quickfix list" })
 vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
 vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
-vim.keymap.set("n", "[q", vim.cmd.cprevious, { desc = "Previous item in a quickfix" })
-vim.keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next item in a quickfix" })
 vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
 
 -- Plus register yank/paste
@@ -25,32 +23,6 @@ vim.keymap.set(
 	"<leader><s-p>",
 	'"+<s-p>',
 	{ desc = "Put the text from the + register before the cursor" }
-)
-
--- Diagnostic keymaps
-vim.keymap.set(
-	"n",
-	"[d",
-	vim.diagnostic.goto_prev,
-	{ desc = "Go to previous Diagnostic message" }
-)
-vim.keymap.set(
-	"n",
-	"]d",
-	vim.diagnostic.goto_next,
-	{ desc = "Go to next diagnostic message" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>e",
-	vim.diagnostic.open_float,
-	{ desc = "Show diagnostic error messages" }
-)
-vim.keymap.set(
-	"n",
-	"<leader>q",
-	vim.diagnostic.setloclist,
-	{ desc = "Open diagnostic quickfix list" }
 )
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit
