@@ -2,9 +2,6 @@
 version: '3'
 
 vars:
-  ALACRITTY_CONFIG_DIR: ~/.config/alacritty
-  ALACRITTY_DARK_THEME: rose-pine
-  ALACRITTY_LIGHT_THEME: rose-pine-dawn
   GTK_DARK_THEME: Mint-Y-Dark-Red
   GTK_LIGHT_THEME: Mint-Y-Red
 
@@ -58,29 +55,6 @@ tasks:
       - gsettings set org.gnome.desktop.interface gtk-theme {{.GTK_THEME}}
       - gsettings set org.x.apps.portal color-scheme {{.COLOR_SCHEME}}
 
-  light:alacritty:
-    cmds:
-      - task: change-theme-linux
-        vars:
-          NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
-          OLD: "{{.ALACRITTY_DARK_THEME}}.yml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme-linux
-        vars:
-          NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "{{.ALACRITTY_LIGHT_THEME}}.yml"
-          OLD: "{{.ALACRITTY_DARK_THEME}}.yml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          OLD: "{{.ALACRITTY_DARK_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-
   light:cinnamon:
     cmds:
       - task: change-cinnamon-theme
@@ -92,30 +66,6 @@ tasks:
     desc: Switch to light theme.
     deps:
       - task: light:cinnamon
-      - task: light:alacritty
-
-  dark:alacritty:
-    cmds:
-      - task: change-theme-linux
-        vars:
-          NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
-          OLD: "{{.ALACRITTY_LIGHT_THEME}}.yml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme-linux
-        vars:
-          NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
-          OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "{{.ALACRITTY_DARK_THEME}}.yml"
-          OLD: "{{.ALACRITTY_LIGHT_THEME}}.yml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.yml"
-      - task: change-theme-darwin
-        vars:
-          NEW: "{{.ALACRITTY_DARK_THEME}}.toml"
-          OLD: "{{.ALACRITTY_LIGHT_THEME}}.toml"
-          WHERE: "{{.ALACRITTY_CONFIG_DIR}}/alacritty.toml"
 
   dark:cinnamon:
     cmds:
@@ -128,4 +78,3 @@ tasks:
     desc: Switch to dark theme.
     deps:
       - task: dark:cinnamon
-      - task: dark:alacritty
