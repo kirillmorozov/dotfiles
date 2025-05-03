@@ -17,6 +17,7 @@ return {
 				},
 			},
 		},
+		enabled = false,
 		event = { "BufNew", "BufRead" },
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.

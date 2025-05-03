@@ -49,3 +49,12 @@ vim.keymap.set(
 	"<C-w>",
 	{ desc = "Start window commands with <leader>w" }
 )
+
+-- LSP
+vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename all references" })
+vim.keymap.set(
+	"n",
+	"<leader>a",
+	vim.lsp.buf.code_action,
+	{ desc = "Select a code action" }
+)
