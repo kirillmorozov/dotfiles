@@ -65,3 +65,10 @@ vim.lsp.inlay_hint.enable()
 vim.diagnostic.config({
 	virtual_lines = { current_line = true },
 })
+
+vim.lsp.enable({
+	"gleam",
+	"gopls",
+	"ruff",
+	"terraform-ls",
+})
