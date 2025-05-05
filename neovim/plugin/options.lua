@@ -63,7 +63,7 @@ vim.lsp.inlay_hint.enable()
 
 -- Enable virtual lines
 vim.diagnostic.config({
-	virtual_lines = { current_line = true },
+	virtual_lines = { current_line = false },
 })
 
 vim.lsp.enable({
