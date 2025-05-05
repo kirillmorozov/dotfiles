@@ -2,9 +2,10 @@
 return {
 	"saghen/blink.cmp",
 	dependencies = "rafamadriz/friendly-snippets",
+	enabled = false,
 	event = "InsertEnter",
-	version = "v1.1.1",
 	opts_extend = { "sources.default" },
+	version = "v1.1.1",
 	opts = {
 		keymap = {
 			preset = "default",
