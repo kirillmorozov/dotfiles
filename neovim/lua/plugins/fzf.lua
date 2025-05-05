@@ -6,9 +6,9 @@ return {
 		opts = { "fzf-vim" },
 		keys = {
 			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Goto definition" },
-			{ "gr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
+			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
 			{
-				"gI",
+				"gri",
 				"<cmd>FzfLua lsp_implementations<CR>",
 				desc = "Goto implementation",
 			},
