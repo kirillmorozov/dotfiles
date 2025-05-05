@@ -66,9 +66,11 @@ vim.diagnostic.config({
 	virtual_lines = { current_line = false },
 })
 
+-- Enable LSP servers
 vim.lsp.enable({
 	"gleam",
 	"gopls",
+	"pylsp",
 	"ruff",
 	"terraform-ls",
 })
