@@ -5,6 +5,30 @@ return {
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		opts = { "fzf-vim" },
 		keys = {
+			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Goto definition" },
+			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
+			{
+				"gri",
+				"<cmd>FzfLua lsp_implementations<CR>",
+				desc = "Goto implementation",
+			},
+			{
+				"<Leader>s",
+				function()
+					local fzf = require("fzf-lua")
+					if vim.lsp.buf_is_attached(0) then
+						fzf.lsp_document_symbols()
+					else
+						fzf.treesitter()
+					end
+				end,
+				desc = "Document symbols",
+			},
+			{
+				"<Leader>S",
+				"<Cmd>FzfLua lsp_live_workspace_symbols<CR>",
+				"Open workspace symbols",
+			},
 			{
 				"<leader>'",
 				"<cmd>FzfLua resume<cr>",
@@ -26,6 +50,11 @@ return {
 				"<cmd>FzfLua diagnostics_document<cr>",
 				desc = "List document diagnostics",
 			},
+			{
+				"<Leader>D",
+				"<Cmd>FzfLua diagnostics_workspace<CR>",
+				desc = "Workspace diagnostics",
+			},
 			{ "<leader>f", "<cmd>FzfLua files<cr>", desc = "Search for files" },
 			{
 				"<leader>h",
@@ -36,6 +65,11 @@ return {
 				"<leader>j",
 				"<cmd>FzfLua jumps<cr>",
 				desc = "List items from Vim's jumplist",
+			},
+			{
+				"<Leader>q",
+				"<Cmd>FzfLua quickfix<CR>",
+				desc = "Quickfix list",
 			},
 		},
 	},

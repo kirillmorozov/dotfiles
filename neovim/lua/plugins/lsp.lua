@@ -17,6 +17,7 @@ return {
 				},
 			},
 		},
+		enabled = false,
 		event = { "BufNew", "BufRead" },
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
@@ -38,25 +39,8 @@ return {
 							{ buffer = event.buf, desc = "LSP: " .. desc }
 						)
 					end
-					local fzf = require("fzf-lua")
-					map("gd", fzf.lsp_definitions, "Goto definition")
-					map("gr", fzf.lsp_references, "Goto references")
-					map("gI", fzf.lsp_implementations, "Goto implementation")
-					map("<leader>s", fzf.lsp_document_symbols, "Document symbols")
-					map(
-						"<leader>S",
-						fzf.lsp_workspace_symbols,
-						"Open workspace symbols"
-					)
 					map("<leader>r", vim.lsp.buf.rename, "Rename all references")
 					map("<leader>a", vim.lsp.buf.code_action, "Select a code action")
-					map("<leader>k", vim.lsp.buf.hover, "Hover documentation")
-					map("gD", vim.lsp.buf.declaration, "Goto declaration")
-					vim.keymap.set("i", "<c-k>", vim.lsp.buf.signature_help, {
-						buffer = event.buf,
-						desc = "LSP: Display signature information",
-					})
-
 					-- The following two autocommands are used to highlight references of
 					-- the word under your cursor when your cursor rests there for a
 					-- little while. See `:help CursorHold` for information about when
