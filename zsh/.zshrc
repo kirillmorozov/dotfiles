@@ -126,4 +126,5 @@ alias e='eza -l --total-size --time-style long-iso --group-directories-first --i
 alias ea='e -a'
 alias et='e -T'
 
+export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 eval "$(starship init zsh)"

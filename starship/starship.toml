@@ -1,0 +1,5 @@
+[azure]
+disabled = false
+
+[kubernetes]
+disabled = false
