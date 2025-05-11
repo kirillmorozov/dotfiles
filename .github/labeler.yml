@@ -44,6 +44,11 @@ Vim:
       - any-glob-to-any-file:
           - vim/**/*
 
+Starship:
+  - changed-files:
+      - any-glob-to-any-file:
+          - starship/**/*
+
 Taskfile:
   - changed-files:
       - any-glob-to-any-file:
