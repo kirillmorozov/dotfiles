@@ -5,6 +5,8 @@ directory_mapping:
     target: "{{ xdg_config_home }}/alacritty"
   - source: "{{ playbook_dir }}/neovim"
     target: "{{ xdg_config_home }}/nvim"
+  - source: "{{ playbook_dir }}/starship"
+    target: "{{ xdg_config_home }}/starship"
   - source: "{{ playbook_dir }}/vim"
     target: "{{ xdg_config_home }}/vim"
   - source: "{{ playbook_dir }}/wezterm"
