@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("rose-pine")
+vim.cmd.colorscheme("ayu")
 
 -- Make line numbers default
 vim.opt.number = true
