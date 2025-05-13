@@ -73,4 +73,5 @@ vim.lsp.enable({
 	"pylsp",
 	"ruff",
 	"terraform-ls",
+	"ty",
 })
