@@ -7,6 +7,7 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		priority = 1000,
+		version = "*",
 	},
 	{
 		"rose-pine/neovim",
@@ -19,5 +20,6 @@ return {
 				transparency = false,
 			},
 		},
+		version = "*",
 	},
 }

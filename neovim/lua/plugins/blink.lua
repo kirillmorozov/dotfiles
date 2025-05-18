@@ -4,7 +4,7 @@ return {
 	dependencies = "rafamadriz/friendly-snippets",
 	event = "InsertEnter",
 	opts_extend = { "sources.default" },
-	version = "v1.1.1",
+	version = "*",
 	opts = {
 		cmdline = { enabled = false },
 		completion = {

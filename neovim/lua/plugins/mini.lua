@@ -14,5 +14,6 @@ return {
 			statusline = { use_icons = true },
 			surround = {},
 		},
+		version = "*",
 	},
 }

@@ -3,10 +3,12 @@ return {
 	{ "fei6409/log-highlight.nvim", event = "BufRead *.log", opts = {} },
 	{
 		"nvim-treesitter/nvim-treesitter",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
 		build = ":TSUpdate",
+		config = function(_, opts)
+			---@diagnostic disable-next-line: missing-fields
+			require("nvim-treesitter.configs").setup(opts)
+		end,
+		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		event = { "BufNew", "BufRead" },
 		opts = {
 			ensure_installed = {
@@ -108,9 +110,6 @@ return {
 			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
-		config = function(_, opts)
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup(opts)
-		end,
+		version = "*",
 	},
 }

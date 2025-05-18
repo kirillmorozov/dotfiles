@@ -3,7 +3,6 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
-		opts = { "fzf-vim" },
 		keys = {
 			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Goto definition" },
 			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
@@ -72,5 +71,7 @@ return {
 				desc = "Quickfix list",
 			},
 		},
+		opts = { "fzf-vim" },
+		version = "*",
 	},
 }
