@@ -60,7 +60,7 @@ vim.opt.hlsearch = true
 
 -- Enable virtual lines
 vim.diagnostic.config({
-	virtual_lines = { current_line = false },
+	virtual_lines = { current_line = true },
 })
 
 -- Enable LSP servers
