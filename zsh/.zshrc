@@ -95,6 +95,7 @@ export BAT_THEME="base16"
 
 # Once Vim always Vim
 export EDITOR='vim'
+export MANPAGER="vim +MANPAGER --not-a-term -"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
