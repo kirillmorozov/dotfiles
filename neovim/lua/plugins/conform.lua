@@ -2,8 +2,8 @@
 return {
 	{
 		"stevearc/conform.nvim",
-		event = "BufWritePre",
 		cmd = "ConformInfo",
+		event = "BufWritePre",
 		opts = {
 			notify_on_error = true,
 			format_on_save = function(bufnr)
@@ -59,5 +59,6 @@ return {
 				yaml = { "yamlfmt", "yq", stop_after_first = true },
 			},
 		},
+		version = "*",
 	},
 }

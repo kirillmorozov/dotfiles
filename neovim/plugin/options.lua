@@ -1,3 +1,5 @@
+vim.cmd.colorscheme("rose-pine")
+
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -31,10 +33,18 @@ vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 vim.opt.list = true
-vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.listchars = {
+	extends = "›",
+	lead = " ",
+	multispace = "·",
+	nbsp = "␣",
+	precedes = "‹",
+	tab = "» ",
+	trail = "·",
+}
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = "split"
+vim.opt.inccommand = "nosplit"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -47,3 +57,18 @@ vim.opt.scrolloff = 8
 
 -- Set highlight on search
 vim.opt.hlsearch = true
+
+-- Enable virtual lines
+vim.diagnostic.config({
+	virtual_lines = { current_line = true },
+})
+
+-- Enable LSP servers
+vim.lsp.enable({
+	"gleam",
+	"gopls",
+	"pylsp",
+	"ruff",
+	"terraform-ls",
+	"ty",
+})
