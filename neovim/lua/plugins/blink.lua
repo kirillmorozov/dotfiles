@@ -7,12 +7,6 @@ return {
 	version = "*",
 	opts = {
 		cmdline = { enabled = false },
-		completion = {
-			trigger = {
-				show_on_keyword = false,
-				show_on_trigger_character = false,
-			},
-		},
 		keymap = {
 			preset = "default",
 			["<C-n>"] = { "show", "select_next", "fallback_to_mappings" },
