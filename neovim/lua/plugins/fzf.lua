@@ -4,12 +4,18 @@ return {
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		keys = {
-			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Goto definition" },
-			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Goto references" },
+			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Go to definition" },
+			{ "gy", "<cmd>FzfLua lsp_typedefs<CR>", desc = "Go to type definition" },
+			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Go to references" },
 			{
 				"gri",
 				"<cmd>FzfLua lsp_implementations<CR>",
 				desc = "Goto implementation",
+			},
+			{
+				"<Leader>a",
+				"<cmd>FzfLua lsp_code_actions<CR>",
+				desc = "Go to references",
 			},
 			{
 				"<Leader>s",
@@ -29,23 +35,23 @@ return {
 				"Open workspace symbols",
 			},
 			{
-				"<leader>'",
+				"<Leader>'",
 				"<cmd>FzfLua resume<cr>",
 				desc = "Opens the previous picker",
 			},
 			{
-				"<leader>/",
+				"<Leader>/",
 				"<cmd>FzfLua live_grep<cr>",
 				desc = "Search for a string and get results live",
 			},
 			{
-				"<leader>?",
+				"<Leader>?",
 				"<cmd>FzfLua commands<cr>",
 				desc = "List available commands",
 			},
-			{ "<leader>b", "<cmd>FzfLua buffers<cr>", desc = "List open buffers" },
+			{ "<Leader>b", "<cmd>FzfLua buffers<cr>", desc = "List open buffers" },
 			{
-				"<leader>d",
+				"<Leader>d",
 				"<cmd>FzfLua diagnostics_document<cr>",
 				desc = "List document diagnostics",
 			},
