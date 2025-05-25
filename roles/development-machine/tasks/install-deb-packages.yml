@@ -1,0 +1,22 @@
+---
+- name: Get GitHub CLI archive keyring
+  become: true
+  register: gh_cli_keyring
+  ansible.builtin.get_url:
+    dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+- name: Add GitHub CLI repository
+  become: true
+  ansible.builtin.apt_repository:
+    filename: gh-cli
+    state: present
+    repo: >-
+      deb [arch={{ arch_map[ansible_architecture] }}
+      signed-by={{ gh_cli_keyring.dest }}]
+      https://cli.github.com/packages stable main
+- name: Linux Mint packages installed
+  become: true
+  ansible.builtin.apt:
+    package: "{{ deb_packages }}"
+    state: latest
+    update_cache: true
