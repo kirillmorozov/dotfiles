@@ -120,10 +120,14 @@ alias ea='e -a'
 alias et='e -T'
 
 switch_cinnamon_theme() {
-  gsettings set org.cinnamon.desktop.interface gtk-theme "${GTK_THEME}"
+  if ! command -v gsettings; then
+    echo "gsettings is not available" >&2
+    return 1
+  fi
+  gsettings set org.cinnamon.desktop.interface gtk-theme "${GTK_THEME:?variable is not set}"
   gsettings set org.cinnamon.theme name "${GTK_THEME}"
   gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME}"
-  gsettings set org.x.apps.portal color-scheme "${COLOR_SCHEME}"
+  gsettings set org.x.apps.portal color-scheme "${COLOR_SCHEME:?variable is not set}"
 }
 
 li() {
