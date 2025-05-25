@@ -1,67 +1,8 @@
 ---
-completions_path: ~/.oh-my-zsh/custom/completions
-dest_per_system:
-  Darwin: ~/Library/Fonts/
-  Linux: ~/.local/share/fonts
-fonts:
-  - archive: CascadiaCode.zip
-    name_prefix: CaskaydiaCoveNerdFont
-  - archive: FiraCode.zip
-    name_prefix: FiraCodeNerdFont
-version: v3.2.1
 arch_map:
   aarch64: arm64
   x86_64: amd64
+completions_path: ~/.oh-my-zsh/custom/completions
 local_bin_dir: ~/.local/bin
-brew_packages:
-  - fd
-  - fzf
-  - go-task
-  - jq
-  - lazygit
-  - neovim
-  - ripgrep
-  - starship
-  - yq
-deb_packages:
-  - fd-find
-  - fzf
-  - gh
-  - git
-  - jq
-  - neovim
-  - ripgrep
-  - task
-  - vim
-  - yq
-  - zsh
-rpm_packages:
-  - alacritty
-  - fd-find
-  - fzf
-  - gh
-  - git
-  - go-task
-  - jq
-  - neovim
-  - ripgrep
-  - vim
-  - wezterm
-  - yq
-  - zsh
 xdg_config_home: ~/.config
-directory_mapping:
-  - source: "{{ playbook_dir }}/alacritty"
-    target: "{{ xdg_config_home }}/alacritty"
-  - source: "{{ playbook_dir }}/neovim"
-    target: "{{ xdg_config_home }}/nvim"
-  - source: "{{ playbook_dir }}/starship"
-    target: "{{ xdg_config_home }}/starship"
-  - source: "{{ playbook_dir }}/vim"
-    target: "{{ xdg_config_home }}/vim"
-  - source: "{{ playbook_dir }}/wezterm"
-    target: "{{ xdg_config_home }}/wezterm"
-  - source: "{{ playbook_dir }}/task"
-    target: "~"
-  - source: "{{ playbook_dir }}/zsh"
-    target: "~"
+xdg_data_home: ~/.local/share

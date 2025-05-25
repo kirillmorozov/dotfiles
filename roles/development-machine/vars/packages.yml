@@ -1,0 +1,37 @@
+---
+brew_packages:
+  - fd
+  - fzf
+  - go-task
+  - jq
+  - lazygit
+  - neovim
+  - ripgrep
+  - starship
+  - yq
+deb_packages:
+  - fd-find
+  - fzf
+  - gh
+  - git
+  - jq
+  - neovim
+  - ripgrep
+  - task
+  - vim
+  - yq
+  - zsh
+rpm_packages:
+  - alacritty
+  - fd-find
+  - fzf
+  - gh
+  - git
+  - go-task
+  - jq
+  - neovim
+  - ripgrep
+  - vim
+  - wezterm
+  - yq
+  - zsh

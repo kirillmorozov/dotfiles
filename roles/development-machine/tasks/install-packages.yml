@@ -1,4 +1,7 @@
 ---
+- name: Include package lists
+  ansible.builtin.include_vars:
+    file: packages.yml
 - name: Install macOS packages
   ansible.builtin.import_tasks: install-macos-packages.yml
   when: ansible_distribution == "MacOSX"
