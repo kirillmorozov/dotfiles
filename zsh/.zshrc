@@ -115,11 +115,28 @@ if command -v go-task &> /dev/null; then
 	alias task="go-task"
 fi
 alias lg="lazygit"
-alias li="task -g light"
-alias da="task -g dark"
 alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
 alias ea='e -a'
 alias et='e -T'
+
+switch_cinnamon_theme() {
+  gsettings set org.cinnamon.desktop.interface gtk-theme "${GTK_THEME}"
+  gsettings set org.cinnamon.theme name "${GTK_THEME}"
+  gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME}"
+  gsettings set org.x.apps.portal color-scheme "${COLOR_SCHEME}"
+}
+
+li() {
+  local GTK_THEME=Mint-Y-Red
+  local COLOR_SCHEME=prefer-light
+  switch_cinnamon_theme
+}
+
+da() {
+  local GTK_THEME=Mint-Y-Dark-Red
+  local COLOR_SCHEME=prefer-dark
+  switch_cinnamon_theme
+}
 
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 eval "$(starship init zsh)"
