@@ -1,9 +1,0 @@
----
-- name: Stow config files
-  ansible.builtin.include_tasks: stow.yml
-  loop: "{{ directory_mapping }}"
-  loop_control:
-    loop_var: app_config
-  vars:
-    src_dir: "{{ app_config.source }}"
-    target_dir: "{{ app_config.target }}"
