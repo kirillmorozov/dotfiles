@@ -119,6 +119,12 @@ alias e='eza -l --total-size --time-style long-iso --group-directories-first --i
 alias ea='e -a'
 alias et='e -T'
 
+########################################
+# Switch cinnamon theme using gsettings.
+# Global:
+#   GTK_THEME:
+#   COLOR_SCHEME:
+########################################
 switch_cinnamon_theme() {
   if ! command -v gsettings; then
     echo "gsettings is not available" >&2
