@@ -122,8 +122,8 @@ alias et='e -T'
 ########################################
 # Switch cinnamon theme using gsettings.
 # Global:
-#   GTK_THEME:
-#   COLOR_SCHEME:
+#   COLOR_SCHEME: Could be either 'prefer-light' or 'prefer-dark'.
+#   GTK_THEME: A GTK theme to use for the interface.
 ########################################
 switch_cinnamon_theme() {
   if ! command -v gsettings &> /dev/null; then
