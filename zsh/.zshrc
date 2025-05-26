@@ -130,6 +130,14 @@ switch_cinnamon_theme() {
     echo "gsettings is not available" >&2
     return 1
   fi
+  case "${COLOR_SCHEME:?variable is not set}" in
+    prefer-light | prefer-dark) ;;
+    *)
+      echo "Invalid COLOR_SCHEME value, must be either prefer-light or prefer-dark" >&2
+      return 1
+      ;;
+  esac
+
   gsettings set org.cinnamon.desktop.interface gtk-theme "${GTK_THEME:?variable is not set}"
   gsettings set org.cinnamon.theme name "${GTK_THEME}"
   gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME}"
