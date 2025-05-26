@@ -126,7 +126,7 @@ alias et='e -T'
 #   COLOR_SCHEME:
 ########################################
 switch_cinnamon_theme() {
-  if ! command -v gsettings; then
+  if ! command -v gsettings &> /dev/null; then
     echo "gsettings is not available" >&2
     return 1
   fi
