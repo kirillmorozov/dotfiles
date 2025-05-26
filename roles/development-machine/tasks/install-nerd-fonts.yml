@@ -1,0 +1,9 @@
+---
+- name: Include variables
+  ansible.builtin.include_vars:
+    file: fonts.yml
+- name: Install Nerd Fonts
+  ansible.builtin.include_tasks: install-nerd-font.yml
+  loop: "{{ fonts }}"
+  loop_control:
+    loop_var: font

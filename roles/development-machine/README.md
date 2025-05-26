@@ -1,21 +1,19 @@
 Role Name
 =========
 
-Install Zsh completions for the tools don't have Oh My Zsh plugin.
+Provision my development machine.
 
 Requirements
 ------------
 
-- brew
-- fd
-- rg
-- task
+- [brew](https://brew.sh) on macOS.
 
 Role Variables
 --------------
 
 - `completions_path`: A path to install completions to. Should be included into
   `$FPATH`.
+- `local_bin_dir`: A directory executables will be installed to.
 
 Dependencies
 ------------
@@ -26,7 +24,7 @@ Example Playbook
 ```yaml
     - hosts: localhost
       roles:
-         - install-completions
+         - development-machine
 ```
 
 License

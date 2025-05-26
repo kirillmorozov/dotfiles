@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  ansible.builtin.import_tasks: install-packages.yml
+- name: Install completions
+  ansible.builtin.import_tasks: install-completions.yml
+- name: Install fonts
+  ansible.builtin.import_tasks: install-nerd-fonts.yml
+- name: Link configs
+  ansible.builtin.import_tasks: link-configs.yml
+- name: Change shell
+  ansible.builtin.import_tasks: change-shell.yml

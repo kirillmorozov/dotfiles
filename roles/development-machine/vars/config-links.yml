@@ -1,5 +1,4 @@
 ---
-xdg_config_home: ~/.config
 directory_mapping:
   - source: "{{ playbook_dir }}/alacritty"
     target: "{{ xdg_config_home }}/alacritty"

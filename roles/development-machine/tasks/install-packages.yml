@@ -1,15 +1,18 @@
 ---
+- name: Include package lists
+  ansible.builtin.include_vars:
+    file: packages.yml
 - name: Install macOS packages
-  ansible.builtin.import_tasks: install-macos-packages.yml
+  ansible.builtin.include_tasks: install-macos-packages.yml
   when: ansible_distribution == "MacOSX"
 - name: Install deb packages
-  ansible.builtin.import_tasks: install-deb-packages.yml
+  ansible.builtin.include_tasks: install-deb-packages.yml
   when: ansible_distribution == "Linux Mint"
 - name: Install rpm packages
-  ansible.builtin.import_tasks: install-rpm-packages.yml
+  ansible.builtin.include_tasks: install-rpm-packages.yml
   when: ansible_distribution == "Fedora"
 - name: Install Starship
-  ansible.builtin.import_tasks: install-starship.yml
+  ansible.builtin.include_tasks: install-starship.yml
   when: ansible_system == "Linux"
 - name: Install Oh My Zsh
   ansible.builtin.command:
