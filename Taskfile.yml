@@ -1,9 +1,6 @@
 ---
 version: '3'
 
-includes:
-  theme: task/Taskfile.yml
-
 tasks:
   bootstrap:
     desc: Bootstrap dotfiles
