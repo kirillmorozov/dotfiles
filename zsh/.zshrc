@@ -109,10 +109,10 @@ export MANPAGER="vim +MANPAGER --not-a-term -"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 if command -v fdfind &> /dev/null; then
-	alias fd="fdfind"
+  alias fd="fdfind"
 fi
 if command -v go-task &> /dev/null; then
-	alias task="go-task"
+  alias task="go-task"
 fi
 alias lg="lazygit"
 alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
