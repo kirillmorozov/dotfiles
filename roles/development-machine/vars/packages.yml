@@ -31,10 +31,15 @@ rpm_packages:
   - gh
   - git
   - go-task
+  - golang
+  - gopls
   - jq
   - neovim
+  - podman
   - ripgrep
+  - uv
   - vim
+  - vim-X11
   - wezterm
   - yq
   - zsh
