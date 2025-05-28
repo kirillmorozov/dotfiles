@@ -11,6 +11,8 @@ brew_packages:
   - neovim
   - ripgrep
   - starship
+  - uv
+  - vim
   - yq
 deb_packages:
   - fd-find
