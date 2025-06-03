@@ -15,7 +15,4 @@
   ansible.builtin.include_tasks: install-starship.yml
   when: ansible_system == "Linux"
 - name: Install Oh My Zsh
-  ansible.builtin.command:
-    # yamllint disable-line rule:line-length
-    cmd: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    creates: ~/.oh-my-zsh
+  ansible.builtin.include_tasks: install-ohmyzsh.yml
