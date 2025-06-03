@@ -17,6 +17,17 @@
 - name: Linux Mint packages installed
   become: true
   ansible.builtin.apt:
-    package: "{{ deb_packages }}"
     state: latest
     update_cache: true
+    package:
+      - fd-find
+      - fzf
+      - gh
+      - git
+      - jq
+      - neovim
+      - ripgrep
+      - task
+      - vim
+      - yq
+      - zsh
