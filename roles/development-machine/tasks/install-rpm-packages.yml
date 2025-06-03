@@ -15,5 +15,23 @@
 - name: Fedora packages installed
   become: true
   ansible.builtin.dnf:
-    pkg: "{{ rpm_packages }}"
     state: latest
+    pkg:
+      - alacritty
+      - fd-find
+      - fzf
+      - gh
+      - git
+      - go-task
+      - golang
+      - gopls
+      - jq
+      - neovim
+      - podman
+      - ripgrep
+      - uv
+      - vim
+      - vim-X11
+      - wezterm
+      - yq
+      - zsh
