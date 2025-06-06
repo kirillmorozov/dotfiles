@@ -1,0 +1,11 @@
+[
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "ctrl-g": "git_panel::ToggleFocus",
+      "ctrl-s": "workspace::Save",
+      "space b": "tab_switcher::ToggleAll",
+      "space f": "file_finder::Toggle"
+    }
+  }
+]
