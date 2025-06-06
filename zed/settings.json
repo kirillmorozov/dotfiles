@@ -1,0 +1,46 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette
+{
+  "auto_install_extensions": {
+    "rose-pine-theme": true
+  },
+  "features": {
+    "edit_prediction_provider": "none"
+  },
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "buffer_font_family": "FiraCode Nerd Font",
+  "ui_font_family": "FiraCode Nerd Font",
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always",
+    "use_multiline_find": false,
+    "use_smartcase_find": true,
+    "highlight_on_yank_duration": 100,
+    "custom_digraphs": {}
+  },
+  "soft_wrap": "preferred_line_length",
+  "theme": {
+    "mode": "system",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark"
+  },
+  "languages": {
+    "Elm": {
+      "formatter": {
+        "external": {
+          "command": "elm-format",
+          "arguments": ["--yes", "--stdin"]
+        }
+      }
+    }
+  }
+}
+
