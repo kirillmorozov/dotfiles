@@ -7,11 +7,19 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "agent": {
+    "model_parameters": [],
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4.1"
+    },
+    "version": "2"
+  },
   "auto_install_extensions": {
     "rose-pine-theme": true
   },
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "copilot"
   },
   "ui_font_size": 14,
   "buffer_font_size": 14,
@@ -43,4 +51,3 @@
     }
   }
 }
-
