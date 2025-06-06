@@ -15,6 +15,10 @@
     },
     "version": "2"
   },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
   "auto_install_extensions": {
     "rose-pine-theme": true
   },
