@@ -41,6 +41,21 @@
     "dark": "Rosé Pine"
   },
   "languages": {
+    "Go": {
+      "formatter": {
+        "external": {
+          "command": "gofumpt"
+        }
+      }
+    },
+    "Shell Script": {
+      "formatter": {
+        "external": {
+          "command": "shfmt",
+          "arguments": ["-i", "2", "-ci", "-bn", "-sr"]
+        }
+      }
+    },
     "Elm": {
       "formatter": {
         "external": {
