@@ -123,6 +123,8 @@ set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
 set wildmenu
+" Hide noise in completion
+set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 
 " Key mappings
 " Search
