@@ -123,6 +123,8 @@ set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
 set wildmenu
+" Hide noise in completion
+set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 
 " Key mappings
 " Search
@@ -130,7 +132,7 @@ nmap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 " General navigation
-nnoremap <leader>b :buffer<Space>
+nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :help<Space>
@@ -195,19 +197,6 @@ if executable("rg")
                 \\ --hidden
                 \\ --glob
                 \\ '!.git/**'
-endif
-
-" If fzf is available use its built-in Vim plugin for file navigation
-if executable("fzf")
-    set rtp+=/opt/homebrew/opt/fzf  " for macOS and fzf installed via brew
-    set rtp+=/usr/share/doc/fzf/examples  " for Debian and fzf installed via apt
-    " NOTE(kirillmorozov): fzf.vim might not exist in the runtimepath so I
-    " explicitly read Ex commands from the plugin and check FZF command
-    " existence before adding a key map.
-    runtime plugin/fzf.vim
-    if exists(':FZF') == 2
-        nnoremap <leader>f :FZF<CR>
-    endif
 endif
 
 " Set up Git TUI client
