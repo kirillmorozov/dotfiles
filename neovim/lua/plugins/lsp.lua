@@ -17,7 +17,6 @@ return {
 				},
 			},
 		},
-		enabled = false,
 		event = { "BufNew", "BufRead" },
 		config = function()
 			-- This function gets run when an LSP attaches to a particular buffer.
@@ -39,8 +38,6 @@ return {
 							{ buffer = event.buf, desc = "LSP: " .. desc }
 						)
 					end
-					map("<leader>r", vim.lsp.buf.rename, "Rename all references")
-					map("<leader>a", vim.lsp.buf.code_action, "Select a code action")
 					-- The following two autocommands are used to highlight references of
 					-- the word under your cursor when your cursor rests there for a
 					-- little while. See `:help CursorHold` for information about when

@@ -69,6 +69,6 @@ vim.lsp.enable({
 	"gopls",
 	"pylsp",
 	"ruff",
-	"terraform-ls",
+	"terraformls",
 	"ty",
 })
