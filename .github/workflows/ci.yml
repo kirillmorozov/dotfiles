@@ -28,3 +28,6 @@ jobs:
             --column-width 88
             --quote-style AutoPreferDouble
             --check .
+
+      - name: Ansible lint
+        uses: ansible/ansible-lint@v25.6.1
