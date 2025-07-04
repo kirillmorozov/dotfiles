@@ -14,6 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.1
 
+      - name: yamllint
+        uses: karancode/yamllint-github-action@v2.1.1
+        with:
+          yamllint_strict: true
+
       - name: StyLua
         uses: JohnnyMorganz/stylua-action@v4.1.0
         with:
