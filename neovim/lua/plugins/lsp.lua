@@ -4,10 +4,14 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Useful status updates for LSP.
-			{ "j-hui/fidget.nvim" },
+			{
+				"j-hui/fidget.nvim",
+				version = "*",
+			},
 			{
 				"folke/lazydev.nvim",
 				ft = "lua", -- only load on lua files
+				version = "*",
 				opts = {
 					library = {
 						-- See the configuration section for more details Load luvit types
@@ -18,5 +22,6 @@ return {
 			},
 		},
 		event = { "BufNew", "BufRead" },
+		version = "*",
 	},
 }
