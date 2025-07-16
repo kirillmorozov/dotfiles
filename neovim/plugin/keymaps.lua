@@ -58,3 +58,14 @@ vim.keymap.set(
 	vim.lsp.buf.code_action,
 	{ desc = "Select a code action" }
 )
+
+-- Move text up and down
+vim.keymap.set("n", "<A-j>", "<Cmd>m<Space>.+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-k>", "<Cmd>m<Space>.-2<CR>==", { desc = "Move line up" })
+vim.keymap.set(
+	"v",
+	"<A-j>",
+	"<Cmd>m<Space>'>+1<CR>gv",
+	{ desc = "Move selection down" }
+)
+vim.keymap.set("v", "<A-k>", "<Cmd>m<Space>'<-2<CR>gv", { desc = "Move selection up" })
