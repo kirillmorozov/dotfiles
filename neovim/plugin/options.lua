@@ -63,6 +63,10 @@ vim.diagnostic.config({
 	virtual_lines = { current_line = true },
 })
 
+-- Highlight matching brackets
+vim.opt.showmatch = true
+vim.opt.matchtime = 2
+
 -- Enable LSP servers
 vim.lsp.enable({
 	"gleam",
