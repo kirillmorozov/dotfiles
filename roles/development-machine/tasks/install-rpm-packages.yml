@@ -18,6 +18,7 @@
     state: latest
     pkg:
       - alacritty
+      - btop
       - fd-find
       - fzf
       - gh

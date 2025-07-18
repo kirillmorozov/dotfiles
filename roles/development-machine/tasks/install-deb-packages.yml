@@ -20,6 +20,7 @@
     state: latest
     update_cache: true
     package:
+      - btop
       - fd-find
       - fzf
       - gh
