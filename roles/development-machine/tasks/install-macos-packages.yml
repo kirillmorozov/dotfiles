@@ -3,6 +3,7 @@
   community.general.homebrew:
     state: latest
     package:
+      - btop
       - fd
       - fzf
       - go-task
