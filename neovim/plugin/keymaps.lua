@@ -69,3 +69,6 @@ vim.keymap.set(
 	{ desc = "Move selection down" }
 )
 vim.keymap.set("v", "<A-k>", "<Cmd>m<Space>'<-2<CR>gv", { desc = "Move selection up" })
+
+-- Open in split
+vim.keymap.set("n", "gsf", "<C-w>vgf", { desc = "Go to file in a split" })
