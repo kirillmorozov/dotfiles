@@ -145,10 +145,10 @@ nmap <C-L> <c-w>l
 " Open in a split
 nmap gsf <C-w>vgf
 " Moving selected lines
-nmap <A-j> <Cmd>m<Space>.+1<CR>==
-nmap <A-k> <Cmd>m<Space>.-2<CR>==
-vmap <A-j> :m<Space>'>+1<CR>gv=gv
-vmap <A-k> :m<Space>'<-2<CR>gv=gv
+nmap <A-Down> <Cmd>m<Space>.+1<CR>==
+nmap <A-Up> <Cmd>m<Space>.-2<CR>==
+vmap <A-Down> :m<Space>'>+1<CR>gv=gv
+vmap <A-Up> :m<Space>'<-2<CR>gv=gv
 " Quickfix list navigation
 nmap <leader>cc :cclose<CR>
 nmap <leader>co :copen<CR>
