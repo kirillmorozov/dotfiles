@@ -58,3 +58,12 @@ vim.keymap.set(
 	vim.lsp.buf.code_action,
 	{ desc = "Select a code action" }
 )
+
+-- Move text up and down
+vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down" })
+vim.keymap.set("n", "<A-Up>", ":m .-2<CR>==", { desc = "Move line up" })
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+
+-- Open in split
+vim.keymap.set("n", "gsf", "<C-w>vgf", { desc = "Go to file in a split" })

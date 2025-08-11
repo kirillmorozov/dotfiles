@@ -5,6 +5,11 @@ return {
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
 		keys = {
 			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Go to definition" },
+			{
+				"gsd",
+				"<cmd>vsplit | FzfLua lsp_definitions<CR>",
+				desc = "Go to definition in a split",
+			},
 			{ "gy", "<cmd>FzfLua lsp_typedefs<CR>", desc = "Go to type definition" },
 			{ "grr", "<cmd>FzfLua lsp_references<CR>", desc = "Go to references" },
 			{
