@@ -245,10 +245,7 @@ augroup Autoformat
     autocmd BufWritePre * call <sid>FormatFile()
 augroup END
 
-" Enable built-in packages
-packadd comment
-packadd hlyank
-packadd nohlsearch
-
-" Packages configuration
-let g:hlyank_duration = 150
+" Enable built-in packages(might not be available on some distributions)
+silent! packadd comment
+silent! packadd hlyank | let g:hlyank_duration = 150
+silent! packadd nohlsearch
