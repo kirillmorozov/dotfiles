@@ -247,9 +247,8 @@ augroup Autoformat
 augroup END
 
 " Enable built-in packages
-packadd comment
-packadd hlyank
-packadd nohlsearch
+silent! packadd comment
+silent! packadd hlyank | let g:hlyank_duration = 150
+silent! packadd nohlsearch
 
 " Packages configuration
-let g:hlyank_duration = 150
