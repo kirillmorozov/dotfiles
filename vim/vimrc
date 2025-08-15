@@ -46,13 +46,14 @@ filetype plugin indent on
 
 if has("termguicolors")
     set termguicolors
-    try
-        colorscheme wildcharm
-    catch /E185:/
-        " NOTE(kirillmorozov): wildcharm may not be available on older vim
-        " versions, fall back to habamax instead.
-        colorscheme habamax
-    endtry
+    for s:cs in ["wildcharm", "zaibatsu", "habamax", "default"]
+        try
+            execute 'colorscheme ' . s:cs
+            break
+        catch /E185:/
+            " colorscheme not found, try next
+        endtry
+    endfor
 else
     colorscheme default
 endif
@@ -250,5 +251,3 @@ augroup END
 silent! packadd comment
 silent! packadd hlyank | let g:hlyank_duration = 150
 silent! packadd nohlsearch
-
-" Packages configuration
