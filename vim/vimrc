@@ -46,13 +46,14 @@ filetype plugin indent on
 
 if has("termguicolors")
     set termguicolors
-    try
-        colorscheme wildcharm
-    catch /E185:/
-        " NOTE(kirillmorozov): wildcharm may not be available on older vim
-        " versions, fall back to habamax instead.
-        colorscheme habamax
-    endtry
+    for s:cs in ["wildcharm", "zaibatsu", "habamax", "default"]
+        try
+            execute 'colorscheme ' . s:cs
+            break
+        catch /E185:/
+            " colorscheme not found, try next
+        endtry
+    endfor
 else
     colorscheme default
 endif
@@ -215,40 +216,38 @@ if executable("lazygit")
     nmap <c-g> :call Git()<cr>
 endif
 
-function! s:Format(...)
-    silent keepjumps normal! '[v']gq
+" Autoformat
+function! s:FormatRange(first, last) abort
+  if empty(&l:formatprg)
+    echohl WarningMsg | echomsg 'formatprg is not set for this buffer' | echohl None
+    return
+  endif
+  let l:view = winsaveview()
+  try
+    silent keepjumps keepmarks keeppatterns execute a:first . ',' . a:last . 'normal! gq'
     if v:shell_error > 0
-        silent undo
-        echohl ErrorMsg
-        echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-        echohl None
+      silent undo
+      echoerr 'formatprg "' . &l:formatprg . '" exited with status ' . v:shell_error
+    else
+      silent! undojoin
     endif
+  finally
+    call winrestview(l:view)
+  endtry
 endfunction
 
-function! s:FormatFile() abort
-    if &l:formatprg==""
-        echomsg 'formatprg is not set for the this buffer'
-        return
-    endif
-    let w:view = winsaveview()
-    keepjumps normal! gg
-    set operatorfunc=<SID>Format
-    keepjumps normal! g@G
-    keepjumps call winrestview(w:view)
-    unlet w:view
+function! s:OpFormat(type, ...) abort
+  call s:FormatRange(line("'["), line("']"))
 endfunction
 
-command Fmt :call <sid>FormatFile()
+command! -range=% -bar Fmt call s:FormatRange(<line1>, <line2>)
 
 augroup Autoformat
-    autocmd!
-    autocmd BufWritePre * call <sid>FormatFile()
+  autocmd!
+  autocmd BufWritePre * silent! Fmt
 augroup END
 
 " Enable built-in packages
-packadd comment
-packadd hlyank
-packadd nohlsearch
-
-" Packages configuration
-let g:hlyank_duration = 150
+silent! packadd comment
+silent! packadd hlyank | let g:hlyank_duration = 150
+silent! packadd nohlsearch
