@@ -216,35 +216,34 @@ if executable("lazygit")
     nmap <c-g> :call Git()<cr>
 endif
 
-" Autoformat
-function! s:FormatRange(first, last) abort
-  if empty(&l:formatprg)
-    echohl WarningMsg | echomsg 'formatprg is not set for this buffer' | echohl None
-    return
-  endif
-  let l:view = winsaveview()
-  try
-    silent keepjumps keepmarks keeppatterns execute a:first . ',' . a:last . 'normal! gq'
+function! s:Format(...)
+    silent keepjumps normal! '[v']gq
     if v:shell_error > 0
-      silent undo
-      echoerr 'formatprg "' . &l:formatprg . '" exited with status ' . v:shell_error
-    else
-      silent! undojoin
+        silent undo
+        echohl ErrorMsg
+        echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
+        echohl None
     endif
-  finally
-    call winrestview(l:view)
-  endtry
 endfunction
 
-function! s:OpFormat(type, ...) abort
-  call s:FormatRange(line("'["), line("']"))
+function! s:FormatFile() abort
+    if &l:formatprg==""
+        echomsg 'formatprg is not set for the this buffer'
+        return
+    endif
+    let w:view = winsaveview()
+    keepjumps normal! gg
+    set operatorfunc=<SID>Format
+    keepjumps normal! g@G
+    keepjumps call winrestview(w:view)
+    unlet w:view
 endfunction
 
-command! -range=% -bar Fmt call s:FormatRange(<line1>, <line2>)
+command Fmt :call <sid>FormatFile()
 
 augroup Autoformat
-  autocmd!
-  autocmd BufWritePre * silent! Fmt
+    autocmd!
+    autocmd BufWritePre * call <sid>FormatFile()
 augroup END
 
 " Enable built-in packages
