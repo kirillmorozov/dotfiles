@@ -29,6 +29,6 @@ jobs:
             zsh
 
       - name: Add labels based on changes
-        uses: actions/labeler@v5.0.0
+        uses: actions/labeler@v6.0.1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
