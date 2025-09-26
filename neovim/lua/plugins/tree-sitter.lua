@@ -20,6 +20,8 @@ return {
 				"gitcommit",
 				"gleam",
 				"go",
+				"gotmpl",
+				"helm",
 				"json",
 				"lua",
 				"markdown",
