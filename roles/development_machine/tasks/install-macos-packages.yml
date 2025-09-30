@@ -1,5 +1,5 @@
 ---
-- name: macOS packages installed
+- name: Brew packages installed
   community.general.homebrew:
     state: latest
     package:
