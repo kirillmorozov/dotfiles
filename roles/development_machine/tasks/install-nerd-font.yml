@@ -1,5 +1,5 @@
 ---
-- name: "Check {{ font.name_prefix }}*.ttf existance"
+- name: Font files with prefix {{ font.name_prefix }}
   register: development_machine_font_files
   ansible.builtin.find:
     paths: "{{ dest_per_system[ansible_facts['system']] }}"
@@ -10,5 +10,5 @@
     dest: "{{ dest_per_system[ansible_system] }}"
     remote_src: true
     src: >-
-      https://github.com/ryanoasis/nerd-fonts/releases/download/{{ version
-      }}/{{ font.archive }}
+      https://github.com/ryanoasis/nerd-fonts/releases/download/{{
+      version }}/{{ font.archive }}
