@@ -5,11 +5,11 @@
     file_type: any
     hidden: true
     paths: "{{ src_dir }}"
-- name: Ensure {{ target_dir }} directory
+- name: Target directory {{ target_dir }}
   ansible.builtin.file:
     path: "{{ target_dir }}"
     state: directory
-- name: Create symlinks in {{ target_dir }}
+- name: Symlinks in {{ target_dir }}
   ansible.builtin.file:
     path: "{{ target_dir }}/{{ file_path | basename }}"
     src: "{{ file_path }}"
