@@ -12,7 +12,7 @@
     apply:
       tags:
         - fonts
-  loop: "{{ fonts }}"
+  loop: "{{ development_machine_fonts }}"
   loop_control:
     loop_var: font
   tags:

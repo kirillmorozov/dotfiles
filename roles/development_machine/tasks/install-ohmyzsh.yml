@@ -1,16 +1,16 @@
 ---
 - name: Check Oh My Zsh directory
-  register: omz
+  register: development_machine_omz
   ansible.builtin.stat:
     path: ~/.oh-my-zsh
 - name: Download Oh My Zsh installer
-  when: not omz.stat.exists
+  when: not development_machine_omz.stat.exists
   ansible.builtin.get_url:
     url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
     dest: /tmp/install-ohmyz.sh
     mode: "755"
 - name: Install Oh My Zsh
-  when: not omz.stat.exists
+  when: not development_machine_omz.stat.exists
   ansible.builtin.shell:
     cmd: /tmp/install-ohmyz.sh
     creates: ~/.oh-my-zsh
