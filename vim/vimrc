@@ -207,14 +207,14 @@ if executable("rg")
                 \\ '!.git/**'
 endif
 
-func! s:FdFindFunc(cmdarg, cmdcomplete)
-    let result = systemlist("fd --full-path --hidden --follow --exclude .git " .. a:cmdarg)
+function! s:FdFindFunc(cmdarg, cmdcomplete)
+    let result = systemlist("fd --type file --full-path --hidden --follow --exclude .git " .. a:cmdarg)
     if v:shell_error != 0
         echoerr result
         return []
     endif
     return result
-endfunc
+endfunction
 
 " Use fd to find files if it's available
 if executable("fd")
