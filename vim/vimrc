@@ -207,6 +207,20 @@ if executable("rg")
                 \\ '!.git/**'
 endif
 
+func! s:FdFindFunc(cmdarg, cmdcomplete)
+    let result = systemlist("fd --full-path --hidden --follow --exclude .git " .. a:cmdarg)
+    if v:shell_error != 0
+        echoerr result
+        return []
+    endif
+    return result
+endfunc
+
+" Use fd to find files if it's available
+if executable("fd")
+    set findfunc=s:FdFindFunc
+endif
+
 " Set up Git TUI client
 if executable("lazygit")
     function Git()
