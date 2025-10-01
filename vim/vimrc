@@ -208,12 +208,18 @@ if executable("rg")
 endif
 
 function! s:FdFindFunc(cmdarg, cmdcomplete)
-    let result = systemlist("fd --type file --full-path --hidden --follow --exclude .git " .. a:cmdarg)
-    if v:shell_error != 0
-        echoerr result
+    let find_command = "fd
+                \ --exclude .git
+                \ --follow
+                \ --full-path
+                \ --hidden
+                \ --type file " .. a:cmdarg
+    let fd_output = systemlist(find_command)
+    if v:shell_error
+        echoerr fd_output
         return []
     endif
-    return result
+    return fd_output
 endfunction
 
 " Use fd to find files if it's available
