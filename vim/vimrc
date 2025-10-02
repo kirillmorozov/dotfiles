@@ -213,13 +213,13 @@ function! s:FdFindFunc(cmdarg, cmdcomplete)
                 \ --follow
                 \ --full-path
                 \ --hidden
-                \ --type file " .. a:cmdarg
+                \ --type file "
     let fd_output = systemlist(find_command)
     if v:shell_error
         echoerr fd_output
         return []
     endif
-    return fd_output
+    return fd_output->matchfuzzy(a:cmdarg)
 endfunction
 
 " Use fd to find files if it's available
