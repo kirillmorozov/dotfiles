@@ -213,7 +213,7 @@ function! s:FdFindFunc(cmdarg, cmdcomplete)
                 \ --follow
                 \ --full-path
                 \ --hidden
-                \ --type file "
+                \ --type file"
     let fd_output = systemlist(find_command)
     if v:shell_error
         echoerr fd_output
