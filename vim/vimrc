@@ -44,9 +44,9 @@ syntax enable
 
 filetype plugin indent on
 
-if has("termguicolors")
+if has('termguicolors')
 	set termguicolors
-	for s:cs in ["wildcharm", "zaibatsu", "habamax", "default"]
+	for s:cs in ['wildcharm', 'zaibatsu', 'habamax', 'default']
 		try
 			execute 'colorscheme ' . s:cs
 			break
@@ -195,7 +195,7 @@ map <leader><s-p> "+<s-p>
 nmap <Leader>m :make<Space>
 
 " Use ripgrep for search if it's installed
-if executable("rg")
+if executable('rg')
 	set grepprg=rg
 				\\ --vimgrep
 				\\ --smart-case
@@ -214,12 +214,12 @@ function! s:GlobFiles() abort
 endfunction
 
 function! s:FdFiles() abort
-	let l:find_command = "fd
+	let l:find_command = 'fd
 			\ --exclude .git
 			\ --follow
 			\ --full-path
 			\ --hidden
-			\ --type file"
+			\ --type file'
 	let l:result = systemlist(l:find_command)
 	if v:shell_error
 		echoerr l:result
@@ -231,7 +231,7 @@ endfunction
 let s:files_fetcher = function('s:GlobFiles')
 
 " Use fd to find files if it's available
-if executable("fd")
+if executable('fd')
 	let s:files_fetcher = function('s:FdFiles')
 endif
 
@@ -245,9 +245,9 @@ endfunction
 set findfunc=s:FindFunc
 
 " Set up Git TUI client
-if executable("lazygit")
+if executable('lazygit')
 	function! Git()
-		execute "silent !lazygit"
+		execute 'silent !lazygit'
 		redraw!
 	endfunction
 	nmap <c-g> :call Git()<cr>
