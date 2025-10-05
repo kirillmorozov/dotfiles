@@ -44,18 +44,18 @@ syntax enable
 
 filetype plugin indent on
 
-if has("termguicolors")
-    set termguicolors
-    for s:cs in ["wildcharm", "zaibatsu", "habamax", "default"]
-        try
-            execute 'colorscheme ' . s:cs
-            break
-        catch /E185:/
-            " colorscheme not found, try next
-        endtry
-    endfor
+if has('termguicolors')
+	set termguicolors
+	for s:cs in ['wildcharm', 'zaibatsu', 'habamax', 'default']
+		try
+			execute 'colorscheme ' . s:cs
+			break
+		catch /E185:/
+			" colorscheme not found, try next
+		endtry
+	endfor
 else
-    colorscheme default
+	colorscheme default
 endif
 
 " Show tabs, multiple consecutive spaces, trailing spaces and breaks
@@ -124,6 +124,8 @@ set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
 set wildmenu
+set wildmode=noselect:lastused,full
+set wildoptions=pum
 " Hide noise in completion
 set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 
@@ -192,78 +194,106 @@ map <leader><s-p> "+<s-p>
 " Make
 nmap <Leader>m :make<Space>
 
-if isdirectory(".git")
-    set path+=**
-endif
-
 " Use ripgrep for search if it's installed
-if executable("rg")
-    set grepprg=rg
-                \\ --vimgrep
-                \\ --smart-case
-                \\ --follow
-                \\ --hidden
-                \\ --glob
-                \\ '!.git/**'
+if executable('rg')
+	set grepprg=rg
+				\\ --vimgrep
+				\\ --smart-case
+				\\ --follow
+				\\ --hidden
+				\\ --glob
+				\\ '!.git/**'
 endif
 
-function! s:FdFindFunc(cmdarg, cmdcomplete)
-    let find_command = "fd
-                \ --exclude .git
-                \ --follow
-                \ --full-path
-                \ --hidden
-                \ --type file"
-    let fd_output = systemlist(find_command)
-    if v:shell_error
-        echoerr fd_output
-        return []
-    endif
-    return fd_output->matchfuzzy(a:cmdarg)
+" Initialise files cache.
+let s:filescache = []
+
+" Get a list of all files using built-in globpath.
+function! s:GlobFiles() abort
+	return globpath('.', '**', 1, 1)
+			\->filter('!isdirectory(v:val)')
+			\->map("fnamemodify(v:val, ':.')")
 endfunction
 
-" Use fd to find files if it's available
-if executable("fd")
-    set findfunc=s:FdFindFunc
+" Get a list of all files using `fd` executable.
+function! s:FdFiles() abort
+	let l:find_command = 'fd
+			\ --exclude .git
+			\ --follow
+			\ --full-path
+			\ --hidden
+			\ --type file'
+	let l:result = systemlist(l:find_command)
+	if v:shell_error
+		echoerr l:result
+		return []
+	endif
+	return l:result
+endfunction
+
+" Use GlobFiles as the default files_fetcher.
+let s:files_fetcher = function('s:GlobFiles')
+
+" Use fd to find files if it's available.
+if executable('fd')
+	let s:files_fetcher = function('s:FdFiles')
 endif
 
+" Obtain fuzzy-matched list of filenames for the :find command.
+function! s:FindFunc(file, _) abort
+	if empty(s:filescache)
+		let s:filescache = s:files_fetcher()
+	endif
+	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
+endfunction
+
+set findfunc=s:FindFunc
+
 " Set up Git TUI client
-if executable("lazygit")
-    function Git()
-        execute "silent !lazygit"
-        redraw!
-    endfunction
-    nmap <c-g> :call Git()<cr>
+if executable('lazygit')
+	function! Git()
+		execute 'silent !lazygit'
+		redraw!
+	endfunction
+	nmap <c-g> :call Git()<cr>
 endif
 
 function! s:Format(...)
-    silent keepjumps normal! '[v']gq
-    if v:shell_error > 0
-        silent undo
-        echohl ErrorMsg
-        echomsg 'formatprg "' . &formatprg . '" exited with status ' . v:shell_error
-        echohl None
-    endif
+	silent keepjumps normal! '[v']gq
+	if v:shell_error
+		silent undo
+		echoerr 'formatprg "'
+					\ .. &formatprg
+					\ .. '" exited with status
+					\ ' .. v:shell_error
+	endif
 endfunction
 
 function! s:FormatFile() abort
-    if &l:formatprg==""
-        echomsg 'formatprg is not set for the this buffer'
-        return
-    endif
-    let w:view = winsaveview()
-    keepjumps normal! gg
-    set operatorfunc=<SID>Format
-    keepjumps normal! g@G
-    keepjumps call winrestview(w:view)
-    unlet w:view
+	if &l:formatprg==""
+		echomsg 'formatprg is not set for the this buffer'
+		return
+	endif
+	let w:view = winsaveview()
+	keepjumps normal! gg
+	set operatorfunc=<SID>Format
+	keepjumps normal! g@G
+	keepjumps call winrestview(w:view)
+	unlet w:view
 endfunction
 
-command Fmt :call <sid>FormatFile()
+command! Fmt :call <sid>FormatFile()
 
-augroup Autoformat
-    autocmd!
-    autocmd BufWritePre * call <sid>FormatFile()
+augroup autoformat
+	autocmd!
+	autocmd BufWritePre * call <sid>FormatFile()
+augroup END
+
+augroup cmdline_autocomplete
+	" Trigger cmdline autocompletion
+	autocmd CmdlineChanged [:\/\?] call wildtrigger()
+	" Empty files cache on cmdline entry
+	autocmd CmdlineEnter :find let s:filescache = []
 augroup END
 
 " Enable built-in packages
