@@ -194,10 +194,6 @@ map <leader><s-p> "+<s-p>
 " Make
 nmap <Leader>m :make<Space>
 
-if isdirectory(".git")
-	set path+=**
-endif
-
 " Use ripgrep for search if it's installed
 if executable("rg")
 	set grepprg=rg
@@ -211,37 +207,42 @@ endif
 
 let s:filescache = []
 
-func s:GlobFindFunc(file, _)
-	if empty(s:filescache)
-		let s:filescache = globpath('.', '**', 1, 1)
-					\->filter('!isdirectory(v:val)')
-					\->map("fnamemodify(v:val, ':.')")
-	endif
-	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
-endfunc
+function! s:GlobFiles() abort
+	return globpath('.', '**', 1, 1)
+			\->filter('!isdirectory(v:val)')
+			\->map("fnamemodify(v:val, ':.')")
+endfunction
 
-function! s:FdFindFunc(file, _)
+function! s:FdFiles() abort
+	let l:find_command = "fd
+			\ --exclude .git
+			\ --follow
+			\ --full-path
+			\ --hidden
+			\ --type file"
+	let l:result = systemlist(l:find_command)
+	if v:shell_error
+		echoerr l:result
+		return []
+	endif
+	return l:result
+endfunction
+
+let s:files_fetcher = function('s:GlobFiles')
+
+" Use fd to find files if it's available
+if executable("fd")
+	let s:files_fetcher = function('s:FdFiles')
+endif
+
+function! s:FindFunc(file, _) abort
 	if empty(s:filescache)
-		let find_command = "fd
-					\ --exclude .git
-					\ --follow
-					\ --full-path
-					\ --hidden
-					\ --type file"
-		let s:filescache = systemlist(find_command)
-		if v:shell_error
-			echoerr s:filescache
-			let s:filescache = []
-		endif
+		let s:filescache = s:files_fetcher()
 	endif
 	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
 endfunction
 
-set findfunc=s:GlobFindFunc
-" Use fd to find files if it's available
-if executable("fd")
-	set findfunc=s:FdFindFunc
-endif
+set findfunc=s:FindFunc
 
 " Set up Git TUI client
 if executable("lazygit")
@@ -278,12 +279,12 @@ endfunction
 
 command! Fmt :call <sid>FormatFile()
 
-augroup Autoformat
+augroup autoformat
 	autocmd!
 	autocmd BufWritePre * call <sid>FormatFile()
 augroup END
 
-augroup CmdlineAutocomplete
+augroup cmdline_autocomplete
 	autocmd CmdlineChanged [:\/\?] call wildtrigger()
 	autocmd CmdlineEnter :find let s:filescache = []
 augroup END
