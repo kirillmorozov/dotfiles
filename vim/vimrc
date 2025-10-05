@@ -211,7 +211,16 @@ endif
 
 let s:filescache = []
 
-function! s:FdFindFunc(cmdarg, cmdcomplete)
+func s:GlobFindFunc(file, _)
+	if empty(s:filescache)
+		let s:filescache = globpath('.', '**', 1, 1)
+					\->filter('!isdirectory(v:val)')
+					\->map("fnamemodify(v:val, ':.')")
+	endif
+	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
+endfunc
+
+function! s:FdFindFunc(file, _)
 	if empty(s:filescache)
 		let find_command = "fd
 					\ --exclude .git
@@ -225,11 +234,10 @@ function! s:FdFindFunc(cmdarg, cmdcomplete)
 			let s:filescache = []
 		endif
 	endif
-	return a:cmdarg == ''
-				\ ? s:filescache
-				\ : matchfuzzy(s:filescache, a:cmdarg)
+	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
 endfunction
 
+set findfunc=s:GlobFindFunc
 " Use fd to find files if it's available
 if executable("fd")
 	set findfunc=s:FdFindFunc
