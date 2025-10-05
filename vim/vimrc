@@ -124,6 +124,8 @@ set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
 set wildmenu
+set wildmode=noselect:lastused,full
+set wildoptions=pum
 " Hide noise in completion
 set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 
@@ -207,24 +209,30 @@ if executable("rg")
                 \\ '!.git/**'
 endif
 
+let s:filescache = []
+
 function! s:FdFindFunc(cmdarg, cmdcomplete)
-    let find_command = "fd
-                \ --exclude .git
-                \ --follow
-                \ --full-path
-                \ --hidden
-                \ --type file"
-    let fd_output = systemlist(find_command)
-    if v:shell_error
-        echoerr fd_output
-        return []
-    endif
-    return fd_output->matchfuzzy(a:cmdarg)
+	if empty(s:filescache)
+		let find_command = "fd
+					\ --exclude .git
+					\ --follow
+					\ --full-path
+					\ --hidden
+					\ --type file"
+		let s:filescache = systemlist(find_command)
+		if v:shell_error
+			echoerr s:filescache
+			let s:filescache = []
+		endif
+	endif
+	return a:cmdarg == ''
+				\ ? s:filescache
+				\ : matchfuzzy(s:filescache, a:cmdarg)
 endfunction
 
 " Use fd to find files if it's available
 if executable("fd")
-    set findfunc=s:FdFindFunc
+	set findfunc=s:FdFindFunc
 endif
 
 " Set up Git TUI client
@@ -262,8 +270,13 @@ endfunction
 command Fmt :call <sid>FormatFile()
 
 augroup Autoformat
-    autocmd!
-    autocmd BufWritePre * call <sid>FormatFile()
+	autocmd!
+	autocmd BufWritePre * call <sid>FormatFile()
+augroup END
+
+augroup CmdlineAutocomplete
+	autocmd CmdlineChanged [:\/\?] call wildtrigger()
+	autocmd CmdlineEnter :find let s:filescache = []
 augroup END
 
 " Enable built-in packages
