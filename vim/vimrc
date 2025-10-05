@@ -205,14 +205,17 @@ if executable('rg')
 				\\ '!.git/**'
 endif
 
+" Initialise files cache.
 let s:filescache = []
 
+" Get a list of all files using built-in globpath.
 function! s:GlobFiles() abort
 	return globpath('.', '**', 1, 1)
 			\->filter('!isdirectory(v:val)')
 			\->map("fnamemodify(v:val, ':.')")
 endfunction
 
+" Get a list of all files using `fd` executable.
 function! s:FdFiles() abort
 	let l:find_command = 'fd
 			\ --exclude .git
@@ -228,13 +231,15 @@ function! s:FdFiles() abort
 	return l:result
 endfunction
 
+" Use GlobFiles as the default files_fetcher.
 let s:files_fetcher = function('s:GlobFiles')
 
-" Use fd to find files if it's available
+" Use fd to find files if it's available.
 if executable('fd')
 	let s:files_fetcher = function('s:FdFiles')
 endif
 
+" Obtain fuzzy-matched list of filenames for the :find command.
 function! s:FindFunc(file, _) abort
 	if empty(s:filescache)
 		let s:filescache = s:files_fetcher()
@@ -285,7 +290,9 @@ augroup autoformat
 augroup END
 
 augroup cmdline_autocomplete
+	" Trigger cmdline autocompletion
 	autocmd CmdlineChanged [:\/\?] call wildtrigger()
+	" Empty files cache on cmdline entry
 	autocmd CmdlineEnter :find let s:filescache = []
 augroup END
 
