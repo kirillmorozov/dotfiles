@@ -134,21 +134,6 @@ set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 nmap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
-function! s:ToggleFindVert() abort
-	if getcmdtype() != ':'
-		return "\<C-v>"
-	endif
-	let l:line = getcmdline()
-	if l:line =~# '^\s*vert\s\+find\>'
-		let l:new = substitute(l:line, '^\s*vert\s\+', '', '')
-	elseif l:line =~# '^\s*find\>'
-		let l:new = 'vert ' . substitute(l:line, '^\s*', '', '')
-	else
-		return "\<C-v>"
-	endif
-	return "\<C-U>" . l:new
-endfunction
-cnoremap <expr> <C-v> <SID>ToggleFindVert()
 " General navigation
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <C-S> :update<CR>
@@ -208,6 +193,8 @@ map <leader>p "+p
 map <leader><s-p> "+<s-p>
 " Make
 nmap <Leader>m :make<Space>
+" Open file in a vertical split
+cnoremap <expr> <C-v> <SID>VertSplitFind()
 
 " Use ripgrep for search if it's installed
 if executable('rg')
@@ -219,6 +206,18 @@ if executable('rg')
 				\\ --glob
 				\\ '!.git/**'
 endif
+
+function! s:VertSplitFind() abort
+	if getcmdtype() != ':'
+		return "\<C-v>"
+	endif
+	let l:line = getcmdline()
+	if l:line =~# '^\s*\%(vert\s\+\)\?find\>'
+		let l:new = substitute(l:line, '^\s*\%(vert\s\+\)\?find\>', 'vert sfind', '')
+		return "\<C-U>" . l:new
+	endif
+	return "\<C-v>"
+endfunction
 
 " Initialise files cache.
 let s:filescache = []
