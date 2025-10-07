@@ -134,11 +134,26 @@ set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 nmap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
+function! s:ToggleFindVert() abort
+	if getcmdtype() != ':'
+		return "\<C-v>"
+	endif
+	let l:line = getcmdline()
+	if l:line =~# '^\s*vert\s\+find\>'
+		let l:new = substitute(l:line, '^\s*vert\s\+', '', '')
+	elseif l:line =~# '^\s*find\>'
+		let l:new = 'vert ' . substitute(l:line, '^\s*', '', '')
+	else
+		return "\<C-v>"
+	endif
+	return "\<C-U>" . l:new
+endfunction
+cnoremap <expr> <C-v> <SID>ToggleFindVert()
 " General navigation
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
-nnoremap <leader>h :help<Space>
+nnoremap <leader>h :vert<Space>help<Space>
 " Window navigation
 nmap <leader>w <c-w>
 nmap <C-H> <c-w>h
