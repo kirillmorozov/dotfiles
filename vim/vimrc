@@ -138,7 +138,7 @@ nnoremap n nzz
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
-nnoremap <leader>h :help<Space>
+nnoremap <leader>h :vert<Space>help<Space>
 " Window navigation
 nmap <leader>w <c-w>
 nmap <C-H> <c-w>h
@@ -193,6 +193,8 @@ map <leader>p "+p
 map <leader><s-p> "+<s-p>
 " Make
 nmap <Leader>m :make<Space>
+" Open file in a vertical split
+cnoremap <expr> <C-v> <SID>VertSplitFind()
 
 " Use ripgrep for search if it's installed
 if executable('rg')
@@ -204,6 +206,18 @@ if executable('rg')
 				\\ --glob
 				\\ '!.git/**'
 endif
+
+function! s:VertSplitFind() abort
+	if getcmdtype() != ':'
+		return "\<C-v>"
+	endif
+	let l:line = getcmdline()
+	if l:line =~# '^\s*\%(vert\s\+\)\?find\>'
+		let l:new = substitute(l:line, '^\s*\%(vert\s\+\)\?find\>', 'vert sfind', '')
+		return "\<C-U>" . l:new . "\<CR>"
+	endif
+	return "\<C-v>"
+endfunction
 
 " Initialise files cache.
 let s:filescache = []
