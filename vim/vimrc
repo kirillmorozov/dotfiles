@@ -135,7 +135,7 @@ nmap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 " General navigation
-nnoremap <Leader>b :buffers<CR>:buffer<Space>
+nnoremap <Leader>b :buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :vert<Space>help<Space>
