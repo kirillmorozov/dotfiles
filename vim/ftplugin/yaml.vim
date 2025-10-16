@@ -1,10 +1,13 @@
 compiler yamllint
 nmap <Leader>m :make<Space>%<CR>
 setlocal expandtab
-setlocal formatprg=yq\ '.'
 setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal tabstop=2
+
+if executable("yq")
+    setlocal formatprg=yq\ '.'
+endif
 
 if executable("yamlfmt")
     setlocal formatprg=yamlfmt
