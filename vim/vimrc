@@ -276,7 +276,7 @@ function! s:FormatFile() abort
 	if &formatprg==""
 		return
 	endif
-	let w:view = winsaveview()
+	let l:view = winsaveview()
 	keepjumps silent! normal! gggqG
 	if v:shell_error
 		silent undo
@@ -286,8 +286,7 @@ function! s:FormatFile() abort
 					\ v:shell_error
 					\)
 	endif
-	keepjumps call winrestview(w:view)
-	unlet w:view
+	keepjumps call winrestview(l:view)
 endfunction
 
 augroup autoformat
