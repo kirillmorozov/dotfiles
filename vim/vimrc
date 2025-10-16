@@ -284,13 +284,12 @@ function! s:FormatFile() abort
 		echomsg printf(
 					\ 'formatprg "%s" exited with status %d',
 					\ &formatprg,
-					\ v:shell_error)
+					\ v:shell_error
+					\)
 	endif
 	keepjumps call winrestview(w:view)
 	unlet w:view
 endfunction
-
-command! Fmt :call <sid>FormatFile()
 
 augroup autoformat
 	autocmd!
