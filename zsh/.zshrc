@@ -33,6 +33,7 @@ plugins=(
   kubectl
   podman
   python
+  systemd
   terraform
   ubuntu
   uv
