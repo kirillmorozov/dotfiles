@@ -280,11 +280,11 @@ function! s:FormatFile() abort
 	keepjumps silent! normal! gggqG
 	if v:shell_error
 		silent undo
-		echomsg printf(
+		echoerr printf(
 					\ 'formatprg "%s" exited with status %d',
 					\ &formatprg,
 					\ v:shell_error
-					\)
+					\ )
 	endif
 	keepjumps call winrestview(l:view)
 endfunction
