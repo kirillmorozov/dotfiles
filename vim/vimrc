@@ -273,8 +273,7 @@ if executable('lazygit')
 endif
 
 function! s:FormatFile() abort
-	if &l:formatprg==""
-		echomsg 'formatprg is not set for the this buffer'
+	if &formatprg==""
 		return
 	endif
 	let w:view = winsaveview()
