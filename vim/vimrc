@@ -216,6 +216,10 @@ function! s:VertSplitFind() abort
 		let l:new = substitute(l:line, '^\s*\%(vert\s\+\)\?find\>', 'vert sfind', '')
 		return "\<C-U>" . l:new . "\<CR>"
 	endif
+	if l:line =~# '^\s*\%(vert\s\+\)\?buffer\>'
+		let l:new = substitute(l:line, '^\s*\%(vert\s\+\)\?buffer\>', 'vert sbuffer', '')
+		return "\<C-U>" . l:new . "\<CR>"
+	endif
 	return "\<C-v>"
 endfunction
 
