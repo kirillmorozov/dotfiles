@@ -212,8 +212,12 @@ function! s:VertSplitFind() abort
 		return "\<C-v>"
 	endif
 	let l:line = getcmdline()
-	if l:line =~# '^\s*\%(vert\s\+\)\?find\>'
-		let l:new = substitute(l:line, '^\s*\%(vert\s\+\)\?find\>', 'vert sfind', '')
+	if l:line =~# '^\s*find\>'
+		let l:new = substitute(l:line, '^\s*find\>', 'vert sfind', '')
+		return "\<C-U>" . l:new . "\<CR>"
+	endif
+	if l:line =~# '^\s*buffer\>'
+		let l:new = substitute(l:line, '^\s*buffer\>', 'vert sbuffer', '')
 		return "\<C-U>" . l:new . "\<CR>"
 	endif
 	return "\<C-v>"
