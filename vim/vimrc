@@ -272,31 +272,22 @@ if executable('lazygit')
 	nmap <c-g> :call Git()<cr>
 endif
 
-function! s:Format(...)
-	silent keepjumps normal! '[v']gq
-	if v:shell_error
-		silent undo
-		echoerr 'formatprg "'
-					\ .. &formatprg
-					\ .. '" exited with status
-					\ ' .. v:shell_error
-	endif
-endfunction
-
 function! s:FormatFile() abort
-	if &l:formatprg==""
-		echomsg 'formatprg is not set for the this buffer'
+	if &formatprg==""
 		return
 	endif
-	let w:view = winsaveview()
-	keepjumps normal! gg
-	set operatorfunc=<SID>Format
-	keepjumps normal! g@G
-	keepjumps call winrestview(w:view)
-	unlet w:view
+	let l:view = winsaveview()
+	keepjumps silent! normal! gggqG
+	if v:shell_error
+		silent undo
+		echoerr printf(
+					\ 'formatprg "%s" exited with status %d',
+					\ &formatprg,
+					\ v:shell_error
+					\ )
+	endif
+	keepjumps call winrestview(l:view)
 endfunction
-
-command! Fmt :call <sid>FormatFile()
 
 augroup autoformat
 	autocmd!
