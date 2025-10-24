@@ -37,6 +37,8 @@ vim.keymap.set({ "n", "i", "v" }, "<down>", "<Nop>", { desc = "Disable arrow key
 vim.keymap.set({ "n", "i", "v" }, "<left>", "<Nop>", { desc = "Disable arrow keys" })
 vim.keymap.set({ "n", "i", "v" }, "<right>", "<Nop>", { desc = "Disable arrow keys" })
 
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half screen up and center" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half screen down and center" })
 -- Keybinds to make split navigation easier. Use CTRL+<hjkl> to switch between
 -- windows
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
