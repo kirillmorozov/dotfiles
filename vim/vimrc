@@ -62,9 +62,9 @@ endif
 set list
 if exists('+listchars')
 	" Fall back to a simpler variant for older Vim versions
-	set listchars=tab:>\ ,extends:>,precedes:<,nbsp:~,trail:·
+	set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·
 	if has('patch-9.0.0000')
-		set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,lead:\ ,multispace:·
+		set listchars+=lead:\ ,multispace:·
 	endif
 endif
 let &showbreak = '↪ '
@@ -279,6 +279,7 @@ function! s:FindFunc(file, _) abort
 	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
 endfunction
 
+" Set findfunc but only if it's supported.
 if exists('+findfunc')
 	set findfunc=s:FindFunc
 endif
