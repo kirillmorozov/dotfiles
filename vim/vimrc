@@ -60,7 +60,13 @@ endif
 
 " Show tabs, multiple consecutive spaces, trailing spaces and breaks
 set list
-set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,lead:\ ,multispace:·
+if exists('+listchars')
+	" Fall back to a simpler variant for older Vim versions
+	set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·
+	if has('patch-9.0.0000')
+		set listchars+=lead:\ ,multispace:·
+	endif
+endif
 let &showbreak = '↪ '
 
 " Turn on line numbers
@@ -123,11 +129,19 @@ set scrolloff=8
 set sidescrolloff=8
 
 " Command-line completion operates in an enhanced mode
-set wildmenu
-set wildmode=noselect:lastused,full
-set wildoptions=pum
+if has('wildmenu')
+	set wildmenu
+endif
+if exists('+wildmode') && has('patch-9.1.0000')
+	set wildmode=noselect:lastused,full
+endif
+if exists('+wildoptions') && has('patch-9.0.0000')
+	set wildoptions=pum
+endif
 " Hide noise in completion
-set wildignore+=*.pyc,*/.git/*,*/node_modules/*
+if has('wildignore')
+	set wildignore+=*.pyc,*/.git/*,*/node_modules/*
+endif
 
 " Key mappings
 " Search
@@ -265,7 +279,10 @@ function! s:FindFunc(file, _) abort
 	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
 endfunction
 
-set findfunc=s:FindFunc
+" Set findfunc but only if it's supported.
+if exists('+findfunc')
+	set findfunc=s:FindFunc
+endif
 
 " Set up Git TUI client
 if executable('lazygit')
@@ -299,8 +316,11 @@ augroup autoformat
 augroup END
 
 augroup cmdline_autocomplete
+	autocmd!
 	" Trigger cmdline autocompletion
-	autocmd CmdlineChanged [:\/\?] call wildtrigger()
+	if exists('*wildtrigger')
+		autocmd CmdlineChanged [:\/\?] call wildtrigger()
+	endif
 	" Empty files cache on cmdline entry
 	autocmd CmdlineEnter :find let s:filescache = []
 augroup END
