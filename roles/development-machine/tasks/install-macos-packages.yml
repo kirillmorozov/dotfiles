@@ -3,6 +3,7 @@
   community.general.homebrew:
     state: latest
     package:
+      - bat
       - btop
       - fd
       - fzf
