@@ -45,7 +45,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export BAT_THEME="base16"
 export EDITOR='vim'
-export MANPAGER="vim +MANPAGER --not-a-term -"
+export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 
 ########################################
