@@ -24,6 +24,7 @@ C-e = "scroll_down"
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 C-s = ":update"
 C-y = "scroll_up"
+ret = "goto_word"
 
 [keys.insert]
 up = "no_op"
