@@ -30,6 +30,9 @@ C-s = ":update"
 C-y = "scroll_up"
 ret = "goto_word"
 
+[keys.normal.space]
+w = {c = ":buffer-close"}
+
 [keys.insert]
 up = "no_op"
 down = "no_op"
