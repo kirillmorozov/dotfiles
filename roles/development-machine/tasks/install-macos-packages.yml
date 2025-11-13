@@ -7,6 +7,7 @@
       - fd
       - fzf
       - go-task
+      - helix
       - jq
       - lazygit
       - neovim
