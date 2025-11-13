@@ -1,17 +1,21 @@
 theme = "rose_pine"
 
 [editor]
+auto-save = true
+color-modes = true
+end-of-line-diagnostics = "hint"
+idle-timeout = 33
 line-number = "relative"
 rulers = [80]
-idle-timeout = 33
-color-modes = true
-auto-save = true
 
 [editor.file-picker]
-hidden = false
+hidden = false  # Do not ignore hidden files
 
 [editor.indent-guides]
 render = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
 
 [editor.whitespace.render]
 nbsp = "all"
@@ -26,9 +30,6 @@ tab = "»"
 
 [editor.soft-wrap]
 enable = true
-
-[editor.lsp]
-display-messages = true
 
 [keys.normal]
 C-e = "scroll_down"
