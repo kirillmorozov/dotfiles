@@ -22,12 +22,6 @@ nbsp = "all"
 space = "all"
 tab = "all"
 
-[editor.whitespace.characters]
-nbsp = "␣"
-nnbsp = "␣"
-space = "·"
-tab = "»"
-
 [editor.soft-wrap]
 enable = true
 
