@@ -34,6 +34,8 @@ C-k = "jump_view_up"
 C-l = "jump_view_right"
 C-s = ":update"
 C-y = "scroll_up"
+N = ["search_prev", "align_view_center"]
+n = ["search_next", "align_view_center"]
 ret = "goto_word"
 
 [keys.normal.space]
