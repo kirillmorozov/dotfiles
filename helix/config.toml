@@ -1,4 +1,4 @@
-theme = "vim_dark_high_contrast"
+theme = "rose_pine"
 
 [editor]
 line-number = "relative"
@@ -12,6 +12,17 @@ hidden = false
 
 [editor.indent-guides]
 render = true
+
+[editor.whitespace.render]
+nbsp = "all"
+space = "all"
+tab = "all"
+
+[editor.whitespace.characters]
+nbsp = "␣"
+nnbsp = "␣"
+space = "·"
+tab = "»"
 
 [editor.soft-wrap]
 enable = true
