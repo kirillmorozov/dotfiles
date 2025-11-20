@@ -6,7 +6,7 @@
       tags:
         - packages
         - macos
-  when: ansible_distribution == "MacOSX"
+  when: ansible_facts["distribution"] == "MacOSX"
   tags:
     - packages
     - macos
@@ -19,7 +19,7 @@
         - linux
         - deb
         - linux_mint
-  when: ansible_distribution == "Linux Mint"
+  when: ansible_facts["distribution"] == "Linux Mint"
   tags:
     - packages
     - linux
@@ -34,7 +34,7 @@
         - linux
         - rpm
         - fedora
-  when: ansible_distribution == "Fedora"
+  when: ansible_facts["distribution"] == "Fedora"
   tags:
     - packages
     - linux
@@ -47,7 +47,7 @@
       tags:
         - packages
         - starship
-  when: ansible_system == "Linux"
+  when: ansible_facts["system"] == "Linux"
   tags:
     - packages
     - starship
