@@ -1,7 +1,7 @@
 ---
 - name: Link brew completions
   ansible.builtin.command: brew completions link
-  when: ansible_distribution == "MacOSX"
+  when: ansible_facts["distribution"] == "MacOSX"
 - name: Include variables
   ansible.builtin.include_vars:
     file: config-links.yml
