@@ -34,6 +34,11 @@ Ansible:
           - roles/**/*
           - bootstrap.yml
 
+Helix:
+  - changed-files:
+      - any-glob-to-any-file:
+          - helix/**/*
+
 Neovim:
   - changed-files:
       - any-glob-to-any-file:
