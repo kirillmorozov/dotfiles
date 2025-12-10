@@ -71,6 +71,7 @@ vim.opt.matchtime = 2
 vim.lsp.enable({
 	"gleam",
 	"gopls",
+	"lua_ls",
 	"pylsp",
 	"ruff",
 	"terraformls",
