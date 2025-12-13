@@ -26,6 +26,9 @@ tab = "all"
 enable = true
 
 [keys.normal]
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+0 = "goto_line_start"
 C-e = "scroll_down"
 C-g = [":new", ":insert-output lazygit", ":buffer-close!", ":redraw"]
 C-h = "jump_view_left"
@@ -34,9 +37,21 @@ C-k = "jump_view_up"
 C-l = "jump_view_right"
 C-s = ":update"
 C-y = "scroll_up"
+G = 'goto_file_end'
 N = ["search_prev", "align_view_center"]
+V = ["select_mode","extend_to_line_bounds"]
+esc = ["collapse_selection","keep_primary_selection"]
 n = ["search_next", "align_view_center"]
 ret = "goto_word"
 
 [keys.normal.space]
 w = {c = ":buffer-close"}
+
+[keys.select]
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+0 = "goto_line_start"
+D = ["extend_to_line_bounds","delete_selection", "normal_mode"]
+G = 'goto_file_end'
+k = ["extend_line_up", "extend_to_line_bounds"]
+j = ["extend_line_down", "extend_to_line_bounds"]
