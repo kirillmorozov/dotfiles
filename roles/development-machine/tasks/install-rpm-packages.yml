@@ -36,6 +36,7 @@
       - neovim
       - podman
       - ripgrep
+      - shfmt
       - uv
       - vim
       - vim-X11
