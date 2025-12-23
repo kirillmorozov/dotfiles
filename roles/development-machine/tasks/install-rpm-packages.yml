@@ -12,6 +12,45 @@
   become: true
   community.general.copr:
     name: wezfurlong/wezterm-nightly
+- name: Fedora bloat uninstalled
+  become: true
+  ansible.builtin.dnf:
+    state: absent
+    pkg:
+      - akregator
+      - akregator-libs
+      - kde-connect
+      - kde-connect-libs
+      - kdeconnectd
+      - kmahjongg
+      - kmines
+      - kolourpaint
+      - kolourpaint-libs
+      - krfb
+      - krfb-libs
+      - kwalletmanager5
+      - kwrite
+      - libreoffice-calc
+      - libreoffice-core
+      - libreoffice-data
+      - libreoffice-draw
+      - libreoffice-emailmerge
+      - libreoffice-graphicfilter
+      - libreoffice-gtk3
+      - libreoffice-gtk4
+      - libreoffice-help-en
+      - libreoffice-impress
+      - libreoffice-kf6
+      - libreoffice-langpack-en
+      - libreoffice-math
+      - libreoffice-ogltrans
+      - libreoffice-opensymbol-fonts
+      - libreoffice-pdfimport
+      - libreoffice-pyuno
+      - libreoffice-ure
+      - libreoffice-ure-common
+      - libreoffice-writer
+      - neochat
 - name: Fedora packages installed
   become: true
   ansible.builtin.dnf:
