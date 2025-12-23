@@ -8,30 +8,33 @@
 // command palette
 {
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5.1-codex-mini"
+    },
     "default_profile": "write",
     "model_parameters": [],
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4.1"
+      "model": "gpt-5.1-codex",
     },
-    "version": "2"
   },
   "scrollbar": {
-    "show": "never"
+    "show": "never",
   },
   "show_edit_predictions": false,
   "indent_guides": {
     "enabled": true,
-    "coloring": "indent_aware"
+    "coloring": "indent_aware",
   },
   "auto_install_extensions": {
     "gleam": true,
     "lua": true,
     "rose-pine-theme": true,
-    "terraform": true
+    "terraform": true,
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "ui_font_size": 14,
   "buffer_font_size": 14,
@@ -41,48 +44,47 @@
   "vim": {
     "toggle_relative_line_numbers": true,
     "use_system_clipboard": "always",
-    "use_multiline_find": false,
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 100,
-    "custom_digraphs": {}
+    "custom_digraphs": {},
   },
   "soft_wrap": "preferred_line_length",
   "theme": {
     "mode": "system",
     "light": "Rosé Pine Dawn",
-    "dark": "Rosé Pine"
+    "dark": "Rosé Pine",
   },
   "languages": {
     "Python": {
       "formatter": {
         "external": {
           "command": "ruff",
-          "arguments": ["format", "-"]
-        }
-      }
+          "arguments": ["format", "-"],
+        },
+      },
     },
     "Go": {
       "formatter": {
         "external": {
-          "command": "gofumpt"
-        }
-      }
+          "command": "gofumpt",
+        },
+      },
     },
     "Shell Script": {
       "formatter": {
         "external": {
           "command": "shfmt",
-          "arguments": ["-i", "2", "-ci", "-bn", "-sr"]
-        }
-      }
+          "arguments": ["-i", "2", "-ci", "-bn", "-sr"],
+        },
+      },
     },
     "Elm": {
       "formatter": {
         "external": {
           "command": "elm-format",
-          "arguments": ["--yes", "--stdin"]
-        }
-      }
-    }
-  }
+          "arguments": ["--yes", "--stdin"],
+        },
+      },
+    },
+  },
 }
