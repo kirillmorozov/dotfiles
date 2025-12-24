@@ -8,11 +8,13 @@
   ansible.builtin.get_url:
     dest: /tmp/install-starship.sh
     url: https://starship.rs/install.sh
+    mode: "0755"
 - name: Create installation directory
   when: not development_machine_starship_executable.stat.exists
   ansible.builtin.file:
     path: "{{ development_machine_local_bin_dir }}"
     state: directory
+    mode: "0755"
 - name: Run Starship installation script
   when: not development_machine_starship_executable.stat.exists
   ansible.builtin.script:

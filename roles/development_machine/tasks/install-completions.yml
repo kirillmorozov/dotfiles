@@ -9,6 +9,7 @@
   ansible.builtin.file:
     path: "{{ development_machine_completions_path }}"
     state: directory
+    mode: "0755"
 - name: Install fd completions
   ansible.builtin.shell:
     cmd: >-

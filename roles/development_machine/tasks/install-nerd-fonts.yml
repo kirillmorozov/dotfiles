@@ -6,6 +6,7 @@
   ansible.builtin.file:
     path: "{{ development_machine_dest_per_system[ansible_facts['system']] }}"
     state: directory
+    mode: "0755"
 - name: Install Nerd Fonts
   ansible.builtin.include_tasks:
     file: install-nerd-font.yml
