@@ -1,5 +1,5 @@
 ---
-dest_per_system:
+development_machine_dest_per_system:
   Darwin: ~/Library/Fonts/
   Linux: "{{ development_machine_xdg_data_home }}/fonts"
 development_machine_fonts:

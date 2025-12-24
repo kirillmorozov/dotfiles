@@ -4,7 +4,7 @@
     file: fonts.yml
 - name: Fonts directory exists
   ansible.builtin.file:
-    path: "{{ dest_per_system[ansible_facts['system']] }}"
+    path: "{{ development_machine_dest_per_system[ansible_facts['system']] }}"
     state: directory
 - name: Install Nerd Fonts
   ansible.builtin.include_tasks:
