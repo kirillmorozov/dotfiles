@@ -16,5 +16,8 @@
 - name: Run Starship installation script
   when: not development_machine_starship_executable.stat.exists
   ansible.builtin.script:
-    cmd: /tmp/install-starship.sh --bin-dir {{ development_machine_local_bin_dir }} --yes
+    cmd: >-
+      /tmp/install-starship.sh
+      --bin-dir {{ development_machine_local_bin_dir }}
+      --yes
     creates: "{{ development_machine_local_bin_dir }}/starship"
