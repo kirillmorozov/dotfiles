@@ -11,4 +11,4 @@
     remote_src: true
     src: >-
       https://github.com/ryanoasis/nerd-fonts/releases/download/{{
-      version }}/{{ font.archive }}
+      development_machine_nerd_font_version }}/{{ font.archive }}

@@ -7,4 +7,4 @@ development_machine_fonts:
     name_prefix: CaskaydiaCoveNerdFont
   - archive: FiraCode.zip
     name_prefix: FiraCodeNerdFont
-version: v3.2.1
+development_machine_nerd_font_version: v3.2.1
