@@ -1,8 +1,0 @@
----
-version: '3'
-
-tasks:
-  bootstrap:
-    desc: Bootstrap dotfiles
-    cmds:
-      - ansible-playbook --ask-become-pass bootstrap.yml
