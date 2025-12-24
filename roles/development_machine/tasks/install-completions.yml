@@ -1,0 +1,30 @@
+---
+- name: Link brew completions
+  ansible.builtin.command: brew completions link
+  when: ansible_facts["distribution"] == "MacOSX"
+  changed_when: false
+- name: Include variables
+  ansible.builtin.include_vars:
+    file: config-links.yml
+- name: Ensure completions directory exist
+  ansible.builtin.file:
+    path: "{{ development_machine_completions_path }}"
+    state: directory
+    mode: "0755"
+- name: Install fd completions
+  ansible.builtin.shell:
+    cmd: >-
+      fd --gen-completions=zsh > {{ development_machine_completions_path }}/_fd
+    creates: "{{ development_machine_completions_path }}/_fd"
+- name: Install ripgrep completions
+  ansible.builtin.shell:
+    cmd: >-
+      rg --generate=complete-zsh
+      > {{ development_machine_completions_path }}/_rg
+    creates: "{{ development_machine_completions_path }}/_rg"
+- name: Install task completions
+  ansible.builtin.shell:
+    cmd: >-
+      go-task --completion zsh
+      > {{ development_machine_completions_path }}/_task
+    creates: "{{ development_machine_completions_path }}/_task"

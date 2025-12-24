@@ -8,7 +8,7 @@
     apply:
       tags:
         - configs
-  loop: "{{ directory_mapping }}"
+  loop: "{{ development_machine_directory_mapping }}"
   loop_control:
     loop_var: app_config
   vars:

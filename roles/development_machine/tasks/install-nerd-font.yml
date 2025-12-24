@@ -1,0 +1,14 @@
+---
+- name: Font files with prefix {{ font.name_prefix }}
+  register: development_machine_font_files
+  ansible.builtin.find:
+    paths: "{{ development_machine_dest_per_system[ansible_facts['system']] }}"
+    patterns: "{{ font.name_prefix }}*.ttf"
+- name: "Unarchive {{ font.archive }}"
+  when: not development_machine_font_files.matched
+  ansible.builtin.unarchive:
+    dest: "{{ development_machine_dest_per_system[ansible_facts['system']] }}"
+    remote_src: true
+    src: >-
+      https://github.com/ryanoasis/nerd-fonts/releases/download/{{
+      development_machine_nerd_font_version }}/{{ font.archive }}

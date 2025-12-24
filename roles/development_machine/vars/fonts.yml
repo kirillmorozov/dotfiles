@@ -1,0 +1,10 @@
+---
+development_machine_dest_per_system:
+  Darwin: ~/Library/Fonts/
+  Linux: "{{ development_machine_xdg_data_home }}/fonts"
+development_machine_fonts:
+  - archive: CascadiaCode.zip
+    name_prefix: CaskaydiaCoveNerdFont
+  - archive: FiraCode.zip
+    name_prefix: FiraCodeNerdFont
+development_machine_nerd_font_version: v3.2.1

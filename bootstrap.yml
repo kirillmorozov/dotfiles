@@ -3,4 +3,4 @@
   connection: local
   hosts: localhost
   roles:
-    - development-machine
+    - development_machine

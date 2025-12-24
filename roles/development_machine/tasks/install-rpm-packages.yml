@@ -55,7 +55,7 @@
 - name: Fedora packages installed
   become: true
   ansible.builtin.dnf:
-    state: latest
+    state: present
     pkg:
       - alacritty
       - btop
