@@ -11,6 +11,6 @@
     mode: "755"
 - name: Install Oh My Zsh
   when: not development_machine_omz.stat.exists
-  ansible.builtin.shell:
+  ansible.builtin.command:
     cmd: /tmp/install-ohmyz.sh
     creates: ~/.oh-my-zsh
