@@ -18,7 +18,7 @@
 - name: Linux Mint packages installed
   become: true
   ansible.builtin.apt:
-    state: latest
+    state: present
     update_cache: true
     package:
       - btop
