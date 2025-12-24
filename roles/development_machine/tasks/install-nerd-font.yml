@@ -7,7 +7,7 @@
 - name: "Unarchive {{ font.archive }}"
   when: not development_machine_font_files.matched
   ansible.builtin.unarchive:
-    dest: "{{ development_machine_dest_per_system[ansible_system] }}"
+    dest: "{{ development_machine_dest_per_system[ansible_facts['system']] }}"
     remote_src: true
     src: >-
       https://github.com/ryanoasis/nerd-fonts/releases/download/{{
