@@ -14,12 +14,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.1
 
-      - name: yamllint
+      - name: Lint YAML Files
         uses: karancode/yamllint-github-action@v2.1.1
         with:
           yamllint_strict: true
 
-      - name: StyLua
+      - name: Check Lua Style
         uses: JohnnyMorganz/stylua-action@v4.1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -29,5 +29,5 @@ jobs:
             --quote-style AutoPreferDouble
             --check .
 
-      - name: Ansible lint
+      - name: Lint Ansible files
         uses: ansible/ansible-lint@v25.6.1
