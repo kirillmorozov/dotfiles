@@ -1,5 +1,5 @@
 ---
-completions_path: ~/.oh-my-zsh/custom/completions
-local_bin_dir: ~/.local/bin
-xdg_config_home: ~/.config
-xdg_data_home: ~/.local/share
+development_machine_completions_path: ~/.oh-my-zsh/custom/completions
+development_machine_local_bin_dir: ~/.local/bin
+development_machine_xdg_config_home: ~/.config
+development_machine_xdg_data_home: ~/.local/share
