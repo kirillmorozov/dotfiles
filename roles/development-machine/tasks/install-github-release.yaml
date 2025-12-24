@@ -1,0 +1,107 @@
+---
+- name: Require GitHub release variables
+  ansible.builtin.assert:
+    that:
+      - github_release_repo is defined
+      - github_release_bin_name is defined
+      - github_release_asset_name is defined or github_release_asset_regex is defined
+    fail_msg: >-
+      Set github_release_repo, github_release_bin_name, and either
+      github_release_asset_name or github_release_asset_regex.
+
+- name: Create temporary directory for GitHub release
+  register: github_release_tmp
+  ansible.builtin.tempfile:
+    state: directory
+    path: /tmp
+    prefix: github-release-
+
+- name: Fetch latest GitHub release metadata
+  register: github_release_metadata
+  ansible.builtin.uri:
+    url: "https://api.github.com/repos/{{ github_release_repo }}/releases/latest"
+    return_content: true
+
+- name: Select GitHub release asset
+  ansible.builtin.set_fact:
+    github_release_asset: >-
+      {{
+        (
+          github_release_metadata.json.assets
+          | default([])
+          | selectattr('name', 'match', github_release_asset_regex | default('^$'))
+          | list
+          | first
+        )
+        if github_release_asset_regex is defined
+        else
+        (
+          github_release_metadata.json.assets
+          | default([])
+          | selectattr('name', 'equalto', github_release_asset_name)
+          | list
+          | first
+        )
+      }}
+
+- name: Ensure GitHub release asset was found
+  ansible.builtin.assert:
+    that:
+      - github_release_asset is defined
+      - github_release_asset | length > 0
+    fail_msg: >-
+      No GitHub release asset matched. Check github_release_asset_name or
+      github_release_asset_regex.
+
+- name: Download GitHub release asset
+  ansible.builtin.get_url:
+    url: "{{ github_release_asset.browser_download_url }}"
+    dest: "{{ github_release_tmp.path }}/{{ github_release_asset.name }}"
+    mode: "0644"
+
+- name: Determine archive handling for release asset
+  ansible.builtin.set_fact:
+    github_release_asset_is_archive: >-
+      {{
+        github_release_asset.name
+        | regex_search('\\.(tar\\.gz|tgz|zip|tar\\.xz|tar\\.bz2)$')
+        is not none
+      }}
+    github_release_asset_path: "{{ github_release_tmp.path }}/{{ github_release_asset.name }}"
+
+- name: Extract GitHub release archive
+  when: github_release_asset_is_archive
+  ansible.builtin.unarchive:
+    src: "{{ github_release_asset_path }}"
+    dest: "{{ github_release_tmp.path }}"
+    remote_src: true
+
+- name: Determine GitHub release executable path
+  ansible.builtin.set_fact:
+    github_release_executable_source: >-
+      {{
+        (
+          github_release_tmp.path ~ '/' ~ (github_release_executable_path | default(github_release_bin_name))
+        )
+        if github_release_asset_is_archive
+        else
+        github_release_asset_path
+      }}
+
+- name: Ensure local bin directory exists
+  ansible.builtin.file:
+    path: "{{ local_bin_dir }}"
+    state: directory
+    mode: "0755"
+
+- name: Install GitHub release executable
+  ansible.builtin.copy:
+    src: "{{ github_release_executable_source }}"
+    dest: "{{ local_bin_dir }}/{{ github_release_bin_name }}"
+    mode: "{{ github_release_mode | default('0755') }}"
+    remote_src: true
+
+- name: Clean up GitHub release temporary directory
+  ansible.builtin.file:
+    path: "{{ github_release_tmp.path }}"
+    state: absent

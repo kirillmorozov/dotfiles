@@ -12,6 +12,10 @@
   become: true
   community.general.copr:
     name: wezfurlong/wezterm-nightly
+- name: Enable Lazygit Copr
+  become: true
+  community.general.copr:
+    name: dejan/lazygit
 - name: Fedora bloat uninstalled
   become: true
   ansible.builtin.dnf:
@@ -68,9 +72,11 @@
       - gopls
       - helix
       - jq
+      - lazygit
       - neovim
       - podman
       - ripgrep
+      - shfmt
       - uv
       - vim
       - vim-X11
