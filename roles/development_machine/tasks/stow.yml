@@ -9,7 +9,7 @@
   ansible.builtin.file:
     path: "{{ target_dir }}"
     state: directory
-    mode: "0755"
+    mode: "0750"
 - name: Symlinks in {{ target_dir }}
   ansible.builtin.file:
     path: "{{ target_dir }}/{{ file_path | basename }}"
