@@ -7,10 +7,28 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+    },
+  },
+  "search": {
+    "center_on_match": true,
+  },
+  "use_smartcase_search": true,
+  "project_panel": {
+    "entry_spacing": "standard",
+  },
+  "autosave": "on_focus_change",
+  "buffer_line_height": "standard",
+  "icon_theme": "Zed (Default)",
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5.1-codex-mini"
+      "model": "gpt-5.1-codex-mini",
     },
     "default_profile": "write",
     "model_parameters": [],
