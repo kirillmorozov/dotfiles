@@ -81,6 +81,20 @@
         },
       },
     },
+    "Lua": {
+      "formatter": {
+        "external": {
+          "command": "stylua",
+          "arguments": [
+            "--column-width",
+            "88",
+            "--quote-style",
+            "AutoPreferDouble",
+            "-",
+          ],
+        },
+      },
+    },
     "Go": {
       "formatter": {
         "external": {
