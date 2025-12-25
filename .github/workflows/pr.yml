@@ -27,6 +27,7 @@ jobs:
             task
             vim
             wezterm
+            zed
             zsh
 
       - name: Add labels based on changes
