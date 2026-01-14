@@ -11,10 +11,8 @@
     "delay_ms": 250,
     "enabled": true,
   },
-  "diagnostics": {
-    "inline": {
-      "enabled": true,
-    },
+  "inlay_hints": {
+    "enabled": true,
   },
   "search": {
     "center_on_match": true,
@@ -29,7 +27,7 @@
   "agent": {
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5.1-codex-mini",
+      "model": "gpt-5.1-codex",
     },
     "default_profile": "write",
     "model_parameters": [],
@@ -65,7 +63,6 @@
     "use_system_clipboard": "always",
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 100,
-    "custom_digraphs": {},
   },
   "soft_wrap": "preferred_line_length",
   "theme": {
