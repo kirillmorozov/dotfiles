@@ -11,6 +11,9 @@
     "delay_ms": 250,
     "enabled": true,
   },
+  "git_panel": {
+    "tree_view": true,
+  },
   "inlay_hints": {
     "enabled": true,
   },
