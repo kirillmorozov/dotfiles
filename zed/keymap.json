@@ -18,7 +18,6 @@
   {
     "context": "((VimControl && !menu) || (!Editor && !Terminal))",
     "bindings": {
-      "ctrl-g": "git_panel::ToggleFocus",
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
