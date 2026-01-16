@@ -7,6 +7,24 @@
 // custom settings, run `zed: open default settings` from the
 // command palette
 {
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "window_decorations": "server",
+  "bottom_dock_layout": "left_aligned",
+  "title_bar": {
+    "show_branch_icon": true,
+    "show_menus": false
+  },
+  "tabs": {
+    "activate_on_close": "neighbour",
+    "file_icons": true,
+    "close_position": "left",
+    "git_status": true
+  },
+  "tab_bar": {
+    "show": false
+  },
   "which_key": {
     "delay_ms": 250,
     "enabled": true,
@@ -28,6 +46,8 @@
   "buffer_line_height": "standard",
   "icon_theme": "Zed (Default)",
   "agent": {
+    "use_modifier_to_send": true,
+    "play_sound_when_agent_done": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "gpt-5.1-codex",
