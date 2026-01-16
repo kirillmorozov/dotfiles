@@ -284,6 +284,10 @@ if exists('+findfunc')
 	set findfunc=s:FindFunc
 endif
 
+function! ResetFilesCache() abort
+	let s:filescache = []
+endfunction
+
 " Set up Git TUI client
 if executable('lazygit')
 	function! Git()
