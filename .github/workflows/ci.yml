@@ -30,4 +30,4 @@ jobs:
             --check .
 
       - name: Lint Ansible files
-        uses: ansible/ansible-lint@v25.12.2
+        uses: ansible/ansible-lint@v26.1.1
