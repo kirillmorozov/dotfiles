@@ -2,45 +2,16 @@
 export PATH="$HOME/.local/bin:$PATH"
 # Add go to path
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
-# Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
-# Auto-update behavior
-zstyle ':omz:update' frequency 7
-zstyle ':omz:update' mode auto # update automatically without asking
+# Add cargo to path
+export PATH="$HOME/.cargo/bin:$PATH"
 
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
+autoload -U compinit; compinit
+setopt EXTENDED_HISTORY
+setopt autocd
 
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  ansible
-  aws
-  brew
-  command-not-found
-  common-aliases
-  dnf
-  fzf
-  gh
-  git
-  git-auto-fetch
-  golang
-  helm
-  kubectl
-  podman
-  python
-  systemd
-  terraform
-  ubuntu
-  uv
-  vscode
-)
-
-source $ZSH/oh-my-zsh.sh
+source <(fzf --zsh)
 
 # User configuration
 export BAT_THEME="base16"
@@ -66,7 +37,6 @@ switch_cinnamon_theme() {
       return 1
       ;;
   esac
-
   gsettings set org.cinnamon.desktop.interface gtk-theme "${GTK_THEME:?variable is not set}"
   gsettings set org.cinnamon.theme name "${GTK_THEME}"
   gsettings set org.gnome.desktop.interface gtk-theme "${GTK_THEME}"
