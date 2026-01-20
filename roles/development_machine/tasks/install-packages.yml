@@ -51,15 +51,3 @@
   tags:
     - packages
     - starship
-- name: Install Oh My Zsh
-  ansible.builtin.include_tasks:
-    file: install-ohmyzsh.yml
-    apply:
-      tags:
-        - packages
-        - zsh
-        - ohmyzsh
-  tags:
-    - packages
-    - zsh
-    - ohmyzsh
