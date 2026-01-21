@@ -9,6 +9,11 @@
       "enabled": false,
       "type": "remote",
       "url": "https://api.githubcopilot.com/mcp"
+    },
+    "microsoft-learn": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://learn.microsoft.com/api/mcp"
     }
   },
   "theme": "system"
