@@ -4,6 +4,11 @@
     "atlassian-rovo": {
       "type": "remote",
       "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "github": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp"
     }
   },
   "theme": "system"
