@@ -6,6 +6,8 @@ development_machine_directory_mapping:
     target: "{{ development_machine_xdg_config_home }}/helix"
   - source: "{{ playbook_dir }}/neovim"
     target: "{{ development_machine_xdg_config_home }}/nvim"
+  - source: "{{ playbook_dir }}/opencode"
+    target: "{{ development_machine_xdg_config_home }}/opencode"
   - source: "{{ playbook_dir }}/starship"
     target: "{{ development_machine_xdg_config_home }}/starship"
   - source: "{{ playbook_dir }}/vim"
