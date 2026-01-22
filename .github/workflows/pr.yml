@@ -23,6 +23,7 @@ jobs:
             ansible
             helix
             neovim
+            opencode
             starship
             task
             vim
