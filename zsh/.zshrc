@@ -2,6 +2,8 @@
 export PATH="$HOME/.local/bin:$PATH"
 # Add go to path
 export PATH="$HOME/go/bin:/usr/local/go/bin:$PATH"
+# Add OpenCode to the PATH
+export PATH=/home/kmorozov/.opencode/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -103,3 +105,5 @@ alias lg="lazygit"
 alias li='switch_to_light_mode'
 
 eval "$(starship init zsh)"
+
+# opencode
