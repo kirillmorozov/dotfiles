@@ -1,5 +1,23 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "formatter": {
+    "shfmt": {
+      "command": [
+        "shfmt",
+        "-i",
+        "2",
+        "-bn",
+        "-ci",
+        "-sr",
+        "-w",
+        "$FILE"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash"
+      ]
+    }
+  },
   "mcp": {
     "atlassian-rovo": {
       "enabled": false,
