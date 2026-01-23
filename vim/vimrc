@@ -322,7 +322,7 @@ augroup cmdline_autocomplete
 		autocmd CmdlineChanged [:\/\?] call wildtrigger()
 	endif
 	" Empty files cache on cmdline entry
-	autocmd CmdlineEnter :find let s:filescache = []
+	autocmd CmdlineEnter : let s:filescache = []
 augroup END
 
 " Enable built-in packages
