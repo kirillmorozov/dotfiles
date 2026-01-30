@@ -69,3 +69,20 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" }
 
 -- Open in split
 vim.keymap.set("n", "gsf", "<C-w>vgf", { desc = "Go to file in a split" })
+
+-- Open :find or :buffer in vertical split from cmdline
+vim.keymap.set("c", "<C-v>", function()
+	if vim.fn.getcmdtype() ~= ":" then
+		return "<C-v>"
+	end
+	local line = vim.fn.getcmdline()
+	if vim.fn.match(line, [[^\s*find\>]]) ~= -1 then
+		local next_cmd = vim.fn.substitute(line, [[^\s*find\>]], "vert sfind", "")
+		return "<C-U>" .. next_cmd .. "<CR>"
+	end
+	if vim.fn.match(line, [[^\s*buffer\>]]) ~= -1 then
+		local next_cmd = vim.fn.substitute(line, [[^\s*buffer\>]], "vert sbuffer", "")
+		return "<C-U>" .. next_cmd .. "<CR>"
+	end
+	return "<C-v>"
+end, { desc = "Open :find/:buffer in split", expr = true })
