@@ -15,6 +15,9 @@
 " Use spacebar as a leader key
 let mapleader=" "
 
+" Make Vim snappier
+set updatetime=100
+
 " Suppress the banner
 let g:netrw_banner=0
 " Open in prior window
@@ -331,3 +334,7 @@ augroup END
 silent! packadd comment
 silent! packadd hlyank | let g:hlyank_duration = 150
 silent! packadd nohlsearch
+
+" GitGutter settings
+let g:gitgutter_map_keys = 0
+nmap <Leader>g :GitGutterQuickFix<Space>\|<Space>copen<CR>
