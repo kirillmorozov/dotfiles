@@ -54,7 +54,7 @@ return {
 				json = { "jq" },
 				lua = { "stylua" },
 				python = { "ruff_format" },
-				rust = {"rustfmt"},
+				rust = { "rustfmt" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
 				yaml = { "yamlfmt", "yq", stop_after_first = true },
