@@ -1,5 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "plan": {
+      "tools": {
+        "atlassian-rovo_addCommentToJiraIssue": true,
+        "atlassian-rovo_editJiraIssue": true,
+        "atlassian-rovo_getJiraIssue": true
+      }
+    }
+  },
   "formatter": {
     "shfmt": {
       "command": [
