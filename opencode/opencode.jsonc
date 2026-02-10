@@ -1,11 +1,14 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "atlassian-rovo_*": "deny"
+  },
   "agent": {
     "plan": {
-      "tools": {
-        "atlassian-rovo_addCommentToJiraIssue": true,
-        "atlassian-rovo_editJiraIssue": true,
-        "atlassian-rovo_getJiraIssue": true
+      "permission": {
+        "atlassian-rovo_getJiraIssue": "allow",
+        "atlassian-rovo_addCommentToJiraIssue": "ask",
+        "atlassian-rovo_editJiraIssue": "ask"
       }
     }
   },
