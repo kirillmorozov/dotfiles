@@ -1,5 +1,5 @@
 compiler yamllint
-nmap <Leader>m :make<Space>%<CR>
+nnoremap <buffer> <Leader>m :make<Space>%<CR>
 setlocal expandtab
 setlocal shiftwidth=2
 setlocal softtabstop=2
