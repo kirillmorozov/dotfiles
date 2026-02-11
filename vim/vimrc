@@ -154,11 +154,13 @@ nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :vert<Space>help<Space>
 " Window navigation
-nmap <leader>w <c-w>
-nmap <C-H> <c-w>h
-nmap <C-J> <c-w>j
-nmap <C-K> <c-w>k
-nmap <C-L> <c-w>l
+nmap <C-D> <C-D>zz
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+nmap <C-U> <C-U>zz
+nmap <Leader>W <C-W>
 " Open in a split
 nmap gsf <C-w>vgf
 " Moving selected lines
