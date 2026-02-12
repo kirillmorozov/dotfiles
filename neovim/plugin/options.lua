@@ -67,6 +67,17 @@ vim.diagnostic.config({
 vim.opt.showmatch = true
 vim.opt.matchtime = 2
 
+-- Command-line completion operates in an enhanced mode
+vim.opt.wildmenu = true
+-- Command-line completion mode
+vim.opt.wildmode = { "noselect:lastused", "full" }
+-- Use popup menu for command-line completion
+vim.opt.wildoptions = "pum"
+-- Limit the height of a popup menu
+vim.opt.pumheight = 10
+-- Hide noise in completion
+vim.opt.wildignore:append({ "*.pyc", "*/.git/*", "*/node_modules/*" })
+
 -- Enable LSP servers
 vim.lsp.enable({
 	"gleam",
