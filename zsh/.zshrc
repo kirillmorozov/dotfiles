@@ -105,5 +105,3 @@ alias lg="lazygit"
 alias li='switch_to_light_mode'
 
 eval "$(starship init zsh)"
-
-# opencode
