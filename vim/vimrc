@@ -15,6 +15,9 @@
 " Use spacebar as a leader key
 let mapleader=" "
 
+" Make Vim snappier
+set updatetime=100
+
 " Suppress the banner
 let g:netrw_banner=0
 " Open in prior window
