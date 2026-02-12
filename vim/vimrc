@@ -30,7 +30,7 @@ let g:netrw_liststyle=3
 " Make Vim behave in a more useful way
 set nocompatible
 
-" Use a swapfile for the buffer
+" Do not use a swapfile for the buffer
 set noswapfile
 
 " Automatically read file again if it was changed outside vim
@@ -100,7 +100,7 @@ set shiftwidth=4
 set noexpandtab
 
 " Encoding set to UTF-8
-set fileencoding = "utf-8"
+set fileencoding=utf-8
 
 " Number of items in popup menu
 set pumheight=10
@@ -148,7 +148,7 @@ endif
 
 " Key mappings
 " Search
-nmap <leader>/ :grep<Space>
+nnoremap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 " General navigation
@@ -157,61 +157,61 @@ nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
 nnoremap <leader>h :vert<Space>help<Space>
 " Window navigation
-nmap <C-D> <C-D>zz
-nmap <C-H> <C-W>h
-nmap <C-J> <C-W>j
-nmap <C-K> <C-W>k
-nmap <C-L> <C-W>l
-nmap <C-U> <C-U>zz
-nmap <Leader>W <C-W>
+nnoremap <C-D> <C-D>zz
+nnoremap <C-H> <C-W>h
+nnoremap <C-J> <C-W>j
+nnoremap <C-K> <C-W>k
+nnoremap <C-L> <C-W>l
+nnoremap <C-U> <C-U>zz
+nnoremap <Leader>w <C-W>
 " Open in a split
-nmap gsf <C-w>vgf
+nnoremap gsf <C-w>vgf
 " Moving selected lines
-nmap <A-Down> :m<Space>.+1<CR>==
-nmap <A-Up> :m<Space>.-2<CR>==
-vmap <A-Down> :m<Space>'>+1<CR>gv=gv
-vmap <A-Up> :m<Space>'<-2<CR>gv=gv
+nnoremap <A-Down> :m<Space>.+1<CR>==
+nnoremap <A-Up> :m<Space>.-2<CR>==
+xnoremap <A-Down> :m<Space>'>+1<CR>gv=gv
+xnoremap <A-Up> :m<Space>'<-2<CR>gv=gv
 " Quickfix list navigation
-nmap <leader>cc :cclose<CR>
-nmap <leader>co :copen<CR>
-nmap [<C-Q> :cpfile<CR>zz
-nmap [Q :crewind<CR>zz
-nmap [q :cprevious<CR>zz
-nmap ]<C-Q> :cnfile<CR>zz
-nmap ]Q :clast<CR>zz
-nmap ]q :cnext<CR>zz
+nnoremap <leader>cc :cclose<CR>
+nnoremap <leader>co :copen<CR>
+nnoremap [<C-Q> :cpfile<CR>zz
+nnoremap [Q :crewind<CR>zz
+nnoremap [q :cprevious<CR>zz
+nnoremap ]<C-Q> :cnfile<CR>zz
+nnoremap ]Q :clast<CR>zz
+nnoremap ]q :cnext<CR>zz
 " Location list navigation
-nmap <leader>lc :lclose<CR>
-nmap <leader>lo :lopen<CR>
-nmap [<C-L> :lpfile<CR>zz
-nmap [L :lrewind<CR>zz
-nmap [l :lprevious<CR>zz
-nmap ]<C-L> :lnfile<CR>zz
-nmap ]L :llast<CR>zz
-nmap ]l :lnext<CR>zz
+nnoremap <leader>lc :lclose<CR>
+nnoremap <leader>lo :lopen<CR>
+nnoremap [<C-L> :lpfile<CR>zz
+nnoremap [L :lrewind<CR>zz
+nnoremap [l :lprevious<CR>zz
+nnoremap ]<C-L> :lnfile<CR>zz
+nnoremap ]L :llast<CR>zz
+nnoremap ]l :lnext<CR>zz
 " Argument list navigation
-nmap [A :rewind<CR>
-nmap [a :previous<CR>
-nmap ]A :last<CR>
-nmap ]a :next<CR>
+nnoremap [A :rewind<CR>
+nnoremap [a :previous<CR>
+nnoremap ]A :last<CR>
+nnoremap ]a :next<CR>
 " Tags navigation
-nmap [t :tprevious<CR>zz
-nmap ]t :tnext<CR>zz
-nmap [T :trewind<CR>zz
-nmap ]T :tlast<CR>zz
-nmap [<C-T> :ptprevious<CR>zz
-nmap ]<C-T> :ptnext<CR>zz
+nnoremap [t :tprevious<CR>zz
+nnoremap ]t :tnext<CR>zz
+nnoremap [T :trewind<CR>zz
+nnoremap ]T :tlast<CR>zz
+nnoremap [<C-T> :ptprevious<CR>zz
+nnoremap ]<C-T> :ptnext<CR>zz
 " Buffers navigation
-nmap [B :brewind<CR>
-nmap [b :bprevious<CR>
-nmap ]B :blast<CR>
-nmap ]b :bnext<CR>
+nnoremap [B :brewind<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]B :blast<CR>
+nnoremap ]b :bnext<CR>
 " Clipboard
-map <leader>y "+y
-map <leader>p "+p
-map <leader><s-p> "+<s-p>
+noremap <leader>y "+y
+noremap <leader>p "+p
+noremap <leader><s-p> "+<s-p>
 " Make
-nmap <Leader>m :make<Space>
+nnoremap <Leader>m :make<Space>
 " Open file in a vertical split
 cnoremap <expr> <C-v> <SID>VertSplitFind()
 

@@ -1,2 +1,2 @@
 compiler hadolint
-nmap <Leader>m :make<Space>%<CR>
+nnoremap <buffer> <Leader>m :make<Space>%<CR>
