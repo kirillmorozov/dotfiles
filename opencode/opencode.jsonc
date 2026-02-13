@@ -52,6 +52,26 @@
       ]
     }
   },
+  "lsp": {
+    "ruff": {
+      "command": [
+        "ruff",
+        "server"
+      ],
+      "extensions": [
+        ".py"
+      ]
+    },
+    "ty": {
+      "command": [
+        "ty",
+        "server"
+      ],
+      "extensions": [
+        ".py"
+      ]
+    }
+  },
   "mcp": {
     "atlassian-rovo": {
       "enabled": false,
