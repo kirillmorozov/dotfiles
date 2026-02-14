@@ -3,6 +3,7 @@
   community.general.homebrew:
     state: latest
     package:
+      - anomalyco/tap/opencode
       - btop
       - fd
       - fzf

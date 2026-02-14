@@ -1,0 +1,93 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "atlassian-rovo_*": "deny"
+  },
+  "agent": {
+    "plan": {
+      "permission": {
+        "atlassian-rovo_getJiraIssue": "allow",
+        "atlassian-rovo_addCommentToJiraIssue": "ask",
+        "atlassian-rovo_editJiraIssue": "ask"
+      }
+    }
+  },
+  "formatter": {
+    "shfmt": {
+      "command": [
+        "shfmt",
+        "-i",
+        "2",
+        "-bn",
+        "-ci",
+        "-sr",
+        "-w",
+        "$FILE"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash"
+      ]
+    },
+    "yamlfmt": {
+      "command": [
+        "yamlfmt",
+        "-formatter",
+        "include_document_start=true",
+        "-formatter",
+        "max_line_length=80",
+        "-formatter",
+        "pad_line_comments=2",
+        "-formatter",
+        "retain_line_breaks=true",
+        "-formatter",
+        "retain_line_breaks_single=true",
+        "-formatter",
+        "scan_folded_as_literal=true",
+        "$FILE"
+      ],
+      "extensions": [
+        ".yml",
+        ".yaml"
+      ]
+    }
+  },
+  "lsp": {
+    "ruff": {
+      "command": [
+        "ruff",
+        "server"
+      ],
+      "extensions": [
+        ".py"
+      ]
+    },
+    "ty": {
+      "command": [
+        "ty",
+        "server"
+      ],
+      "extensions": [
+        ".py"
+      ]
+    }
+  },
+  "mcp": {
+    "atlassian-rovo": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    },
+    "github": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp"
+    },
+    "microsoft-learn": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://learn.microsoft.com/api/mcp"
+    }
+  },
+  "theme": "system"
+}
