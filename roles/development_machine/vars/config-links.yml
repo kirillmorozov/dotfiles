@@ -2,6 +2,8 @@
 development_machine_directory_mapping:
   - source: "{{ playbook_dir }}/alacritty"
     target: "{{ development_machine_xdg_config_home }}/alacritty"
+  - source: "{{ playbook_dir }}/codex"
+    target: "~/.codex"
   - source: "{{ playbook_dir }}/helix"
     target: "{{ development_machine_xdg_config_home }}/helix"
   - source: "{{ playbook_dir }}/neovim"

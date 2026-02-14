@@ -21,6 +21,7 @@ jobs:
           scopes: |
             alacritty
             ansible
+            codex
             helix
             neovim
             starship
