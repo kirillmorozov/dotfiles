@@ -49,6 +49,11 @@ Vim:
       - any-glob-to-any-file:
           - vim/**/*
 
+OpenCode:
+  - changed-files:
+      - any-glob-to-any-file:
+          - opencode/**/*
+
 Starship:
   - changed-files:
       - any-glob-to-any-file:
