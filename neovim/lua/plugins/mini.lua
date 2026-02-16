@@ -9,8 +9,13 @@ return {
 		end,
 		event = "UIEnter",
 		opts = {
+			cmdline = {
+				autopeek = { enable = false },
+			},
+			completion = {},
 			diff = {},
 			git = {},
+			icons = {},
 			statusline = { use_icons = true },
 			surround = {},
 		},
