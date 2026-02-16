@@ -73,6 +73,11 @@
     }
   },
   "mcp": {
+    "code-wabo-run": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://code.wabo.run/api/v4/mcp"
+    },
     "atlassian-rovo": {
       "enabled": false,
       "type": "remote",
