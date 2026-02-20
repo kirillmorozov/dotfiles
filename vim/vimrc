@@ -336,8 +336,8 @@ augroup cmdline_autocomplete
 	endif
 	" Empty files cache on cmdline entry
 	autocmd CmdlineEnter : let s:filescache = []
-	" Save last :find query as user types
-	autocmd CmdlineChanged : if getcmdline() =~# '^\s*find\>' |
+	" Save last :find query before leaving (getcmdline() is still set on <Esc>)
+	autocmd CmdlineLeavePre : if getcmdline() =~# '^\s*find\>' |
 				\ let s:lastfind = substitute(getcmdline(), '^\s*find\s*', '', '') |
 				\ endif
 augroup END
