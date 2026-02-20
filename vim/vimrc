@@ -155,6 +155,7 @@ nnoremap n nzz
 nnoremap <Leader>b :buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
+nnoremap <silent> <Leader>' :call <SID>ResumeFindCmd()<CR>
 nnoremap <leader>h :vert<Space>help<Space>
 " Window navigation
 nnoremap <C-D> <C-D>zz
@@ -244,6 +245,8 @@ endfunction
 
 " Initialise files cache.
 let s:filescache = []
+" Store the last :find query for resuming
+let s:lastfind = ''
 
 " Get a list of all files using built-in globpath.
 function! s:GlobFiles() abort
@@ -289,6 +292,11 @@ if exists('+findfunc')
 	set findfunc=s:FindFunc
 endif
 
+" Re-open :find command pre-filled with last query
+function! s:ResumeFindCmd() abort
+	call feedkeys(':find ' . s:lastfind, 'tn')
+endfunction
+
 " Set up Git TUI client
 if executable('lazygit')
 	function! Git()
@@ -328,6 +336,10 @@ augroup cmdline_autocomplete
 	endif
 	" Empty files cache on cmdline entry
 	autocmd CmdlineEnter : let s:filescache = []
+	" Save last :find query as user types
+	autocmd CmdlineChanged : if getcmdline() =~# '^\s*find\>' |
+				\ let s:lastfind = substitute(getcmdline(), '^\s*find\s*', '', '') |
+				\ endif
 augroup END
 
 " Enable built-in packages
