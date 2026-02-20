@@ -292,7 +292,7 @@ endif
 
 " Re-open last command pre-filled for editing
 function! s:ResumeLastCmd() abort
-	call feedkeys(':' . histget(':', -1), 'tn')
+	call feedkeys(':' . histget(':'), 'tn')
 endfunction
 
 " Set up Git TUI client
