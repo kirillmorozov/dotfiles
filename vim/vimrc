@@ -151,6 +151,7 @@ endif
 nnoremap <leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
+xnoremap <silent> <Leader>/ y:<C-U>execute 'grep! -F ' . shellescape(@")<CR>
 " General navigation
 nnoremap <Leader>b :buffer<Space>
 nnoremap <C-S> :update<CR>
