@@ -4,6 +4,15 @@ vim.keymap.set("n", "<leader>cc", vim.cmd.cclose, { desc = "Close quickfix list"
 vim.keymap.set("n", "<leader>co", vim.cmd.copen, { desc = "Open quickfix list" })
 vim.keymap.set("n", "N", "Nzz", { desc = "Center screen when searching" })
 vim.keymap.set("n", "n", "nzz", { desc = "Center screen when searching" })
+vim.keymap.set(
+	"x",
+	"*",
+	[[y/\V<C-r>=escape(@",'/\')<CR><CR>]],
+	{ desc = "Search for visual selection" }
+)
+vim.keymap.set("x", "<Leader>/", function()
+	vim.cmd("execute 'grep! -F ' . shellescape(@\")")
+end, { silent = true, desc = "Grep for visual selection" })
 
 -- Plus register yank/paste
 vim.keymap.set(
