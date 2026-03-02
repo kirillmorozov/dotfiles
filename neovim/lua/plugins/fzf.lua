@@ -50,6 +50,15 @@ return {
 				desc = "Search for a string and get results live",
 			},
 			{
+				"<Leader>/",
+				function()
+					vim.cmd('noautocmd normal! "vy')
+					require("fzf-lua").live_grep({ query = vim.fn.getreg("v") })
+				end,
+				mode = "x",
+				desc = "Search for visual selection with live grep",
+			},
+			{
 				"<Leader>?",
 				"<cmd>FzfLua commands<cr>",
 				desc = "List available commands",
