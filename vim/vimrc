@@ -215,6 +215,8 @@ noremap <leader><s-p> "+<s-p>
 nnoremap <Leader>m :make<Space>
 " Open file in a vertical split
 cnoremap <expr> <C-v> <SID>VertSplitFind()
+" Search for visually selected text
+vnoremap * y/\V<C-r>=escape(@",'/\')<CR><CR>
 
 " Use ripgrep for search if it's installed
 if executable('rg')
