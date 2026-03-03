@@ -6,6 +6,7 @@
       - btop
       - fd
       - fzf
+      - glab
       - go-task
       - helix
       - jq
