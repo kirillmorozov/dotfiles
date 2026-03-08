@@ -27,9 +27,6 @@ let g:netrw_altv=1
 " Tree style view in netrw
 let g:netrw_liststyle=3
 
-" Make Vim behave in a more useful way
-set nocompatible
-
 " Do not use a swapfile for the buffer
 set noswapfile
 
