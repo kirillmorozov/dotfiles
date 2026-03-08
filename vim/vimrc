@@ -298,11 +298,11 @@ endfunction
 
 " Set up Git TUI client
 if executable('lazygit')
-	function! Git()
+	function! s:Git()
 		execute 'silent !lazygit'
 		redraw!
 	endfunction
-	nmap <c-g> :call Git()<cr>
+	nnoremap <c-g> :call <SID>Git()<cr>
 endif
 
 function! s:FormatFile() abort
