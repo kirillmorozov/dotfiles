@@ -287,6 +287,8 @@ endfunction
 " Set findfunc but only if it's supported.
 if exists('+findfunc')
 	set findfunc=s:FindFunc
+else
+	set path+=**
 endif
 
 " Re-open last command pre-filled for editing
