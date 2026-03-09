@@ -1,5 +1,4 @@
 compiler ruff
-nnoremap <buffer> <Leader>m :make<Space>%<CR>
 setlocal autoindent
 setlocal colorcolumn=80
 setlocal expandtab
