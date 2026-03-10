@@ -14,7 +14,7 @@
     name: wezfurlong/wezterm-nightly
 - name: Fedora bloat uninstalled
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.dnf5:
     state: absent
     pkg:
       - akregator
@@ -54,7 +54,7 @@
       - neochat
 - name: Fedora packages installed
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.dnf5:
     state: present
     pkg:
       - alacritty
