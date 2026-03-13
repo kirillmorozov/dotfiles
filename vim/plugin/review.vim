@@ -4,6 +4,8 @@ const REVIEW_EFM = '%f:%l:%c: %m'
 const REVIEW_LINE_PATTERN = '^.\+:\d\+:\d\+:\s'
 
 var review_job: job
+var review_timer: number = -1
+var review_start: list<any> = []
 
 def BuildPrompt(): string
 	var prompt =<< trim END
@@ -30,6 +32,23 @@ def HasUncommittedChanges(): bool
 	endif
 
 	return !empty(status)
+enddef
+
+def StopTimer()
+	if review_timer >= 0
+		timer_stop(review_timer)
+		review_timer = -1
+	endif
+enddef
+
+def OnTimerTick(timer_id: number)
+	if type(review_job) != v:t_job || job_status(review_job) !=# 'run'
+		StopTimer()
+		return
+	endif
+
+	var elapsed = reltimefloat(reltime(review_start))
+	echomsg printf('Review: running... (%ds)', float2nr(elapsed))
 enddef
 
 def OnReviewOutput(output: list<string>)
@@ -60,11 +79,16 @@ def OnReviewClose(channel: channel)
 enddef
 
 def OnReviewExit(job: job, exit_code: number)
+	StopTimer()
+	var elapsed = reltimefloat(reltime(review_start))
+
 	var channel = job_getchannel(job)
 	OnReviewClose(channel)
 
 	if exit_code != 0 && empty(getqflist())
 		echoerr 'Review: claude exited with code ' .. exit_code
+	else
+		echomsg printf('Review: done (%ds)', float2nr(elapsed))
 	endif
 enddef
 
@@ -90,7 +114,9 @@ def ReviewCommand()
 		var prompt = BuildPrompt()
 		var cmd = ['claude', '-p', '--permission-mode', 'plan', '--model', 'sonnet', prompt]
 
+		review_start = reltime()
 		echomsg 'Review: running...'
+		review_timer = timer_start(5000, OnTimerTick, {'repeat': -1})
 		review_job = job_start(cmd, {
 			'out_mode': 'nl',
 			'close_cb': OnReviewClose,
