@@ -21,20 +21,78 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
-local color_scheme_name = scheme_for_appearance(get_appearance())
-local color_scheme = wezterm.color.get_builtin_schemes()[color_scheme_name]
-local font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
-
 local config = wezterm.config_builder()
 config:set_strict_mode(true)
 
 config.animation_fps = 120
-config.color_scheme = color_scheme_name
+config.color_scheme = scheme_for_appearance(get_appearance())
 config.enable_scroll_bar = false
-config.font = font
+config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
 config.font_size = 14.0
 config.max_fps = 120
 config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
+
+-- Leader key (tmux-style prefix)
+config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+	-- Split panes (tmux defaults: " for horizontal, % for vertical)
+	{
+		key = '"',
+		mods = "LEADER",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "%",
+		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+
+	-- Navigate panes (vim-style, popular tmux plugin: vim-tmux-navigator)
+	{
+		key = "h",
+		mods = "LEADER",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		key = "j",
+		mods = "LEADER",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{ key = "k", mods = "LEADER", action = wezterm.action.ActivatePaneDirection("Up") },
+	{
+		key = "l",
+		mods = "LEADER",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+
+	-- Resize panes
+	{
+		key = "H",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
+		key = "J",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
+	},
+	{ key = "K", mods = "LEADER", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+	{
+		key = "L",
+		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
+	},
+
+	-- Zoom pane (tmux: prefix + z)
+	{ key = "z", mods = "LEADER", action = wezterm.action.TogglePaneZoomState },
+
+	-- Close pane (tmux: prefix + x)
+	{
+		key = "x",
+		mods = "LEADER",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
+}
 
 wezterm.plugin
 	.require("https://github.com/adriankarlen/bar.wezterm")
