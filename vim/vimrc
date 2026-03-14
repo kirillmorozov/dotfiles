@@ -171,6 +171,39 @@ nnoremap <A-Down> :m<Space>.+1<CR>==
 nnoremap <A-Up> :m<Space>.-2<CR>==
 xnoremap <A-Down> :m<Space>'>+1<CR>gv=gv
 xnoremap <A-Up> :m<Space>'<-2<CR>gv=gv
+" Load git hunks into quickfix list
+function! s:GitHunksToQF() abort
+	let l:output = systemlist(
+				\ 'git diff --no-ext-diff -U0'
+				\ )
+	if v:shell_error
+		echohl ErrorMsg
+		echomsg 'git diff failed'
+		echohl None
+		return
+	endif
+	let l:items = []
+	let l:file = ''
+	for l:line in l:output
+		if l:line =~# '^diff --git'
+			let l:file = matchstr(l:line, 'b/\zs.*')
+		elseif l:line =~# '^@@'
+			let l:lnum = matchstr(l:line, '+\zs\d\+')
+			call add(l:items, {
+						\ 'filename': l:file,
+						\ 'lnum': str2nr(l:lnum),
+						\ 'text': l:line,
+						\ })
+		endif
+	endfor
+	if empty(l:items)
+		echomsg 'No git hunks found'
+		return
+	endif
+	call setqflist([], ' ', {'title': 'Git Hunks', 'items': l:items})
+	copen
+endfunction
+nnoremap <leader>gq :call <SID>GitHunksToQF()<CR>
 " Quickfix list navigation
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>co :copen<CR>
