@@ -308,6 +308,8 @@ function! s:GitHunksToQF() abort
 		return
 	endif
 	if empty(l:lines)
+		call setqflist([], ' ', {'title': 'Git Hunks', 'items': []})
+		cclose
 		echomsg 'No git hunks found'
 		return
 	endif
