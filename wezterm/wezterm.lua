@@ -37,7 +37,7 @@ config.max_fps = 120
 config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
 
 -- Leader key (tmux-style prefix)
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "Space", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
 	-- Split panes (tmux defaults: " for horizontal, % for vertical)
