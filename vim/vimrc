@@ -171,6 +171,8 @@ nnoremap <A-Down> :m<Space>.+1<CR>==
 nnoremap <A-Up> :m<Space>.-2<CR>==
 xnoremap <A-Down> :m<Space>'>+1<CR>gv=gv
 xnoremap <A-Up> :m<Space>'<-2<CR>gv=gv
+" Load git hunks into quickfix list
+nnoremap <Leader>gq :call <SID>GitHunksToQF()<CR>
 " Quickfix list navigation
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>co :copen<CR>
@@ -294,6 +296,33 @@ endif
 " Re-open last command pre-filled for editing
 function! s:ResumeLastCmd() abort
 	call feedkeys(':' . histget(':'), 'tn')
+endfunction
+
+" Load git hunks into quickfix list
+function! s:GitHunksToQF() abort
+	let l:lines = systemlist('git diff --no-ext-diff -U0')
+	if v:shell_error
+		echohl ErrorMsg
+		echomsg 'git diff failed'
+		echohl None
+		return
+	endif
+	if empty(l:lines)
+		call setqflist([], ' ', {'title': 'Git Hunks', 'items': []})
+		cclose
+		echomsg 'No git hunks found'
+		return
+	endif
+	call setqflist([], ' ', {
+				\ 'title': 'Git Hunks',
+				\ 'lines': l:lines,
+				\ 'efm':
+				\   '%-Pdiff --git a/%f b/%.%#,'
+				\   . '@@ -%\d%\+%.%# +%l%.%# @@ %m,'
+				\   . '@@ -%\d%\+%.%# +%l%.%# @@,'
+				\   . '%-G%.%#',
+				\ })
+	copen
 endfunction
 
 " Set up Git TUI client
