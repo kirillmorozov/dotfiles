@@ -36,14 +36,27 @@ config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
 	-- Split panes (tmux defaults: " for horizontal, % for vertical)
+	-- Each shifted character has two bindings: mods="LEADER" for macOS (SHIFT
+	-- is consumed into the character) and mods="LEADER|SHIFT" for Linux (SHIFT
+	-- remains as an explicit modifier).
 	{
 		key = '"',
 		mods = "LEADER",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 	{
+		key = '"',
+		mods = "LEADER|SHIFT",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
 		key = "%",
 		mods = "LEADER",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		key = "%",
+		mods = "LEADER|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
 
@@ -72,14 +85,30 @@ config.keys = {
 		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
 	},
 	{
+		key = "H",
+		mods = "LEADER|SHIFT",
+		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
 		key = "J",
 		mods = "LEADER",
 		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
 	},
+	{
+		key = "J",
+		mods = "LEADER|SHIFT",
+		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
+	},
 	{ key = "K", mods = "LEADER", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
+	{ key = "K", mods = "LEADER|SHIFT", action = wezterm.action.AdjustPaneSize({ "Up", 5 }) },
 	{
 		key = "L",
 		mods = "LEADER",
+		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
+	},
+	{
+		key = "L",
+		mods = "LEADER|SHIFT",
 		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
 	},
 
