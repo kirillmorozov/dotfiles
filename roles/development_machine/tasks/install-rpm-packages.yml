@@ -4,8 +4,7 @@
   ansible.builtin.yum_repository:
     baseurl: https://cli.github.com/packages/rpm
     description: GitHub CLI
-    gpgkey: >-
-      https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
+    gpgkey: https://cli.github.com/packages/githubcli-archive-keyring.gpg
     name: gh-cli
     state: present
 - name: Enable Wezterm Copr
@@ -14,7 +13,7 @@
     name: wezfurlong/wezterm-nightly
 - name: Fedora bloat uninstalled
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.dnf5:
     state: absent
     pkg:
       - akregator
@@ -54,7 +53,7 @@
       - neochat
 - name: Fedora packages installed
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.dnf5:
     state: present
     pkg:
       - alacritty
