@@ -250,18 +250,18 @@ let s:filescache = []
 " Get a list of all files using built-in globpath.
 function! s:GlobFiles() abort
 	return globpath('.', '**', 1, 1)
-			\->filter('!isdirectory(v:val)')
-			\->map("fnamemodify(v:val, ':.')")
+				\->filter('!isdirectory(v:val)')
+				\->map("fnamemodify(v:val, ':.')")
 endfunction
 
 " Get a list of all files using `fd` executable.
 function! s:FdFiles() abort
 	let l:find_command = 'fd
-			\ --exclude .git
-			\ --follow
-			\ --full-path
-			\ --hidden
-			\ --type file'
+				\ --exclude .git
+				\ --follow
+				\ --full-path
+				\ --hidden
+				\ --type file'
 	let l:result = systemlist(l:find_command)
 	if v:shell_error
 		echoerr l:result
@@ -335,12 +335,11 @@ if executable('lazygit')
 endif
 
 function! s:FormatFile() abort
-	if &formatprg==""
+	if &formatprg == ""
 		return
 	endif
 	let l:view = winsaveview()
-	call setpos('.', [0, 1, 1, 0])
-	silent! normal! gqG
+	silent execute '%!' . &formatprg
 	if v:shell_error
 		silent undo
 		echoerr printf(
