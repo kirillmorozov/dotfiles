@@ -339,7 +339,8 @@ function! s:FormatFile() abort
 		return
 	endif
 	let l:view = winsaveview()
-	keepjumps silent! normal! gggqG
+	call setpos('.', [0, 1, 1, 0])
+	silent! normal! gqG
 	if v:shell_error
 		silent undo
 		echoerr printf(
@@ -348,7 +349,7 @@ function! s:FormatFile() abort
 					\ v:shell_error
 					\ )
 	endif
-	keepjumps call winrestview(l:view)
+	call winrestview(l:view)
 endfunction
 
 augroup autoformat
