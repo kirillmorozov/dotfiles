@@ -20,6 +20,7 @@
     state: directory
 - name: Compile WezTerm terminfo definition
   when: development_machine_wezterm_terminfo.rc != 0
+  changed_when: development_machine_wezterm_terminfo.rc != 0
   ansible.builtin.command:
     argv:
       - tic
