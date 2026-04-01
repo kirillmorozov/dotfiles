@@ -1,0 +1,33 @@
+---
+- name: Check WezTerm terminfo definition
+  register: development_machine_wezterm_terminfo
+  ansible.builtin.command:
+    cmd: infocmp wezterm
+  changed_when: false
+  failed_when: false
+- name: Download WezTerm terminfo definition
+  when: development_machine_wezterm_terminfo.rc != 0
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/wezterm/wezterm/main/termwiz/data/wezterm.terminfo
+    dest: /tmp/wezterm.terminfo
+    mode: "0644"
+- name: Ensure user terminfo directory exists
+  when: development_machine_wezterm_terminfo.rc != 0
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.terminfo"
+    state: directory
+    mode: "0755"
+- name: Compile WezTerm terminfo definition
+  when: development_machine_wezterm_terminfo.rc != 0
+  ansible.builtin.command:
+    argv:
+      - tic
+      - -x
+      - -o
+      - "{{ ansible_env.HOME }}/.terminfo"
+      - /tmp/wezterm.terminfo
+- name: Remove downloaded WezTerm terminfo definition
+  when: development_machine_wezterm_terminfo.rc != 0
+  ansible.builtin.file:
+    path: /tmp/wezterm.terminfo
+    state: absent

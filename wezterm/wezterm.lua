@@ -30,6 +30,7 @@ config.enable_scroll_bar = false
 config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
 config.font_size = 14.0
 config.max_fps = 120
+config.term = "wezterm"
 config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
 
 -- Leader key (tmux-style prefix)

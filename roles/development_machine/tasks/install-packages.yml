@@ -51,6 +51,19 @@
   tags:
     - packages
     - starship
+- name: Install WezTerm terminfo
+  ansible.builtin.include_tasks:
+    file: install-wezterm-terminfo.yml
+    apply:
+      tags:
+        - packages
+        - terminfo
+        - wezterm
+  when: ansible_facts["system"] == "Linux"
+  tags:
+    - packages
+    - terminfo
+    - wezterm
 - name: Install Oh My Zsh
   ansible.builtin.include_tasks:
     file: install-ohmyzsh.yml
