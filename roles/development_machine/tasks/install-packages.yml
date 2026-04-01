@@ -59,7 +59,6 @@
         - packages
         - terminfo
         - wezterm
-  when: ansible_facts["system"] == "Linux"
   tags:
     - packages
     - terminfo
