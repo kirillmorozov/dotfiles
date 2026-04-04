@@ -1,5 +1,4 @@
--- Fuzzy file finder using findfunc + matchfuzzy, with wildtrigger autocomplete.
--- Ported from vim/vimrc.
+-- Fuzzy finder using findfunc + matchfuzzy, with wildtrigger autocomplete.
 
 -- Files cache, cleared on each cmdline entry.
 local filescache = {}
@@ -52,10 +51,10 @@ end
 vim.o.findfunc = "v:lua.FindFunc"
 
 -- Cmdline autocompletion via wildtrigger + cache clearing.
-local finder_group = vim.api.nvim_create_augroup("finder", { clear = true })
+local fuzzy_group = vim.api.nvim_create_augroup("fuzzy", { clear = true })
 
 vim.api.nvim_create_autocmd("CmdlineChanged", {
-	group = finder_group,
+	group = fuzzy_group,
 	pattern = { ":", "/", "?" },
 	desc = "Trigger cmdline autocompletion",
 	callback = function()
@@ -64,7 +63,7 @@ vim.api.nvim_create_autocmd("CmdlineChanged", {
 })
 
 vim.api.nvim_create_autocmd("CmdlineEnter", {
-	group = finder_group,
+	group = fuzzy_group,
 	pattern = ":",
 	desc = "Clear files cache on cmdline entry",
 	callback = function()
