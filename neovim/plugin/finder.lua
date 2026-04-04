@@ -71,20 +71,3 @@ vim.api.nvim_create_autocmd("CmdlineEnter", {
 		filescache = {}
 	end,
 })
-
--- <C-v> in cmdline: convert :find to :vert sfind, :buffer to :vert sbuffer.
-vim.keymap.set("c", "<C-v>", function()
-	if vim.fn.getcmdtype() ~= ":" then
-		return "<C-v>"
-	end
-	local line = vim.fn.getcmdline()
-	local new_line
-	if line:match("^%s*find%s") then
-		new_line = line:gsub("^(%s*)find%s", "%1vert sfind ", 1)
-	elseif line:match("^%s*buffer%s") then
-		new_line = line:gsub("^(%s*)buffer%s", "%1vert sbuffer ", 1)
-	else
-		return "<C-v>"
-	end
-	return "<C-U>" .. new_line .. "<CR>"
-end, { expr = true, desc = "Open file/buffer in vertical split from cmdline" })
