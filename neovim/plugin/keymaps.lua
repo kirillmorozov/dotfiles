@@ -69,6 +69,21 @@ vim.keymap.set(
 	vim.lsp.buf.code_action,
 	{ desc = "Select a code action" }
 )
+vim.keymap.set("n", "gsd", function()
+	vim.cmd.vsplit()
+	vim.lsp.buf.definition()
+end, { desc = "Go to definition in a split" })
+vim.keymap.set("n", "<leader>s", function()
+	if next(vim.lsp.get_clients({ bufnr = 0 })) then
+		vim.lsp.buf.document_symbol()
+	end
+end, { desc = "Document symbols" })
+vim.keymap.set(
+	"n",
+	"<leader>S",
+	vim.lsp.buf.workspace_symbol,
+	{ desc = "Workspace symbols" }
+)
 
 -- Move text up and down
 vim.keymap.set("n", "<A-Down>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -79,11 +94,24 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" }
 -- Open in split
 vim.keymap.set("n", "gsf", "<C-w>vgf", { desc = "Go to file in a split" })
 
+-- Search
+vim.keymap.set("n", "<Leader>/", ":grep ", { desc = "Grep" })
+
 -- Find and buffer navigation
-vim.keymap.set("n", "<leader>f", ":find ", { desc = "Find file" })
-vim.keymap.set("n", "<leader>b", ":buffer ", { desc = "Switch buffer" })
+vim.keymap.set("n", "<Leader>f", ":find ", { desc = "Find file" })
+vim.keymap.set("n", "<Leader>b", ":buffer ", { desc = "Switch buffer" })
+vim.keymap.set("n", "<Leader>h", ":vert help ", { desc = "Help" })
+vim.keymap.set("n", "<Leader>j", vim.cmd.jumps, { desc = "List jumps" })
+
+-- Diagnostics
+vim.keymap.set("n", "<Leader>d", function()
+	vim.diagnostic.setloclist({ open = true })
+end, { desc = "Document diagnostics" })
+vim.keymap.set("n", "<Leader>D", function()
+	vim.diagnostic.setqflist({ open = true })
+end, { desc = "Workspace diagnostics" })
 
 -- Re-open last command pre-filled for editing
-vim.keymap.set("n", "<leader>'", function()
+vim.keymap.set("n", "<Leader>'", function()
 	vim.fn.feedkeys(":" .. vim.fn.histget(":"), "tn")
 end, { silent = true, desc = "Resume last command" })
