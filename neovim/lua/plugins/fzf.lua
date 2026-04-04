@@ -3,6 +3,7 @@ return {
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "echasnovski/mini.nvim", version = "*" },
+		event = "VeryLazy",
 		keys = {
 			{ "gd", "<cmd>FzfLua lsp_definitions<CR>", desc = "Go to definition" },
 			{
