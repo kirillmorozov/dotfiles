@@ -78,3 +78,12 @@ vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" }
 
 -- Open in split
 vim.keymap.set("n", "gsf", "<C-w>vgf", { desc = "Go to file in a split" })
+
+-- Find and buffer navigation
+vim.keymap.set("n", "<leader>f", ":find ", { desc = "Find file" })
+vim.keymap.set("n", "<leader>b", ":buffer ", { desc = "Switch buffer" })
+
+-- Re-open last command pre-filled for editing
+vim.keymap.set("n", "<leader>'", function()
+	vim.fn.feedkeys(":" .. vim.fn.histget(":"), "tn")
+end, { silent = true, desc = "Resume last command" })
