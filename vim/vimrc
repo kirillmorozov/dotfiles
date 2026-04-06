@@ -46,7 +46,7 @@ filetype plugin indent on
 
 if has('termguicolors')
 	set termguicolors
-	for s:cs in ['wildcharm', 'zaibatsu', 'habamax', 'default']
+	for s:cs in ['catppuccin', 'wildcharm', 'zaibatsu', 'habamax', 'default']
 		try
 			execute 'colorscheme ' . s:cs
 			break
