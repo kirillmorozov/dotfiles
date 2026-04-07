@@ -51,6 +51,7 @@ end
 vim.o.findfunc = "v:lua.FindFunc"
 
 -- Cmdline autocompletion via wildtrigger + cache clearing.
+-- FIXME(kirill.morozov): create autocommand only if Neovim >= 0.12
 local fuzzy_group = vim.api.nvim_create_augroup("fuzzy", { clear = true })
 
 vim.api.nvim_create_autocmd("CmdlineChanged", {
