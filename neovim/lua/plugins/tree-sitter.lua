@@ -7,6 +7,14 @@ return {
 		config = function(_, opts)
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup(opts)
+			vim.filetype.add({
+				extension = { gotmpl = "gotmpl" },
+				pattern = {
+					[".*/templates/.*%.tpl"] = "helm",
+					[".*/templates/.*%.ya?ml"] = "helm",
+					["helmfile.*%.ya?ml"] = "helm",
+				},
+			})
 		end,
 		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		event = { "BufNew", "BufRead" },
@@ -20,6 +28,8 @@ return {
 				"gitcommit",
 				"gleam",
 				"go",
+				"gotmpl",
+				"helm",
 				"json",
 				"lua",
 				"markdown",
