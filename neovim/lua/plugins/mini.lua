@@ -10,6 +10,7 @@ return {
 		event = "UIEnter",
 		opts = {
 			cmdline = {
+				autocorrect = { enable = false },
 				autopeek = { enable = false },
 			},
 			completion = {},
