@@ -13,7 +13,7 @@
       - neovim
       - ripgrep
       - starship
-      - tree-sitter
+      - tree-sitter-cli
       - uv
       - vim
       - yq
