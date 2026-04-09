@@ -1,2 +1,2 @@
 compiler jq
-setlocal formatprg=jq\ '.'
+setlocal formatprg=jq\ -S\ '.'
