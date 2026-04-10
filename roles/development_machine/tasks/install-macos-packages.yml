@@ -4,6 +4,7 @@
     state: latest
     package:
       - btop
+      - eza
       - fd
       - fzf
       - glab
