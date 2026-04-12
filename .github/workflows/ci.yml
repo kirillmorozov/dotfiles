@@ -20,7 +20,7 @@ jobs:
           yamllint_strict: true
 
       - name: Check Lua Style
-        uses: JohnnyMorganz/stylua-action@v4.1.0
+        uses: JohnnyMorganz/stylua-action@v5.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v2.1.0
