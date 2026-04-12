@@ -14,6 +14,7 @@
       - neovim
       - ripgrep
       - starship
+      - tree-sitter-cli
       - uv
       - vim
       - yq
