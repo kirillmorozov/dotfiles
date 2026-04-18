@@ -63,6 +63,7 @@
       - fzf
       - gh
       - git
+      - git-delta
       - glab
       - go-task
       - golang
