@@ -79,9 +79,10 @@ config.keys = {
 				)
 				return
 			end
-			-- Let the shell expand $EDITOR and $AGENT — WezTerm's Lua
-			-- process doesn't inherit shell environment variables on macOS.
-			-- ${VAR:?msg} makes the shell print an error if unset/empty.
+			-- NOTE(kirill.morozov): Let the shell expand `$EDITOR` and
+			-- `$AGENT` because looking them up using `os.getenv` in WezTerm's
+			-- Lua returns nothing. ${VAR:?msg} makes the shell print an error
+			-- if unset/empty.
 			window:perform_action(
 				wezterm.action.SendString("${EDITOR:?EDITOR is not set}\n"),
 				pane
