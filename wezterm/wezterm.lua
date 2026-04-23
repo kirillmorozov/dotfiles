@@ -24,25 +24,6 @@ end
 local config = wezterm.config_builder()
 config:set_strict_mode(true)
 
-local split_nvim_codex = wezterm.action_callback(function(window, pane)
-	-- Split right with a smaller pane for codex, keep current pane larger for
-	-- nvim.
-	local ok, codex_pane = pcall(function()
-		return pane:split({
-			direction = "Right",
-			size = 0.33,
-		})
-	end)
-	if not ok then
-		wezterm.log_error(
-			"Failed to split pane for nvim/codex layout: " .. tostring(codex_pane)
-		)
-		return
-	end
-	window:perform_action(wezterm.action.SendString("nvim\n"), pane)
-	window:perform_action(wezterm.action.SendString("codex\n"), codex_pane)
-end)
-
 config.animation_fps = 120
 config.color_scheme = scheme_for_appearance(get_appearance())
 config.enable_scroll_bar = false
@@ -82,7 +63,25 @@ config.keys = {
 	{
 		key = "Enter",
 		mods = "LEADER",
-		action = split_nvim_codex,
+		action = wezterm.action_callback(function(window, pane)
+			-- Split right with a smaller pane for agent, keep current pane
+			-- larger for editor.
+			local ok, agent_pane = pcall(function()
+				return pane:split({
+					direction = "Right",
+					size = 0.33,
+				})
+			end)
+			if not ok then
+				wezterm.log_error(
+					"Failed to split pane for editor/agent layout: "
+						.. tostring(agent_pane)
+				)
+				return
+			end
+			window:perform_action(wezterm.action.SendString("vimx\n"), pane)
+			window:perform_action(wezterm.action.SendString("codex\n"), agent_pane)
+		end),
 	},
 
 	-- Navigate panes (vim-style, popular tmux plugin: vim-tmux-navigator)
