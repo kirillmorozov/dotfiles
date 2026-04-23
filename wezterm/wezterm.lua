@@ -64,16 +64,6 @@ config.keys = {
 		key = "Enter",
 		mods = "LEADER",
 		action = wezterm.action_callback(function(window, pane)
-			local editor = os.getenv("EDITOR")
-			local agent = os.getenv("AGENT")
-			if not editor then
-				wezterm.log_error("EDITOR environment variable is not set")
-				return
-			end
-			if not agent then
-				wezterm.log_error("AGENT environment variable is not set")
-				return
-			end
 			-- Split right with a smaller pane for agent, keep current pane
 			-- larger for editor.
 			local ok, agent_pane = pcall(function()
@@ -89,8 +79,17 @@ config.keys = {
 				)
 				return
 			end
-			window:perform_action(wezterm.action.SendString(editor .. "\n"), pane)
-			window:perform_action(wezterm.action.SendString(agent .. "\n"), agent_pane)
+			-- Let the shell expand $EDITOR and $AGENT — WezTerm's Lua
+			-- process doesn't inherit shell environment variables on macOS.
+			-- ${VAR:?msg} makes the shell print an error if unset/empty.
+			window:perform_action(
+				wezterm.action.SendString("${EDITOR:?EDITOR is not set}\n"),
+				pane
+			)
+			window:perform_action(
+				wezterm.action.SendString("${AGENT:?AGENT is not set}\n"),
+				agent_pane
+			)
 		end),
 	},
 

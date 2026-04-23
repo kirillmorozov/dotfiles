@@ -45,6 +45,11 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export BAT_THEME="base16"
 export EDITOR='vim'
+if command -v claude &> /dev/null; then
+  export AGENT='claude'
+elif command -v codex &> /dev/null; then
+  export AGENT='codex'
+fi
 export MANPAGER="vim +MANPAGER --not-a-term -"
 export STARSHIP_CONFIG=${XDG_CONFIG_HOME:-$HOME/.config}/starship/starship.toml
 
