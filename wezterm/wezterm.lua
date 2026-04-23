@@ -79,7 +79,7 @@ config.keys = {
 				)
 				return
 			end
-			window:perform_action(wezterm.action.SendString("vimx\n"), pane)
+			window:perform_action(wezterm.action.SendString("vim\n"), pane)
 			window:perform_action(wezterm.action.SendString("codex\n"), agent_pane)
 		end),
 	},
