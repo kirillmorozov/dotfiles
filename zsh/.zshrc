@@ -95,6 +95,9 @@ fi
 if command -v go-task &> /dev/null; then
   alias task="go-task"
 fi
+if command -v vimx &> /dev/null; then
+  alias vim='vimx'
+fi
 alias da='switch_to_dark_mode'
 alias e='eza -l --total-size --time-style long-iso --group-directories-first --icons'
 alias ea='e -a'
