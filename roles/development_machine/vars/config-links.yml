@@ -2,6 +2,8 @@
 development_machine_directory_mapping:
   - source: "{{ playbook_dir }}/alacritty"
     target: "{{ development_machine_xdg_config_home }}/alacritty"
+  - source: "{{ playbook_dir }}/git"
+    target: "~"
   - source: "{{ playbook_dir }}/neovim"
     target: "{{ development_machine_xdg_config_home }}/nvim"
   - source: "{{ playbook_dir }}/starship"

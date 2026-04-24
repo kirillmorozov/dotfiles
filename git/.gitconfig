@@ -1,0 +1,18 @@
+[core]
+	pager = delta
+[merge]
+	conflictStyle = zdiff3
+[user]
+	name = Kirill Morozov
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
