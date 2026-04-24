@@ -44,7 +44,11 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export BAT_THEME="base16"
-export EDITOR='vim'
+if command -v vimx &> /dev/null; then
+  export EDITOR="$(command -v vimx)"
+else
+  export EDITOR="$(command -v vim)"
+fi
 if command -v claude &> /dev/null; then
   export AGENT='claude'
 elif command -v codex &> /dev/null; then
