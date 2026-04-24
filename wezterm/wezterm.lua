@@ -60,6 +60,39 @@ config.keys = {
 		mods = "LEADER|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
+	{
+		key = "Enter",
+		mods = "LEADER",
+		action = wezterm.action_callback(function(window, pane)
+			-- Split right with a smaller pane for agent, keep current pane
+			-- larger for editor.
+			local ok, agent_pane = pcall(function()
+				return pane:split({
+					direction = "Right",
+					size = 0.33,
+				})
+			end)
+			if not ok then
+				wezterm.log_error(
+					"Failed to split pane for editor/agent layout: "
+						.. tostring(agent_pane)
+				)
+				return
+			end
+			-- NOTE(kirill.morozov): Let the shell expand `$EDITOR` and
+			-- `$AGENT` because looking them up using `os.getenv` in WezTerm's
+			-- Lua returns nothing. ${VAR:?msg} makes the shell print an error
+			-- if unset/empty.
+			window:perform_action(
+				wezterm.action.SendString("${EDITOR:?EDITOR is not set}\n"),
+				pane
+			)
+			window:perform_action(
+				wezterm.action.SendString("${AGENT:?AGENT is not set}\n"),
+				agent_pane
+			)
+		end),
+	},
 
 	-- Navigate panes (vim-style, popular tmux plugin: vim-tmux-navigator)
 	{
