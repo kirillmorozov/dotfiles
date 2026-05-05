@@ -1,16 +1,12 @@
-function! s:ResetAgentNotes() abort
+function! s:ResetRegisters() abort
 	call setreg('t', 'TODO(agent): ')
 	call setreg('f', 'FIXME(agent): ')
 endfunction
 
-call s:ResetAgentNotes()
+call s:ResetRegisters()
 
-command! AgentNotesReset call <SID>ResetAgentNotes()
-
-" Insert template above the current line, then comment with existing `gcc`.
-nmap <silent> <leader>ct O<C-r>t<Esc>gccA
-nmap <silent> <leader>cf O<C-r>f<Esc>gccA
+command! AgentCommentsReset call <SID>ResetRegisters()
 
 " Raw template insertion without commenting.
-nnoremap <silent> <leader>cT "tp
-nnoremap <silent> <leader>cF "fp
+nnoremap <silent> <leader>ct "tp
+nnoremap <silent> <leader>cf "fp
