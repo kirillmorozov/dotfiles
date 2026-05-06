@@ -47,6 +47,7 @@ return {
 			},
 			formatters_by_ft = {
 				["_"] = { "trim_whitespace", "trim_newlines" },
+				dockerfile = { "dockerfmt" },
 				elm = { "elm_format" },
 				gleam = { "gleam" },
 				go = { "gofumpt", "gofmt", stop_after_first = true },
