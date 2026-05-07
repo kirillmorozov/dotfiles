@@ -4,10 +4,10 @@
     state: latest
     package:
       - btop
+      - difftastic
       - eza
       - fd
       - fzf
-      - git-delta
       - glab
       - go-task
       - jq
