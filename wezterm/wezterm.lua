@@ -84,11 +84,11 @@ config.keys = {
 			-- Lua returns nothing. ${VAR:?msg} makes the shell print an error
 			-- if unset/empty.
 			window:perform_action(
-				wezterm.action.SendString("${EDITOR:?EDITOR is not set}\n"),
+				wezterm.action.SendString(" ${EDITOR:?EDITOR is not set}\n"),
 				pane
 			)
 			window:perform_action(
-				wezterm.action.SendString("${AGENT:?AGENT is not set}\n"),
+				wezterm.action.SendString(" ${AGENT:?AGENT is not set}\n"),
 				agent_pane
 			)
 		end),
