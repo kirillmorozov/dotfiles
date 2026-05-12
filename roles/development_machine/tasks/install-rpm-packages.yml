@@ -58,6 +58,7 @@
     pkg:
       - alacritty
       - btop
+      - difftastic
       - eza
       - fd-find
       - fzf

@@ -1,0 +1,20 @@
+[diff]
+	tool = difftastic
+[merge]
+	conflictStyle = zdiff3
+[user]
+	name = Kirill Morozov
+[pager]
+	difftool = true
+[push]
+	autoSetupRemote = true
+[pull]
+	rebase = true
+[difftool]
+	prompt = false
+[difftool "difftastic"]
+	cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+[credential "https://github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential

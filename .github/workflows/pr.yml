@@ -21,6 +21,7 @@ jobs:
           scopes: |
             alacritty
             ansible
+            git
             neovim
             starship
             task

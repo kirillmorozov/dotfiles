@@ -4,6 +4,7 @@
     state: latest
     package:
       - btop
+      - difftastic
       - eza
       - fd
       - fzf
