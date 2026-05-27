@@ -19,7 +19,7 @@ cursor-line = "warning"
 
 [editor.whitespace.render]
 nbsp = "all"
-space = "all"
+nnbsp = "all"
 tab = "all"
 
 [editor.soft-wrap]
