@@ -39,6 +39,11 @@ Git:
       - any-glob-to-any-file:
           - git/**/*
 
+Helix:
+  - changed-files:
+      - any-glob-to-any-file:
+          - helix/**/*
+
 Neovim:
   - changed-files:
       - any-glob-to-any-file:

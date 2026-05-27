@@ -1,0 +1,27 @@
+[[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
+
+[[language]]
+name = "git-commit"
+rulers = [55, 72]
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
+
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "gofumpt" }
+
+[[language]]
+name = "json"
+formatter = { command = "jq", args = ["."] }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-formatter", "include_document_start=true", "-formatter", "retain_line_breaks=true", "-in"] }
