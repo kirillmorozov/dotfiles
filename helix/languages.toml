@@ -4,6 +4,11 @@ auto-format = true
 formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
 
 [[language]]
+name = "dockerfile"
+auto-format = true
+formatter.command = "dockerfmt"
+
+[[language]]
 name = "git-commit"
 rulers = [55, 72]
 
