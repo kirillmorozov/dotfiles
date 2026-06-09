@@ -24,7 +24,48 @@ formatter.command = "gofumpt"
 
 [[language]]
 name = "json"
-formatter = { command = "jq", args = ["."] }
+formatter = { command = "jq", args = ["-S", "."] }
+
+[[language]]
+name = "elm"
+auto-format = true
+formatter = { command = "elm-format", args = ["--stdin"] }
+
+[[language]]
+name = "gleam"
+auto-format = true
+formatter = { command = "gleam", args = ["format", "--stdin"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "deno", args = ["fmt", "-"] }
+
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "stylua", args = [
+  "--column-width",
+  "88",
+  "--quote-style",
+  "AutoPreferDouble",
+  "-",
+] }
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter.command = "rustfmt"
+
+[[language]]
+name = "hcl"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+
+[[language]]
+name = "tfvars"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
 
 [[language]]
 name = "yaml"
