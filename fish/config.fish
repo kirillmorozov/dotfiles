@@ -30,9 +30,20 @@ if command -q vimx
 end
 
 set -l __eza_base "eza -l --total-size --time-style long-iso --group-directories-first --icons"
+
 abbr -a e $__eza_base
 abbr -a ea "$__eza_base -a"
 abbr -a et "$__eza_base -T"
+abbr -a g "git"
+abbr -a ga "git add"
+abbr -a gco "git commit --verbose"
+abbr -a gd "git diff"
+abbr -a gf "git fetch"
+abbr -a gl "git pull"
+abbr -a gp "git push"
+abbr -a gpf "git push --force-with-lease --force-if-includes"
+abbr -a gpr "git pull --rebase"
+abbr -a gsw "git switch"
 abbr -a lg lazygit
 
 starship init fish | source
