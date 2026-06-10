@@ -35,6 +35,7 @@ C-l = "jump_view_right"
 C-r = ":reload-all"
 C-s = ":update"
 C-y = "scroll_up"
+K = "hover"
 N = ["search_prev", "align_view_center"]
 esc = ["collapse_selection", "keep_primary_selection"]
 n = ["search_next", "align_view_center"]
