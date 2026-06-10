@@ -1,5 +1,5 @@
 # Add user-specific executables to PATH.
-fish_add_path --prepend "$HOME/.local/bin" "$HOME/go/bin" /usr/local/go/bin
+fish_add_path --prepend "/opt/homebrew/bin" "$HOME/.local/bin" "$HOME/go/bin" /usr/local/go/bin
 
 set -gx BAT_THEME base16
 set -gx MANPAGER "vim +MANPAGER --not-a-term -"
