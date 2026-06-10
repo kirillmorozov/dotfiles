@@ -23,6 +23,7 @@
     package:
       - btop
       - fd-find
+      - fish
       - fzf
       - gh
       - git
