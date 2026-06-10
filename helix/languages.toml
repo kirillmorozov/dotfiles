@@ -72,18 +72,18 @@ name = "yaml"
 auto-format = true
 formatter.command = "yamlfmt"
 formatter.args = [
-	"-formatter",
-	"include_document_start=true",
-	"-formatter",
-	"retain_line_breaks_single=true",
-	"-formatter",
-	"max_line_length=80",
-	"-formatter",
-	"scan_folded_as_literal=true",
-	"-formatter",
-	"pad_line_comments=2",
-	"-formatter",
-	"trim_trailing_whitespace=true",
+  "-formatter",
+  "include_document_start=true",
+  "-formatter",
+  "retain_line_breaks_single=true",
+  "-formatter",
+  "max_line_length=80",
+  "-formatter",
+  "scan_folded_as_literal=true",
+  "-formatter",
+  "pad_line_comments=2",
+  "-formatter",
+  "trim_trailing_whitespace=true",
   "-in",
 ]
 
