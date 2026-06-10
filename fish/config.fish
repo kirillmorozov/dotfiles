@@ -41,9 +41,11 @@ if status is-interactive
     abbr -a gd "git diff"
     abbr -a gf "git fetch"
     abbr -a gl "git pull"
+    abbr -a glgp "git log --stat --patch"
     abbr -a gp "git push"
     abbr -a gpf "git push --force-with-lease --force-if-includes"
     abbr -a gpr "git pull --rebase"
+    abbr -a gst "git status"
     abbr -a gsw "git switch"
     abbr -a lg lazygit
 
