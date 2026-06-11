@@ -23,22 +23,11 @@ end
 
 --- Returns the command used to launch the default shell.
 -- WezTerm on macOS is launched with a minimal PATH that does not include
--- Homebrew's bin directory, so a bare "fish" lookup fails. Use an absolute
--- path on macOS and rely on PATH on Linux.
+-- Homebrew's bin directory, so a bare "fish" lookup fails. Use the
+-- Apple-Silicon Homebrew path on macOS and rely on PATH on Linux.
 local function default_prog()
-	-- 4th arg = plain text match; avoids `-` being read as a Lua pattern
-	-- quantifier.
-	if wezterm.target_triple:find("apple-darwin", 1, true) then
-		for _, candidate in ipairs({
-			"/opt/homebrew/bin/fish",
-			"/usr/local/bin/fish",
-		}) do
-			local f = io.open(candidate, "r")
-			if f then
-				f:close()
-				return { candidate }
-			end
-		end
+	if wezterm.target_triple == "aarch64-apple-darwin" then
+		return { "/opt/homebrew/bin/fish" }
 	end
 	return { "fish" }
 end
