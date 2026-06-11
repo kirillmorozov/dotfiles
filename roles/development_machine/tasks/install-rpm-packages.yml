@@ -68,6 +68,7 @@
       - go-task
       - golang
       - gopls
+      - helix
       - jq
       - neovim
       - podman

@@ -1,0 +1,92 @@
+[[language]]
+name = "bash"
+auto-format = true
+formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
+
+[[language]]
+name = "dockerfile"
+auto-format = true
+formatter.command = "dockerfmt"
+
+[[language]]
+name = "git-commit"
+rulers = [55, 72]
+
+[[language]]
+name = "python"
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-"] }
+
+[[language]]
+name = "go"
+auto-format = true
+formatter.command = "gofumpt"
+
+[[language]]
+name = "json"
+formatter = { command = "jq", args = ["-S", "."] }
+
+[[language]]
+name = "elm"
+auto-format = true
+formatter = { command = "elm-format", args = ["--stdin"] }
+
+[[language]]
+name = "gleam"
+auto-format = true
+formatter = { command = "gleam", args = ["format", "--stdin"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+formatter = { command = "deno", args = ["fmt", "-"] }
+
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "stylua", args = [
+  "--column-width",
+  "88",
+  "--quote-style",
+  "AutoPreferDouble",
+  "-",
+] }
+
+[[language]]
+name = "rust"
+auto-format = true
+formatter.command = "rustfmt"
+
+[[language]]
+name = "hcl"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+
+[[language]]
+name = "tfvars"
+auto-format = true
+formatter = { command = "terraform", args = ["fmt", "-"] }
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter.command = "yamlfmt"
+formatter.args = [
+  "-formatter",
+  "include_document_start=true",
+  "-formatter",
+  "retain_line_breaks_single=true",
+  "-formatter",
+  "max_line_length=80",
+  "-formatter",
+  "scan_folded_as_literal=true",
+  "-formatter",
+  "pad_line_comments=2",
+  "-formatter",
+  "trim_trailing_whitespace=true",
+  "-in",
+]
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
