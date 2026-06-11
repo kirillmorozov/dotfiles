@@ -14,7 +14,8 @@
 - name: Install fd completions
   ansible.builtin.shell:
     cmd: >-
-      fd --gen-completions=fish > {{ development_machine_completions_path }}/fd.fish
+      fd --gen-completions=fish
+      > {{ development_machine_completions_path }}/fd.fish
     creates: "{{ development_machine_completions_path }}/fd.fish"
 - name: Install ripgrep completions
   ansible.builtin.shell:
