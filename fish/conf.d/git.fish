@@ -1,253 +1,248 @@
 #!/usr/bin/env fish
 
-abbr g git
+# Oh-My-Zsh git plugin abbreviations.
+# Source: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 
-abbr ga 'git add'
-abbr gaa 'git add --all'
-abbr gapa 'git add --patch'
-abbr gau 'git add --update'
-abbr gav 'git add --verbose'
-abbr gap 'git apply'
-abbr gapt 'git apply --3way'
+abbr -a g -- git
+abbr -a grt -- 'cd (git rev-parse --show-toplevel || echo .)'
 
-abbr gb 'git branch'
-abbr gba 'git branch -a'
-abbr gbd 'git branch -d'
-abbr gbdf 'git branch -d -f'
-abbr gbD 'git branch -D'
-abbr gbDf 'git branch -D -f'
-abbr gbnm 'git branch --no-merged'
-abbr gbr 'git branch --remote'
+# add
+abbr -a ga -- 'git add'
+abbr -a gaa -- 'git add --all'
+abbr -a gapa -- 'git add --patch'
+abbr -a gau -- 'git add --update'
+abbr -a gav -- 'git add --verbose'
+abbr -a gwip -- 'git add -A; git rm (git ls-files --deleted) 2>/dev/null; git commit --no-verify --no-gpg-sign --message "--wip-- [skip ci]"'
 
-abbr gbl 'git blame -b -w'
+# am
+abbr -a gam -- 'git am'
+abbr -a gama -- 'git am --abort'
+abbr -a gamc -- 'git am --continue'
+abbr -a gams -- 'git am --skip'
+abbr -a gamscp -- 'git am --show-current-patch'
 
-abbr gbs 'git bisect'
-abbr gbsb 'git bisect bad'
-abbr gbsg 'git bisect good'
-abbr gbsr 'git bisect reset'
-abbr gbss 'git bisect start'
+# apply
+abbr -a gap -- 'git apply'
+abbr -a gapt -- 'git apply --3way'
 
-abbr gc 'git commit -v'
-abbr gci 'git commit --allow-empty -v -m\'chore: initial commit\''
-abbr gc! 'git commit -v --amend'
-abbr gcn 'git commit -v --no-edit'
-abbr gcn! 'git commit -v --amend --no-edit'
-abbr gca 'git commit -a -v'
-abbr gca! 'git commit -a -v --amend'
-abbr gcan! 'git commit -a -v --no-edit --amend'
-abbr gcans! 'git commit -a -v -s --no-edit --amend'
-abbr gcam 'git commit -a -m'
-abbr gcas 'git commit -a -s'
-abbr gcasm 'git commit -a -s -m'
-abbr gcsm 'git commit -s -m'
-abbr gcm 'git commit -m'
-abbr gcs 'git commit -S'
+# bisect
+abbr -a gbs -- 'git bisect'
+abbr -a gbsb -- 'git bisect bad'
+abbr -a gbsg -- 'git bisect good'
+abbr -a gbsn -- 'git bisect new'
+abbr -a gbso -- 'git bisect old'
+abbr -a gbsr -- 'git bisect reset'
+abbr -a gbss -- 'git bisect start'
 
-abbr gcf 'git config --list'
+# blame
+abbr -a gbl -- 'git blame -w'
 
-abbr gcl 'git clone --recurse-submodules'
+# branch
+abbr -a gb -- 'git branch'
+abbr -a gbD -- 'git branch --delete --force'
+abbr -a gba -- 'git branch --all'
+abbr -a gbd -- 'git branch --delete'
+abbr -a gbg -- "LANG=C git branch -vv | grep ': gone\\]'"
+abbr -a gbgD -- "LANG=C git branch --no-color -vv | grep ': gone\\]' | cut -c 3- | awk '{print \$1}' | xargs git branch -D"
+abbr -a gbgd -- "LANG=C git branch --no-color -vv | grep ': gone\\]' | cut -c 3- | awk '{print \$1}' | xargs git branch -d"
+abbr -a gbm -- 'git branch --move'
+abbr -a gbnm -- 'git branch --no-merged'
+abbr -a gbr -- 'git branch --remote'
 
-abbr gclean 'git clean -id'
+# checkout
+abbr -a gcB -- 'git checkout -B'
+abbr -a gcb -- 'git checkout -b'
+abbr -a gco -- 'git checkout'
+abbr -a gcor -- 'git checkout --recurse-submodules'
 
-abbr gco 'git checkout'
-abbr gcob 'git checkout -b'
-abbr gcom 'git checkout (git_main_branch)'
-abbr gcod 'git checkout (git_develop_branch)'
-abbr gcof 'git checkout (git_feature_prepend)/'
-abbr gcoh 'git checkout hotfix/'
-abbr gcor 'git checkout release/'
-abbr gcos 'git checkout support/'
-abbr gcors 'git checkout --recurse-submodules'
+# cherry-pick
+abbr -a gcp -- 'git cherry-pick'
+abbr -a gcpa -- 'git cherry-pick --abort'
+abbr -a gcpc -- 'git cherry-pick --continue'
 
-abbr gcount 'git shortlog -sn'
+# clean
+abbr -a gclean -- 'git clean --interactive -d'
 
-abbr gcp 'git cherry-pick'
-abbr gcpa 'git cherry-pick --abort'
-abbr gcpc 'git cherry-pick --continue'
+# clone
+abbr -a gcl -- 'git clone --recurse-submodules'
+abbr -a gclf -- 'git clone --recursive --shallow-submodules --filter=blob:none --also-filter-submodules'
 
-abbr gd 'git diff'
-abbr gdca 'git diff --cached'
-abbr gdcw 'git diff --cached --word-diff'
-abbr gdct 'git diff --staged'
-abbr gdt 'git diff-tree --no-commit-id --name-only -r'
-# abbr gdnolock 'git diff ":(exclude)package-lock.json" ":(exclude)*.lock"'
-abbr gdup 'git diff @{upstream}'
-# abbr gdv 'git diff -w $@ | view -'
+# commit
+abbr -a 'gc!' -- 'git commit --verbose --amend'
+abbr -a 'gca!' -- 'git commit --verbose --all --amend'
+abbr -a 'gcan!' -- 'git commit --verbose --all --no-edit --amend'
+abbr -a 'gcann!' -- 'git commit --verbose --all --date=now --no-edit --amend'
+abbr -a 'gcans!' -- 'git commit --verbose --all --signoff --no-edit --amend'
+abbr -a 'gcn!' -- 'git commit --verbose --no-edit --amend'
+abbr -a gc -- 'git commit --verbose'
+abbr -a gca -- 'git commit --verbose --all'
+abbr -a gcam -- 'git commit --all --message'
+abbr -a gcas -- 'git commit --all --signoff'
+abbr -a gcasm -- 'git commit --all --signoff --message'
+abbr -a gcfu -- 'git commit --fixup'
+abbr -a gcmsg -- 'git commit --message'
+abbr -a gcn -- 'git commit --verbose --no-edit'
+abbr -a gcs -- 'git commit --gpg-sign'
+abbr -a gcsm -- 'git commit --signoff --message'
+abbr -a gcss -- 'git commit --gpg-sign --signoff'
+abbr -a gcssm -- 'git commit --gpg-sign --signoff --message'
 
-abbr gdct 'git describe --tags (git rev-list --tags --max-count=1)'
+# config
+abbr -a gcf -- 'git config --list'
 
-abbr gf 'git fetch'
-abbr gfa 'git fetch --all --prune'
-abbr gfo 'git fetch origin'
+# describe
+abbr -a gdct -- 'git describe --tags (git rev-list --tags --max-count=1)'
 
-# gg
-# gga
-# ggf
-# ggfl
-# ggl
-# ggp
-# ggpnp
-# ggpull
-# ggpur
-# ggpush
-# ggsup
-# ggu
-# gpsup
+# diff
+abbr -a gd -- 'git diff'
+abbr -a gdca -- 'git diff --cached'
+abbr -a gdcw -- 'git diff --cached --word-diff'
+abbr -a gds -- 'git diff --staged'
+abbr -a gdt -- 'git diff-tree --no-commit-id --name-only -r'
+abbr -a gdup -- 'git diff @{upstream}'
+abbr -a gdw -- 'git diff --word-diff'
 
-abbr ghh 'git help'
+# fetch
+abbr -a gf -- 'git fetch'
+abbr -a gfa -- 'git fetch --all --tags --prune --jobs=10'
+abbr -a gfo -- 'git fetch origin'
 
-abbr gi 'git init'
+# help
+abbr -a ghh -- 'git help'
 
-abbr gignore 'git update-index --assume-unchanged'
-abbr gignored 'git ls-files -v | grep "^[[:lower:]]"'
+# log
+abbr -a glg -- 'git log --stat'
+abbr -a glgg -- 'git log --graph'
+abbr -a glgga -- 'git log --graph --decorate --all'
+abbr -a glgm -- 'git log --graph --max-count=10'
+abbr -a glgp -- 'git log --stat --patch'
+abbr -a glo -- 'git log --oneline --decorate'
+abbr -a glod -- 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset"'
+abbr -a glods -- 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset" --date=short'
+abbr -a glog -- 'git log --oneline --decorate --graph'
+abbr -a gloga -- 'git log --oneline --decorate --graph --all'
+abbr -a glol -- 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"'
+abbr -a glola -- 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all'
+abbr -a glols -- 'git log --graph --pretty="%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --stat'
+abbr -a gwch -- 'git log --patch --abbrev-commit --pretty=medium --raw'
 
-abbr gk 'gitk --all --branches &!'
-abbr gke 'gitk --all (git log -g --pretty=%h) &!'
+# ls-files
+abbr -a gfg -- 'git ls-files | grep'
+abbr -a gignored -- 'git ls-files -v | grep "^[[:lower:]]"'
 
-abbr gfg 'git ls-files | grep'
+# merge
+abbr -a gm -- 'git merge'
+abbr -a gma -- 'git merge --abort'
+abbr -a gmc -- 'git merge --continue'
+abbr -a gmff -- 'git merge --ff-only'
+abbr -a gms -- 'git merge --squash'
+abbr -a gmtl -- 'git mergetool --no-prompt'
+abbr -a gmtlvim -- 'git mergetool --no-prompt --tool=vimdiff'
 
-# gl: git log
-abbr gl 'git log'
-abbr gls 'git log --stat'
-abbr glsp 'git log --stat -p'
-abbr glg 'git log --graph'
-abbr glgda 'git log --graph --decorate --all'
-abbr glgm 'git log --graph --max-count=10'
-abbr glo 'git log --oneline --decorate'
-abbr glog 'git log --oneline --decorate --graph'
-abbr gloga 'git log --oneline --decorate --graph --all'
-# abbr glol
-# abbr glols
-# abbr glod
-# abbr glods
-# abbr glola
+# pull
+abbr -a gl -- 'git pull'
+abbr -a gpr -- 'git pull --rebase'
+abbr -a gpra -- 'git pull --rebase --autostash'
+abbr -a gprav -- 'git pull --rebase --autostash -v'
+abbr -a gprv -- 'git pull --rebase -v'
 
-# gm: git merge
-abbr gm 'git merge'
-abbr gmom 'git merge origin/(git_main_branch)'
-abbr gmum 'git merge upstream/(git_main_branch)'
-abbr gma 'git merge --abort'
+# push
+abbr -a 'gpf!' -- 'git push --force'
+abbr -a gp -- 'git push'
+abbr -a gpd -- 'git push --dry-run'
+abbr -a gpf -- 'git push --force-with-lease --force-if-includes'
+abbr -a gpoat -- 'git push origin --all && git push origin --tags'
+abbr -a gpod -- 'git push origin --delete'
+abbr -a gpu -- 'git push upstream'
+abbr -a gpv -- 'git push --verbose'
 
-# gmtl: git mergetool
-abbr gmtl 'git mergetool --no-prompt'
-abbr gmtlvim 'git mergetool --no-prompt --tool=vimdiff'
+# rebase
+abbr -a grb -- 'git rebase'
+abbr -a grba -- 'git rebase --abort'
+abbr -a grbc -- 'git rebase --continue'
+abbr -a grbi -- 'git rebase --interactive'
+abbr -a grbo -- 'git rebase --onto'
+abbr -a grbs -- 'git rebase --skip'
 
-# gp: git push
-abbr gp 'git push'
-abbr gpd 'git push --dry-run'
-abbr gpf 'git push --force-with-lease'
-abbr gpf! 'git push --force'
-abbr gpsu 'git push --set-upstream origin (git_current_branch)'
-abbr gpt 'git push --tags'
-abbr gptf 'git push --tags --force-with-lease'
-abbr gptf! 'git push --tags --force'
-abbr gpoat 'git push origin --all && git push origin --tags'
-abbr gpoatf! 'git push origin --all --force-with-lease && git push origin --tags --force-with-lease'
-abbr gpoatf! 'git push origin --all --force && git push origin --tags --force'
-abbr gpv 'git push -v'
+# reflog
+abbr -a grf -- 'git reflog'
 
-# gpl: git pull
-abbr gpl 'git pull'
-abbr gplo 'git pull origin'
-abbr gplom 'git pull origin (git_main_branch)'
-abbr gplu 'git pull upstream'
-abbr gplum 'git pull upstream (git_main_branch)'
+# remote
+abbr -a gr -- 'git remote'
+abbr -a gra -- 'git remote add'
+abbr -a grmv -- 'git remote rename'
+abbr -a grrm -- 'git remote remove'
+abbr -a grset -- 'git remote set-url'
+abbr -a grup -- 'git remote update'
+abbr -a grv -- 'git remote --verbose'
 
-# gr: git remote
-abbr gr 'git remote -v'
-abbr gra 'git remote add'
-abbr grau 'git remote add upstream'
-abbr grrm 'git remote remove'
-abbr grmv 'git remote rename'
-abbr grset 'git remote set-url'
-abbr gru 'git remote update'
-abbr grv 'git remote -v'
-abbr grvv 'git remote -vvv'
+# reset
+abbr -a gpristine -- 'git reset --hard && git clean --force -dfx'
+abbr -a grh -- 'git reset'
+abbr -a grhh -- 'git reset --hard'
+abbr -a grhk -- 'git reset --keep'
+abbr -a grhs -- 'git reset --soft'
+abbr -a gru -- 'git reset --'
+abbr -a gwipe -- 'git reset --hard && git clean --force -df'
 
-# grb: git rebase
-abbr grb 'git rebase'
-abbr grba 'git rebase --abort'
-abbr grbc 'git rebase --continue'
-abbr grbd 'git rebase (git_develop_branch)'
-abbr grbi 'git rebase -i'
-abbr grbom 'git rebase origin/(git_main_branch)'
-abbr grbo 'git rebase --onto'
-abbr grbs 'git rebase --skip'
+# restore
+abbr -a grs -- 'git restore'
+abbr -a grss -- 'git restore --source'
+abbr -a grst -- 'git restore --staged'
 
-# grev: git revert
-abbr grev 'git revert'
+# rev-list
+abbr -a gunwip -- 'git rev-list --max-count=1 --format="%s" HEAD | grep -q "\--wip--" && git reset HEAD~1'
 
-# grs: git reset
-abbr grs 'git reset'
-abbr grs! 'git reset --hard'
-abbr grsh 'git reset HEAD'
-abbr grsh! 'git reset HEAD --hard'
-abbr grsoh 'git reset origin/(git_current_branch)'
-abbr grsoh! 'git reset origin/(git_current_branch) --hard'
-abbr gpristine 'git reset --hard && git clean -dffx'
-abbr grs- 'git reset --'
+# revert
+abbr -a grev -- 'git revert'
+abbr -a greva -- 'git revert --abort'
+abbr -a grevc -- 'git revert --continue'
 
-# grm: git rm
-abbr grm 'git rm'
-abbr grmc 'git rm --cached'
+# rm
+abbr -a grm -- 'git rm'
+abbr -a grmc -- 'git rm --cached'
 
-# grst: git restore
-abbr grst 'git restore'
-abbr grsts 'git restore --source'
-abbr grstst 'git restore --staged'
+# shortlog
+abbr -a gcount -- 'git shortlog --summary --numbered'
 
-# grt: git return
-abbr grt 'cd (git rev-parse --show-toplevel || echo .)'
+# show
+abbr -a gsh -- 'git show'
+abbr -a gsps -- 'git show --pretty=short --show-signature'
 
-# gs: git status
-abbr gs 'git status'
-abbr gss 'git status -s'
-abbr gsb 'git status -sb'
+# stash
+abbr -a gsb -- 'git status --short --branch'
+abbr -a gss -- 'git status --short'
+abbr -a gst -- 'git status'
+abbr -a gsta -- 'git stash push'
+abbr -a gstaa -- 'git stash apply'
+abbr -a gstall -- 'git stash --all'
+abbr -a gstc -- 'git stash clear'
+abbr -a gstd -- 'git stash drop'
+abbr -a gstl -- 'git stash list'
+abbr -a gstp -- 'git stash pop'
+abbr -a gsts -- 'git stash show --patch'
+abbr -a gstu -- 'git stash push --include-untracked'
 
-# gshow: git show
-abbr gshow 'git show'
-abbr gshowps 'git show --pretty=short --show-signature'
+# submodule
+abbr -a gsi -- 'git submodule init'
+abbr -a gsu -- 'git submodule update'
 
-# gst: git stash
-abbr gst 'git stash'
-abbr gsta 'git stash apply'
-abbr gstc 'git stash clear'
-abbr gstd 'git stash drop'
-abbr gstl 'git stash list'
-abbr gstp 'git stash pop'
-abbr gstshow 'git stash show --text'
-abbr gstall 'git stash --all'
-abbr gsts 'git stash save'
+# switch
+abbr -a gsw -- 'git switch'
+abbr -a gswc -- 'git switch --create'
 
-# gsu: git submodule
-abbr gsu 'git submodule update'
+# tag
+abbr -a gta -- 'git tag --annotate'
+abbr -a gts -- 'git tag --sign'
+abbr -a gtv -- 'git tag | sort -V'
 
-# gsw: git switch
-abbr gsw 'git switch'
-abbr gswc 'git switch -c'
-abbr gswm 'git switch (git_main_branch)'
-abbr gswd 'git switch (git_develop_branch)'
+# update-index
+abbr -a gignore -- 'git update-index --assume-unchanged'
+abbr -a gunignore -- 'git update-index --no-assume-unchanged'
 
-# gt: git tag
-abbr gt 'git tag'
-abbr gts 'git tag -s'
-abbr gta 'git tag -a'
-abbr gtas 'git tag -a -s'
-# gtl
-
-# gwch: git whatchanged
-abbr gwch 'git whatchanged -p --abbrev-commit --pretty=medium'
-
-# gwt: git worktree
-abbr gwt 'git worktree'
-abbr gwta 'git worktree add'
-abbr gwtls 'git worktree list'
-abbr gwtmv 'git worktree move'
-abbr gwtrm 'git worktree remove'
-
-# gam: git am
-abbr gam 'git am'
-abbr gamc 'git am --continue'
-abbr gams 'git am --skip'
-abbr gama 'git am --abort'
-abbr gamscp 'git am --show-current-patch'
+# worktree
+abbr -a gwt -- 'git worktree'
+abbr -a gwta -- 'git worktree add'
+abbr -a gwtls -- 'git worktree list'
+abbr -a gwtmv -- 'git worktree move'
+abbr -a gwtrm -- 'git worktree remove'
