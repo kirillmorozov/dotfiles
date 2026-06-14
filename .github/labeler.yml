@@ -34,6 +34,11 @@ Ansible:
           - roles/**/*
           - bootstrap.yml
 
+Fish:
+  - changed-files:
+      - any-glob-to-any-file:
+          - fish/**/*
+
 Git:
   - changed-files:
       - any-glob-to-any-file:

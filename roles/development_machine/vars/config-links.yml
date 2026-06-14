@@ -2,6 +2,8 @@
 development_machine_directory_mapping:
   - source: "{{ playbook_dir }}/alacritty"
     target: "{{ development_machine_xdg_config_home }}/alacritty"
+  - source: "{{ playbook_dir }}/fish"
+    target: "{{ development_machine_xdg_config_home }}/fish"
   - source: "{{ playbook_dir }}/git"
     target: "~"
   - source: "{{ playbook_dir }}/helix"
@@ -14,5 +16,3 @@ development_machine_directory_mapping:
     target: "{{ development_machine_xdg_config_home }}/vim"
   - source: "{{ playbook_dir }}/wezterm"
     target: "{{ development_machine_xdg_config_home }}/wezterm"
-  - source: "{{ playbook_dir }}/zsh"
-    target: "~"

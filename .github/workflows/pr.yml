@@ -21,6 +21,7 @@ jobs:
           scopes: |
             alacritty
             ansible
+            fish
             git
             helix
             neovim

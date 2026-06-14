@@ -1,7 +1,7 @@
 ---
-- name: Set Zsh as user shell
+- name: Set Bash as user shell
   become: true
   when: ansible_facts["system"] == "Linux"
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
-    shell: /usr/bin/zsh
+    shell: /usr/bin/bash

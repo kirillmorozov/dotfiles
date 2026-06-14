@@ -21,6 +21,17 @@ local function scheme_for_appearance(appearance)
 	end
 end
 
+--- Returns the command used to launch the default shell.
+-- WezTerm on macOS is launched with a minimal PATH that does not include
+-- Homebrew's bin directory, so a bare "fish" lookup fails. Use the
+-- Apple-Silicon Homebrew path on macOS and rely on PATH on Linux.
+local function default_prog()
+	if wezterm.target_triple == "aarch64-apple-darwin" then
+		return { "/opt/homebrew/bin/fish" }
+	end
+	return { "fish" }
+end
+
 local config = wezterm.config_builder()
 config:set_strict_mode(true)
 
@@ -30,6 +41,7 @@ config.enable_scroll_bar = false
 config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
 config.font_size = 14.0
 config.max_fps = 120
+config.default_prog = default_prog()
 config.term = "wezterm"
 config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
 
@@ -83,14 +95,8 @@ config.keys = {
 			-- `$AGENT` because looking them up using `os.getenv` in WezTerm's
 			-- Lua returns nothing. ${VAR:?msg} makes the shell print an error
 			-- if unset/empty.
-			window:perform_action(
-				wezterm.action.SendString(" ${EDITOR:?EDITOR is not set}\n"),
-				pane
-			)
-			window:perform_action(
-				wezterm.action.SendString(" ${AGENT:?AGENT is not set}\n"),
-				agent_pane
-			)
+			window:perform_action(wezterm.action.SendString(" $EDITOR\n"), pane)
+			window:perform_action(wezterm.action.SendString(" $AGENT\n"), agent_pane)
 		end),
 	},
 
