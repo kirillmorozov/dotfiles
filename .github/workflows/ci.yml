@@ -14,6 +14,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.0
 
+      - name: Actionlint
+        uses: devops-actions/actionlint@v0.1.12
+
       - name: Lint YAML Files
         uses: karancode/yamllint-github-action@v3.0.0
         with:
