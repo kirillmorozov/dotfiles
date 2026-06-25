@@ -6,7 +6,6 @@ return {
 		branch = "main",
 		build = ":TSUpdate",
 		lazy = false,
-		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
 		config = function()
 			-- Custom filetype detection for Helm and Go templates
 			vim.filetype.add({
@@ -79,6 +78,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		branch = "main",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		lazy = false,
 		config = function()
 			require("nvim-treesitter-textobjects").setup({
