@@ -74,6 +74,7 @@
       - neovim
       - podman
       - ripgrep
+      - tree-sitter-cli
       - uv
       - vim
       - vim-X11
