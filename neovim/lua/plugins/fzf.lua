@@ -94,5 +94,6 @@ return {
 		},
 		opts = { "max-perf" },
 		version = "*",
+		enabled = false,
 	},
 }
