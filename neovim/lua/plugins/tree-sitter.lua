@@ -87,9 +87,6 @@ return {
 				move = { set_jumps = true },
 			})
 
-			local select = require("nvim-treesitter-textobjects.select")
-			local move = require("nvim-treesitter-textobjects.move")
-
 			-- Selection keymaps: { lhs, query, desc }
 			local selects = {
 				{ "aa", "@parameter.outer", "Select around argument/parameter" },
@@ -101,6 +98,7 @@ return {
 				{ "if", "@function.inner", "Select inside function" },
 				{ "it", "@class.inner", "Select inside type/class" },
 			}
+			local select = require("nvim-treesitter-textobjects.select")
 			for _, s in ipairs(selects) do
 				vim.keymap.set({ "x", "o" }, s[1], function()
 					select.select_textobject(s[2], "textobjects")
@@ -118,6 +116,7 @@ return {
 				{ "[f", "@function.outer", "prev", "Previous function" },
 				{ "[t", "@class.outer", "prev", "Previous type/class" },
 			}
+			local move = require("nvim-treesitter-textobjects.move")
 			for _, m in ipairs(moves) do
 				local fn = m[3] == "next" and move.goto_next_start
 					or move.goto_previous_start
