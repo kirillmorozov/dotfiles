@@ -49,6 +49,7 @@ return {
 				["_"] = { "trim_whitespace", "trim_newlines" },
 				dockerfile = { "dockerfmt" },
 				elm = { "elm_format" },
+				fish = { "fish_indent" },
 				gleam = { "gleam" },
 				go = { "gofumpt", "gofmt", stop_after_first = true },
 				javascript = { "deno_fmt" },
