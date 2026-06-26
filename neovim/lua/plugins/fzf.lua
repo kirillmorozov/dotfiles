@@ -91,7 +91,7 @@ return {
 				desc = "Quickfix list",
 			},
 		},
-		opts = { "fzf-vim" },
+		opts = { "max-perf" },
 		version = "*",
 	},
 }
