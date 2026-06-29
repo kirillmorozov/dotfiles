@@ -74,7 +74,7 @@ vim.opt.wildmode = { "noselect:lastused", "full" }
 -- Use popup menu for command-line completion
 vim.opt.wildoptions = "pum"
 -- Limit the height of a popup menu
-vim.opt.pumheight = 10
+vim.opt.pumheight = 20
 -- Hide noise in completion
 vim.opt.wildignore:append({ "*.pyc", "*/.git/*", "*/node_modules/*" })
 
