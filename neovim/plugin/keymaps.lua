@@ -69,6 +69,7 @@ vim.keymap.set(
 	vim.lsp.buf.code_action,
 	{ desc = "Select a code action" }
 )
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "gsd", function()
 	vim.cmd.vsplit()
 	vim.lsp.buf.definition()
@@ -102,6 +103,7 @@ vim.keymap.set("n", "<Leader>f", ":find ", { desc = "Find file" })
 vim.keymap.set("n", "<Leader>b", ":buffer ", { desc = "Switch buffer" })
 vim.keymap.set("n", "<Leader>h", ":help ", { desc = "Help" })
 vim.keymap.set("n", "<Leader>j", vim.cmd.jumps, { desc = "List jumps" })
+vim.keymap.set("n", "<Leader>?", "q:", { desc = "Command-line window" })
 
 -- Diagnostics
 vim.keymap.set("n", "<Leader>d", function()
