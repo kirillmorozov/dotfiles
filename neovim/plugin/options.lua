@@ -10,9 +10,6 @@ vim.opt.showmode = false
 -- Use single status line per window
 vim.opt.laststatus = 3
 
--- A bit more vertical real estate
-vim.opt.cmdheight = 0
-
 -- Enable break indent
 vim.opt.breakindent = true
 
