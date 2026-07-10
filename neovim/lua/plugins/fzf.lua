@@ -21,7 +21,7 @@ return {
 			{
 				"<Leader>a",
 				"<cmd>FzfLua lsp_code_actions<CR>",
-				desc = "Go to references",
+				desc = "Code actions",
 			},
 			{
 				"<Leader>s",
@@ -38,7 +38,7 @@ return {
 			{
 				"<Leader>S",
 				"<Cmd>FzfLua lsp_live_workspace_symbols<CR>",
-				"Open workspace symbols",
+				desc = "Open workspace symbols",
 			},
 			{
 				"<Leader>'",
