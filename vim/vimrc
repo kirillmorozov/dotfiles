@@ -245,7 +245,7 @@ var filescache: list<string> = []
 
 # Get a list of all files using built-in globpath.
 def GlobFiles(): list<string>
-	return globpath('.', '**', true, true)
+	return globpath('.', '**', false, true)
 		->filter((_, val) => !isdirectory(val))
 		->map((_, val) => fnamemodify(val, ':.'))
 enddef
