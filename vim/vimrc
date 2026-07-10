@@ -337,15 +337,27 @@ def FormatFile()
 	if &formatprg == ''
 		return
 	endif
-	var view = winsaveview()
-	silent execute ':%!' .. &formatprg
+	var formatted = systemlist(&formatprg, bufnr())
 	if v:shell_error
-		silent undo
-		echoerr printf(
-			'formatprg "%s" exited with status %d',
+		# Warn without throwing so the write still goes through unformatted
+		echohl WarningMsg
+		echomsg printf(
+			'formatprg "%s" exited with status %d, wrote unformatted buffer',
 			&formatprg,
 			v:shell_error
 		)
+		echohl None
+		return
+	endif
+	# Leave the buffer untouched when already formatted to keep undo history
+	# and marks intact
+	if empty(formatted) || formatted == getline(1, '$')
+		return
+	endif
+	var view = winsaveview()
+	setline(1, formatted)
+	if line('$') > len(formatted)
+		deletebufline('%', len(formatted) + 1, '$')
 	endif
 	winrestview(view)
 enddef
