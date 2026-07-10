@@ -22,6 +22,17 @@ return {
 				},
 			},
 		},
+		config = function()
+			vim.lsp.enable({
+				"gleam",
+				"gopls",
+				"lua_ls",
+				"ruff",
+				"rust_analyzer",
+				"terraformls",
+				"ty",
+			})
+		end,
 		event = { "BufNew", "BufRead" },
 		version = "*",
 	},

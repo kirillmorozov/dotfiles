@@ -78,14 +78,3 @@ vim.opt.wildoptions = "pum"
 vim.opt.pumheight = 20
 -- Hide noise in completion
 vim.opt.wildignore:append({ "*.pyc", "*/.git/*", "*/node_modules/*" })
-
--- Enable LSP servers
-vim.lsp.enable({
-	"gleam",
-	"gopls",
-	"lua_ls",
-	"ruff",
-	"rust_analyzer",
-	"terraformls",
-	"ty",
-})
