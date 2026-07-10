@@ -134,7 +134,8 @@ set sidescrolloff=8
 if has('wildmenu')
 	set wildmenu
 endif
-if exists('+wildmode') && has('patch-9.1.0000')
+# "noselect" appeared in the same era as wildtrigger() (9.1.1576)
+if exists('+wildmode') && has('patch-9.1.1576')
 	set wildmode=noselect:lastused,full
 endif
 if exists('+wildoptions') && has('patch-9.0.0000')
