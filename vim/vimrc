@@ -223,6 +223,8 @@ cnoremap <expr> <C-v> <SID>VertSplitFind()
 # Use ripgrep for search if it's installed
 if executable('rg')
 	&grepprg = "rg --vimgrep --smart-case --follow --hidden --glob '!.git/**'"
+	# --vimgrep emits file:line:col:text, keep the column for exact jumps
+	&grepformat = '%f:%l:%c:%m'
 endif
 
 def VertSplitFind(): string
