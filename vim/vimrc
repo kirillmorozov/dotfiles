@@ -151,7 +151,7 @@ nnoremap <Leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 xnoremap * y/\V<C-r>=escape(@",'/\')<CR><CR>
-xnoremap <silent> <Leader>/ y:<C-U>execute 'grep! -F ' . shellescape(@")<CR>
+xnoremap <silent> <Leader>/ y:<C-U>execute 'grep -F ' .. shellescape(@", true)<CR>
 # General navigation
 nnoremap <Leader>b :buffer<Space>
 nnoremap <C-S> :update<CR>
