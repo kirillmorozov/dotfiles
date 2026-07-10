@@ -1,5 +1,3 @@
-vim.cmd.colorscheme("rose-pine")
-
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
