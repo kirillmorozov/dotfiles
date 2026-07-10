@@ -98,9 +98,6 @@ set shiftwidth=4
 # Do not expand tab
 set noexpandtab
 
-# Encoding set to UTF-8
-set fileencoding=utf-8
-
 # Number of items in popup menu
 set pumheight=10
 
