@@ -34,6 +34,12 @@ set noswapfile
 
 # Automatically read file again if it was changed outside vim
 set autoread
+# 'autoread' only kicks in on commands like :!, so check for outside changes
+# on focus and buffer switch as well
+augroup autoread_checktime
+	autocmd!
+	autocmd FocusGained,BufEnter * ++nested if getcmdwintype() == '' | checktime | endif
+augroup END
 
 # Automatically save before :next, :make etc
 set autowrite
