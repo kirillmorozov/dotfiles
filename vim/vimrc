@@ -170,10 +170,10 @@ nnoremap <Leader>w <C-W>
 # Open in a split
 nnoremap gsf <C-w>vgf
 # Moving selected lines
-nnoremap <A-Down> :m<Space>.+1<CR>==
-nnoremap <A-Up> :m<Space>.-2<CR>==
-xnoremap <A-Down> :m<Space>'>+1<CR>gv=gv
-xnoremap <A-Up> :m<Space>'<-2<CR>gv=gv
+nnoremap <A-Down> :silent! move .+1<CR>==
+nnoremap <A-Up> :silent! move .-2<CR>==
+xnoremap <A-Down> :silent! move '>+1<CR>gv=gv
+xnoremap <A-Up> :silent! move '<-2<CR>gv=gv
 # Load git hunks into quickfix list
 nnoremap <Leader>gq <ScriptCmd>GitHunksToQF()<CR>
 # Quickfix list navigation
