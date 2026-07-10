@@ -155,6 +155,8 @@ xnoremap * y/\V<C-r>=substitute(escape(@",'/\'),'\n','\\n','g')<CR><CR>
 xnoremap <silent> <Leader>/ y:<C-U>execute 'grep -F ' .. shellescape(@", true)<CR>
 # General navigation
 nnoremap <Leader>b :buffer<Space>
+# Requires `stty -ixon` in the terminal, otherwise <C-S> is eaten by flow
+# control
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
 nnoremap <silent> <Leader>' <ScriptCmd>ResumeLastCmd()<CR>
