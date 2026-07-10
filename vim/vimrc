@@ -296,7 +296,8 @@ enddef
 
 # Load git hunks into quickfix list
 def GitHunksToQF()
-	var lines = systemlist('git diff --no-ext-diff -U0')
+	# --relative makes paths resolvable when cwd is not the repository root
+	var lines = systemlist('git diff --no-ext-diff -U0 --relative')
 	if v:shell_error
 		echohl ErrorMsg
 		echomsg 'git diff failed'
