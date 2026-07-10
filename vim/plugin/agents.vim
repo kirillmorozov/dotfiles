@@ -1,12 +1,14 @@
-function! s:ResetRegisters() abort
-	call setreg('t', 'TODO(agent): ')
-	call setreg('f', 'FIXME(agent): ')
-endfunction
+vim9script
 
-call s:ResetRegisters()
+def ResetRegisters()
+	setreg('t', 'TODO(agent): ')
+	setreg('f', 'FIXME(agent): ')
+enddef
 
-command! AgentCommentsReset call <SID>ResetRegisters()
+ResetRegisters()
 
-" Raw template insertion without commenting.
+command! AgentCommentsReset ResetRegisters()
+
+# Raw template insertion without commenting.
 nnoremap <silent> <leader>ct "tp
 nnoremap <silent> <leader>cf "fp

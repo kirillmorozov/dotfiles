@@ -1,3 +1,5 @@
+vim9script
+
 augroup filetypedetect
-	au BufRead,BufNewFile Jenkinsfile setfiletype groovy
+	autocmd BufRead,BufNewFile Jenkinsfile setfiletype groovy
 augroup END

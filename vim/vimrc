@@ -1,134 +1,136 @@
-" It is a text editor, not an IDE
-" It probably has that feature built in
-" Move with deliberate purpose
-" The documentation is better than you imagine
-" HJKL is not an important part of vim navigation
-" Project drawers conflict with split windows, favor splits
-" Visual clutter saps mental energy
-" Use plugins sparingly
-" Navigate by tags and search, not files
-" If it feels hard, there is probably a better way
-" You should understand every line in your vimrc
-" UI "tabs" are probably not what you expect
-" Don't seek mastery, seek proficiency
+vim9script
 
-" Use spacebar as a leader key
-let mapleader=" "
+# It is a text editor, not an IDE
+# It probably has that feature built in
+# Move with deliberate purpose
+# The documentation is better than you imagine
+# HJKL is not an important part of vim navigation
+# Project drawers conflict with split windows, favor splits
+# Visual clutter saps mental energy
+# Use plugins sparingly
+# Navigate by tags and search, not files
+# If it feels hard, there is probably a better way
+# You should understand every line in your vimrc
+# UI "tabs" are probably not what you expect
+# Don't seek mastery, seek proficiency
 
-" Make Vim snappier
+# Use spacebar as a leader key
+g:mapleader = " "
+
+# Make Vim snappier
 set updatetime=100
 
-" Suppress the banner
-let g:netrw_banner=0
-" Open in prior window
-let g:netrw_browse_split=4
-" Change from left splitting to right splitting
-let g:netrw_altv=1
-" Tree style view in netrw
-let g:netrw_liststyle=3
+# Suppress the banner
+g:netrw_banner = 0
+# Open in prior window
+g:netrw_browse_split = 4
+# Change from left splitting to right splitting
+g:netrw_altv = 1
+# Tree style view in netrw
+g:netrw_liststyle = 3
 
-" Do not use a swapfile for the buffer
+# Do not use a swapfile for the buffer
 set noswapfile
 
-" Automatically read file again if it was changed outside vim
+# Automatically read file again if it was changed outside vim
 set autoread
 
-" Automatically save before :next, :make etc
+# Automatically save before :next, :make etc
 set autowrite
 
-" Set title of the window
+# Set title of the window
 set title
 
-" Switch on syntax highlighting
+# Switch on syntax highlighting
 syntax enable
 
 filetype plugin indent on
 
 if has('termguicolors')
 	set termguicolors
-	for s:cs in ['catppuccin', 'wildcharm', 'zaibatsu', 'habamax', 'default']
+	for cs in ['catppuccin', 'wildcharm', 'zaibatsu', 'habamax', 'default']
 		try
-			execute 'colorscheme ' . s:cs
+			execute 'colorscheme ' .. cs
 			break
 		catch /E185:/
-			" colorscheme not found, try next
+			# colorscheme not found, try next
 		endtry
 	endfor
 else
 	colorscheme default
 endif
 
-" Show tabs, multiple consecutive spaces, trailing spaces and breaks
+# Show tabs, multiple consecutive spaces, trailing spaces and breaks
 set list
 if exists('+listchars')
-	" Fall back to a simpler variant for older Vim versions
+	# Fall back to a simpler variant for older Vim versions
 	set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·
 	if has('patch-9.0.0000')
 		set listchars+=lead:\ ,multispace:·
 	endif
 endif
-let &showbreak = '↪ '
+&showbreak = '↪ '
 
-" Turn on line numbers
+# Turn on line numbers
 set number
-" Turn on relative line numbers
+# Turn on relative line numbers
 set relativenumber
-" Show the line and column number of the cursor position
+# Show the line and column number of the cursor position
 set ruler
 
-" Screen columns that are highlighted
+# Screen columns that are highlighted
 set colorcolumn=80
 
-" Enable case insensitive searching
+# Enable case insensitive searching
 set ignorecase
-" All searches are case insensitive unless there's a capital letter
+# All searches are case insensitive unless there's a capital letter
 set smartcase
-" Highlight search results
+# Highlight search results
 set hlsearch
-" Enable incremental searching
+# Enable incremental searching
 set incsearch
 
-" Enable text wrapping
+# Enable text wrapping
 set wrap
-" Tabs=4spaces
+# Tabs=4spaces
 set tabstop=4
 set shiftwidth=4
-" Do not expand tab
+# Do not expand tab
 set noexpandtab
 
-" Encoding set to UTF-8
+# Encoding set to UTF-8
 set fileencoding=utf-8
 
-" Number of items in popup menu
+# Number of items in popup menu
 set pumheight=10
 
-" Always show statusline
+# Always show statusline
 set laststatus=2
 
-" Draw the signcolumn only when there is a sign to display
+# Draw the signcolumn only when there is a sign to display
 set signcolumn=auto
 
-" Do smart autoindenting when starting a new line
+# Do smart autoindenting when starting a new line
 set smartindent
 
-" Splitting a window will put the new window below the current one
+# Splitting a window will put the new window below the current one
 set splitbelow
-" Splitting a window will put the new window right of the current one
+# Splitting a window will put the new window right of the current one
 set splitright
 
-" If in Insert, Replace or Visual mode put a message on the last line
+# If in Insert, Replace or Visual mode put a message on the last line
 set showmode
 
-" Delete comment character when joining commented lines.
+# Delete comment character when joining commented lines.
 set formatoptions+=j
 
-" Minimal number of screen lines to keep above and below the cursor
+# Minimal number of screen lines to keep above and below the cursor
 set scrolloff=8
-" Minimal number of screen columns to keep to the left and to the right of the
-" cursor
+# Minimal number of screen columns to keep to the left and to the right of the
+# cursor
 set sidescrolloff=8
 
-" Command-line completion operates in an enhanced mode
+# Command-line completion operates in an enhanced mode
 if has('wildmenu')
 	set wildmenu
 endif
@@ -138,25 +140,25 @@ endif
 if exists('+wildoptions') && has('patch-9.0.0000')
 	set wildoptions=pum
 endif
-" Hide noise in completion
+# Hide noise in completion
 if has('wildignore')
 	set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 endif
 
-" Key mappings
-" Search
+# Key mappings
+# Search
 nnoremap <Leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 xnoremap * y/\V<C-r>=escape(@",'/\')<CR><CR>
 xnoremap <silent> <Leader>/ y:<C-U>execute 'grep! -F ' . shellescape(@")<CR>
-" General navigation
+# General navigation
 nnoremap <Leader>b :buffer<Space>
 nnoremap <C-S> :update<CR>
 nnoremap <leader>f :find<Space>
-nnoremap <silent> <Leader>' :call <SID>ResumeLastCmd()<CR>
+nnoremap <silent> <Leader>' <ScriptCmd>ResumeLastCmd()<CR>
 nnoremap <leader>h :vert<Space>help<Space>
-" Window navigation
+# Window navigation
 nnoremap <C-D> <C-D>zz
 nnoremap <C-H> <C-W>h
 nnoremap <C-J> <C-W>j
@@ -164,16 +166,16 @@ nnoremap <C-K> <C-W>k
 nnoremap <C-L> <C-W>l
 nnoremap <C-U> <C-U>zz
 nnoremap <Leader>w <C-W>
-" Open in a split
+# Open in a split
 nnoremap gsf <C-w>vgf
-" Moving selected lines
+# Moving selected lines
 nnoremap <A-Down> :m<Space>.+1<CR>==
 nnoremap <A-Up> :m<Space>.-2<CR>==
 xnoremap <A-Down> :m<Space>'>+1<CR>gv=gv
 xnoremap <A-Up> :m<Space>'<-2<CR>gv=gv
-" Load git hunks into quickfix list
-nnoremap <Leader>gq :call <SID>GitHunksToQF()<CR>
-" Quickfix list navigation
+# Load git hunks into quickfix list
+nnoremap <Leader>gq <ScriptCmd>GitHunksToQF()<CR>
+# Quickfix list navigation
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>co :copen<CR>
 nnoremap [<C-Q> :cpfile<CR>zz
@@ -182,7 +184,7 @@ nnoremap [q :cprevious<CR>zz
 nnoremap ]<C-Q> :cnfile<CR>zz
 nnoremap ]Q :clast<CR>zz
 nnoremap ]q :cnext<CR>zz
-" Location list navigation
+# Location list navigation
 nnoremap <leader>lc :lclose<CR>
 nnoremap <leader>lo :lopen<CR>
 nnoremap [<C-L> :lpfile<CR>zz
@@ -191,182 +193,176 @@ nnoremap [l :lprevious<CR>zz
 nnoremap ]<C-L> :lnfile<CR>zz
 nnoremap ]L :llast<CR>zz
 nnoremap ]l :lnext<CR>zz
-" Argument list navigation
+# Argument list navigation
 nnoremap [A :rewind<CR>
 nnoremap [a :previous<CR>
 nnoremap ]A :last<CR>
 nnoremap ]a :next<CR>
-" Tags navigation
+# Tags navigation
 nnoremap [t :tprevious<CR>zz
 nnoremap ]t :tnext<CR>zz
 nnoremap [T :trewind<CR>zz
 nnoremap ]T :tlast<CR>zz
 nnoremap [<C-T> :ptprevious<CR>zz
 nnoremap ]<C-T> :ptnext<CR>zz
-" Buffers navigation
+# Buffers navigation
 nnoremap [B :brewind<CR>
 nnoremap [b :bprevious<CR>
 nnoremap ]B :blast<CR>
 nnoremap ]b :bnext<CR>
-" Clipboard
+# Clipboard
 noremap <leader>y "+y
 noremap <leader>p "+p
 noremap <leader><s-p> "+<s-p>
-" Make
+# Make
 nnoremap <Leader>m :make<Space>
-" Open file in a vertical split
+# Open file in a vertical split
 cnoremap <expr> <C-v> <SID>VertSplitFind()
 
-" Use ripgrep for search if it's installed
+# Use ripgrep for search if it's installed
 if executable('rg')
-	set grepprg=rg
-				\\ --vimgrep
-				\\ --smart-case
-				\\ --follow
-				\\ --hidden
-				\\ --glob
-				\\ '!.git/**'
+	&grepprg = "rg --vimgrep --smart-case --follow --hidden --glob '!.git/**'"
 endif
 
-function! s:VertSplitFind() abort
+def VertSplitFind(): string
 	if getcmdtype() != ':'
 		return "\<C-v>"
 	endif
-	let l:line = getcmdline()
-	if l:line =~# '^\s*find\>'
-		let l:new = substitute(l:line, '^\s*find\>', 'vert sfind', '')
-		return "\<C-U>" . l:new . "\<CR>"
+	var line = getcmdline()
+	if line =~# '^\s*find\>'
+		var new = substitute(line, '^\s*find\>', 'vert sfind', '')
+		return "\<C-U>" .. new .. "\<CR>"
 	endif
-	if l:line =~# '^\s*buffer\>'
-		let l:new = substitute(l:line, '^\s*buffer\>', 'vert sbuffer', '')
-		return "\<C-U>" . l:new . "\<CR>"
+	if line =~# '^\s*buffer\>'
+		var new = substitute(line, '^\s*buffer\>', 'vert sbuffer', '')
+		return "\<C-U>" .. new .. "\<CR>"
 	endif
 	return "\<C-v>"
-endfunction
+enddef
 
-" Initialise files cache.
-let s:filescache = []
+# Initialise files cache.
+var filescache: list<string> = []
 
-" Get a list of all files using built-in globpath.
-function! s:GlobFiles() abort
-	return globpath('.', '**', 1, 1)
-				\->filter('!isdirectory(v:val)')
-				\->map("fnamemodify(v:val, ':.')")
-endfunction
+# Get a list of all files using built-in globpath.
+def GlobFiles(): list<string>
+	return globpath('.', '**', true, true)
+		->filter((_, val) => !isdirectory(val))
+		->map((_, val) => fnamemodify(val, ':.'))
+enddef
 
-" Get a list of all files using `fd` executable.
-function! s:FdFiles() abort
-	let l:find_command = 'fd
-				\ --exclude .git
-				\ --follow
-				\ --full-path
-				\ --hidden
-				\ --type file'
-	let l:result = systemlist(l:find_command)
+# Get a list of all files using `fd` executable.
+def FdFiles(): list<string>
+	var find_command = 'fd --exclude .git --follow --full-path --hidden --type file'
+	var result = systemlist(find_command)
 	if v:shell_error
-		echoerr l:result
+		echoerr join(result, "\n")
 		return []
 	endif
-	return l:result
-endfunction
+	return result
+enddef
 
-" Use GlobFiles as the default files_fetcher.
-let s:files_fetcher = function('s:GlobFiles')
+# Use GlobFiles as the default files fetcher.
+var FilesFetcher = GlobFiles
 
-" Use fd to find files if it's available.
+# Use fd to find files if it's available.
 if executable('fd')
-	let s:files_fetcher = function('s:FdFiles')
+	FilesFetcher = FdFiles
 endif
 
-" Obtain fuzzy-matched list of filenames for the :find command.
-function! s:FindFunc(file, _) abort
-	if empty(s:filescache)
-		let s:filescache = s:files_fetcher()
+# Obtain fuzzy-matched list of filenames for the :find command.
+def FindFunc(file: string, _: bool): list<string>
+	if empty(filescache)
+		filescache = FilesFetcher()
 	endif
-	return a:file == '' ? s:filescache : matchfuzzy(s:filescache, a:file)
-endfunction
+	return file == '' ? filescache : matchfuzzy(filescache, file)
+enddef
 
-" Set findfunc but only if it's supported.
+# Empty the files cache on cmdline entry.
+def ClearFilesCache()
+	filescache = []
+enddef
+
+# Set findfunc but only if it's supported.
 if exists('+findfunc')
-	set findfunc=s:FindFunc
+	&findfunc = expand('<SID>') .. 'FindFunc'
 else
 	set path+=**
 endif
 
-" Re-open last command pre-filled for editing
-function! s:ResumeLastCmd() abort
-	call feedkeys(':' . histget(':'), 'tn')
-endfunction
+# Re-open last command pre-filled for editing
+def ResumeLastCmd()
+	feedkeys(':' .. histget(':'), 'tn')
+enddef
 
-" Load git hunks into quickfix list
-function! s:GitHunksToQF() abort
-	let l:lines = systemlist('git diff --no-ext-diff -U0')
+# Load git hunks into quickfix list
+def GitHunksToQF()
+	var lines = systemlist('git diff --no-ext-diff -U0')
 	if v:shell_error
 		echohl ErrorMsg
 		echomsg 'git diff failed'
 		echohl None
 		return
 	endif
-	if empty(l:lines)
-		call setqflist([], ' ', {'title': 'Git Hunks', 'items': []})
+	if empty(lines)
+		setqflist([], ' ', {title: 'Git Hunks', items: []})
 		cclose
 		echomsg 'No git hunks found'
 		return
 	endif
-	call setqflist([], ' ', {
-				\ 'title': 'Git Hunks',
-				\ 'lines': l:lines,
-				\ 'efm':
-				\   '%-Pdiff --git a/%f b/%.%#,'
-				\   . '@@ -%\d%\+%.%# +%l%.%# @@ %m,'
-				\   . '@@ -%\d%\+%.%# +%l%.%# @@,'
-				\   . '%-G%.%#',
-				\ })
+	setqflist([], ' ', {
+		title: 'Git Hunks',
+		lines: lines,
+		efm: '%-Pdiff --git a/%f b/%.%#,'
+			.. '@@ -%\d%\+%.%# +%l%.%# @@ %m,'
+			.. '@@ -%\d%\+%.%# +%l%.%# @@,'
+			.. '%-G%.%#',
+	})
 	copen
-endfunction
+enddef
 
-" Set up Git TUI client
+# Set up Git TUI client
 if executable('lazygit')
-	function! s:Git()
-		execute 'silent !lazygit'
+	def Git()
+		silent !lazygit
 		redraw!
-	endfunction
-	nnoremap <c-g> :call <SID>Git()<cr>
+	enddef
+	nnoremap <c-g> <ScriptCmd>Git()<CR>
 endif
 
-function! s:FormatFile() abort
-	if &formatprg == ""
+def FormatFile()
+	if &formatprg == ''
 		return
 	endif
-	let l:view = winsaveview()
-	silent execute '%!' . &formatprg
+	var view = winsaveview()
+	silent execute ':%!' .. &formatprg
 	if v:shell_error
 		silent undo
 		echoerr printf(
-					\ 'formatprg "%s" exited with status %d',
-					\ &formatprg,
-					\ v:shell_error
-					\ )
+			'formatprg "%s" exited with status %d',
+			&formatprg,
+			v:shell_error
+		)
 	endif
-	call winrestview(l:view)
-endfunction
+	winrestview(view)
+enddef
 
 augroup autoformat
 	autocmd!
-	autocmd BufWritePre * call <sid>FormatFile()
+	autocmd BufWritePre * FormatFile()
 augroup END
 
 augroup cmdline_autocomplete
 	autocmd!
-	" Trigger cmdline autocompletion
+	# Trigger cmdline autocompletion
 	if exists('*wildtrigger')
-		autocmd CmdlineChanged [:\/\?] call wildtrigger()
+		autocmd CmdlineChanged [:\/\?] wildtrigger()
 	endif
-	" Empty files cache on cmdline entry
-	autocmd CmdlineEnter : let s:filescache = []
+	# Empty files cache on cmdline entry
+	autocmd CmdlineEnter : ClearFilesCache()
 augroup END
 
-" Enable built-in packages
+# Enable built-in packages
 silent! packadd comment
-silent! packadd hlyank | let g:hlyank_duration = 150
+silent! packadd hlyank
+g:hlyank_duration = 150
 silent! packadd nohlsearch

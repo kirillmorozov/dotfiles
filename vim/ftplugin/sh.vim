@@ -1,3 +1,5 @@
+vim9script
+
 compiler shellcheck
 nnoremap <buffer> <Leader>m :make<Space>%<CR>
 setlocal expandtab
