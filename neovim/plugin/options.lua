@@ -84,7 +84,6 @@ vim.lsp.enable({
 	"gleam",
 	"gopls",
 	"lua_ls",
-	"pylsp",
 	"ruff",
 	"rust_analyzer",
 	"terraformls",
