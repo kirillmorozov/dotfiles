@@ -68,13 +68,7 @@ endif
 
 # Show tabs, multiple consecutive spaces, trailing spaces and breaks
 set list
-if exists('+listchars')
-	# Fall back to a simpler variant for older Vim versions
-	set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·
-	if has('patch-9.0.0000')
-		set listchars+=lead:\ ,multispace:·
-	endif
-endif
+set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:␣,trail:·,lead:\ ,multispace:·
 &showbreak = '↪ '
 
 # Turn on line numbers
@@ -131,20 +125,14 @@ set scrolloff=8
 set sidescrolloff=8
 
 # Command-line completion operates in an enhanced mode
-if has('wildmenu')
-	set wildmenu
-endif
+set wildmenu
 # "noselect" appeared in the same era as wildtrigger() (9.1.1576)
-if exists('+wildmode') && has('patch-9.1.1576')
+if has('patch-9.1.1576')
 	set wildmode=noselect:lastused,full
 endif
-if exists('+wildoptions') && has('patch-9.0.0000')
-	set wildoptions=pum
-endif
+set wildoptions=pum
 # Hide noise in completion
-if has('wildignore')
-	set wildignore+=*.pyc,*/.git/*,*/node_modules/*
-endif
+set wildignore+=*.pyc,*/.git/*,*/node_modules/*
 
 # Key mappings
 # Search
