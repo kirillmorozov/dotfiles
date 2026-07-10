@@ -110,9 +110,6 @@ set pumheight=10
 # Always show statusline
 set laststatus=2
 
-# Draw the signcolumn only when there is a sign to display
-set signcolumn=auto
-
 # Do smart autoindenting when starting a new line
 set smartindent
 
