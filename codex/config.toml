@@ -1,0 +1,86 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+approvals_reviewer = "auto_review"
+model = "gpt-5.5"
+model_reasoning_effort = "medium"
+model_reasoning_summary = "concise"
+model_verbosity = "low"
+personality = "pragmatic"
+plan_mode_reasoning_effort = "high"
+web_search = "live"
+
+[features]
+apps = false
+goals = true
+terminal_resize_reflow = true
+
+[tui]
+status_line = [
+	"model-with-reasoning",
+	"context-remaining",
+	"current-dir",
+	"git-branch",
+	"five-hour-limit",
+]
+session_picker_view = "comfortable"
+theme = "ansi"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[mcp_servers.atlassian_rovo]
+url = "https://mcp.atlassian.com/v1/mcp"
+enabled = false
+enabled_tools = [
+	"addCommentToJiraIssue",
+	"addWorklogToJiraIssue",
+	"createJiraIssue",
+	"editJiraIssue",
+	"getJiraIssue",
+	"getJiraIssueRemoteIssueLinks",
+	"getJiraIssueTypeMetaWithFields",
+	"getJiraProjectIssueTypesMetadata",
+	"getTransitionsForJiraIssue",
+	"getVisibleJiraProjects",
+	"lookupJiraAccountId",
+	"searchJiraIssuesUsingJql",
+	"transitionJiraIssue",
+]
+
+[mcp_servers.gitlab]
+url = "https://code.wabo.run/api/v4/mcp"
+enabled = false
+
+
+[notice]
+fast_default_opt_out = true
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.5"
+
+[marketplaces.personal]
+last_updated = "2026-06-03T08:03:50Z"
+last_revision = "d5c552f422d7fbbaae542cc219eed70f802b3f9c"
+source_type = "git"
+source = "git@github.com:kirillmorozov/skills.git"
+ref = "feat/codex/initial-config"
+
+[marketplaces.antonbabenko]
+last_updated = "2026-06-08T07:11:29Z"
+last_revision = "183e100ab599b4da24888b31228711c64e81bce9"
+source_type = "git"
+source = "https://github.com/antonbabenko/agent-plugins.git"
+
+[plugins."go@personal"]
+enabled = true
+
+[plugins."shell@personal"]
+enabled = true
+
+[plugins."skills@personal"]
+enabled = true
+
+[plugins."terraform-skill@antonbabenko"]
+enabled = true
+
+[plugins."gitops-skills@personal"]
+enabled = true
