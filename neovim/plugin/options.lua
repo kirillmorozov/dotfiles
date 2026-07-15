@@ -1,11 +1,12 @@
-vim.cmd.colorscheme("rose-pine")
-
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
+
+-- Use single status line per window
+vim.opt.laststatus = 3
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -77,15 +78,3 @@ vim.opt.wildoptions = "pum"
 vim.opt.pumheight = 20
 -- Hide noise in completion
 vim.opt.wildignore:append({ "*.pyc", "*/.git/*", "*/node_modules/*" })
-
--- Enable LSP servers
-vim.lsp.enable({
-	"gleam",
-	"gopls",
-	"lua_ls",
-	"pylsp",
-	"ruff",
-	"rust_analyzer",
-	"terraformls",
-	"ty",
-})

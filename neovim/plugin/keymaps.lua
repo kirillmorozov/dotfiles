@@ -10,9 +10,12 @@ vim.keymap.set(
 	[[y/\V<C-r>=escape(@",'/\')<CR><CR>]],
 	{ desc = "Search for visual selection" }
 )
-vim.keymap.set("x", "<Leader>/", function()
-	vim.cmd("execute 'grep! -F ' . shellescape(@\")")
-end, { silent = true, desc = "Grep for visual selection" })
+vim.keymap.set(
+	"x",
+	"<Leader>/",
+	[[y:<C-U>execute 'grep -F ' .. shellescape(@", v:true)<CR>]],
+	{ silent = true, desc = "Grep for visual selection" }
+)
 
 -- Plus register yank/paste
 vim.keymap.set(
