@@ -71,11 +71,9 @@ source = "https://github.com/kirillmorozov/agentic.git"
 ref = "main"
 
 [marketplaces.fluxcd]
-last_updated = "2026-07-16T18:53:22Z"
-last_revision = "258f913db1a5ce9011345dc430a634fc64d2d976"
+last_updated = "2026-07-19T16:43:18Z"
 source_type = "git"
-source = "https://github.com/kirillmorozov/agent-skills.git"
-ref = "main"
+source = "https://github.com/fluxcd/agent-skills.git"
 
 [plugins."go@personal"]
 enabled = true
@@ -89,5 +87,5 @@ enabled = true
 [plugins."terraform-skill@antonbabenko"]
 enabled = true
 
-[plugins."gitops-skills@personal"]
+[plugins."gitops-skills@fluxcd"]
 enabled = true
