@@ -63,13 +63,6 @@ last_revision = "85cf40a6c9ea04135a09c3d1168da3fa77ce0ddd"
 source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
 
-[marketplaces.personal]
-last_updated = "2026-07-15T17:52:21Z"
-last_revision = "18f61655e0d21d1751c78c15c7878de564e90e5e"
-source_type = "git"
-source = "https://github.com/kirillmorozov/agentic.git"
-ref = "main"
-
 [marketplaces.fluxcd]
 last_updated = "2026-07-20T08:19:44Z"
 last_revision = "569a3a536e1a97de28765c8bd1eecd20c836b326"
@@ -82,6 +75,13 @@ last_revision = "72c33eee81ea439cf01991e93729adfce2ffc99e"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
+
+[marketplaces.personal]
+last_updated = "2026-07-20T08:30:04Z"
+last_revision = "da4c36e2d8dd150df82428779ba1400a745c9b65"
+source_type = "git"
+source = "git@github.com:kirillmorozov/agentic.git"
+ref = "feat/codex/remove-personal-config"
 
 [plugins."go@personal"]
 enabled = true
