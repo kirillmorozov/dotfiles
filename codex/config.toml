@@ -71,7 +71,8 @@ source = "https://github.com/kirillmorozov/agentic.git"
 ref = "main"
 
 [marketplaces.fluxcd]
-last_updated = "2026-07-19T16:43:18Z"
+last_updated = "2026-07-20T08:19:44Z"
+last_revision = "569a3a536e1a97de28765c8bd1eecd20c836b326"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
