@@ -76,6 +76,13 @@ last_revision = "569a3a536e1a97de28765c8bd1eecd20c836b326"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
+[marketplaces.i-have-adhd]
+last_updated = "2026-07-20T08:19:45Z"
+last_revision = "72c33eee81ea439cf01991e93729adfce2ffc99e"
+source_type = "git"
+source = "https://github.com/ayghri/i-have-adhd.git"
+ref = "main"
+
 [plugins."go@personal"]
 enabled = true
 
@@ -89,4 +96,7 @@ enabled = true
 enabled = true
 
 [plugins."gitops-skills@fluxcd"]
+enabled = true
+
+[plugins."i-have-adhd@i-have-adhd"]
 enabled = true
