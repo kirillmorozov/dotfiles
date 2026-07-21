@@ -1,0 +1,102 @@
+#:schema https://developers.openai.com/codex/config-schema.json
+approvals_reviewer = "auto_review"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
+model_reasoning_summary = "concise"
+model_verbosity = "low"
+personality = "pragmatic"
+plan_mode_reasoning_effort = "high"
+web_search = "live"
+
+[features]
+apps = false
+goals = true
+terminal_resize_reflow = true
+
+[tui]
+status_line = [
+	"model-with-reasoning",
+	"context-remaining",
+	"current-dir",
+	"git-branch",
+	"five-hour-limit",
+]
+session_picker_view = "comfortable"
+theme = "ansi"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+"gpt-5.6-sol" = 4
+
+[mcp_servers.atlassian_rovo]
+url = "https://mcp.atlassian.com/v1/mcp"
+enabled = false
+enabled_tools = [
+	"addCommentToJiraIssue",
+	"addWorklogToJiraIssue",
+	"createJiraIssue",
+	"editJiraIssue",
+	"getJiraIssue",
+	"getJiraIssueRemoteIssueLinks",
+	"getJiraIssueTypeMetaWithFields",
+	"getJiraProjectIssueTypesMetadata",
+	"getTransitionsForJiraIssue",
+	"getVisibleJiraProjects",
+	"lookupJiraAccountId",
+	"searchJiraIssuesUsingJql",
+	"transitionJiraIssue",
+]
+
+[mcp_servers.gitlab]
+url = "https://code.wabo.run/api/v4/mcp"
+enabled = false
+
+[notice]
+fast_default_opt_out = true
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.5"
+
+[marketplaces.antonbabenko]
+last_updated = "2026-07-15T17:52:19Z"
+last_revision = "85cf40a6c9ea04135a09c3d1168da3fa77ce0ddd"
+source_type = "git"
+source = "https://github.com/antonbabenko/agent-plugins.git"
+
+[marketplaces.fluxcd]
+last_updated = "2026-07-21T08:58:29Z"
+last_revision = "dbdd2d9403aac7b9bab5fef7e036fc7f083a3743"
+source_type = "git"
+source = "https://github.com/fluxcd/agent-skills.git"
+
+[marketplaces.i-have-adhd]
+last_updated = "2026-07-21T08:58:31Z"
+last_revision = "36b80ba73033c2211c51d057d81994ab4108d912"
+source_type = "git"
+source = "https://github.com/ayghri/i-have-adhd.git"
+ref = "main"
+
+[marketplaces.personal]
+last_updated = "2026-07-20T08:30:04Z"
+last_revision = "da4c36e2d8dd150df82428779ba1400a745c9b65"
+source_type = "git"
+source = "git@github.com:kirillmorozov/agentic.git"
+ref = "feat/codex/remove-personal-config"
+
+[plugins."go@personal"]
+enabled = true
+
+[plugins."shell@personal"]
+enabled = true
+
+[plugins."skills@personal"]
+enabled = true
+
+[plugins."terraform-skill@antonbabenko"]
+enabled = true
+
+[plugins."gitops-skills@fluxcd"]
+enabled = true
+
+[plugins."i-have-adhd@i-have-adhd"]
+enabled = true
