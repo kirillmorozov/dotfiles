@@ -64,14 +64,14 @@ source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
 
 [marketplaces.fluxcd]
-last_updated = "2026-07-20T08:19:44Z"
-last_revision = "569a3a536e1a97de28765c8bd1eecd20c836b326"
+last_updated = "2026-07-21T08:58:29Z"
+last_revision = "dbdd2d9403aac7b9bab5fef7e036fc7f083a3743"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
 [marketplaces.i-have-adhd]
-last_updated = "2026-07-20T08:19:45Z"
-last_revision = "72c33eee81ea439cf01991e93729adfce2ffc99e"
+last_updated = "2026-07-21T08:58:31Z"
+last_revision = "36b80ba73033c2211c51d057d81994ab4108d912"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
