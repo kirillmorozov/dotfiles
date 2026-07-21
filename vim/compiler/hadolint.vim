@@ -1,7 +1,9 @@
-if exists('current_compiler')
+vim9script
+
+if exists('g:current_compiler')
 	finish
 endif
-let current_compiler = 'hadolint'
+g:current_compiler = 'hadolint'
 
 if exists(':CompilerSet') != 2
 	command -nargs=* CompilerSet setlocal <args>

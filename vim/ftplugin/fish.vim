@@ -1,3 +1,5 @@
+vim9script
+
 setlocal expandtab
 setlocal formatprg=fish_indent
 setlocal shiftwidth=4

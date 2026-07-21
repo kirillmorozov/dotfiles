@@ -1,3 +1,5 @@
+vim9script
+
 compiler go
 setlocal formatprg=gofmt
 

@@ -1,3 +1,5 @@
+vim9script
+
 setlocal autoindent
 setlocal expandtab
 setlocal fileformat=unix

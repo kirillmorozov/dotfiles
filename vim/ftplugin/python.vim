@@ -1,3 +1,5 @@
+vim9script
+
 compiler ruff
 setlocal autoindent
 setlocal colorcolumn=80
