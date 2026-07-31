@@ -54,6 +54,11 @@ Helix:
       - any-glob-to-any-file:
           - helix/**/*
 
+Jujutsu:
+  - changed-files:
+      - any-glob-to-any-file:
+          - jj/**/*
+
 Neovim:
   - changed-files:
       - any-glob-to-any-file:

@@ -25,6 +25,7 @@ jobs:
             fish
             git
             helix
+            jj
             neovim
             starship
             task
