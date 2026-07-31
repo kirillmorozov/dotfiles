@@ -1,0 +1,114 @@
+#:schema https://docs.jj-vcs.dev/latest/config-schema.json
+
+[user]
+name = "Kirill Morozov"
+email = "kirill@robotix.pro"
+
+[[--scope]]
+--when.repositories = [
+  "~/Development/code.wado.run",
+  "~/Development/github/wandelbotsgmbh",
+]
+[--scope.user]
+email = "kirill.morozov@wandelbots.com"
+
+[ui]
+default-command = "log"
+diff-formatter = ["difft", "--color=always", "$left", "$right"]
+
+[templates]
+log = "builtin_log_compact_full_description"
+
+[revset-aliases]
+"stack()" = { definition = 'trunk()..@', doc = 'All changes after trunk through the working copy.' }
+
+[fix.tools.dockerfmt]
+command = ["dockerfmt"]
+patterns = [
+  "glob:'**/Dockerfile'",
+  "glob:'**/Dockerfile.*'",
+  "glob:'**/Containerfile'",
+  "glob:'**/Containerfile.*'",
+  "glob:'**/*.dockerfile'",
+]
+
+[fix.tools.elm-format]
+command = ["elm-format", "--stdin"]
+patterns = ["glob:'**/*.elm'"]
+
+[fix.tools.fish-indent]
+command = ["fish_indent"]
+patterns = ["glob:'**/*.fish'"]
+
+[fix.tools.gleam]
+command = ["gleam", "format", "--stdin"]
+patterns = ["glob:'**/*.gleam'"]
+
+[fix.tools.go-2-gofumpt]
+command = ["gofumpt"]
+patterns = ["glob:'**/*.go'"]
+
+[fix.tools.deno]
+command = ["deno", "fmt", "-", "--ext", "js"]
+patterns = ["glob:'**/*.js'", "glob:'**/*.mjs'", "glob:'**/*.cjs'"]
+
+[fix.tools.jq]
+command = ["jq", "-S"]
+patterns = ["glob:'**/*.json'"]
+
+[fix.tools.stylua]
+command = [
+  "stylua",
+  "--column-width",
+  "88",
+  "--quote-style",
+  "AutoPreferDouble",
+  "--search-parent-directories",
+  "--respect-ignores",
+  "--stdin-filepath",
+  "$path",
+  "-",
+]
+patterns = ["glob:'**/*.lua'"]
+
+[fix.tools.ruff]
+command = [
+  "ruff",
+  "format",
+  "--force-exclude",
+  "--stdin-filename",
+  "$path",
+  "-",
+]
+patterns = ["glob:'**/*.py'", "glob:'**/*.pyi'"]
+
+[fix.tools.rustfmt]
+command = ["rustfmt", "--emit=stdout", "--edition=2021"]
+patterns = ["glob:'**/*.rs'"]
+
+[fix.tools.shfmt]
+command = ["shfmt", "-i", "2", "-bn", "-ci", "-sr", "-filename", "$path"]
+patterns = ["glob:'**/*.sh'", "glob:'**/*.bash'", "glob:'**/*.bats'"]
+
+[fix.tools.terraform]
+command = ["terraform", "fmt", "-no-color", "-"]
+patterns = ["glob:'**/*.tf'", "glob:'**/*.tfvars'"]
+
+[fix.tools.yamlfmt]
+command = [
+  "yamlfmt",
+  "-formatter",
+  "include_document_start=true",
+  "-formatter",
+  "retain_line_breaks_single=true",
+  "-formatter",
+  "max_line_length=80",
+  "-formatter",
+  "scan_folded_as_literal=true",
+  "-formatter",
+  "pad_line_comments=2",
+  "-formatter",
+  "trim_trailing_whitespace=true",
+  "-",
+]
+patterns = ["glob:'**/*.yaml'", "glob:'**/*.yml'"]
