@@ -35,30 +35,30 @@ fast_default_opt_out = true
 "gpt-5.3-codex" = "gpt-5.5"
 
 [marketplaces.antonbabenko]
-last_updated = "2026-07-15T17:52:19Z"
-last_revision = "85cf40a6c9ea04135a09c3d1168da3fa77ce0ddd"
+last_updated = "2026-08-03T09:23:19Z"
+last_revision = "ae17b3ebd19160e7e12e13538155e23daf1497a2"
 source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
 
 [marketplaces.fluxcd]
-last_updated = "2026-07-21T08:58:29Z"
-last_revision = "dbdd2d9403aac7b9bab5fef7e036fc7f083a3743"
+last_updated = "2026-08-04T08:45:17Z"
+last_revision = "2f9e4f8203e1d35d6fe27015ca7df4705ff826fe"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
 [marketplaces.i-have-adhd]
-last_updated = "2026-07-21T08:58:31Z"
-last_revision = "36b80ba73033c2211c51d057d81994ab4108d912"
+last_updated = "2026-08-03T09:23:22Z"
+last_revision = "d05af1e4ac2259846e81686d14180d46d84acc2d"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
 
 [marketplaces.personal]
-last_updated = "2026-07-20T08:30:04Z"
-last_revision = "da4c36e2d8dd150df82428779ba1400a745c9b65"
+last_updated = "2026-08-04T09:12:22Z"
+last_revision = "c79639a3e91a9eb6f26bb7d33a4f191ae3d04f65"
 source_type = "git"
 source = "git@github.com:kirillmorozov/agentic.git"
-ref = "feat/codex/remove-personal-config"
+ref = "main"
 
 [plugins."go@personal"]
 enabled = true
