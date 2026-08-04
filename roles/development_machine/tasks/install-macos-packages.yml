@@ -12,6 +12,7 @@
       - glab
       - go-task
       - helix
+      - jj
       - jq
       - lazygit
       - neovim
