@@ -15,11 +15,11 @@ terminal_resize_reflow = true
 
 [tui]
 status_line = [
-	"model-with-reasoning",
-	"context-remaining",
-	"current-dir",
-	"git-branch",
-	"five-hour-limit",
+  "model-with-reasoning",
+  "context-remaining",
+  "current-dir",
+  "git-branch",
+  "five-hour-limit",
 ]
 session_picker_view = "comfortable"
 theme = "ansi"
