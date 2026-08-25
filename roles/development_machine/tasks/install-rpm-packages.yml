@@ -11,6 +11,10 @@
   become: true
   community.general.copr:
     name: wezfurlong/wezterm-nightly
+- name: Enable Jujutsu Copr
+  become: true
+  community.general.copr:
+    name: aldantanneo/jj-vcs
 - name: Fedora bloat uninstalled
   become: true
   ansible.builtin.dnf5:
@@ -70,6 +74,7 @@
       - golang
       - gopls
       - helix
+      - jj-cli
       - jq
       - neovim
       - podman

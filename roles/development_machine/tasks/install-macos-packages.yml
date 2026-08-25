@@ -1,8 +1,12 @@
 ---
+- name: Tap a Dillon Mulroy's repo
+  community.general.homebrew_tap:
+    name: dmmulroy/tap
 - name: Brew packages installed
   community.general.homebrew:
     state: latest
     package:
+      - dmmulroy/tap/jj-starship
       - btop
       - difftastic
       - eza
@@ -12,6 +16,7 @@
       - glab
       - go-task
       - helix
+      - jj
       - jq
       - lazygit
       - neovim
