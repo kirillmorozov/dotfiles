@@ -6,9 +6,9 @@
   community.general.homebrew:
     state: latest
     package:
-      - dmmulroy/tap/jj-starship
       - btop
       - difftastic
+      - dmmulroy/tap/jj-starship
       - eza
       - fd
       - fish
@@ -22,6 +22,7 @@
       - neovim
       - ripgrep
       - starship
+      - taplo
       - tree-sitter-cli
       - uv
       - vim

@@ -58,6 +58,7 @@ return {
 				rust = { "rustfmt" },
 				sh = { "shfmt" },
 				terraform = { "terraform_fmt" },
+				toml = { "taplo" },
 				yaml = { "yamlfmt", "yq", stop_after_first = true },
 			},
 		},
