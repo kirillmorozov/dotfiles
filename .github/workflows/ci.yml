@@ -22,6 +22,16 @@ jobs:
         with:
           yamllint_strict: true
 
+      - name: Check TOML Style
+        uses: docker://tamasfe/taplo:0.10.0
+        with:
+          args: "format --check --diff **/*"
+
+      - name: Lint TOML Files
+        uses: docker://tamasfe/taplo:0.10.0
+        with:
+          args: "lint **/*"
+
       - name: Check Lua Style
         uses: JohnnyMorganz/stylua-action@v5.0.0
         with:
