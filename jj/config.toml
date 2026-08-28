@@ -20,7 +20,7 @@ diff-formatter = ["difft", "--color=always", "$left", "$right"]
 log = "builtin_log_compact_full_description"
 
 [revset-aliases]
-"stack()" = { definition = 'trunk()..@', doc = 'All changes after trunk through the working copy.' }
+"stack()" = { definition = '(trunk()::@) ~ trunk()', doc = 'All changes after trunk through the working copy.' }
 
 [fix.tools.dockerfmt]
 command = ["dockerfmt"]
