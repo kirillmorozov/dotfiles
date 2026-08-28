@@ -55,6 +55,16 @@ source = "git@github.com:kirillmorozov/agentic.git"
 source_type = "git"
 source = "https://github.com/JetBrains/go-modern-guidelines.git"
 
+[marketplaces.ponytail]
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
+
+[plugins."go@personal"]
+enabled = true
+
+[plugins."shell@personal"]
+enabled = true
+
 [plugins."skills@personal"]
 enabled = true
 
@@ -64,7 +74,10 @@ enabled = true
 [plugins."gitops-skills@fluxcd"]
 enabled = true
 
-[plugins."i-have-adhd@i-have-adhd"]
+[plugins."atlassian-rovo@openai-curated-remote"]
+enabled = true
+
+[plugins."ponytail@ponytail"]
 enabled = true
 
 [plugins."YAML@personal"]
@@ -80,10 +93,6 @@ enabled = true
 enabled = true
 
 [hooks.state]
-
-[hooks.state."go@personal:hooks/hooks.json:post_tool_use:1:0"]
-trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98ba14b7df"
-enabled = true
 
 [hooks.state."YAML@personal:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:40fc79284fbc723a176b585dbb56207eaba6fdfec5c3e81a4114624dfdecea49"
@@ -112,3 +121,15 @@ trusted_hash = "sha256:d8662ad836fc67db4b7f80164ace15726f5006220928c748e19b795f7
 [hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
 trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"
 enabled = false
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0bfefca4"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
+trusted_hash = "sha256:5f81d38f47448a1581c08ec877e044d9e04dd6f814dce3f2671f7a8edadd719b"
+
+[mcp_servers.ixlabs]
+url = "https://labs.iximiuz.com/mcp"
