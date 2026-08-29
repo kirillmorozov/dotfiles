@@ -35,30 +35,20 @@ fast_default_opt_out = true
 "gpt-5.3-codex" = "gpt-5.5"
 
 [marketplaces.antonbabenko]
-last_updated = "2026-08-03T09:23:19Z"
-last_revision = "ae17b3ebd19160e7e12e13538155e23daf1497a2"
 source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
 
 [marketplaces.fluxcd]
-last_updated = "2026-08-04T08:45:17Z"
-last_revision = "2f9e4f8203e1d35d6fe27015ca7df4705ff826fe"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
-[marketplaces.i-have-adhd]
-last_updated = "2026-08-03T09:23:22Z"
-last_revision = "d05af1e4ac2259846e81686d14180d46d84acc2d"
-source_type = "git"
-source = "https://github.com/ayghri/i-have-adhd.git"
-ref = "main"
-
 [marketplaces.personal]
-last_updated = "2026-08-04T09:12:22Z"
-last_revision = "c79639a3e91a9eb6f26bb7d33a4f191ae3d04f65"
 source_type = "git"
 source = "git@github.com:kirillmorozov/agentic.git"
-ref = "main"
+
+[marketplaces.ponytail]
+source_type = "git"
+source = "https://github.com/DietrichGebert/ponytail.git"
 
 [plugins."go@personal"]
 enabled = true
@@ -75,7 +65,10 @@ enabled = true
 [plugins."gitops-skills@fluxcd"]
 enabled = true
 
-[plugins."i-have-adhd@i-have-adhd"]
+[plugins."atlassian-rovo@openai-curated-remote"]
+enabled = false
+
+[plugins."ponytail@ponytail"]
 enabled = true
 
 [hooks.state]
@@ -85,3 +78,15 @@ trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98b
 
 [hooks.state."shell@personal:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:54e2d5311ab57378728f7d5aae0a5e5219d4ab11dac2dd29ac95bfb3a12abd57"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
+trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
+trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0bfefca4"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
+trusted_hash = "sha256:5f81d38f47448a1581c08ec877e044d9e04dd6f814dce3f2671f7a8edadd719b"
+
+[mcp_servers.ixlabs]
+url = "https://labs.iximiuz.com/mcp"
