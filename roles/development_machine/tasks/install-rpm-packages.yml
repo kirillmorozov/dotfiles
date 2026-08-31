@@ -7,6 +7,14 @@
     gpgkey: https://cli.github.com/packages/githubcli-archive-keyring.gpg
     name: gh-cli
     state: present
+- name: Add Librewolf repository
+  become: true
+  ansible.builtin.yum_repository:
+    baseurl: https://repo.librewolf.net
+    description: LibreWolf Software Repository
+    gpgkey: https://repo.librewolf.net/pubkey.gpg
+    name: librewolf
+    state: present
 - name: Enable Wezterm Copr
   become: true
   community.general.copr:
@@ -76,6 +84,7 @@
       - helix
       - jj-cli
       - jq
+      - librewolf
       - neovim
       - podman
       - ripgrep
