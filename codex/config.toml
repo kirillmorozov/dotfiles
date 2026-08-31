@@ -1,7 +1,7 @@
 #:schema https://developers.openai.com/codex/config-schema.json
 approvals_reviewer = "auto_review"
 model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 model_reasoning_summary = "concise"
 model_verbosity = "low"
 personality = "pragmatic"
@@ -85,3 +85,12 @@ trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98b
 
 [hooks.state."shell@personal:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:54e2d5311ab57378728f7d5aae0a5e5219d4ab11dac2dd29ac95bfb3a12abd57"
+
+[projects."/home/kmorozov/Development/github/wandelbotsgmbh/nova-assets"]
+trust_level = "trusted"
+
+[projects."/home/kmorozov/Development/code.wado.run/developer-portal/applications"]
+trust_level = "trusted"
+
+[projects."/home/kmorozov/Development/code.wado.run/wandelos/novacloud"]
+trust_level = "trusted"
