@@ -140,7 +140,7 @@ nnoremap <Leader>/ :grep<Space>
 nnoremap N Nzz
 nnoremap n nzz
 xnoremap * y/\V<C-r>=substitute(escape(@",'/\'),'\n','\\n','g')<CR><CR>
-xnoremap <silent> <Leader>/ y:<C-U>execute 'grep -F ' .. shellescape(@", true)<CR>
+xnoremap <silent> <Leader>/ y:<C-U>execute 'grep -F ' .. shellescape(@", v:true)<CR>
 # General navigation
 nnoremap <Leader>b :buffer<Space>
 # Requires `stty -ixon` in the terminal, otherwise <C-S> is eaten by flow
