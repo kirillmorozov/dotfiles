@@ -1,6 +1,8 @@
 # Add user-specific executables to PATH.
 fish_add_path --prepend /opt/homebrew/bin "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/go/bin" /usr/local/go/bin
 
+set -g fish_greeting
+
 set -gx BAT_THEME base16
 set -gx MANPAGER "vim +MANPAGER --not-a-term -"
 set -gx STARSHIP_CONFIG (string join / (set -q XDG_CONFIG_HOME; and echo $XDG_CONFIG_HOME; or echo "$HOME/.config") starship starship.toml)
