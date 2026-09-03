@@ -85,3 +85,6 @@ trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98b
 
 [hooks.state."shell@personal:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:54e2d5311ab57378728f7d5aae0a5e5219d4ab11dac2dd29ac95bfb3a12abd57"
+
+[projects."/Users/kirillmorozov/Development/github/kirillmorozov/dotfiles"]
+trust_level = "trusted"

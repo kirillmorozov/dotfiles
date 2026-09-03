@@ -21,7 +21,9 @@ diff-formatter = ["difft", "--color=always", "$left", "$right"]
 log = "builtin_log_compact_full_description"
 
 [revset-aliases]
+"my_unpushed()" = { definition = 'mine() & bookmarks() & ~remote_bookmarks()', doc = "All revisions that you authored, across all bookmarks that aren't on any remote" }
 "stack()" = { definition = '(trunk()::@) ~ trunk()', doc = 'All changes after trunk through the working copy.' }
+"unpushed()" = { definition = 'bookmarks() & ~(trunk() | remote_bookmarks())', doc = "All revisions across all local bookmarks that aren't on the main bookmark nor on any remote" }
 
 [fix.tools.dockerfmt]
 command = ["dockerfmt"]
