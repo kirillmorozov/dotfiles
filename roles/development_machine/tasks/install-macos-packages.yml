@@ -15,6 +15,7 @@
       - fzf
       - glab
       - go-task
+      - gopls
       - helix
       - jj
       - jq
