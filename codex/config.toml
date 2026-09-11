@@ -1,7 +1,7 @@
 #:schema https://developers.openai.com/codex/config-schema.json
 approvals_reviewer = "auto_review"
-model = "gpt-5.6-sol"
-model_reasoning_effort = "medium"
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 model_reasoning_summary = "concise"
 model_verbosity = "low"
 personality = "pragmatic"
@@ -27,6 +27,7 @@ theme = "ansi"
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+gpt-6-astra = 4
 
 [notice]
 fast_default_opt_out = true
@@ -35,36 +36,22 @@ fast_default_opt_out = true
 "gpt-5.3-codex" = "gpt-5.5"
 
 [marketplaces.antonbabenko]
-last_updated = "2026-08-03T09:23:19Z"
-last_revision = "ae17b3ebd19160e7e12e13538155e23daf1497a2"
 source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
 
 [marketplaces.fluxcd]
-last_updated = "2026-08-04T08:45:17Z"
-last_revision = "2f9e4f8203e1d35d6fe27015ca7df4705ff826fe"
 source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
 
 [marketplaces.i-have-adhd]
-last_updated = "2026-08-03T09:23:22Z"
-last_revision = "d05af1e4ac2259846e81686d14180d46d84acc2d"
 source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
 ref = "main"
 
 [marketplaces.personal]
-last_updated = "2026-08-04T09:12:22Z"
-last_revision = "c79639a3e91a9eb6f26bb7d33a4f191ae3d04f65"
 source_type = "git"
 source = "git@github.com:kirillmorozov/agentic.git"
-ref = "main"
-
-[plugins."go@personal"]
-enabled = true
-
-[plugins."shell@personal"]
-enabled = true
+ref = "refactor/plugin-hooks"
 
 [plugins."skills@personal"]
 enabled = true
@@ -78,13 +65,45 @@ enabled = true
 [plugins."i-have-adhd@i-have-adhd"]
 enabled = true
 
+[plugins."YAML@personal"]
+enabled = true
+
+[plugins."Go@personal"]
+enabled = true
+
+[plugins."Shell@personal"]
+enabled = true
+
 [hooks.state]
 
-[hooks.state."go@personal:hooks/hooks.json:post_tool_use:0:0"]
+[hooks.state."go@personal:hooks/hooks.json:post_tool_use:1:0"]
 trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98ba14b7df"
+enabled = true
 
-[hooks.state."shell@personal:hooks/hooks.json:post_tool_use:0:0"]
-trusted_hash = "sha256:54e2d5311ab57378728f7d5aae0a5e5219d4ab11dac2dd29ac95bfb3a12abd57"
+[hooks.state."YAML@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:2e51ef3928c312bae6592e227f098fda6a6a5306c95083dd42316be196dc82b0"
 
-[projects."/Users/kirillmorozov/Development/github/kirillmorozov/dotfiles"]
-trust_level = "trusted"
+[hooks.state."YAML@personal:hooks/hooks.json:post_tool_use:0:1"]
+trusted_hash = "sha256:4042dd18ea7e78304da7114688cde1e5296b6ed153ce4c9386f2163b3e598f31"
+
+[hooks.state."Go@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:efd54c5f8e0b414a17fd192d5dcef0a83e1a70bda16a1d24c8a77b2db60b3a6b"
+
+[hooks.state."Go@personal:hooks/hooks.json:post_tool_use:0:1"]
+trusted_hash = "sha256:10b8a56a9b871e129d847f5229eef96e163ffd88a440f86254820f1448004c11"
+
+[hooks.state."Go@personal:hooks/hooks.json:post_tool_use:0:2"]
+trusted_hash = "sha256:fab5cf763ad0fdaa5d77747b747e26471445e79ffb4dc7bf7a13a98936bb9393"
+
+[hooks.state."Go@personal:hooks/hooks.json:post_tool_use:0:3"]
+trusted_hash = "sha256:04cb917cf03837bb56d922f981e28f1cc04831e2beeff79c2801e1d9cc581948"
+
+[hooks.state."Shell@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:c37f518d795a1cfeac5ef5716fcd25aa710ad70c9067b767d279c37cc912e9a7"
+
+[hooks.state."Shell@personal:hooks/hooks.json:post_tool_use:0:1"]
+trusted_hash = "sha256:d8662ad836fc67db4b7f80164ace15726f5006220928c748e19b795f772a5c05"
+
+[hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"
+enabled = false
