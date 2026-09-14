@@ -23,6 +23,7 @@ jobs:
             ansible
             codex
             fish
+            ghostty
             git
             helix
             jj
