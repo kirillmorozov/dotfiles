@@ -44,6 +44,11 @@ Fish:
       - any-glob-to-any-file:
           - fish/**/*
 
+Ghostty:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ghostty/**/*
+
 Git:
   - changed-files:
       - any-glob-to-any-file:
