@@ -1,5 +1,4 @@
-# Add user-specific executables to PATH.
-fish_add_path --prepend /opt/homebrew/bin "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/go/bin" /usr/local/go/bin
+fish_add_path --prepend "$HOME/.local/bin" /opt/homebrew/bin /usr/local/go/bin
 
 set -g fish_greeting
 
