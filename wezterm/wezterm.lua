@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local mux = wezterm.mux
 
 --- Returns the appearance of the window environment.
 -- If gui is not available returns 'Dark'.
@@ -10,6 +11,18 @@ local function get_appearance()
 		return wezterm.gui.get_appearance()
 	end
 	return "Dark"
+end
+
+--- Decide whether cmd represents a default startup invocation
+-- returns true if launched via `wezterm start --cwd something`, false
+-- otherwise
+function is_default_startup(cmd)
+	if not cmd then
+		-- we were started with `wezterm` or `wezterm start` with
+		-- no other arguments
+		return true
+	end
+	return cmd.domain == "DefaultDomain" and not cmd.args
 end
 
 --- Returns prefered theme for appearance.
@@ -37,13 +50,26 @@ config:set_strict_mode(true)
 
 config.animation_fps = 120
 config.color_scheme = scheme_for_appearance(get_appearance())
+config.default_prog = default_prog()
 config.enable_scroll_bar = false
 config.font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "Fira Code" })
 config.font_size = 14.0
 config.max_fps = 120
-config.default_prog = default_prog()
 config.term = "wezterm"
+config.unix_domains = { { name = "unix" } }
 config.window_padding = { bottom = 0, left = 0, right = 0, top = 0 }
+
+wezterm.on("gui-startup", function(cmd)
+	if not is_default_startup(cmd) then
+		return
+	end
+	-- for the default startup case, we want to switch to the unix domain
+	-- instead
+	local unix = mux.get_domain("unix")
+	mux.set_default_domain(unix)
+	-- ensure that it is attached
+	unix:attach()
+end)
 
 -- Leader key (tmux-style prefix)
 config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
