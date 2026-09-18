@@ -1,11 +1,20 @@
 ---
 name: PR
-# yamllint disable-line rule:truthy
-on:
-  - pull_request
+
+"on":
+  pull_request:
+    branches:
+      - main
+    types:
+      - edited
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
 
 jobs:
   automation:
+    if: ${{ !github.event.pull_request.draft }}
     name: Automation
     runs-on: ubuntu-latest
     permissions:
