@@ -20,6 +20,9 @@ diff-formatter = ["difft", "--color=always", "$left", "$right"]
 [templates]
 log = "builtin_log_compact_full_description"
 
+[revsets]
+log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
+
 [revset-aliases]
 "my_unpushed()" = { definition = 'mine() & bookmarks() & ~remote_bookmarks()', doc = "All revisions that you authored, across all bookmarks that aren't on any remote" }
 "stack()" = { definition = '(trunk()::@) ~ trunk()', doc = 'All changes after trunk through the working copy.' }
