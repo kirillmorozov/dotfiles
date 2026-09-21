@@ -27,6 +27,14 @@ return {
 						"AutoPreferDouble",
 					},
 				},
+				taplo = {
+					append_args = {
+						"-o",
+						"reorder_inline_tables=true",
+						"-o",
+						"reorder_keys=true",
+					},
+				},
 				yamlfmt = {
 					prepend_args = {
 						"-formatter",
