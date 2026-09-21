@@ -14,6 +14,7 @@ goals = true
 terminal_resize_reflow = true
 
 [tui]
+session_picker_view = "comfortable"
 status_line = [
   "model-with-reasoning",
   "context-remaining",
@@ -21,7 +22,6 @@ status_line = [
   "git-branch",
   "five-hour-limit",
 ]
-session_picker_view = "comfortable"
 theme = "ansi"
 
 [tui.model_availability_nux]
@@ -36,24 +36,24 @@ fast_default_opt_out = true
 "gpt-5.3-codex" = "gpt-5.5"
 
 [marketplaces.antonbabenko]
-source_type = "git"
 source = "https://github.com/antonbabenko/agent-plugins.git"
+source_type = "git"
 
 [marketplaces.fluxcd]
-source_type = "git"
 source = "https://github.com/fluxcd/agent-skills.git"
+source_type = "git"
 
 [marketplaces.i-have-adhd]
-source_type = "git"
 source = "https://github.com/ayghri/i-have-adhd.git"
+source_type = "git"
 
 [marketplaces.personal]
-source_type = "git"
 source = "git@github.com:kirillmorozov/agentic.git"
+source_type = "git"
 
 [marketplaces.goland-codex-marketplace]
-source_type = "git"
 source = "https://github.com/JetBrains/go-modern-guidelines.git"
+source_type = "git"
 
 [plugins."skills@personal"]
 enabled = true
@@ -82,8 +82,8 @@ enabled = true
 [hooks.state]
 
 [hooks.state."go@personal:hooks/hooks.json:post_tool_use:1:0"]
-trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98ba14b7df"
 enabled = true
+trusted_hash = "sha256:0c7cf97e56987c148348b9f8ef902eea8575f5f2d57eefe8c414bd98ba14b7df"
 
 [hooks.state."YAML@personal:hooks/hooks.json:post_tool_use:0:0"]
 trusted_hash = "sha256:40fc79284fbc723a176b585dbb56207eaba6fdfec5c3e81a4114624dfdecea49"
@@ -110,5 +110,5 @@ trusted_hash = "sha256:e68f70daac87da8d61e475cde98394092295abfa0aaa3cb5ed9bd2456
 trusted_hash = "sha256:d8662ad836fc67db4b7f80164ace15726f5006220928c748e19b795f772a5c05"
 
 [hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
-trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"
 enabled = false
+trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"

@@ -43,6 +43,6 @@ disabled = false
 disabled = false
 
 [custom.jj]
-when = "jj-starship detect"
-shell = ["jj-starship"]
 format = "$output "
+shell = ["jj-starship"]
+when = "jj-starship detect"
