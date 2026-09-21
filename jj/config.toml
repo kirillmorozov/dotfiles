@@ -28,6 +28,11 @@ log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
 "stack()" = { definition = '(trunk()::@) ~ trunk()', doc = 'All changes after trunk through the working copy.' }
 "unpushed()" = { definition = 'bookmarks() & ~(trunk() | remote_bookmarks())', doc = "All revisions across all local bookmarks that aren't on the main bookmark nor on any remote" }
 
+[signing]
+backend = "ssh"
+behavior = "own"
+key = "~/.ssh/id_ed25519.pub"
+
 [fix.tools.dockerfmt]
 command = ["dockerfmt"]
 patterns = [
