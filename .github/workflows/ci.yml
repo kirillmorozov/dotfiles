@@ -31,7 +31,12 @@ jobs:
       - name: Check TOML Style
         uses: docker://tamasfe/taplo:0.10.0
         with:
-          args: format --check --diff
+          args: >-
+            format
+            --check
+            --diff
+            -o reorder_inline_tables=true
+            -o reorder_keys=true
 
       - name: Lint TOML Files
         uses: docker://tamasfe/taplo:0.10.0
