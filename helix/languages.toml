@@ -1,76 +1,74 @@
 [[language]]
-name = "bash"
 auto-format = true
-formatter = { command = "shfmt", args = ["-i", "2", "-bn", "-ci", "-sr"] }
+formatter = { args = ["-i", "2", "-bn", "-ci", "-sr"], command = "shfmt" }
+name = "bash"
 
 [[language]]
-name = "dockerfile"
 auto-format = true
 formatter.command = "dockerfmt"
+name = "dockerfile"
 
 [[language]]
 name = "git-commit"
 rulers = [55, 72]
 
 [[language]]
-name = "python"
 auto-format = true
-formatter = { command = "ruff", args = ["format", "-"] }
+formatter = { args = ["format", "-"], command = "ruff" }
+name = "python"
 
 [[language]]
-name = "go"
 auto-format = true
 formatter.command = "gofumpt"
+name = "go"
 
 [[language]]
+formatter = { args = ["-S", "."], command = "jq" }
 name = "json"
-formatter = { command = "jq", args = ["-S", "."] }
 
 [[language]]
+auto-format = true
+formatter = { args = ["--stdin"], command = "elm-format" }
 name = "elm"
-auto-format = true
-formatter = { command = "elm-format", args = ["--stdin"] }
 
 [[language]]
+auto-format = true
+formatter = { args = ["format", "--stdin"], command = "gleam" }
 name = "gleam"
-auto-format = true
-formatter = { command = "gleam", args = ["format", "--stdin"] }
 
 [[language]]
+auto-format = true
+formatter = { args = ["fmt", "-"], command = "deno" }
 name = "javascript"
-auto-format = true
-formatter = { command = "deno", args = ["fmt", "-"] }
 
 [[language]]
-name = "lua"
 auto-format = true
-formatter = { command = "stylua", args = [
+formatter = { args = [
   "--column-width",
   "88",
   "--quote-style",
   "AutoPreferDouble",
   "-",
-] }
+], command = "stylua" }
+name = "lua"
 
 [[language]]
-name = "rust"
 auto-format = true
 formatter.command = "rustfmt"
+name = "rust"
 
 [[language]]
+auto-format = true
+formatter = { args = ["fmt", "-"], command = "terraform" }
 name = "hcl"
-auto-format = true
-formatter = { command = "terraform", args = ["fmt", "-"] }
 
 [[language]]
+auto-format = true
+formatter = { args = ["fmt", "-"], command = "terraform" }
 name = "tfvars"
-auto-format = true
-formatter = { command = "terraform", args = ["fmt", "-"] }
 
 [[language]]
-name = "yaml"
 auto-format = true
-formatter.command = "yamlfmt"
 formatter.args = [
   "-formatter",
   "include_document_start=true",
@@ -86,7 +84,9 @@ formatter.args = [
   "trim_trailing_whitespace=true",
   "-in",
 ]
+formatter.command = "yamlfmt"
+name = "yaml"
 
 [[language]]
+formatter = { args = ["fmt", "-"], command = "taplo" }
 name = "toml"
-formatter = { command = "taplo", args = ["fmt", "-"] }
