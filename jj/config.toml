@@ -98,8 +98,22 @@ command = ["rustfmt", "--emit=stdout", "--edition=2021"]
 patterns = ["glob:'**/*.rs'"]
 
 [fix.tools.shfmt]
-command = ["shfmt", "-i", "2", "-bn", "-ci", "-sr", "-filename", "$path"]
+command = ["shfmt", "-i", "2", "-bn", "-ci", "-sr", "--filename", "$path"]
 patterns = ["glob:'**/*.sh'", "glob:'**/*.bash'", "glob:'**/*.bats'"]
+
+[fix.tools.taplo]
+command = [
+  "taplo",
+  "format",
+  "--stdin-filepath",
+  "$path",
+  "-o",
+  "reorder_inline_tables=true",
+  "-o",
+  "reorder_keys=true",
+  "-",
+]
+patterns = ["glob:'**/*.toml'"]
 
 [fix.tools.terraform]
 command = ["terraform", "fmt", "-no-color", "-"]
