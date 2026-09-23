@@ -55,7 +55,7 @@ patterns = ["glob:'**/*.fish'"]
 command = ["gleam", "format", "--stdin"]
 patterns = ["glob:'**/*.gleam'"]
 
-[fix.tools.go-2-gofumpt]
+[fix.tools.gofumpt]
 command = ["gofumpt"]
 patterns = ["glob:'**/*.go'"]
 
