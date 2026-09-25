@@ -1,0 +1,19 @@
+prefix_rule(
+    pattern = ["git"],
+    decision = "forbidden",
+    justification = "Use jj instead of git for version control commands.",
+    match = [
+        "git checkout",
+        "git commit",
+        "git diff --stat",
+        "git push",
+        "git status",
+        "git switch",
+    ],
+    not_match = [
+        "jj git clone",
+        "jj git fetch",
+        "jj git init",
+        "jj git push",
+    ],
+)
