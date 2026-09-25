@@ -1,6 +1,6 @@
 #:schema https://developers.openai.com/codex/config-schema.json
 approvals_reviewer = "auto_review"
-model = "gpt-5.6-sol"
+model = "gpt-6-sol"
 model_reasoning_effort = "medium"
 model_reasoning_summary = "concise"
 model_verbosity = "low"
@@ -14,6 +14,7 @@ goals = true
 terminal_resize_reflow = true
 
 [tui]
+screen_reader_detection_done = true
 session_picker_view = "comfortable"
 status_line = [
   "model-with-reasoning",
@@ -55,6 +56,10 @@ source_type = "git"
 source = "https://github.com/JetBrains/go-modern-guidelines.git"
 source_type = "git"
 
+[marketplaces.ponytail]
+source = "https://github.com/DietrichGebert/ponytail.git"
+source_type = "git"
+
 [plugins."skills@personal"]
 enabled = true
 
@@ -67,16 +72,22 @@ enabled = true
 [plugins."i-have-adhd@i-have-adhd"]
 enabled = true
 
-[plugins."YAML@personal"]
-enabled = true
-
-[plugins."Go@personal"]
-enabled = true
-
-[plugins."Shell@personal"]
-enabled = true
-
 [plugins."modern-go-guidelines@goland-codex-marketplace"]
+enabled = true
+
+[plugins."go@personal"]
+enabled = true
+
+[plugins."jj@personal"]
+enabled = true
+
+[plugins."shell@personal"]
+enabled = true
+
+[plugins."yaml@personal"]
+enabled = true
+
+[plugins."ponytail@ponytail"]
 enabled = true
 
 [hooks.state]
@@ -112,3 +123,33 @@ trusted_hash = "sha256:d8662ad836fc67db4b7f80164ace15726f5006220928c748e19b795f7
 [hooks.state."i-have-adhd@i-have-adhd:hooks/hooks.json:session_start:0:0"]
 enabled = false
 trusted_hash = "sha256:f14f820a4bb04f568faf482695f08471d7ed733a25fd94181693a7be4f06a637"
+
+[hooks.state."go@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:ec0c22fdbceb55935af1bf653ecb928bc21e8809fff1d2d4175ae68282795c61"
+
+[hooks.state."go@personal:hooks/hooks.json:post_tool_use:0:1"]
+trusted_hash = "sha256:79d9110ab66a9fb1906219598c5de6ca331ff92f39c3bfba166258e13dc2e155"
+
+[hooks.state."go@personal:hooks/hooks.json:post_tool_use:0:2"]
+trusted_hash = "sha256:4bd09cf811a620937bca8fd50394b66cad439d54b529a4592f2b2f0ee7f30040"
+
+[hooks.state."jj@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:2c0cd7f2adb69b5183a283c42d7d4e3828e7f548b26288a4016ac3b8207af600"
+
+[hooks.state."shell@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:ce52e889a87eff0b30c2e8a3a67245b0ecc44936b3b09f8b13741fb050ce67ff"
+
+[hooks.state."yaml@personal:hooks/hooks.json:post_tool_use:0:0"]
+trusted_hash = "sha256:fc94c2997930dc74a0efb2a5911ab03c4c0b77d2a7995e3b5664774a7e023ceb"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:session_start:0:0"]
+enabled = false
+trusted_hash = "sha256:5f81d38f47448a1581c08ec877e044d9e04dd6f814dce3f2671f7a8edadd719b"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:user_prompt_submit:0:0"]
+enabled = false
+trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0bfefca4"
+
+[hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
+enabled = false
+trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
