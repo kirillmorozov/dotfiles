@@ -18,13 +18,16 @@ jobs:
       contents: read
     steps:
       - name: Checkout
-        uses: actions/checkout@v7.0.1
+        # yamllint disable-line rule:line-length
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
       - name: Actionlint
-        uses: devops-actions/actionlint@v0.1.13
+        # yamllint disable-line rule:line-length
+        uses: devops-actions/actionlint@ec02b36684b2f574f1d219ad0a43b082e46bf3e4  # v0.1.13
 
       - name: Lint YAML Files
-        uses: karancode/yamllint-github-action@v3.0.0
+        # yamllint disable-line rule:line-length
+        uses: karancode/yamllint-github-action@4052d365f09b8d34eb552c363d1141fd60e2aeb2  # v3.0.0
         with:
           yamllint_strict: true
 
@@ -44,7 +47,8 @@ jobs:
           args: lint
 
       - name: Check Lua Style
-        uses: JohnnyMorganz/stylua-action@v5.0.0
+        # yamllint disable-line rule:line-length
+        uses: JohnnyMorganz/stylua-action@76fd70c03e6340ceaf673366712db9b20560b402  # v5.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v2.1.0
@@ -54,4 +58,5 @@ jobs:
             --check .
 
       - name: Lint Ansible files
-        uses: ansible/ansible-lint@v26.9.0
+        # yamllint disable-line rule:line-length
+        uses: ansible/ansible-lint@e7f397ad6dfa20d274afa17cd7bbedd84ed136f5  # v26.9.0
