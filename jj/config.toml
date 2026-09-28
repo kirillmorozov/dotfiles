@@ -59,6 +59,14 @@ patterns = ["glob:'**/*.gleam'"]
 command = ["gofumpt"]
 patterns = ["glob:'**/*.go'"]
 
+[fix.tools.helmfmt]
+command = ["helmfmt"]
+patterns = [
+  "glob:'**/templates/**/*.yaml'",
+  "glob:'**/templates/**/*.yml'",
+  "glob:'**/templates/**/*.tpl'",
+]
+
 [fix.tools.deno]
 command = ["deno", "fmt", "-", "--ext", "js"]
 patterns = ["glob:'**/*.js'", "glob:'**/*.mjs'", "glob:'**/*.cjs'"]
@@ -136,4 +144,7 @@ command = [
   "trim_trailing_whitespace=true",
   "-",
 ]
-patterns = ["glob:'**/*.yaml'", "glob:'**/*.yml'"]
+patterns = [
+  "glob:'**/*.yaml' ~ glob:'**/templates/**/*.yaml'",
+  "glob:'**/*.yml' ~ glob:'**/templates/**/*.yml'",
+]
