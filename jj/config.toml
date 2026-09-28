@@ -18,7 +18,23 @@ default-command = "log"
 diff-formatter = ["difft", "--color=always", "$left", "$right"]
 
 [templates]
+git_push_bookmark = '''
+if(
+  description.first_line().match(regex:'^([[:alnum:]-]+)(?:\(([^)]+)\))?!?:[[:space:]]*(.+)$'),
+  replace(
+    regex:'^([[:alnum:]-]+)(?:\(([^)]+)\))?!?:[[:space:]]*(.+)$',
+    description.first_line(),
+    |c| bookmark_slug(c.get(1)) ++
+         if(c.get(2), '/' ++ bookmark_slug(c.get(2))) ++
+         '/' ++ bookmark_slug(c.get(3))
+  ),
+  separate('-', bookmark_slug(description.first_line()), change_id.short())
+)
+'''
 log = "builtin_log_compact_full_description"
+
+[template-aliases]
+'bookmark_slug(s)' = "s.lower().replace(regex:'[^a-z0-9]+', '-').replace(regex:'^-+|-+$', '')"
 
 [revsets]
 log = '@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()'
