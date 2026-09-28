@@ -1,88 +1,5 @@
 #!/usr/bin/env fish
 
-function __jj_normalize_bookmark_part \
-    --argument-names part \
-    --description 'Normalize text for use as part of a jj bookmark name'
-
-    set -l normalized_part (
-        string lower -- "$part" \
-        | string replace --all --regex '[^a-z0-9]+' '-' \
-        | string trim --chars '-'
-    )
-    test -n "$normalized_part"
-    or return 1
-
-    echo "$normalized_part"
-end
-
-function __jj_bookmark_name_from_description \
-    --argument-names description \
-    --description 'Convert a Conventional Commit description to a jj bookmark name'
-
-    set -l conventional_commit
-    set -l bookmark_parts
-    if set conventional_commit (
-        string match \
-            --regex '^([[:alnum:]-]+)\(([^)]+)\)!?:[[:space:]]*(.+)$' \
-            -- \
-            "$description"
-    )
-        set bookmark_parts $conventional_commit[2..4]
-    else if set conventional_commit (
-        string match \
-            --regex '^([[:alnum:]-]+)!?:[[:space:]]*(.+)$' \
-            -- \
-            "$description"
-    )
-        set bookmark_parts $conventional_commit[2..3]
-    else
-        echo 'the working-copy description is not a conventional commit' >&2
-        return 1
-    end
-
-    set -l normalized_parts
-    for part in $bookmark_parts
-        set -l normalized_part (__jj_normalize_bookmark_part "$part")
-        if test $status -ne 0
-            echo 'the working-copy description cannot be converted into a bookmark name' >&2
-            return 1
-        end
-        set -a normalized_parts "$normalized_part"
-    end
-
-    string join / $normalized_parts
-end
-
-function __jj_working_copy_has_bookmark \
-    --description 'Check whether a bookmark points to the jj working copy'
-    jj log --no-graph --revision @ --template 'local_bookmarks.len() > 0'
-end
-
-function __jj_working_copy_description \
-    --description 'Print the first line of the jj working-copy description'
-    jj log --no-graph --revision @ --template 'description.first_line()'
-end
-
-function __jj_git_push_new \
-    --description 'Push the working copy, creating a bookmark from its description if needed' \
-    --wraps 'jj git push'
-    set -l has_bookmark (__jj_working_copy_has_bookmark)
-    or return
-
-    if test "$has_bookmark" = true
-        echo 'jjgpn: nothing to do; the working copy is already bookmarked' >&2
-        return
-    end
-
-    set -l description (__jj_working_copy_description)
-    or return
-
-    set -l bookmark (__jj_bookmark_name_from_description "$description")
-    or return
-
-    jj git push --named "$bookmark=@" $argv
-end
-
 # Oh-My-Zsh jj plugin abbreviations.
 # Source: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/jj/jj.plugin.zsh
 
@@ -114,7 +31,7 @@ abbr -a jjgfa -- 'jj git fetch --all-remotes'
 abbr -a jjgp -- 'jj git push'
 abbr -a jjgpa -- 'jj git push --all'
 abbr -a jjgpd -- 'jj git push --deleted'
-abbr -a jjgpn -- __jj_git_push_new
+abbr -a jjgpn -- 'jj git push --change @'
 abbr -a jjgpt -- 'jj git push --tracked'
 abbr -a jjl -- 'jj log'
 abbr -a jjla -- 'jj log --revision "all()"'
