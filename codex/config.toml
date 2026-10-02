@@ -28,6 +28,7 @@ theme = "ansi"
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+"gpt-6.1-sol" = 4
 gpt-6-astra = 4
 
 [notice]
@@ -60,6 +61,14 @@ source_type = "git"
 source = "https://github.com/DietrichGebert/ponytail.git"
 source_type = "git"
 
+[marketplaces.azure-skills]
+source = "https://github.com/microsoft/azure-skills.git"
+source_type = "git"
+
+[marketplaces.platform-skills]
+source = "https://github.com/nitinjain999/platform-skills.git"
+source_type = "git"
+
 [plugins."skills@personal"]
 enabled = true
 
@@ -88,6 +97,12 @@ enabled = true
 enabled = true
 
 [plugins."ponytail@ponytail"]
+enabled = true
+
+[plugins."azure@azure-skills"]
+enabled = true
+
+[plugins."platform-skills@platform-skills"]
 enabled = true
 
 [hooks.state]
@@ -153,3 +168,11 @@ trusted_hash = "sha256:6a6f42bc3b58d6262db38bfd74d7f340fcca2b09cdb134aad365063f0
 [hooks.state."ponytail@ponytail:hooks/claude-codex-hooks.json:subagent_start:0:0"]
 enabled = false
 trusted_hash = "sha256:1423b56c1322f96c8f74c51c1e7ae9a047b904c1fa43ee9165d462fd7a6e70ef"
+
+[hooks.state."azure@azure-skills:hooks/claude-hooks.json:post_tool_use:0:0"]
+enabled = false
+trusted_hash = "sha256:0f39823b0531e7676cd3444c12f6e923897d349439d3f6770aad5707462e49cd"
+
+[hooks.state."azure@azure-skills:hooks/claude-hooks.json:session_start:0:0"]
+enabled = false
+trusted_hash = "sha256:9940bd060d74d0395cc306ab07c5bc891f13a51dc921bb059b4914d6452f865e"
