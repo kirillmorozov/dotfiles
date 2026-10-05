@@ -15,6 +15,10 @@
   become: true
   community.general.copr:
     name: scottames/ghostty
+- name: Enable Starship Copr
+  become: true
+  community.general.copr:
+    name: atim/starship
 - name: Enable Jujutsu Copr
   become: true
   community.general.copr:
@@ -84,6 +88,7 @@
       - neovim
       - podman
       - ripgrep
+      - starship
       - tree-sitter-cli
       - uv
       - vim

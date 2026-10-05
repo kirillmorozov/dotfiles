@@ -8,6 +8,7 @@
     ```shell
     git clone git@github.com:kirillmorozov/dotfiles.git \
       && cd dotfiles \
+      && ansible-galaxy install -r requirements.yml \
       && ansible-playbook --ask-become-pass bootstrap.yml
     ```
 

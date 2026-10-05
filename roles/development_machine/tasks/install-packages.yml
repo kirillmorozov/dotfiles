@@ -40,14 +40,14 @@
     - linux
     - rpm
     - fedora
-- name: Install Starship
-  ansible.builtin.include_tasks:
-    file: install-starship.yml
-    apply:
-      tags:
-        - packages
-        - starship
-  when: ansible_facts["system"] == "Linux"
+- name: Install Rust programs using Cargo
+  community.general.cargo:
+    locked: true
+    path: ~/.local
+    name:
+      # NOTE(kirill.morozov): Temporary measure until JJ support in Starship is
+      # released.
+      - starship
   tags:
     - packages
     - starship

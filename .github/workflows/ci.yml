@@ -60,3 +60,5 @@ jobs:
       - name: Lint Ansible files
         # yamllint disable-line rule:line-length
         uses: ansible/ansible-lint@e7f397ad6dfa20d274afa17cd7bbedd84ed136f5  # v26.9.0
+        with:
+          requirements_file: requirements.yml
