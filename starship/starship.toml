@@ -1,34 +1,20 @@
 format = """
 $username\
-$hostname\
-$localip\
-$shlvl\
-$kubernetes\
 $directory\
 $jj_bookmark\
 $jj_change\
 $jj_metrics\
 $jj_status\
-$docker_context\
 $package\
-$deno\
-$elm\
-$gleam\
+$rust\
 $golang\
 $helm\
-$lua\
 $nodejs\
 $python\
 $terraform\
-$vagrant\
-$memory_usage\
-$aws\
 $azure\
+$kubernetes\
 $nats\
-$direnv\
-$env_var\
-$custom\
-$sudo\
 $cmd_duration\
 $line_break\
 $jobs\
@@ -44,4 +30,12 @@ $character"""
 disabled = false
 
 [kubernetes]
+disabled = false
+format = 'on [$symbol $context(\($namespace\))]($style) '
+
+[shell]
+disabled = false
+fish_indicator = '󰈺'
+
+[status]
 disabled = false
