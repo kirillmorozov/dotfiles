@@ -5,6 +5,10 @@ $localip\
 $shlvl\
 $kubernetes\
 $directory\
+$jj_bookmark\
+$jj_change\
+$jj_metrics\
+$jj_status\
 $docker_context\
 $package\
 $deno\
@@ -41,8 +45,3 @@ disabled = false
 
 [kubernetes]
 disabled = false
-
-[custom.jj]
-format = "$output "
-shell = ["jj-starship"]
-when = "jj-starship detect"
