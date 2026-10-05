@@ -1,4 +1,4 @@
-fish_add_path --prepend "$HOME/.local/bin" /opt/homebrew/bin /usr/local/go/bin
+fish_add_path --prepend "$HOME/.local/bin" /opt/homebrew/bin
 
 set -g fish_greeting
 
