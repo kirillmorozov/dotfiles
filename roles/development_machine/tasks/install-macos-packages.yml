@@ -1,14 +1,10 @@
 ---
-- name: Tap a Dillon Mulroy's repo
-  community.general.homebrew_tap:
-    name: dmmulroy/tap
 - name: Brew packages installed
   community.general.homebrew:
     state: latest
     package:
       - btop
       - difftastic
-      - dmmulroy/tap/jj-starship
       - eza
       - fd
       - fish
