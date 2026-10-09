@@ -1,0 +1,90 @@
+prefix_rule(
+  pattern = ["terraform", [
+    "apply",
+    "destroy",
+    "refresh",
+    "import",
+    "taint",
+    "untaint",
+    "force-unlock",
+    "test",
+  ]],
+  decision = "forbidden",
+  justification =
+    "Agent must not mutate Terraform infrastructure or state. Use terraform plan to review changes.",
+  match = [
+    "terraform apply -auto-approve",
+    "terraform apply -destroy",
+    "terraform apply -replace=aws_instance.web",
+    "terraform apply reviewed.tfplan",
+    "terraform apply",
+    "terraform destroy -target=aws_instance.web",
+    "terraform destroy",
+    "terraform force-unlock -force lock-id",
+    "terraform import aws_instance.web i-1234567890",
+    "terraform refresh",
+    "terraform taint aws_instance.web",
+    "terraform test -filter=tests/integration.tftest.hcl",
+    "terraform test",
+    "terraform untaint aws_instance.web",
+  ],
+  not_match = [
+    "terraform -help apply",
+    "terraform -help",
+    "terraform fmt -check",
+    "terraform graph",
+    "terraform output -json",
+    "terraform plan -destroy -out=destroy.tfplan",
+    "terraform plan -out=apply",
+    "terraform plan -replace=aws_instance.web",
+    "terraform plan -var=action=destroy",
+    "terraform plan",
+    "terraform show reviewed.tfplan",
+    "terraform state list",
+    "terraform validate",
+    "terraform version",
+    "terraform workspace list",
+  ],
+);
+
+prefix_rule(
+  pattern = ["terraform", "state", ["rm", "mv", "push", "replace-provider"]],
+  decision = "forbidden",
+  justification =
+    "Agent must not remove, move, or overwrite Terraform state. Use terraform state list or show to inspect it.",
+  match = [
+    "terraform state rm",
+    "terraform state rm aws_instance.web",
+    "terraform state rm -lock=false aws_instance.web",
+    "terraform state mv",
+    "terraform state mv aws_instance.old aws_instance.new",
+    "terraform state push -force backup.tfstate",
+    "terraform state replace-provider hashicorp/aws example/aws",
+  ],
+  not_match = [
+    "terraform state list",
+    "terraform state list -id=rm",
+    "terraform state show aws_instance.rm",
+    "terraform state pull",
+    "terraform state -help",
+    "terraform show mv",
+    "terraform plan -out=push",
+  ],
+);
+
+prefix_rule(
+  pattern = ["terraform", "workspace", "delete"],
+  decision = "forbidden",
+  justification =
+    "Agent must not delete Terraform workspaces or their state. Use terraform workspace list or show to inspect them.",
+  match = [
+    "terraform workspace delete staging",
+    "terraform workspace delete -force production",
+  ],
+  not_match = [
+    "terraform workspace list",
+    "terraform workspace show",
+    "terraform workspace select delete",
+    "terraform workspace -help",
+  ],
+);
