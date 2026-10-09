@@ -26,10 +26,6 @@ if command -q go-task
     alias task go-task
 end
 
-if command -q vimx
-    alias vim vimx
-end
-
 abbr -a lg lazygit
 
 starship init fish | source
