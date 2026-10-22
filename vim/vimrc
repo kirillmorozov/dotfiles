@@ -164,8 +164,6 @@ nnoremap <A-Down> :silent! move .+1<CR>==
 nnoremap <A-Up> :silent! move .-2<CR>==
 xnoremap <A-Down> :silent! move '>+1<CR>gv=gv
 xnoremap <A-Up> :silent! move '<-2<CR>gv=gv
-# Load git hunks into quickfix list
-nnoremap <Leader>gq <ScriptCmd>GitHunksToQF()<CR>
 # Quickfix list navigation
 nnoremap <leader>cc :cclose<CR>
 nnoremap <leader>co :copen<CR>
@@ -285,33 +283,6 @@ endif
 # Re-open last command pre-filled for editing
 def ResumeLastCmd()
 	feedkeys(':' .. histget(':'), 'tn')
-enddef
-
-# Load git hunks into quickfix list
-def GitHunksToQF()
-	# --relative makes paths resolvable when cwd is not the repository root
-	var lines = systemlist('git diff --no-ext-diff -U0 --relative')
-	if v:shell_error
-		echohl ErrorMsg
-		echomsg 'git diff failed'
-		echohl None
-		return
-	endif
-	if empty(lines)
-		setqflist([], ' ', {title: 'Git Hunks', items: []})
-		cclose
-		echomsg 'No git hunks found'
-		return
-	endif
-	setqflist([], ' ', {
-		title: 'Git Hunks',
-		lines: lines,
-		efm: '%-Pdiff --git a/%f b/%.%#,'
-			.. '@@ -%\d%\+%.%# +%l%.%# @@ %m,'
-			.. '@@ -%\d%\+%.%# +%l%.%# @@,'
-			.. '%-G%.%#',
-	})
-	copen
 enddef
 
 # Set up Git TUI client
