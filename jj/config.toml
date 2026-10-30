@@ -7,8 +7,8 @@ name = "Kirill Morozov"
 [[--scope]]
 --when.repositories = [
   "~/Development/code.wado.run",
-  "~/Development/github/wandelbots-internal",
   "~/Development/github/wandelbotsgmbh",
+  "~/Development/github/wb-int",
 ]
 [--scope.user]
 email = "kirill.morozov@wandelbots.com"
