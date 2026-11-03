@@ -16,6 +16,13 @@
   ansible.builtin.import_tasks: configure-ghostty-macos.yml
   tags:
     - configs
+- name: Configure KDE
+  when: >-
+    'KDE' in
+    ansible_facts['env'].get('XDG_CURRENT_DESKTOP', '').split(':')
+  ansible.builtin.import_tasks: configure-kde.yml
+  tags:
+    - configs
 - name: Change shell
   ansible.builtin.import_tasks: change-shell.yml
   tags:
