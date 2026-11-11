@@ -1,0 +1,12 @@
+---
+- name: Configure window buttons
+  community.general.ini_file:
+    mode: "0644"
+    no_extra_spaces: true
+    option: "{{ item.key }}"
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/kwinrc"
+    section: org.kde.kdecoration2
+    value: "{{ item.value }}"
+  loop:
+    - {key: ButtonsOnLeft, value: XAI}
+    - {key: ButtonsOnRight, value: H}
