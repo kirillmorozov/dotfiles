@@ -31,6 +31,10 @@
   become: true
   community.general.copr:
     name: aldantanneo/jj-vcs
+- name: Enable Golang Rawhide Copr
+  become: true
+  community.general.copr:
+    name: "@go-sig/golang-rawhide"
 - name: Configure DNF
   become: true
   community.general.ini_file:
