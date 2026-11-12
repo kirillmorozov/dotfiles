@@ -1,0 +1,71 @@
+{
+  "enabledPlugins": {
+    "go@personal": true,
+    "i-have-adhd@i-have-adhd": true,
+    "jj@personal": true,
+    "modern-go-guidelines@goland-claude-marketplace": true,
+    "ponytail@ponytail": true,
+    "shell@personal": true,
+    "skills@personal": true,
+    "yaml@personal": true
+  },
+  "extraKnownMarketplaces": {
+    "goland-claude-marketplace": {
+      "source": {
+        "repo": "JetBrains/go-modern-guidelines",
+        "source": "github"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "repo": "ayghri/i-have-adhd",
+        "source": "github"
+      }
+    },
+    "personal": {
+      "source": {
+        "ref": "feat/use-claude-plugin-manifests-for-both-agents",
+        "repo": "kirillmorozov/agentic",
+        "source": "github"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "repo": "DietrichGebert/ponytail",
+        "source": "github"
+      }
+    }
+  },
+  "model": "opus",
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "outputStyle": "Concise",
+  "permissions": {
+    "defaultMode": "auto",
+    "deny": [
+      "Bash(git *)",
+      "Bash(terraform apply *)",
+      "Bash(terraform destroy *)",
+      "Bash(terraform force-unlock *)",
+      "Bash(terraform import *)",
+      "Bash(terraform refresh *)",
+      "Bash(terraform state mv *)",
+      "Bash(terraform state push *)",
+      "Bash(terraform state replace-provider *)",
+      "Bash(terraform state rm *)",
+      "Bash(terraform taint *)",
+      "Bash(terraform test *)",
+      "Bash(terraform untaint *)",
+      "Bash(terraform workspace delete *)"
+    ]
+  },
+  "statusLine": {
+    "command": "jq -r '[.model.display_name + (.effort.level // \"\" | if . != \"\" then \" (\\(.))\" else . end), \"ctx \\(.context_window.remaining_percentage // \"?\")%\", (.rate_limits.five_hour.used_percentage // empty | \"5h \\(floor)%\"), (.rate_limits.seven_day.used_percentage // empty | \"7d \\(floor)%\"), (.workspace.current_dir | split(\"/\") | last)] | join(\" | \")'",
+    "type": "command"
+  },
+  "theme": "dark-ansi",
+  "verbose": true
+}
