@@ -1,0 +1,76 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git *)",
+      "Bash(terraform apply *)",
+      "Bash(terraform destroy *)",
+      "Bash(terraform force-unlock *)",
+      "Bash(terraform import *)",
+      "Bash(terraform refresh *)",
+      "Bash(terraform state mv *)",
+      "Bash(terraform state push *)",
+      "Bash(terraform state replace-provider *)",
+      "Bash(terraform state rm *)",
+      "Bash(terraform taint *)",
+      "Bash(terraform test *)",
+      "Bash(terraform untaint *)",
+      "Bash(terraform workspace delete *)"
+    ],
+    "defaultMode": "auto"
+  },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "jq -r '[.model.display_name + (.effort.level // \"\" | if . != \"\" then \" (\\(.))\" else . end), \"ctx \\(.context_window.remaining_percentage // \"?\")%\", (.rate_limits.five_hour.used_percentage // empty | \"5h \\(floor)%\"), (.rate_limits.seven_day.used_percentage // empty | \"7d \\(floor)%\"), (.workspace.current_dir | split(\"/\") | last)] | join(\" | \")'"
+  },
+  "enabledPlugins": {
+    "go@personal": true,
+    "i-have-adhd@i-have-adhd": true,
+    "jj@personal": true,
+    "modern-go-guidelines@goland-claude-marketplace": true,
+    "ponytail@ponytail": true,
+    "shell@personal": true,
+    "skills@personal": true,
+    "yaml@personal": true
+  },
+  "extraKnownMarketplaces": {
+    "goland-claude-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "JetBrains/go-modern-guidelines"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "personal": {
+      "source": {
+        "source": "github",
+        "repo": "kirillmorozov/agentic",
+        "ref": "feat/use-claude-plugin-manifests-for-both-agents"
+      }
+    },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    }
+  },
+  "outputStyle": "Concise",
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": false
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
+    }
+  },
+  "theme": "dark-ansi",
+  "verbose": true
+}

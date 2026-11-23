@@ -1,0 +1,13 @@
+{
+  "$docs": "https://code.claude.com/docs/en/keybindings",
+  "$schema": "https://www.schemastore.org/claude-code-keybindings.json",
+  "bindings": [
+    {
+      "bindings": {
+        "alt+,": "chat:decreaseEffort",
+        "alt+.": "chat:increaseEffort"
+      },
+      "context": "Chat"
+    }
+  ]
+}
